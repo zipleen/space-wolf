@@ -13,13 +13,13 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <stdarg.h>
 
 #ifdef WIN32
 #include<windows.h>
 #include <stdio.h>
 #include <wchar.h>
 #include <wtypes.h>
-#include <stdarg.h>
 #endif
 
 class Console

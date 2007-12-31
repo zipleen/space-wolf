@@ -228,11 +228,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\intput.cpp"
+				RelativePath="..\input.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\intput.h"
+				RelativePath="..\input.h"
 				>
 			</File>
 			<File
