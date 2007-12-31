@@ -61,9 +61,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDLmain.lib SDL_mixer.lib glew32.lib glew32s.lib glut32.lib libjpeg.lib libpng.lib"
+				AdditionalDependencies="SDL.lib SDLmain.lib SDL_mixer.lib glew32.lib libjpeg.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="lib\"
+				IgnoreAllDefaultLibraries="false"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -137,7 +138,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDLmain.lib SDL_mixer.lib glew32.lib glew32s.lib glut32.lib libjpeg.lib"
+				AdditionalDependencies="SDL.lib SDLmain.lib SDL_mixer.lib glew32.lib glew32s.lib libjpeg.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="lib\"
 				IgnoreAllDefaultLibraries="false"

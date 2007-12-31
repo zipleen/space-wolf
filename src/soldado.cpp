@@ -24,8 +24,13 @@ Soldado::Soldado()
 Soldado::Soldado(int x, int y, bool em_movimento, GLfloat angulo)
 {
 	Guard();
+#ifdef WIN32
+	this->model_path="data\\models\\players\\razor\\";
+	this->weaponpath="data\\models\\weapons2\\smg\\";
+#else
 	this->model_path="data/models/players/razor/";
 	this->weaponpath="data/models/weapons2/smg/";
+#endif
 	this->loadModel();
 	
 	this->vida=50;
