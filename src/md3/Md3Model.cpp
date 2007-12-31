@@ -232,6 +232,10 @@ Md3Mesh::loadShader (int index)
 
       // Load the texture
       setTexture (texMgr->load (filename));
+		
+		// vamos tentar adicionar o "data" ah path
+		string filename2 = "data/"+filename;
+		setTexture (texMgr->load (filename2));
     }
 }
 

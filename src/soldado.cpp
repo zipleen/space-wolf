@@ -12,8 +12,8 @@
 Soldado::Soldado()
 {
 	Guard();
-	this->model_path="models/players/harley/";
-	this->weaponpath="models/weapons2/plasma";
+	this->model_path="data/models/players/razor/";
+	this->weaponpath="data/models/weapons2/smg/";
 	this->loadModel();
 	
 	this->vida=50;
@@ -24,8 +24,8 @@ Soldado::Soldado()
 Soldado::Soldado(int x, int y, bool em_movimento, GLfloat angulo)
 {
 	Guard();
-	this->model_path="models/players/harley/";
-	this->weaponpath="models/weapons2/plasma";
+	this->model_path="data/models/players/razor/";
+	this->weaponpath="data/models/weapons2/smg/";
 	this->loadModel();
 	
 	this->vida=50;
