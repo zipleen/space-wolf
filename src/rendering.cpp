@@ -40,13 +40,17 @@ bool Rendering::initVideo()
 {
   const SDL_VideoInfo *videoInfo;
 
-  // Initialize SDL
-  if (SDL_Init (SDL_INIT_VIDEO) < 0)
-    {
-      std::cerr << "Video initialization failed: "
-	   << SDL_GetError () << std::endl;
-      return false;
-    }
+	// Initialize SDL - debugging de sdl no windows necessita deste parametro
+#ifdef WIN32 && DEBUG
+	if (SDL_Init (SDL_INIT_EVERYTHING|SDL_INIT_NOPARACHUTE ) < 0)
+#else
+	if (SDL_Init (SDL_INIT_EVERYTHING) < 0)
+#endif
+	{
+		std::cerr << "Video initialization failed: "
+			<< SDL_GetError () << std::endl;
+		return false;
+	}
 
   atexit (SDL_Quit);
 
@@ -253,12 +257,16 @@ void Rendering::draw2D()
 int Rendering::glPrintf (const char *format, ...)
 {
 	char buffer[1024];
-	std::va_list arg;
+	va_list arg;
 	int ret;
 	
 	// Format the text
 	va_start (arg, format);
-    ret = std::vsnprintf (buffer, sizeof (buffer), format, arg);
+#ifdef WIN32
+	ret = _vsnprintf (buffer, sizeof (buffer), format, arg);
+#else
+	ret = vsnprintf (buffer, sizeof (buffer), format, arg);
+#endif
 	va_end (arg);
 	
 	// Print it

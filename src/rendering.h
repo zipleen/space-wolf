@@ -20,6 +20,7 @@
 #else
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <GL/glut.h>
 #endif
 
 #include <string>
@@ -27,6 +28,14 @@
 #include <iostream>
 #include <sstream>
 #include <cstdarg>
+
+#ifdef WIN32
+#include<windows.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <wtypes.h>
+#include <stdarg.h>
+#endif
 
 #include "console.h"
 #include "map.h"

@@ -20,7 +20,7 @@ Map::Map()
 
 void Map::updateGuardAnimation(double dt)
 {
-	for(int i=0;i<this->guardas.size();i++)
+	for(int i=0;i<(signed)this->guardas.size();i++)
 	{
 		this->guardas[i]->animate(dt);
 	}

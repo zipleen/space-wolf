@@ -7,9 +7,11 @@
  *
  */
 
+#ifdef WIN32
+#include "Windows Project\stdafx.h"
+#endif
+
 #include "main.h"
-#include "game.h"
-#include <iostream>
 
 Rendering *r;
 Game *g;
