@@ -34,6 +34,7 @@ Rendering::Rendering()
 	this->useLigth = true;
 	this->windowTitle = "Wolf3d look-a-like";
 	this->drawFPS = true;
+
 }
 
 bool Rendering::initVideo()
@@ -239,56 +240,49 @@ void Rendering::draw3D(Map *m)
 
 void Rendering::draw2D()
 {
+		
 	begin2D ();
 	
-	glColor3f (1.0f, 1.0f, 1.0f);
+	// Reset texture matrix
+	glActiveTexture (GL_TEXTURE0);
+	glMatrixMode (GL_TEXTURE);
+	glLoadIdentity ();
+	glMatrixMode (GL_MODELVIEW);
 	
-	if (this->drawFPS)
-    {
-		glRasterPos2i (10, 10);
-		glPrintf ("FPS: %i", this->fps);
-    }
+	glPushAttrib (GL_ENABLE_BIT | GL_POLYGON_BIT);
+	glDisable (GL_DEPTH_TEST);
+	glDisable (GL_LIGHTING);
+	glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 	
+	// White text
+	glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
+	
+	if(this->drawFPS)
+	{
+		// Print frame rate int the bottom-left corner
+		//this->font->printText (10, 10, "%i fps", this->fps);
+	}
+	
+	glPopAttrib ();
 	
 	end2D ();
 	
 }
 
-int Rendering::glPrintf (const char *format, ...)
-{
-	char buffer[1024];
-	va_list arg;
-	int ret;
-	
-	// Format the text
-	va_start (arg, format);
-#ifdef WIN32
-	ret = _vsnprintf (buffer, sizeof (buffer), format, arg);
-#else
-	ret = vsnprintf (buffer, sizeof (buffer), format, arg);
-#endif
-	va_end (arg);
-	
-	// Print it
-	for (unsigned int i = 0; i < strlen (buffer); ++i)
-		glutBitmapCharacter (GLUT_BITMAP_HELVETICA_12, buffer[i]);
-	
-	return ret;
-}
-
 void Rendering::begin2D ()
 {
-	int width = glutGet (GLUT_WINDOW_WIDTH);
-	int height = glutGet (GLUT_WINDOW_HEIGHT);
+	GLint viewport[4];
+	glGetIntegerv (GL_VIEWPORT, viewport);
 	
 	glMatrixMode (GL_PROJECTION);
 	glPushMatrix ();
 	
 	glLoadIdentity ();
-	glOrtho (0, width, 0, height, -1.0f, 1.0f);
+	glOrtho (0, viewport[2], 0, viewport[3], -1, 1);
 	
 	glMatrixMode (GL_MODELVIEW);
-	glLoadIdentity ();
+	glLoadIdentity();
+	
 }
 
 void Rendering::end2D ()
