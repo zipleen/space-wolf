@@ -31,12 +31,12 @@
 		AABE74890D26CC5B00A3AA8B /* hud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE74780D26CC5B00A3AA8B /* hud.cpp */; };
 		AABE748A0D26CC5B00A3AA8B /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE747A0D26CC5B00A3AA8B /* player.cpp */; };
 		AABE748B0D26CC5B00A3AA8B /* map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE747B0D26CC5B00A3AA8B /* map.cpp */; };
-		AABE748C0D26CC5B00A3AA8B /* intput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE747C0D26CC5B00A3AA8B /* intput.cpp */; };
 		AABE748D0D26CC5B00A3AA8B /* console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE747E0D26CC5B00A3AA8B /* console.cpp */; };
 		AABE748E0D26CC5B00A3AA8B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE74810D26CC5B00A3AA8B /* main.cpp */; };
 		AABE748F0D26CC5B00A3AA8B /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE74830D26CC5B00A3AA8B /* game.cpp */; };
 		AABE749A0D26CCA100A3AA8B /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AABE74970D26CCA100A3AA8B /* libGLEW.a */; };
 		AABE749B0D26CCA100A3AA8B /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AABE74980D26CCA100A3AA8B /* libjpeg.a */; };
+		AAEE40520D29371200DE9F02 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAEE40500D29371200DE9F02 /* input.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,10 +97,8 @@
 		AABE74760D26CC5B00A3AA8B /* guard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = guard.h; path = ../guard.h; sourceTree = SOURCE_ROOT; };
 		AABE74770D26CC5B00A3AA8B /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = ../player.h; sourceTree = SOURCE_ROOT; };
 		AABE74780D26CC5B00A3AA8B /* hud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hud.cpp; path = ../hud.cpp; sourceTree = SOURCE_ROOT; };
-		AABE74790D26CC5B00A3AA8B /* intput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = intput.h; path = ../intput.h; sourceTree = SOURCE_ROOT; };
 		AABE747A0D26CC5B00A3AA8B /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = ../player.cpp; sourceTree = SOURCE_ROOT; };
 		AABE747B0D26CC5B00A3AA8B /* map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = map.cpp; path = ../map.cpp; sourceTree = SOURCE_ROOT; };
-		AABE747C0D26CC5B00A3AA8B /* intput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = intput.cpp; path = ../intput.cpp; sourceTree = SOURCE_ROOT; };
 		AABE747D0D26CC5B00A3AA8B /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = ../game.h; sourceTree = SOURCE_ROOT; };
 		AABE747E0D26CC5B00A3AA8B /* console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = console.cpp; path = ../console.cpp; sourceTree = SOURCE_ROOT; };
 		AABE747F0D26CC5B00A3AA8B /* fisica.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fisica.h; path = ../fisica.h; sourceTree = SOURCE_ROOT; };
@@ -110,6 +108,8 @@
 		AABE74830D26CC5B00A3AA8B /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game.cpp; path = ../game.cpp; sourceTree = SOURCE_ROOT; };
 		AABE74970D26CCA100A3AA8B /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = /opt/local/lib/libGLEW.a; sourceTree = "<absolute>"; };
 		AABE74980D26CCA100A3AA8B /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = /opt/local/lib/libjpeg.a; sourceTree = "<absolute>"; };
+		AAEE40500D29371200DE9F02 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = input.cpp; path = ../input.cpp; sourceTree = SOURCE_ROOT; };
+		AAEE40510D29371200DE9F02 /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = input.h; path = ../input.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,13 +280,13 @@
 				AABE746C0D26CC5B00A3AA8B /* console.h */,
 				AABE746D0D26CC5B00A3AA8B /* config.cpp */,
 				AABE746F0D26CC5B00A3AA8B /* config.h */,
+				AAEE40500D29371200DE9F02 /* input.cpp */,
+				AAEE40510D29371200DE9F02 /* input.h */,
 				AABE747F0D26CC5B00A3AA8B /* fisica.h */,
 				AABE74710D26CC5B00A3AA8B /* fisica.cpp */,
 				AABE74730D26CC5B00A3AA8B /* rendering.cpp */,
 				AABE74800D26CC5B00A3AA8B /* rendering.h */,
 				AABE74750D26CC5B00A3AA8B /* sound.h */,
-				AABE74790D26CC5B00A3AA8B /* intput.h */,
-				AABE747C0D26CC5B00A3AA8B /* intput.cpp */,
 				AABE74700D26CC5B00A3AA8B /* sound.cpp */,
 				AABE74830D26CC5B00A3AA8B /* game.cpp */,
 				AABE747D0D26CC5B00A3AA8B /* game.h */,
@@ -375,12 +375,12 @@
 				AABE74890D26CC5B00A3AA8B /* hud.cpp in Sources */,
 				AABE748A0D26CC5B00A3AA8B /* player.cpp in Sources */,
 				AABE748B0D26CC5B00A3AA8B /* map.cpp in Sources */,
-				AABE748C0D26CC5B00A3AA8B /* intput.cpp in Sources */,
 				AABE748D0D26CC5B00A3AA8B /* console.cpp in Sources */,
 				AABE748F0D26CC5B00A3AA8B /* game.cpp in Sources */,
 				AA9D579B0D27C34100089D4E /* items.cpp in Sources */,
 				AABE748E0D26CC5B00A3AA8B /* main.cpp in Sources */,
 				AA08848E0D27F58F00D7793D /* soldado.cpp in Sources */,
+				AAEE40520D29371200DE9F02 /* input.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
