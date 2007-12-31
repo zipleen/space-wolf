@@ -1,0 +1,102 @@
+/*
+ *  rendering.h
+ *  wolf
+ *
+ *  Created by zipleen on 12/29/07.
+ *  Copyright 2007 __MyCompanyName__. All rights reserved.
+ *
+ */
+
+#ifndef RENDERING_H
+#define RENDERING_H
+
+#include <SDL.h>
+
+#include <GL/glew.h>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#include <GLUT/glut.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+
+#include <string>
+#include <vector>
+#include <iostream>
+#include <sstream>
+#include <cstdarg>
+
+#include "console.h"
+#include "map.h"
+
+GLenum checkOpenGLErrors (const char *file, int line);
+
+// Application's Timer
+struct Timer
+{
+public:
+	Timer ()
+    : current_time (0.0), last_time (0.0) { }
+	
+public:
+	void update () {
+		last_time = current_time;
+		current_time = static_cast<double>(SDL_GetTicks ()) / 1000.0;
+	}
+	
+	double deltaTime () const {
+		return (current_time - last_time);
+	}
+	
+public:
+	double current_time;
+	double last_time;
+	
+};
+
+
+class Rendering
+{
+protected:
+	bool useTexturing;
+	bool useCulling;
+	bool useWireframe;
+	bool useSmooth;
+	bool useLigth;
+	bool drawFPS;
+	
+	int windowWidth;
+	int windowHeight;
+	int windowDepth;
+	int videoFlags;
+	int fps;
+	std::string windowTitle;
+	SDL_Surface *surface;
+	
+	
+public:
+	Timer timer;
+	Rendering(); 
+	virtual ~Rendering(){};
+	
+	void draw3D(Map *m);
+	bool initOpenGL();
+	
+	bool initVideo();
+	void reshape (GLsizei width, GLsizei height);
+	bool resizeWindow(int w,int h);
+	void gameCycle (Map *m);
+	void gameLogic ();
+	
+	
+	// 2d
+	void begin2D();
+	void end2D();
+	int glPrintf (const char *format, ...);
+	void draw2D();
+};
+
+
+#endif
