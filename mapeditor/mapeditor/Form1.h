@@ -71,6 +71,7 @@ namespace mapeditor {
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
 	private: System::Windows::Forms::Button^  button5;
 			 System::Boolean floor;
+			 System::Boolean key;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 
 
@@ -334,6 +335,7 @@ namespace mapeditor {
 			this->pictureBox1->TabIndex = 9;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Visible = false;
+			this->pictureBox1->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::pictureBox1_MouseDoubleClick);
 			// 
 			// Form1
 			// 
@@ -352,7 +354,6 @@ namespace mapeditor {
 			this->Name = L"Form1";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MapEditor";
-			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::Form1_Paint);
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			this->tabControl1->ResumeLayout(false);
 			this->tab1->ResumeLayout(false);
@@ -397,16 +398,17 @@ namespace mapeditor {
 
 	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
 			 }
- private: System::Void Form1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+ /*private: System::Void Form1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 						 /*for(int i=1;i<=64;i++){
 							for(int f=1;f<=64;f++){
 								e->Graphics->FillRectangle( gcnew SolidBrush( ColorTranslator::FromHtml("Black") ), (11*f)+1, (11*i)+1, 8, 8 );
 							}
-						}*/
-					}
+						}
+					}*/
 private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
 			/* floor codes */
 			 this->floor = false;
+			 this->key = false;
 			this->floormap = gcnew array< array<System::Windows::Forms::PictureBox^>^ > (64);
 			for(int i=1;i<=64;i++){
 				 this->floormap[i-1] = gcnew array<System::Windows::Forms::PictureBox^>(64);
@@ -430,6 +432,8 @@ private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e)
 					//this->floormap[i-1][e-1]->WordWrap = false;
 					this->floormap[i-1][e-1]->Click += gcnew System::EventHandler(this, &Form1::ChangeFloorColor);
 					this->floormap[i-1][e-1]->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::floorcode_MouseMove);
+					this->floormap[i-1][e-1]->MouseEnter += gcnew System::EventHandler(this, &Form1::pictureBox2_MouseDown);
+					this->floormap[i-1][e-1]->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::pictureBox1_MouseDoubleClick);
 					this->floormap[i-1][e-1]->Visible = false;
 					this->Controls->Add(this->floormap[i-1][e-1]);
  
@@ -459,6 +463,8 @@ private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e)
 					//this->map[i-1][e-1]->WordWrap = false;
 					this->map[i-1][e-1]->Click += gcnew System::EventHandler(this, &Form1::ChangeColor);
 					this->map[i-1][e-1]->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::code_MouseMove);
+					this->map[i-1][e-1]->MouseEnter += gcnew System::EventHandler(this, &Form1::pictureBox1_MouseDown);
+					this->map[i-1][e-1]->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::pictureBox1_MouseDoubleClick);
 					this->Controls->Add(this->map[i-1][e-1]);
 				 }
 			}
@@ -866,6 +872,7 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 private: System::Void code_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 		 	int x,y;
 			if(this->floor==false){
+				
 				 System::Windows::Forms::PictureBox^  t = static_cast<System::Windows::Forms::PictureBox^>(sender);
 				 array<String^>^ a = t->Text->Split(' ');
 				 // x e y do floor
@@ -896,6 +903,7 @@ private: System::Void code_MouseMove(System::Object^  sender, System::Windows::F
 					}
 				else
 					this->label1->Text = "WTF?! nao pode ser.. falta codigo "+codemap[x-1][y-1];
+				
 			}
 		 }
  private: System::Void floorcode_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
@@ -911,6 +919,32 @@ private: System::Void code_MouseMove(System::Object^  sender, System::Windows::F
 			else
 				this->label1->Text = "Floorcode: "+this->listBox5->Items[codefloormap[x-1][y-1]-9000-1]+"                ";
 		 }
+
+private: System::Void pictureBox1_MouseDown(System::Object^  sender, System::EventArgs^  e) {
+			 //System::Windows::Forms::PictureBox^  t = static_cast<System::Windows::Forms::PictureBox^>(sender);
+
+			 //System::Diagnostics::Debug::WriteLine("objecto chamado:"+t->Text+" key:" +this->key);
+
+			 //if(System::Windows::Forms::MouseEventArgs::Button==System::Windows::Forms::MouseButtons::Left)
+			 if(this->key)
+				 this->ChangeColor(sender, e);
+		 }
+
+private: System::Void pictureBox1_MouseDoubleClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+			 if(this->key==true)
+				 this->key=false;
+			 else this->key=true;
+		 }
+private: System::Void pictureBox2_MouseDown(System::Object^  sender, System::EventArgs^  e) {
+			 //System::Windows::Forms::PictureBox^  t = static_cast<System::Windows::Forms::PictureBox^>(sender);
+
+			 //System::Diagnostics::Debug::WriteLine("objecto chamado:"+t->Text+" key:" +this->key);
+
+			 //if(System::Windows::Forms::MouseEventArgs::Button==System::Windows::Forms::MouseButtons::Left)
+			 if(this->key)
+				 this->ChangeFloorColor(sender, e);
+		 }
+
 };
 }
 
