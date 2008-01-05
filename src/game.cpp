@@ -14,8 +14,7 @@ Game::Game()
 {
 	this->player = p;
 	this->map = new Map();
-	this->map->setDificuldade(4);
-	this->map->loadMap("e1m1.map");
+	this->map->loadMap("data/maps/e1m1.map");
 }
 
 void Game::MainLoop()
@@ -75,8 +74,3 @@ void Game::MainLoop()
 	}
 }
 
-void Game::setDificuldade(int dif)
-{
-	this->dificuldade=dif;
-	this->map->setDificuldade(dif);
-}

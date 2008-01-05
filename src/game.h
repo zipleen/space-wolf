@@ -25,13 +25,11 @@ protected:
 	Map *map; // o nosso mapa actual
 	Player *player;
 	
-	int dificuldade;
 public:
 	Game(); 
 	virtual ~Game(){};
 	
 	void MainLoop();
-	void setDificuldade(int dif);
 };
 
 #endif

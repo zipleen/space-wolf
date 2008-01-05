@@ -31,7 +31,11 @@
 #include <iostream>
 #include <cctype>
 #include <sstream>
+#ifdef _WIN32
+#include <dirent_win.h>
+#else
 #include <dirent.h>
+#endif
 #include <sys/types.h>
 
 using std::cout;

@@ -12,6 +12,8 @@
 Map::Map()
 {
 	texMgr = Texture2DManager::getInstance ();
+	//this->map = std::vector<std::vector<int> >(64,std::vector<int>(64,0));
+	this->floormap = std::vector<std::vector<int> >(64,std::vector<int>(64,0));
 	this->guardas.clear();
 	this->items.clear();
 	
@@ -39,17 +41,10 @@ void Map::drawGuards()
 	}
 }
 
-void Map::setDificuldade(int dif)
-{
-	this->dificuldade = dif;
-}
 
-void Map::addGuard(int x, int y, int type, int direction, bool movimento, int dificuldade)
+void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 {
 	GLfloat angulo;
-	
-	if(this->dificuldade<=dificuldade)
-		return;
 	
 	switch(direction)
 	{
@@ -81,15 +76,16 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento, int di
 
 bool Map::loadMap(std::string file)
 {
-	this->addGuard(1, 1, 1 , 90, true, 3);
-	return true;
-	/*std::ifstream ifs (filename.c_str(), std::ios::in);
+	string aa; // temp
+	//this->addGuard(1, 1, 1 , 90, true, 3);
+	//return true;
+	
+	std::ifstream ifs (file.c_str(), std::ios::in);
 	if (ifs.fail ())
 		return false;
 	
 	// ler tamanho
-	int tamanho;
-	ifs >> tamanho;
+	ifs >> this->tamanho_mapa;
 	
 	// ler textura do tecto
 	int tex_tecto;
@@ -98,15 +94,29 @@ bool Map::loadMap(std::string file)
 	// ler textura do chao
 	int tex_chao;
 	ifs >> tex_chao;
+	std::getline (ifs, aa);
+    for(int i=0; i<this->tamanho_mapa; ++i)
+	{
+		std::vector<int> aaa(this->tamanho_mapa-1);
+		std::getline (ifs, aa);
+		Tokenize(aa, aaa ,',');
+		this->map.push_back(aaa);
+	}
+	// enter a separar
+	std::getline (ifs, aa);
+    for(int i=0; i<this->tamanho_mapa; ++i)
+	{
+		std::vector<int> aaa(this->tamanho_mapa-1);
+		std::getline (ifs, aa);
+		Tokenize(aa, aaa ,',');
+		this->floormap.push_back(aaa);		
+	}
 	
-	/*while (!ifs.eof ())
-    {
-		string meshname, texname, buffer;
-		
-		// Read mesh name and texture name
-		std::getline (ifs, meshname, ',');
-		ifs >> texname;
-		
-		
-	}*/
+	for(int i = 0; i <this->map.size(); i++){
+		std::cout << i << ": " ;
+		for(int e=0; e<this->map[i].size(); e++){
+			std::cout << this->map[i][e] << " ";
+		}
+		std::cout << std::endl;
+	}
 }

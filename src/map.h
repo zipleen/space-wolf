@@ -10,21 +10,26 @@
 #ifndef MAP_H
 #define MAP_H
 
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+
 #include "guard.h"
 #include "soldado.h"
 #include "items.h"
 #include "md3/TextureManager.h"
 #include "console.h"
+#include "StrUtils.h"
 
 class Map
 {
 protected:
-	std::vector< std::vector<int> > map; // vector de vector....
+	std::vector<std::vector<int> > map; // vector de vector....
+	std::vector<std::vector<int> > floormap; // vector com os floor codes, para o AI
 	std::vector<Guard*> guardas;
 	std::vector<Items*> items;
 	Texture2DManager *texMgr;
-	
-	int dificuldade;
+	int tamanho_mapa;
 	
 	bool desenharTudo;
 public:
@@ -35,8 +40,7 @@ public:
 	
 	// ler mapas
 	bool loadMap(std::string file);
-	void setDificuldade(int dif);
-	void addGuard(int x, int y, int type, int direction, bool movimento, int dificuldade);
+	void addGuard(int x, int y, int type, int direction, bool movimento);
 	
 	// desenhar mapas
 	void drawGuards();
