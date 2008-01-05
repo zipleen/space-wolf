@@ -207,8 +207,8 @@ namespace mapeditor {
 			// listBox4
 			// 
 			this->listBox4->FormattingEnabled = true;
-			this->listBox4->Items->AddRange(gcnew cli::array< System::Object^  >(11) {L"Vida - 5%", L"Vida - 15%", L"Vida - 25%", L"Arma 2", 
-				L"Arma 3", L"Arma 4", L"Municoes", L"Chave 1", L"Chave 2", L"Inicio Jogo", L"Fim Jogo"});
+			this->listBox4->Items->AddRange(gcnew cli::array< System::Object^  >(11) {L"Vida - 15%", L"Vida - 25%", L"Vida - 50%", L"Arma 1", 
+				L"Arma 2", L"Arma 3", L"Municoes", L"Chave 1", L"Chave 2", L"Inicio Jogo", L"Fim Jogo"});
 			this->listBox4->Location = System::Drawing::Point(0, 0);
 			this->listBox4->Name = L"listBox4";
 			this->listBox4->Size = System::Drawing::Size(245, 498);
@@ -489,6 +489,14 @@ private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e)
 						this->listBox3->Items->Add(g+" "+i+"/Andar/W");
 				}
 			}
+			this->listBox3->Items->Add("Direccao E");
+			this->listBox3->Items->Add("Direccao O");
+			this->listBox3->Items->Add("Direccao N");
+			this->listBox3->Items->Add("Direccao S");
+			this->listBox3->Items->Add("Direccao NE");
+			this->listBox3->Items->Add("Direccao SE");
+			this->listBox3->Items->Add("Direccao NO");
+			this->listBox3->Items->Add("Direccao SO");
 			// floorcodes listbox
 			for(int i=1;i<=50;i++){
 				this->listBox5->Items->Add("Floorcode "+i);
@@ -656,23 +664,27 @@ private: System::Void pintar_quadrados(System::Windows::Forms::PictureBox^ aqui,
 				 switch(cor){
 					case 3001:
 						aqui->BackColor = System::Drawing::Color::FromArgb(180,255,0);
-						//aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"porta_norte_normal")));
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"porta_norte_normal")));
 						break;
 					case 3002:
 						aqui->BackColor = System::Drawing::Color::FromArgb(185,255,10);
-						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"porta_norte_normal")));
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"porta_oeste_normal")));
 						break;	
 					case 3003:
 						aqui->BackColor = System::Drawing::Color::FromArgb(120,255,0);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"porta_norte_chave1")));
 						break;
 					case 3004:
 						aqui->BackColor = System::Drawing::Color::FromArgb(125,255,40);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"porta_oeste_chave1")));
 						break;
 					case 3005:
 						aqui->BackColor = System::Drawing::Color::FromArgb(80,255,0);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"porta_norte_chave2")));
 						break;
 					case 3006:
 						aqui->BackColor = System::Drawing::Color::FromArgb(105,255,40);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"porta_oeste_chave2")));
 						break;
 				}
 
@@ -683,36 +695,47 @@ private: System::Void pintar_quadrados(System::Windows::Forms::PictureBox^ aqui,
 				switch(cor){
 					case 4001:
 						aqui->BackColor = System::Drawing::Color::FromArgb(255,88,86);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"vida_15")));
 						break;
 					case 4002:
 						aqui->BackColor = System::Drawing::Color::FromArgb(255,45,43);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"vida_25")));
 						break;	
 					case 4003:
 						aqui->BackColor = System::Drawing::Color::FromArgb(255,1,1);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"vida_50")));
 						break;
 					case 4004:
 						aqui->BackColor = System::Drawing::Color::FromArgb(201,201,201);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"gun_1")));
 						break;
 					case 4005:
 						aqui->BackColor = System::Drawing::Color::FromArgb(211,211,211);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"gun_2")));
 						break;
 					case 4006:
 						aqui->BackColor = System::Drawing::Color::FromArgb(222,222,222);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"gun_3")));
 						break;
 					case 4007:
 						aqui->BackColor = System::Drawing::Color::FromArgb(1,255,255);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"municoes")));
 						break;
 					case 4008:
 						aqui->BackColor = System::Drawing::Color::FromArgb(255,240,1);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"chave_1")));
 						break;
 					case 4009:
 						aqui->BackColor = System::Drawing::Color::FromArgb(204,192,1);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"chave_2")));
 						break;
 					case 4010:
 						aqui->BackColor = System::Drawing::Color::FromArgb(120,255,1);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"start")));
 						break;
 					case 4011:
 						aqui->BackColor = System::Drawing::Color::FromArgb(96,203,1);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"finish")));
 						break;
 				}
 			}else
@@ -720,15 +743,47 @@ private: System::Void pintar_quadrados(System::Windows::Forms::PictureBox^ aqui,
 				// guardas
 					if(cor>=2001 && cor<=2008){
 						aqui->BackColor = System::Drawing::Color::FromArgb(255,175,50);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"guarda_small")));
 					}
 					if(cor>=2009 && cor<=2016){
 						aqui->BackColor = System::Drawing::Color::FromArgb(255,146,41);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"guarda_medium")));
 					}
 					if(cor>=2017 && cor<=2024){
 						aqui->BackColor = System::Drawing::Color::FromArgb(254,114,1);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"guarda_intermedio")));
 					}
-					if(cor>=2025 && cor<=20032){
+					if(cor>=2025 && cor<=2032){
 						aqui->BackColor = System::Drawing::Color::FromArgb(193,87,1);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"guarda_heavy")));
+					}
+					if(cor>=2033){
+						switch(cor){
+							case 2033:
+								aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"0")));
+								break;
+							case 2034:
+								aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"180")));
+								break;
+							case 2035:
+								aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"90")));
+								break;
+							case 2036:
+								aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"270")));
+								break;
+							case 2037:
+								aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"45")));
+								break;
+							case 2038:
+								aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"315")));
+								break;
+							case 2039:
+								aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"135")));
+								break;
+							case 2040:
+								aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"225")));
+								break;
+						}
 					}
 					this->label1->Text = "SAVE: Guarda:" + this->listBox3->Items[cor-2000-1];
 				}else if(cor==0){

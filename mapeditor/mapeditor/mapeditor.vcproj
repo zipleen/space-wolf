@@ -254,6 +254,38 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
+				RelativePath="..\0.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\135.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\180.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\225.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\270.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\315.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\45.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\90.bmp"
+				>
+			</File>
+			<File
 				RelativePath=".\app.ico"
 				>
 			</File>
@@ -262,7 +294,87 @@
 				>
 			</File>
 			<File
+				RelativePath="..\chave_1.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\chave_2.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\finish.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\guarda_heavy.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\guarda_intermedio.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\guarda_medium.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\guarda_small.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\gun_1.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\gun_2.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\gun_3.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\municoes.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\porta_norte_chave1.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\porta_norte_chave2.bmp"
+				>
+			</File>
+			<File
 				RelativePath="..\porta_norte_normal.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\porta_oeste_chave1.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\porta_oeste_chave2.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\porta_oeste_normal.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\start.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\vida_15.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\vida_25.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\vida_50.bmp"
 				>
 			</File>
 		</Filter>
