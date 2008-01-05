@@ -3,8 +3,8 @@
 #using <mscorlib.dll>
 
 namespace mapeditor {
-			int codemap[63][63];
-			int codefloormap[63][63];
+			int codemap[64][64];
+			int codefloormap[64][64];
 			int codigo_a_por;
 			int floorcodigo_a_por;
 	using namespace System;
@@ -257,7 +257,7 @@ namespace mapeditor {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(767, 602);
+			this->button1->Location = System::Drawing::Point(754, 558);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(89, 38);
 			this->button1->TabIndex = 4;
@@ -267,30 +267,31 @@ namespace mapeditor {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(862, 602);
+			this->button2->Location = System::Drawing::Point(860, 558);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(87, 38);
+			this->button2->Size = System::Drawing::Size(89, 38);
 			this->button2->TabIndex = 5;
 			this->button2->Text = L"Gravar Mapa";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(767, 556);
+			this->button3->Location = System::Drawing::Point(860, 613);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(89, 40);
+			this->button3->Size = System::Drawing::Size(89, 38);
 			this->button3->TabIndex = 6;
-			this->button3->Text = L"Map codes";
+			this->button3->Text = L"Floor Codes Off";
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &Form1::button3_Click);
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(862, 556);
+			this->button4->Location = System::Drawing::Point(757, 613);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(87, 40);
+			this->button4->Size = System::Drawing::Size(89, 38);
 			this->button4->TabIndex = 7;
-			this->button4->Text = L"Floor Codes";
+			this->button4->Text = L"Floor Codes On";
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &Form1::button4_Click);
 			// 
@@ -298,21 +299,19 @@ namespace mapeditor {
 			// 
 			this->saveFileDialog1->DefaultExt = L"map";
 			this->saveFileDialog1->Filter = L"map files|*.map";
-			this->saveFileDialog1->InitialDirectory = L"..\\\\";
 			// 
 			// openFileDialog1
 			// 
 			this->openFileDialog1->DefaultExt = L"map";
-			this->openFileDialog1->FileName = L"openFileDialog1";
+			this->openFileDialog1->FileName = L"e1m1.map";
 			this->openFileDialog1->Filter = L"map files|*.map";
-			this->openFileDialog1->InitialDirectory = L"..\\\\";
 			this->openFileDialog1->ReadOnlyChecked = true;
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(992, 659);
+			this->ClientSize = System::Drawing::Size(992, 741);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->tabControl1);
@@ -337,19 +336,30 @@ namespace mapeditor {
 #pragma endregion
 	private: System::Void ChangeColor(System::Object^  sender, System::EventArgs^  e) {
 				 int x,y;
-				 this->label1->Focus();
+				 //this->label1->Focus();
 				 System::Windows::Forms::PictureBox^  t = static_cast<System::Windows::Forms::PictureBox^>(sender);
-				 t->BackColor = System::Drawing::Color::FromArgb(10,40,50);
 				 array<String^>^ a = t->Text->Split(' ');
 				 // x e y do floor
 				 x = System::Int32::Parse(a[0]);
 				 y = System::Int32::Parse(a[1]);
-				 // 
+				 // atribuir ao mapa
+				 codemap[x-1][y-1]=codigo_a_por;
+				 // desenhar a cor no quadrado
+				 t->BackColor = System::Drawing::Color::FromArgb(10,40,50);
 			 }
 	
 	private: System::Void ChangeFloorColor(System::Object^  sender, System::EventArgs^  e) {
-				 this->label1->Focus();
+				 int x,y;
+				 //this->label1->Focus();
 				 System::Windows::Forms::PictureBox^  t = static_cast<System::Windows::Forms::PictureBox^>(sender);
+				 array<String^>^ a = t->Text->Split(' ');
+				 // x e y do floor
+				 x = System::Int32::Parse(a[0]);
+				 y = System::Int32::Parse(a[1]);
+				 // atribuir ao mapa
+				 codefloormap[x-1][y-1]=floorcodigo_a_por;
+				 // desenhar a cor no quadrado
+				 t->BackColor = System::Drawing::Color::FromArgb(10,40,50);
 				 t->BackColor = System::Drawing::Color::FromArgb(70,40,50);
 			 }
 
@@ -475,8 +485,8 @@ private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e)
 			}
 			codigo_a_por=0;
 			floorcodigo_a_por=0;
-			for(int i=1;i<64;i++){
-				for(int e=1;e<64;e++){
+			for(int i=0;i<64;i++){
+				for(int e=0;e<64;e++){
 					codemap[i][e]=0;
 					codefloormap[i][e]=0;
 				}
@@ -498,24 +508,7 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 				 }
 			}
 		 }
-private: System::Void escrever_ficheiro(){
 
-
-			//Pass the file path and file name to the StreamWriter Constructor.
-			System::IO::StreamWriter^ sw = gcnew System::IO::StreamWriter(System::IO::File::OpenWrite("textures.def"));
-
-			//Write a line of text.
-			sw->WriteLine("Hello World!!");
-
-			//Write a second line of text.
-			sw->WriteLine("From the StreamWriter class");
-
-			//Close the file.
-			sw->Close();
-	
-			
-		
-	}
 private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 			 // paredes
 			 System::Windows::Forms::ListBox^  t = static_cast<System::Windows::Forms::ListBox^>(sender);
@@ -553,6 +546,63 @@ private: System::Void listBox5_SelectedIndexChanged(System::Object^  sender, Sys
 			 System::Windows::Forms::ListBox^  t = static_cast<System::Windows::Forms::ListBox^>(sender);
 			 floorcodigo_a_por = t->SelectedIndex + 9001;
 		 }
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if( this->saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK )
+			 {
+				try 
+				{
+					System::IO::File::Delete(this->saveFileDialog1->FileName);
+					//Pass the file path and file name to the StreamReader constructor.
+					System::IO::StreamWriter^ sw = gcnew System::IO::StreamWriter(System::IO::File::OpenWrite(this->saveFileDialog1->FileName));
+
+					//64
+					sw->WriteLine("64");
+					//tecto
+					sw->WriteLine("1001");
+					//chao
+					sw->WriteLine("1001");
+
+					//64 linhas for sure
+					for(int i=0;i<64;i++)
+					{
+						for(int e=0;e<63;e++)
+						{
+							sw->Write(System::Int32(codemap[i][e]).ToString());
+							sw->Write(",");
+						}
+						sw->Write(System::Int32(codemap[i][63]).ToString());
+						sw->WriteLine();
+					}
+					//enter
+					sw->WriteLine();
+					//64 linhas for sure
+					for(int i=0;i<64;i++)
+					{
+						for(int e=0;e<63;e++)
+						{
+							sw->Write(System::Int32(codefloormap[i][e]).ToString());
+							sw->Write(",");
+						}
+						sw->WriteLine(codefloormap[i][63]);
+					}
+					//Close the file.
+					sw->Close();
+				}
+				catch(Exception^ e)
+				{
+					Console::WriteLine("Exception: {0}",e->Message);
+				
+				}
+			}
+		 }
+private: System::Void pintar_quadrados(System::Windows::Forms::PictureBox^ aqui, int cor){
+				aqui->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(10)), static_cast<System::Int32>(static_cast<System::Byte>(64)), 
+							static_cast<System::Int32>(static_cast<System::Byte>(244)));
+			}
+private: System::Void pintar_quadrados_floor(System::Windows::Forms::PictureBox^ aqui, int cor){
+				aqui->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)), 
+							static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			}
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 			 if( this->openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK )
 			 {
@@ -574,11 +624,11 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 					{
 						line = sr->ReadLine();
 						array<String^>^ a = line->Split(',');
-						for(int e=0;e<64;i++)
+						for(int e=0;e<64;e++)
 						{
 							codemap[i][e]=System::Int32::Parse(a[e]);
-							// funcao para colorir o mapa
-
+							// funcao para colorir o mapa +1
+							this->pintar_quadrados(this->map[i][e],codemap[i][e]);
 						}
 					}
 					//enter
@@ -588,11 +638,11 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 					{
 						line = sr->ReadLine();
 						array<String^>^ a = line->Split(',');
-						for(int e=0;e<64;i++)
+						for(int e=0;e<64;e++)
 						{
 							codefloormap[i][e]=System::Int32::Parse(a[e]);
 							// funcao para colorir o mapa
-
+							this->pintar_quadrados_floor(this->floormap[i][e],codefloormap[i][e]);
 						}
 					}
 					//Close the file.
