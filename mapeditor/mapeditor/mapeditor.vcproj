@@ -261,6 +261,10 @@
 				RelativePath=".\app.rc"
 				>
 			</File>
+			<File
+				RelativePath="..\porta_norte_normal.bmp"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"

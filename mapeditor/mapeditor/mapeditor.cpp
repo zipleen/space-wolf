@@ -4,6 +4,10 @@
 #include "Form1.h"
 
 using namespace mapeditor;
+int mapeditor::codemap[64][64];
+int mapeditor::codefloormap[64][64];
+int mapeditor::codigo_a_por;
+int mapeditor::floorcodigo_a_por;
 
 [STAThreadAttribute]
 int main(array<System::String ^> ^args)
