@@ -244,7 +244,7 @@ void Rendering::draw2D()
 	begin2D ();
 	
 	// Reset texture matrix
-	glActiveTexture (GL_TEXTURE0);
+	//glActiveTexture (GL_TEXTURE0);
 	glMatrixMode (GL_TEXTURE);
 	glLoadIdentity ();
 	glMatrixMode (GL_MODELVIEW);
