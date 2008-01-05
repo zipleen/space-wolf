@@ -429,7 +429,7 @@ private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e)
 					this->floormap[i-1][e-1]->TabStop = false;
 					//this->floormap[i-1][e-1]->WordWrap = false;
 					this->floormap[i-1][e-1]->Click += gcnew System::EventHandler(this, &Form1::ChangeFloorColor);
-					this->floormap[i-1][e-1]->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::code_MouseMove);
+					this->floormap[i-1][e-1]->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::floorcode_MouseMove);
 					this->floormap[i-1][e-1]->Visible = false;
 					this->Controls->Add(this->floormap[i-1][e-1]);
  
@@ -906,8 +906,10 @@ private: System::Void code_MouseMove(System::Object^  sender, System::Windows::F
 			 // x e y do floor
 			 x = System::Int32::Parse(a[0]);
 			 y = System::Int32::Parse(a[1]);
-
-			this->label1->Text = "Floorcode: "+this->listBox5->Items[codefloormap[x-1][y-1]-9000-1];
+			if(codefloormap[x-1][y-1]==0)
+				this->label1->Text = "Sem Floorcode                               ";
+			else
+				this->label1->Text = "Floorcode: "+this->listBox5->Items[codefloormap[x-1][y-1]-9000-1]+"                ";
 		 }
 };
 }
