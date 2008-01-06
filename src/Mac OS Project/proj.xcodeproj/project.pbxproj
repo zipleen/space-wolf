@@ -16,6 +16,7 @@
 		AA08848E0D27F58F00D7793D /* soldado.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA08848D0D27F58F00D7793D /* soldado.cpp */; };
 		AA0886E80D28977E00D7793D /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0886E70D28977E00D7793D /* SDL_mixer.framework */; };
 		AA3971590D2C5E1500855D68 /* StrUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA3971580D2C5E1500855D68 /* StrUtils.cpp */; };
+		AA7F76C50D3124670088B254 /* porta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7F76C40D3124670088B254 /* porta.cpp */; };
 		AA9D579B0D27C34100089D4E /* items.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9D579A0D27C34100089D4E /* items.cpp */; };
 		AAB2E5410D2AD3E400B65B5E /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2E5400D2AD3E400B65B5E /* libGLEW.a */; };
 		AAB2E5440D2AD5F100B65B5E /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2E5430D2AD5F100B65B5E /* libjpeg.a */; };
@@ -71,6 +72,8 @@
 		AA0886E70D28977E00D7793D /* SDL_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_mixer.framework; path = /Library/Frameworks/SDL_mixer.framework; sourceTree = "<absolute>"; };
 		AA3971570D2C5E1500855D68 /* StrUtils.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; name = StrUtils.h; path = ../StrUtils.h; sourceTree = SOURCE_ROOT; };
 		AA3971580D2C5E1500855D68 /* StrUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; name = StrUtils.cpp; path = ../StrUtils.cpp; sourceTree = SOURCE_ROOT; };
+		AA7F76C30D3124670088B254 /* porta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = porta.h; path = ../porta.h; sourceTree = SOURCE_ROOT; };
+		AA7F76C40D3124670088B254 /* porta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = porta.cpp; path = ../porta.cpp; sourceTree = SOURCE_ROOT; };
 		AA9D57990D27C34100089D4E /* items.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = items.h; path = ../items.h; sourceTree = SOURCE_ROOT; };
 		AA9D579A0D27C34100089D4E /* items.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = items.cpp; path = ../items.cpp; sourceTree = SOURCE_ROOT; };
 		AAB2E5400D2AD3E400B65B5E /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = lib/libGLEW.a; sourceTree = "<group>"; };
@@ -174,7 +177,6 @@
 		29B97314FDCFA39411CA2CEA /* «PROJECTNAMEASXML» */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* SDL */,
 				AABE743E0D26CC0600A3AA8B /* Source */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -214,6 +216,7 @@
 		AA3971530D2C5DEF00855D68 /* includes */ = {
 			isa = PBXGroup;
 			children = (
+				080E96DDFE201D6D7F000001 /* SDL */,
 				AA3971570D2C5E1500855D68 /* StrUtils.h */,
 				AA3971580D2C5E1500855D68 /* StrUtils.cpp */,
 				AABE74490D26CC2400A3AA8B /* MD3 */,
@@ -239,6 +242,8 @@
 				AABE74740D26CC5B00A3AA8B /* map.h */,
 				AA9D579A0D27C34100089D4E /* items.cpp */,
 				AA9D57990D27C34100089D4E /* items.h */,
+				AA7F76C40D3124670088B254 /* porta.cpp */,
+				AA7F76C30D3124670088B254 /* porta.h */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 				AA08848E0D27F58F00D7793D /* soldado.cpp in Sources */,
 				AAEE40520D29371200DE9F02 /* input.cpp in Sources */,
 				AA3971590D2C5E1500855D68 /* StrUtils.cpp in Sources */,
+				AA7F76C50D3124670088B254 /* porta.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

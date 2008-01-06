@@ -21,6 +21,8 @@ class Items
 		Items(){}; 
 		virtual ~Items(){};
 		
+		void animate(const double dt);
+		void draw();
 	};
 
 #endif

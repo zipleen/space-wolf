@@ -66,7 +66,7 @@ void Game::MainLoop()
 		// Draw scene if window is active
 		if (isActive){
 			dt = r->timer.current_time - r->timer.last_time;
-			this->map->updateGuardAnimation(dt);
+			this->map->updateAnimations(dt);
 			// player anim?
 			// this->player->updateAnimation(dt);
 			r->gameCycle (this->map);

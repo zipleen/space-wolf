@@ -39,7 +39,7 @@ public:
 	Guard(); 
 	virtual ~Guard(){};
 
-	void Guard::loadModel();
+	void loadModel();
 	void draw();
 	void animate(const double dt);
 	

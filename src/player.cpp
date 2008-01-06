@@ -8,8 +8,20 @@
  */
 
 #include "player.h"
+Player::Player()
+{
+	this->vida = 100;
+	this->pontos = 0;
+	this->chave_amarela = false;
+	this->chave_vermelha = false;
+}
 
 void Player::draw()
 {
 	this->player->draw();
+}
+
+void setPosition(int x, int y)
+{
+	
 }

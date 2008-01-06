@@ -229,8 +229,9 @@ void Rendering::draw3D(Map *m)
 	if (this->useTexturing)
 		glEnable (GL_TEXTURE_2D);
 	
-	// Draw objects
-	m->drawGuards();
+	// desenhar o mapa (o mapa trata de desenhar texturas + items + guardas + portas)
+	m->drawEverything();
+	// desenhar o hud do player (inclui hud e arma do player)
 	
 	glDisable (GL_LIGHTING);
 	glDisable (GL_TEXTURE_2D);

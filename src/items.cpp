@@ -9,3 +9,14 @@
 
 #include "items.h"
 
+void Items::animate(const double dt)
+{
+	// actualizar o tempo?!
+	
+}
+
+void Items::draw()
+{
+	// desenhar o item?! isto vai ser md2 files... quase de certeza
+	
+}

@@ -17,16 +17,17 @@ class Player
 protected:
 	int vida;
 	int pontos;
-	int chave_amarela;
-	int chave_vermelha;
-	int chave_azul;
+	bool chave_amarela;
+	bool chave_vermelha;
 	Md3Player *player;
 	
+	GLfloat x,y;
 public:
-	Player(){}; 
+	Player(); 
 	virtual ~Player(){};
 
 	void draw();
+	void setPosition(int x, int y); // posicao do mapa inicial
 };
 
 #endif

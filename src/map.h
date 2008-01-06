@@ -19,6 +19,7 @@
 #include "guard.h"
 #include "soldado.h"
 #include "items.h"
+#include "porta.h"
 #include "md3/TextureManager.h"
 #include "console.h"
 #include "StrUtils.h"
@@ -31,6 +32,7 @@ protected:
 	std::vector<std::vector<int> > floormap; // vector com os floor codes, para o AI
 	std::vector<Guard*> guardas;
 	std::vector<Items*> items;
+	std::vector<Porta*> portas;
 	Texture2DManager *texMgr;
 	int tamanho_mapa;
 	
@@ -39,14 +41,21 @@ public:
 	Map(); 
 	virtual ~Map(){};
 	
+	// animacoes
+	void updateAnimations(double dt);
 	void updateGuardAnimation(double dt);
 	
 	// ler mapas
 	bool loadMap(std::string file);
 	void addGuard(int x, int y, int type, int direction, bool movimento);
+	void addPorta(int x, int y, int type, int direction);
 	
 	// desenhar mapas
 	void drawGuards();
+	void drawDoors();
+	void drawItems();
+	void drawMap();
+	void drawEverything();
 };
 
 #endif
