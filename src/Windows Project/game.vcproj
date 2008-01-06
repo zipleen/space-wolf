@@ -295,6 +295,14 @@
 					RelativePath="..\map.h"
 					>
 				</File>
+				<File
+					RelativePath="..\porta.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\porta.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="opengl"
