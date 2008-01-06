@@ -11,9 +11,10 @@
 using namespace std;
 using namespace boost;
 
-void Tokenize(const string& str, vector<string>& tokens, const char& delimiter = (char)1);
 void Tokenize(const string& str, vector<int>& tokens, boost::char_separator<char>& delimiter);
+void Tokenize(const string& str, vector<string>& tokens, boost::char_separator<char>& delimiter);
 string  Str(const int val);
 string crop(string str, char what);
+int StrtoInt(const std::string& s);
 
 #endif

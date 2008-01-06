@@ -12,6 +12,8 @@
 
 #include <iostream>
 #include <iomanip>
+#include <set>
+#include <vector>
 #include<boost/tokenizer.hpp>
 #include<string>
 #include <fstream>
@@ -24,6 +26,7 @@
 #include "console.h"
 #include "StrUtils.h"
 
+typedef map<int, const Texture2D *> TexMap;
 
 class Map
 {
@@ -34,6 +37,8 @@ protected:
 	std::vector<Items*> items;
 	std::vector<Porta*> portas;
 	Texture2DManager *texMgr;
+	TexMap map_textures;
+	
 	int tamanho_mapa;
 	
 	bool desenharTudo;
@@ -46,6 +51,7 @@ public:
 	void updateGuardAnimation(double dt);
 	
 	// ler mapas
+	bool loadTextures();
 	bool loadMap(std::string file);
 	void addGuard(int x, int y, int type, int direction, bool movimento);
 	void addPorta(int x, int y, int type, int direction);

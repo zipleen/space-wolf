@@ -39,6 +39,15 @@ void StringSplit(string str, string delim, vector<string>& results)
 	}
 }
 
+void Tokenize(const string& str, vector<string>& tokens, boost::char_separator<char>& delimiter)
+{
+	boost::tokenizer<boost::char_separator<char> > tok(str,delimiter);
+	tokens.clear();
+	for(boost::tokenizer<boost::char_separator<char> >::iterator beg=tok.begin(); beg!=tok.end();++beg){
+		tokens.push_back(*beg);
+	}
+}	
+
 void Tokenize(const string& str, vector<int>& tokens, boost::char_separator<char>& delimiter)
 {
 	boost::tokenizer<boost::char_separator<char> > tok(str,delimiter);
@@ -65,4 +74,12 @@ void Tokenize(const string& str, vector<int>& tokens, boost::char_separator<char
 	
 	*/
 	
+}
+
+int StrtoInt(const std::string& s)
+{
+	stringstream ss(s);
+	int n;
+	ss >> n;
+	return n;
 }

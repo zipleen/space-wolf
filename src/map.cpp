@@ -13,16 +13,65 @@ Map::Map()
 {
 	texMgr = Texture2DManager::getInstance ();
 	//this->map = std::vector<std::vector<int> >(64,std::vector<int>(64,0));
-	this->floormap = std::vector<std::vector<int> >(64,std::vector<int>(64,0));
+	//this->floormap = std::vector<std::vector<int> >(64,std::vector<int>(64,0));
 	this->guardas.clear();
 	this->items.clear();
 	
 	this->desenharTudo = true;
 }
 
+/* texturas */
+bool Map::loadTextures()
+{
+	std::string line;
+	boost::char_separator<char> sep(" ");
+	Console::addLine("Loading textures...");
+	std::ifstream ifs ("data/textures/textures.def", std::ios::in);
+	if (ifs.fail ()){
+		Console::addLine("Erro a ler o ficheiro de texturas");
+		return false;
+	}
+	
+	// fazer o mapa das texturas que sao necessarias
+	std::set<int> needed;
+	for(int i=0; i< this->map.size(); ++i)
+	{
+		for(int e=0; e< this->map[i].size(); ++e){
+			
+		if(this->map[i][e]!=0)
+			needed.insert(this->map[i][e]);
+		}
+	}
+	
+	while(!ifs.eof())
+	{
+		std::vector<std::string> t;
+		int num;
+		// ler linha
+		std::getline(ifs, line);
+		// partir pq o primeiro eh o numero e segundo eh a path
+		Tokenize(line, t, sep);
+		num = StrtoInt(t[0]);
+		// iterador para encontrar no needed
+		set<int>::iterator it;
+		it=needed.find(num);
+		//if(it){
+			Console::addLine("Loading texture "+t[0]+" in "+t[1]);
+			Texture2D *tex = texMgr->load (t[1]);
+			map_textures.insert (TexMap::value_type (num, tex));
+		//}
+	}
+	
+	Console::addLine("Ended loading textures");
+	return true;
+}
+
+
 void Map::updateAnimations(double dt)
 {
 	this->updateGuardAnimation(dt);
+	/*this->updateDoorAnimation(dt);
+	 this->updateItemsAnimation(dt);*/
 }
 
 void Map::updateGuardAnimation(double dt)
@@ -153,8 +202,8 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	
 	switch(type){
 		case 1: // soldados mais faceis
-			Soldado *s = new Soldado(x,y,angulo, movimento);
-			this->guardas.push_back(s);
+			//Soldado *s = new Soldado(x,y,angulo, movimento);
+			//this->guardas.push_back(s);
 			Console::printf("Adicionado guarda facil em %d,%d, angulo: %d, movimento: %d",x,y,angulo,movimento);
 			break;
 	}
@@ -419,35 +468,35 @@ bool Map::loadMap(std::string file)
 						// direccoes dos guardas -> adicionar no mapa
 						case 2033:
 							to_go=false;
-							linha_para_ir.push_back(0);
+							linha_para_ir.push_back(2033);
 							break;
 						case 2034:
 							to_go=false;
-							linha_para_ir.push_back(0);
+							linha_para_ir.push_back(2034);
 							break;
 						case 2035:
 							to_go=false;
-							linha_para_ir.push_back(0);
+							linha_para_ir.push_back(2035);
 							break;
 						case 2036:
 							to_go=false;
-							linha_para_ir.push_back(0);
+							linha_para_ir.push_back(2036);
 							break;
 						case 2037:
 							to_go=false;
-							linha_para_ir.push_back(0);
+							linha_para_ir.push_back(2037);
 							break;
 						case 2038:
 							to_go=false;
-							linha_para_ir.push_back(0);
+							linha_para_ir.push_back(2038);
 							break;
 						case 2039:
 							to_go=false;
-							linha_para_ir.push_back(0);
+							linha_para_ir.push_back(2039);
 							break;
 						case 2040:
 							to_go=false;
-							linha_para_ir.push_back(0);
+							linha_para_ir.push_back(2040);
 							break;
 							
 						default:
@@ -478,24 +527,26 @@ bool Map::loadMap(std::string file)
 		std::vector<int> codigos_floor(this->tamanho_mapa-1);
 		std::getline (ifs, linha);
 		Tokenize(linha, codigos_floor ,sep);
-		this->floormap.push_back(codigos_floor);		
+		this->floormap.push_back(codigos_floor);
+		std::cout << "floor " << i << " " ;
 	}
 	
 	// we're done
-	for(int i = 0; i <this->map.size(); i++){
+	/*for(int i = 0; i <this->map.size(); i++){
 		std::cout << i << ": " ;
 		for(int e=0; e<this->map[i].size(); e++){
 			std::cout << this->map[i][e] << " ";
 		}
 		std::cout << std::endl;
 	}
+	std::cout << "floor" << std::endl;
 	for(int i = 0; i <this->floormap.size(); i++){
 		std::cout << i << ": " ;
 		for(int e=0; e<this->floormap[i].size(); e++){
 			std::cout << this->floormap[i][e] << " ";
 		}
 		std::cout << std::endl;
-	}
+	}*/
 	Console::addLine("Mapa OK!");
 	return true;
 }
