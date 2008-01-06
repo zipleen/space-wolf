@@ -213,35 +213,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\guard.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\guard.h"
-				>
-			</File>
-			<File
-				RelativePath="..\hud.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\hud.h"
-				>
-			</File>
-			<File
 				RelativePath="..\input.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\input.h"
-				>
-			</File>
-			<File
-				RelativePath="..\items.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\items.h"
 				>
 			</File>
 			<File
@@ -253,38 +229,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\map.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\map.h"
-				>
-			</File>
-			<File
-				RelativePath="..\player.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\player.h"
-				>
-			</File>
-			<File
-				RelativePath="..\rendering.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\rendering.h"
-				>
-			</File>
-			<File
-				RelativePath="..\soldado.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\soldado.h"
-				>
-			</File>
-			<File
 				RelativePath="..\sound.cpp"
 				>
 			</File>
@@ -293,60 +237,144 @@
 				>
 			</File>
 			<Filter
-				Name="md3"
+				Name="player"
 				>
 				<File
-					RelativePath="..\md3\DataManager.h"
+					RelativePath="..\hud.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\md3\DataManager.inl"
+					RelativePath="..\hud.h"
 					>
 				</File>
 				<File
-					RelativePath="..\md3\Image.cpp"
+					RelativePath="..\player.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\md3\Image.h"
+					RelativePath="..\player.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="guardas"
+				>
+				<File
+					RelativePath="..\guard.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\md3\Mathlib.h"
+					RelativePath="..\guard.h"
 					>
 				</File>
 				<File
-					RelativePath="..\md3\Mathlib.inl"
+					RelativePath="..\soldado.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\md3\Md3Model.cpp"
+					RelativePath="..\soldado.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="maps"
+				>
+				<File
+					RelativePath="..\items.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\md3\Md3Model.h"
+					RelativePath="..\items.h"
 					>
 				</File>
 				<File
-					RelativePath="..\md3\Md3Player.cpp"
+					RelativePath="..\map.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\md3\Md3Player.h"
+					RelativePath="..\map.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="opengl"
+				>
+				<File
+					RelativePath="..\rendering.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\md3\Texture.cpp"
+					RelativePath="..\rendering.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="includes"
+				>
+				<File
+					RelativePath="..\StrUtils.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\md3\Texture.h"
+					RelativePath="..\StrUtils.h"
 					>
 				</File>
-				<File
-					RelativePath="..\md3\TextureManager.h"
+				<Filter
+					Name="md3"
 					>
-				</File>
+					<File
+						RelativePath="..\md3\DataManager.h"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\DataManager.inl"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\Image.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\Image.h"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\Mathlib.h"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\Mathlib.inl"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\Md3Model.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\Md3Model.h"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\Md3Player.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\Md3Player.h"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\Texture.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\Texture.h"
+						>
+					</File>
+					<File
+						RelativePath="..\md3\TextureManager.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
