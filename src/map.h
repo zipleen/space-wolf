@@ -21,7 +21,7 @@
 #include "items.h"
 #include "md3/TextureManager.h"
 #include "console.h"
-#include <StrUtils.h>
+#include "StrUtils.h"
 
 
 class Map
