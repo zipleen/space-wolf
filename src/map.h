@@ -12,6 +12,8 @@
 
 #include <iostream>
 #include <iomanip>
+#include<boost/tokenizer.hpp>
+#include<string>
 #include <fstream>
 
 #include "guard.h"
@@ -19,7 +21,8 @@
 #include "items.h"
 #include "md3/TextureManager.h"
 #include "console.h"
-#include "StrUtils.h"
+#include <StrUtils.h>
+
 
 class Map
 {

@@ -14,7 +14,7 @@ Game::Game()
 {
 	this->player = p;
 	this->map = new Map();
-	this->map->loadMap("data/maps/e1m1.map");
+	this->map->loadMap("data/maps/mapa1.map");
 }
 
 void Game::MainLoop()

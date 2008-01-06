@@ -6,12 +6,13 @@
 #include <iterator>
 #include <sstream>
 
-using namespace std;
+#include<boost/tokenizer.hpp>
 
-void Tokenize(const string& str, vector<string>& tokens, const string& delimiters = " ");
+using namespace std;
+using namespace boost;
+
 void Tokenize(const string& str, vector<string>& tokens, const char& delimiter = (char)1);
-void Tokenize(const string& str, vector<string>& tokens, const char& delimiter, const char& delimiter2);
-void Tokenize(const string& str, vector<int>& tokens, const char& delimiter);
+void Tokenize(const string& str, vector<int>& tokens, boost::char_separator<char>& delimiter);
 string  Str(const int val);
 string crop(string str, char what);
 

@@ -30,7 +30,7 @@ void Map::updateGuardAnimation(double dt)
 
 void Map::drawGuards()
 {
-	if(desenharTudo)
+	if(this->desenharTudo)
 	{
 		for(int i=0;i<this->guardas.size();i++)
 		{
@@ -69,14 +69,14 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 		case 1: // soldados mais faceis
 			Soldado *s = new Soldado(x,y,angulo, movimento);
 			this->guardas.push_back(s);
-			Console::addLine("Adicionado guarda soldado");
+			Console::printf("Adicionado guarda facil em %d,%d, angulo: %d, movimento: %d",x,y,angulo,movimento);
 			break;
 	}
 }
 
 bool Map::loadMap(std::string file)
 {
-	string aa; // temp
+	std::string linha; // temp
 	//this->addGuard(1, 1, 1 , 90, true, 3);
 	//return true;
 	
@@ -94,28 +94,41 @@ bool Map::loadMap(std::string file)
 	// ler textura do chao
 	int tex_chao;
 	ifs >> tex_chao;
-	std::getline (ifs, aa);
+	std::getline (ifs, linha);
+	boost::char_separator<char> sep(",");
     for(int i=0; i<this->tamanho_mapa; ++i)
 	{
-		std::vector<int> aaa(this->tamanho_mapa-1);
-		std::getline (ifs, aa);
-		Tokenize(aa, aaa ,',');
-		this->map.push_back(aaa);
+		std::vector<int> coisas_para_por(this->tamanho_mapa-1);
+		std::getline (ifs, linha);
+		boost::tokenizer<boost::char_separator<char> > tok(linha,sep);
+		for(boost::tokenizer<boost::char_separator<char> >::iterator beg=tok.begin(); beg!=tok.end();++beg){
+			cout << *beg ;
+		}
+		cout << "\n";
+		//Tokenize(linha, coisas_para_por ,',');
+		//this->map.push_back(coisas_para_por);
 	}
 	// enter a separar
-	std::getline (ifs, aa);
+	std::getline (ifs, linha);
     for(int i=0; i<this->tamanho_mapa; ++i)
 	{
-		std::vector<int> aaa(this->tamanho_mapa-1);
-		std::getline (ifs, aa);
-		Tokenize(aa, aaa ,',');
-		this->floormap.push_back(aaa);		
+		std::vector<int> codigos_floor(this->tamanho_mapa-1);
+		std::getline (ifs, linha);
+		Tokenize(linha, codigos_floor ,sep);
+		this->floormap.push_back(codigos_floor);		
 	}
 	
 	for(int i = 0; i <this->map.size(); i++){
 		std::cout << i << ": " ;
 		for(int e=0; e<this->map[i].size(); e++){
 			std::cout << this->map[i][e] << " ";
+		}
+		std::cout << std::endl;
+	}
+	for(int i = 0; i <this->floormap.size(); i++){
+		std::cout << i << ": " ;
+		for(int e=0; e<this->floormap[i].size(); e++){
+			std::cout << this->floormap[i][e] << " ";
 		}
 		std::cout << std::endl;
 	}
