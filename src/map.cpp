@@ -12,11 +12,12 @@
 Map::Map()
 {
 	texMgr = Texture2DManager::getInstance ();
+	// nao eh necessario isto...
 	//this->map = std::vector<std::vector<int> >(64,std::vector<int>(64,0));
 	//this->floormap = std::vector<std::vector<int> >(64,std::vector<int>(64,0));
 	this->guardas.clear();
 	this->items.clear();
-	
+	this->portas.clear();
 	this->desenharTudo = true;
 }
 
@@ -49,16 +50,18 @@ bool Map::loadTextures()
 		int num;
 		// ler linha
 		std::getline(ifs, line);
-		// partir pq o primeiro eh o numero e segundo eh a path
-		Tokenize(line, t, sep);
-		num = StrtoInt(t[0]);
-		// iterador para encontrar no needed
-		set<int>::iterator it;
-		it=needed.find(num);
-		if(it!=needed.end()){
-			Console::addLine("Loading texture "+t[0]+" in "+t[1]);
-			Texture2D *tex = texMgr->load (t[1]);
-			map_textures.insert (TexMap::value_type (num, tex));
+		if(line.size()>1){
+			// partir pq o primeiro eh o numero e segundo eh a path
+			Tokenize(line, t, sep);
+			num = StrtoInt(t[0]);
+			// iterador para encontrar no needed
+			set<int>::iterator it;
+			it=needed.find(num);
+			if(it!=needed.end()){
+				Console::addLine("Loading texture "+t[0]+" in "+t[1]);
+				Texture2D *tex = texMgr->load (t[1]);
+				map_textures.insert (TexMap::value_type (num, tex));
+			}
 		}
 	}
 	
