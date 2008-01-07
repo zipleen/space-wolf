@@ -10,6 +10,8 @@
 #include "rendering.h"
 #include "md3/Md3Player.h"
 
+Rendering *Rendering::m_renderingSingleton = NULL;
+
 GLenum
 checkOpenGLErrors (const char *file, int line)
 {

@@ -11,7 +11,7 @@
 
 Game::Game()
 {
-	this->player = Player::GetInstance();
+	this->player = new Player();
 	this->render = Rendering::GetInstance();
 	this->map = new Map();
 	this->map->loadMap("data/maps/mapa1.map");
@@ -39,7 +39,7 @@ void Game::MainLoop()
 
 				case SDL_VIDEORESIZE:
 					// Resize Window
-					r->resizeWindow(event.resize.w, event.resize.h);
+					this->render->resizeWindow(event.resize.w, event.resize.h);
 				  
 				  break;
 				/*
@@ -62,15 +62,15 @@ void Game::MainLoop()
 		}
 		
 		// Update the timer
-		r->timer.update ();
+		this->render->timer.update ();
 
 		// Draw scene if window is active
 		if (isActive){
-			dt = r->timer.current_time - r->timer.last_time;
+			dt = this->render->timer.current_time - this->render->timer.last_time;
 			this->map->updateAnimations(dt);
 			// player anim?
 			// this->player->updateAnimation(dt);
-			r->gameCycle (this->map);
+			this->render->gameCycle (this->map);
 		}
 	}
 }

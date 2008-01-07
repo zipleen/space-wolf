@@ -14,8 +14,8 @@
 #include <iomanip>
 #include <set>
 #include <vector>
-#include<boost/tokenizer.hpp>
-#include<string>
+#include <boost/tokenizer.hpp>
+#include <string>
 #include <fstream>
 
 #include "guard.h"

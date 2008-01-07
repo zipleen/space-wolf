@@ -15,8 +15,6 @@
 class Player
 {
 protected:
-	static Player *m_PlayerSingletron;
-	
 	int vida;
 	int pontos;
 	bool chave_amarela;
@@ -28,27 +26,9 @@ public:
 	Player(); 
 	virtual ~Player(){};
 
-	static Player *GetInstance( void )
-	{
-		if( m_PlayerSingletron == 0 )
-			m_PlayerSingletron = new Player;
-		
-		return ((Player *)m_PlayerSingletron);
-	}
-	
-	static void Kill( void )
-	{
-		if( m_PlayerSingletron != 0 )
-		{
-			delete m_PlayerSingletron;
-			m_PlayerSingletron = 0;
-		}
-	}
-	
 	void draw();
 	void setPosition(int x, int y); // posicao do mapa inicial
 };
 
-Player *Player::m_PlayerSingletron = 0;
 
 #endif

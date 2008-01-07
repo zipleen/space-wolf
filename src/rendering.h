@@ -127,6 +127,6 @@ public:
 	void draw2D();
 };
 
-Rendering *Rendering::m_renderingSingleton = 0;
+
 
 #endif

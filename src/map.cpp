@@ -204,7 +204,7 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 		case 1: // soldados mais faceis
 			//Soldado *s = new Soldado(x,y,angulo, movimento);
 			//this->guardas.push_back(s);
-			Console::printf("Adicionado guarda facil em %d,%d, angulo: %d, movimento: %d",x,y,angulo,movimento);
+			Console::printf("Adicionado guarda facil em %d,%d, angulo: %f, movimento: %b",x,y,angulo,movimento);
 			break;
 	}
 }
@@ -528,7 +528,6 @@ bool Map::loadMap(std::string file)
 		std::getline (ifs, linha);
 		Tokenize(linha, codigos_floor ,sep);
 		this->floormap.push_back(codigos_floor);
-		std::cout << "floor " << i << " " ;
 	}
 	
 	// we're done

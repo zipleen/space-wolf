@@ -276,10 +276,10 @@
 				AABE74540D26CC2D00A3AA8B /* Md3Player.cpp */,
 				AABE744D0D26CC2D00A3AA8B /* Md3Player.h */,
 				AABE744E0D26CC2D00A3AA8B /* Image.h */,
+				AABE74530D26CC2D00A3AA8B /* Texture.h */,
 				AABE744F0D26CC2D00A3AA8B /* Texture.cpp */,
 				AABE74500D26CC2D00A3AA8B /* TextureManager.h */,
 				AABE74520D26CC2D00A3AA8B /* Image.cpp */,
-				AABE74530D26CC2D00A3AA8B /* Texture.h */,
 				AABE74550D26CC2D00A3AA8B /* DataManager.h */,
 				AABE74560D26CC2D00A3AA8B /* DataManager.inl */,
 				AABE74570D26CC2D00A3AA8B /* Mathlib.h */,
@@ -300,8 +300,8 @@
 				AABE746F0D26CC5B00A3AA8B /* config.h */,
 				AAEE40500D29371200DE9F02 /* input.cpp */,
 				AAEE40510D29371200DE9F02 /* input.h */,
-				AABE747F0D26CC5B00A3AA8B /* fisica.h */,
 				AABE74710D26CC5B00A3AA8B /* fisica.cpp */,
+				AABE747F0D26CC5B00A3AA8B /* fisica.h */,
 				AABE74730D26CC5B00A3AA8B /* rendering.cpp */,
 				AABE74800D26CC5B00A3AA8B /* rendering.h */,
 				AABE74700D26CC5B00A3AA8B /* sound.cpp */,
@@ -475,6 +475,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_2)",
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 					"$(HEADER_SEARCH_PATHS)",
@@ -483,6 +484,7 @@
 					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1)",
 				);
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = "\"$(PROJECT_DIR)/../include\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_2 = "\"$(PROJECT_DIR)/include\"";
 				OTHER_CFLAGS = (
 					"-I/opt/local/include/",
 					"-DDEBUG",
@@ -507,6 +509,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/include",
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 					"$(HEADER_SEARCH_PATHS)",
