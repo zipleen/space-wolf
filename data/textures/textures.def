@@ -1,5 +1,44 @@
-1001 data/textures/walls/mur027.jpg Parede Cinzenta 1
-1002 data/textures/walls/mur041.jpg Parede Preta 1
+1001 data/textures/walls/mur027.jpg Parede Tijolo Cinzenta 1
+1002 data/textures/walls/mur041.jpg Parede Tijolo  1
 1003 data/textures/walls/mad018.jpg Madeira Castanha 1
 1004 data/textures/walls/sup022.jpg Superfície Branca 1
-1005 data/textures/walls/mur057.jpg Parede Branca 1
+1005 data/textures/walls/mur057.jpg Parede Tijolo Branca 1
+1006 data/textures/doors/porta_1.jpg Porta Normal
+1007 data/textures/doors/porta_chave.jpg Porta Chave Amarela
+1008 data/textures/doors/porta_chave_2.jpg Porta Chave Vermelha
+1009 data/textures/doors/lado_porta_1.jpg Lado da Porta Normal
+1010 data/textures/doors/lado_porta_chave.jpg Lado da Porta Chave Amarela
+1011 data/textures/doors/lado_porta_chave_2.jpg Lado da Porta Chave Vermelha
+1012 data/textures/elevator/elevador.jpg Elevador
+1013 data/textures/elevator/porta_elevador.jpg Porta do Elevador
+1014 data/textures/walls/base_wall001.jpg Parede Preta
+1015 data/textures/walls/betong006.jpg Betão Cinzento
+1016 data/textures/walls/lab_wall007.jpg Parede Cinzenta
+1017 data/textures/walls/lab_wall008.jpg Parede Cinzenta c/risco
+1018 data/textures/walls/9techwall01.jpg Parede Tecnológica 1
+1019 data/textures/walls/9techwall06.jpg Parede Tecnológica 2
+1020 data/textures/walls/9techwall07.jpg Parede Tecnológica 3
+1021 data/textures/walls/cementwall.jpg Cimento Cinzento
+1022 data/textures/walls/defaultmetal.jpg Metal Cinzento
+1023 data/textures/walls/drkmtl_default.jpg Metal Preto
+1024 data/textures/walls/grey_blue.jpg Parede Azul e Cinzenta
+1025 data/textures/walls/white_blue.jpg Parede Branca e Azul
+1026 data/textures/walls/concrete.jpg Cimento Cinzento Tijolo
+1027 data/textures/walls/mtl_gray3.jpg Metal Cinzento c/Risca
+1028 data/textures/walls/rmetal1b.jpg Metal Cinzento c/Parafusos
+1029 data/textures/walls/tech_dw2gb.tga Parede Tecnológica 4
+1030 data/textures/walls/tech_dwb_2g.jpg Parede Tecnológica 5
+1031 data/textures/elevator/elevador2.jpg Elevador 2
+1032 data/textures/ceiling/mechanical_old.jpg Tecto Tecnológico
+1033 data/textures/ceiling/e6cyb0rpipes.jpg Tecto Tecnológico 2
+1034 data/textures/floor/e8clangfloor.jpg Chão Riscas
+1035 data/textures/floor/flr_tmtl.jpg Chão Metal Quadrados
+1036 data/textures/floor/tflooroddtile.jpg Chão Cinzento Mosaico
+1037 data/textures/floor/floor_holes.tga Chão Buracos
+1038 data/textures/floor/tfloor.jpg Chão Cinzento
+1039 data/textures/floor/e8warning256.jpg Chão Aviso
+1040 data/textures/floor/e8_base1.jpg Chão Preto
+1041 data/textures/floor/e8cretefloor01b.jpg Chão Cinzento Mosaico
+1042 data/textures/floor/e6l_floor.jpg Chão Rectângulo (128)
+
+
