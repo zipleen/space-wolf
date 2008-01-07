@@ -1,0 +1,46 @@
+IDLE {
+	anim	0	0
+}
+
+IDLE_EMPTY {
+	anim	0	1
+}
+
+FIRE {
+	anim	60	7
+	func	eject
+	anim	150	6 5
+	anim	200	0
+}
+
+FIRE_EMPTY {
+	anim	60	4
+	func	eject
+	anim	150	3 2
+	anim	200	1
+}
+
+RELOAD {
+	anim	210	18 19
+	snd	clipOut
+	anim	210	20 21 22 23 24 25
+	snd	clipIn
+	anim	210	26 0
+}
+
+RELOAD_EMPTY {
+	anim	300	19
+	snd	clipOut
+	anim	220	20 21 22 23 24 25
+	snd	clipIn
+	anim	220	26 0
+}
+
+DROP {
+	anim	50	8 9 10 11 12 13
+}
+
+RAISE {
+	anim	0	13	
+	anim	50	13 14 15 16 17 0
+}

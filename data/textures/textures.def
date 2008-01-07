@@ -4,8 +4,8 @@
 1004 data/textures/walls/sup022.jpg Superfície Branca 1
 1005 data/textures/walls/mur057.jpg Parede Tijolo Branca 1
 1006 data/textures/doors/porta_1.jpg Porta Normal
-1007 data/textures/doors/porta_chave.jpg Porta Chave Amarela
-1008 data/textures/doors/porta_chave_2.jpg Porta Chave Vermelha
+1007 data/textures/doors/porta_chave.tga Porta Chave Amarela
+1008 data/textures/doors/porta_chave_2.tga Porta Chave Vermelha
 1009 data/textures/doors/lado_porta_1.jpg Lado da Porta Normal
 1010 data/textures/doors/lado_porta_chave.jpg Lado da Porta Chave Amarela
 1011 data/textures/doors/lado_porta_chave_2.jpg Lado da Porta Chave Vermelha
@@ -40,5 +40,7 @@
 1040 data/textures/floor/e8_base1.jpg Chão Preto
 1041 data/textures/floor/e8cretefloor01b.jpg Chão Cinzento Mosaico
 1042 data/textures/floor/e6l_floor.jpg Chão Rectângulo (128)
-
+1043 data/textures/floor/lab_floor001.jpg Chão Cinzento Quadrados
+1044 data/textures/floor/base_floor001.jpg Chão Arame
+1045 data/textures/floor/metal_platedark.jpg Chão Riscas Escuro
 

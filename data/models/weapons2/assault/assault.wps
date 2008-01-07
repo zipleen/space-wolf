@@ -1,0 +1,41 @@
+IDLE {
+	anim	0	0
+}
+
+IDLE_EMPTY {
+	anim	0	0
+}
+
+FIRE {
+	anim	60	7
+	func	eject
+	anim	60	6
+	anim	200	5 4 3 2 1 0
+}
+
+FIRE_EMPTY {
+	event	FIRE
+}
+
+RELOAD {
+	anim	160	18 19 20
+	snd	clipOut
+	anim	160	21 22 23 24 25
+	snd	clipIn
+	anim	160	26 27 28 29
+	snd	verschluss
+	anim	160	30 31 0
+}
+
+RELOAD_EMPTY {
+	event	RELOAD
+}
+
+DROP {
+	anim	50	8 9 10 11 12 13
+}
+
+RAISE {
+	anim	0	13	
+	anim	50	13 14 15 16 17 0
+}
