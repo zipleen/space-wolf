@@ -55,11 +55,11 @@ bool Map::loadTextures()
 		// iterador para encontrar no needed
 		set<int>::iterator it;
 		it=needed.find(num);
-		//if(it){
+		if(it!=needed.end()){
 			Console::addLine("Loading texture "+t[0]+" in "+t[1]);
 			Texture2D *tex = texMgr->load (t[1]);
 			map_textures.insert (TexMap::value_type (num, tex));
-		//}
+		}
 	}
 	
 	Console::addLine("Ended loading textures");
