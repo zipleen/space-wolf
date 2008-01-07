@@ -19,8 +19,6 @@
 #include "console.h"
 #include <iostream>
 
-extern Rendering *r;
-extern Game *g;
 extern Player *p;
 
 #endif

@@ -7,12 +7,12 @@
  *
  */
 
-#include "main.h"
 #include "game.h"
 
 Game::Game()
 {
-	this->player = p;
+	this->player = Player::GetInstance();
+	this->render = Rendering::GetInstance();
 	this->map = new Map();
 	this->map->loadMap("data/maps/mapa1.map");
 	this->map->loadTextures();

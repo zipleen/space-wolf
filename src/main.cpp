@@ -13,14 +13,15 @@
 
 #include "main.h"
 
-Rendering *r;
-Game *g;
+
 Player *p;
 
 int main(int argc, char *argv[]){
+	Game *g;
+	Rendering *r;
 	Console::printf("Built release %s at %s" , __DATE__ , __TIME__ );
 	
-	r = new Rendering();
+	r = Rendering::GetInstance();
 	r->initVideo();
 	
 	g = new Game();

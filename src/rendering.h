@@ -69,6 +69,8 @@ public:
 class Rendering
 {
 protected:
+	static Rendering *m_renderingSingleton;
+	
 	bool useTexturing;
 	bool useCulling;
 	bool useWireframe;
@@ -90,6 +92,24 @@ public:
 	Rendering(); 
 	virtual ~Rendering(){};
 	
+	static Rendering *GetInstance( void )
+	{
+		if( m_renderingSingleton == 0 )
+			m_renderingSingleton = new Rendering;
+		
+		return ((Rendering *)m_renderingSingleton);
+	}
+	
+	static void Kill( void )
+	{
+		if( m_renderingSingleton != 0 )
+		{
+			delete m_renderingSingleton;
+			m_renderingSingleton = 0;
+		}
+	}
+	
+	
 	void draw3D(Map *m);
 	bool initOpenGL();
 	
@@ -107,5 +127,6 @@ public:
 	void draw2D();
 };
 
+Rendering *Rendering::m_renderingSingleton = 0;
 
 #endif

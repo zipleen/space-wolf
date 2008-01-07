@@ -18,12 +18,14 @@
 #include <SDL.h>
 #include "map.h"
 #include "player.h"
+#include "rendering.h"
 
 class Game
 {
 protected:
 	Map *map; // o nosso mapa actual
 	Player *player;
+	Rendering *render;
 	
 public:
 	Game(); 
