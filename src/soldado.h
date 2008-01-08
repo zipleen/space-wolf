@@ -15,13 +15,13 @@
 #include "guard.h"
 
 class Soldado : public Guard
-	{
+{
 	protected:
 		
 	public:
 		Soldado(); 
 		virtual ~Soldado(){};
 		Soldado(int x, int y, bool em_movimento, GLfloat angulo);
-	};
+};
 
 #endif

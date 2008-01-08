@@ -15,6 +15,7 @@
 
 class Guard 
 {
+
 protected:
 	Md3Player *guard;
 	Md3Weapon *weapon;
@@ -29,9 +30,10 @@ protected:
 	
 	int ultimo_disparo; // guarda-se aqui o tick do ultimo disparo para se saber quando se pode disparar outra vez
 	
+public:
 	// posicao no mapa
-	int x;
-	int y;
+	GLfloat x;
+	GLfloat y;
 	GLfloat angulo;
 	
 	bool morto;

@@ -130,17 +130,26 @@ Rendering::reshape (GLsizei width, GLsizei height)
 
 bool Rendering::initOpenGL()
 {
+	GLfloat amb[] = { 0.3f, 0.3f, 0.3f, 1.0f };
+	
 	glClearColor (0.5f, 0.5f, 0.5f, 1.0f);
 	glShadeModel (GL_SMOOTH);
 	
 	glEnable (GL_DEPTH_TEST);
-	glEnable (GL_TEXTURE_2D);
 	glEnable (GL_CULL_FACE);
 	glEnable (GL_LIGHTING);
-	glEnable (GL_LIGHT0);
-	
-	glCullFace (GL_BACK);
 
+	glEnable(GL_POINT_SMOOTH);
+	glEnable(GL_LINE_SMOOTH);
+	glEnable(GL_POLYGON_SMOOTH);
+	
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_NORMALIZE);
+
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT,amb);
+
+	glCullFace (GL_BACK);
+	
 	// Initialize GLEW
 	GLenum err = glewInit ();
 	if (GLEW_OK != err)
@@ -155,8 +164,6 @@ bool Rendering::initOpenGL()
 	Console::printf("GLU Version String: %s",gluGetString (GLU_VERSION));
 	Console::printf("GLEW Version String: %s",glewGetString (GLEW_VERSION));
  
-	
-	
 	checkOpenGLErrors (__FILE__, __LINE__);
 	Console::printf("OpenGL initialized");
 	return true;
@@ -200,6 +207,15 @@ void Rendering::gameLogic()
 	
 }
 
+void Rendering::changeMode()
+{
+	if(this->useWireframe){
+          glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+          glDisable(GL_TEXTURE_2D);
+	}
+
+}
+
 void Rendering::gameCycle (Map *m)
 {
 	this->gameLogic ();
@@ -218,18 +234,22 @@ void Rendering::draw3D(Map *m)
 	glLoadIdentity ();
 	
 	// Perform camera transformations
-	glTranslated (-0.0f, -0.0f, -8.0f);
-	glRotated (0.0f, 1.0f, 0.0f, 0.0f);
-	glRotated (0.0f, 0.0f, 1.0f, 0.0f);
-	glRotated (0.0f, 0.0f, 0.0f, 1.0f);
+	gluLookAt(0,50,0,0, 43,7 ,0,50,1);
 	
 	glEnable (GL_DEPTH_TEST);
 	
 	if (this->useLigth){
-		glEnable (GL_LIGHTING);
+		//glEnable (GL_LIGHTING);
+		m->setLight();
 	}
+	// isto nao pode ser aki, isto eh no init
 	if (this->useTexturing)
 		glEnable (GL_TEXTURE_2D);
+	
+	m->setMaterial();
+	
+	// mexer a camara para o sitio certo
+	// depende se estamos em clip mode ou no modo jogo
 	
 	// desenhar o mapa (o mapa trata de desenhar texturas + items + guardas + portas)
 	m->drawEverything();

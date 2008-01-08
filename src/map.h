@@ -10,6 +10,8 @@
 #ifndef MAP_H
 #define MAP_H
 
+#define MAP_SIZE 64
+
 #include <iostream>
 #include <iomanip>
 #include <set>
@@ -33,6 +35,8 @@ class Map
 protected:
 	std::vector<std::vector<int> > map; // vector de vector....
 	std::vector<std::vector<int> > floormap; // vector com os floor codes, para o AI
+	/*int map[MAP_SIZE][MAP_SIZE];
+	int floormap[MAP_SIZE][MAP_SIZE];*/
 	std::vector<Guard*> guardas;
 	std::vector<Items*> items;
 	std::vector<Porta*> portas;
@@ -40,7 +44,8 @@ protected:
 	TexMap map_textures;
 	
 	int tamanho_mapa;
-	
+	int tex_tecto;
+	int tex_chao;
 	bool desenharTudo;
 public:
 	Map(); 
@@ -62,6 +67,14 @@ public:
 	void drawItems();
 	void drawMap();
 	void drawEverything();
+	
+	// desenhar opengl
+	void setMaterial();
+	void setLight();
+	void desenhaPoligono(GLfloat a[], GLfloat b[], GLfloat c[], GLfloat  d[], GLfloat normal[],GLfloat tx,GLfloat ty);
+	void desenhaCubo(int tipo, const Texture2D *tex);
+	void desenhaChao();
+	
 };
 
 #endif

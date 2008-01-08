@@ -109,6 +109,7 @@ public:
 		}
 	}
 	
+	bool useTextures(){ return this->useTexturing; };
 	
 	void draw3D(Map *m);
 	bool initOpenGL();
@@ -118,6 +119,8 @@ public:
 	bool resizeWindow(int w,int h);
 	void gameCycle (Map *m);
 	void gameLogic ();
+	
+	void changeMode();
 	
 	
 	// 2d

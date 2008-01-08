@@ -21,6 +21,130 @@ Map::Map()
 	this->desenharTudo = true;
 }
 
+/* desenhar */
+
+void Map::setMaterial()
+{
+	GLfloat mat_specular[]= { 0.8f, 0.8f, 0.8f, 1.0f };
+	GLfloat mat_shininess = 104;
+	glEnable(GL_COLOR_MATERIAL);
+	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+	// definir os outros par‚metros estaticamente
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+	glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess); 
+}
+
+void Map::setLight()
+{	
+	GLfloat light_pos[4] =	{-5.0, 20.0, -5.0, 0.0};
+	GLfloat light_ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+	GLfloat light_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+	GLfloat light_specular[]=	{ 0.5f, 0.5f, 0.5f, 1.0f };
+
+	glEnable(GL_LIGHTING);
+	// ligar e definir fonte de light 0
+	glEnable(GL_LIGHT0);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
+
+	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER,1);
+}
+
+void Map::desenhaPoligono(GLfloat a[], GLfloat b[], GLfloat c[], GLfloat  d[], GLfloat normal[],GLfloat tx,GLfloat ty)
+{
+  glBegin(GL_POLYGON);
+    glNormal3fv(normal);
+    glTexCoord2f(tx+0,ty+0);
+    glVertex3fv(a);
+    glTexCoord2f(tx+0,ty+0.25);
+    glVertex3fv(b);
+    glTexCoord2f(tx+0.25,ty+0.25);
+    glVertex3fv(c);
+    glTexCoord2f(tx+0.25,ty+0);
+    glVertex3fv(d);
+  glEnd();
+}
+
+
+void Map::desenhaCubo(int tipo, const Texture2D* tex)
+{
+#define CUBE_SIZE 1
+  GLfloat vertices[][3] = { {-CUBE_SIZE,-CUBE_SIZE,-CUBE_SIZE}, 
+                            {CUBE_SIZE,-CUBE_SIZE,-CUBE_SIZE}, 
+                            {CUBE_SIZE,CUBE_SIZE,-CUBE_SIZE}, 
+                            {-CUBE_SIZE,CUBE_SIZE,-CUBE_SIZE}, 
+                            {-CUBE_SIZE,-CUBE_SIZE,CUBE_SIZE},  
+                            {CUBE_SIZE,-CUBE_SIZE,CUBE_SIZE}, 
+                            {CUBE_SIZE,CUBE_SIZE,CUBE_SIZE}, 
+                            {-CUBE_SIZE,CUBE_SIZE,CUBE_SIZE}};
+  GLfloat normais[][3] = {  {0,0,-1}, 
+                            {0,1,0}, 
+                            {-1,0,0}, 
+                            {1,0,0}, 
+                            {0,0,1},  
+                            {0,-1,0}};
+
+  GLfloat tx,ty;
+
+  switch(tipo)
+  {
+    case 0: tx=0,ty=0;
+        break;
+    case 1: tx=0,ty=0.25;
+        break;
+    case 2: tx=0,ty=0.5;
+        break;
+    case 3: tx=0,ty=0.75;
+        break;
+    case 4: tx=0.25,ty=0;
+        break;
+
+    default:
+            tx=0.75,ty=0.75;
+  }     
+  tex->bind();
+
+  desenhaPoligono(vertices[1],vertices[0],vertices[3],vertices[2],normais[0],tx,ty);
+  desenhaPoligono(vertices[2],vertices[3],vertices[7],vertices[6],normais[1],tx,ty);
+  desenhaPoligono(vertices[3],vertices[0],vertices[4],vertices[7],normais[2],tx,ty);
+  desenhaPoligono(vertices[6],vertices[5],vertices[1],vertices[2],normais[3],tx,ty);
+  desenhaPoligono(vertices[4],vertices[5],vertices[6],vertices[7],normais[4],tx,ty);
+  desenhaPoligono(vertices[5],vertices[4],vertices[0],vertices[1],normais[5],tx,ty);
+  glBindTexture(GL_TEXTURE_2D, NULL);
+}
+
+void Map::desenhaChao()
+{
+	GLfloat i,j;
+	//textura do chao, bind it
+	TexMap::iterator chao;
+	chao = this->map_textures.find(this->tex_chao);
+	chao->second->bind();
+	
+	glColor3f(0.5f,0.5f,0.5f);
+	for(i=-this->tamanho_mapa;i<=this->tamanho_mapa;i++)
+		for(j=-this->tamanho_mapa;j<=this->tamanho_mapa;j++)
+		{
+		  glBegin(GL_POLYGON);
+			glNormal3f(0,1,0);
+			glTexCoord2f(1,1);
+			glVertex3f(i+1,0,j+1);
+			glTexCoord2f(0,1);
+			glVertex3f(i,0,j+1);
+			glTexCoord2f(0,0);
+			glVertex3f(i,0,j);
+			glTexCoord2f(1,0);
+			glVertex3f(i+1,0,j);
+		  glEnd();
+		}
+	glBindTexture(GL_TEXTURE_2D, NULL);
+}
+
+
+
+
 /* texturas */
 bool Map::loadTextures()
 {
@@ -43,6 +167,8 @@ bool Map::loadTextures()
 			needed.insert(this->map[i][e]);
 		}
 	}
+	needed.insert(this->tex_chao);
+	needed.insert(this->tex_tecto);
 	
 	while(!ifs.eof())
 	{
@@ -107,7 +233,11 @@ void Map::drawGuards()
 	{
 		for(int i=0;i<this->guardas.size();i++)
 		{
-			this->guardas[i]->draw();
+			glPushMatrix();
+				glTranslatef(this->guardas[i]->x,0,this->guardas[i]->y);
+				this->guardas[i]->draw();
+			glPopMatrix();
+			
 		}
 	}else{
 		// codigo optimizado para nao desenhar tudo...
@@ -142,12 +272,32 @@ void Map::drawItems()
 }
 void Map::drawMap()
 {
+	TexMap::iterator tex;
+	int previous_tex = 0;
+
 	if(this->desenharTudo)
 	{
-		/*for(int i=0;i<this->guardas.size();i++)
+		// desenhar chao
+		this->desenhaChao();
+		
+		// desenhar as paredes
+		for(int i=0;i<this->map.size();i++)
 		{
-			this->guardas[i]->draw();
-		}*/
+			for(int e=0;e<this->map[i].size();e++)
+			{
+				if(this->map[i][e]>1000 && this->map[i][e]<2000)
+				{
+					if(previous_tex!=this->map[i][e]){
+						previous_tex = this->map[i][e];
+						tex = this->map_textures.find(this->map[i][e]);
+					}
+					glPushMatrix();
+						glTranslatef(i,0,e);
+						this->desenhaCubo((i+e)%6, tex->second);
+					glPopMatrix();
+				}
+			}
+		}
 	}else{
 		// codigo optimizado para nao desenhar tudo...
 	}
@@ -205,8 +355,8 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	
 	switch(type){
 		case 1: // soldados mais faceis
-			//Soldado *s = new Soldado(x,y,angulo, movimento);
-			//this->guardas.push_back(s);
+				Soldado *s = new Soldado(x,y,angulo, movimento);
+			this->guardas.push_back(s);
 			Console::printf("Adicionado guarda facil em %d,%d, angulo: %f, movimento: %b",x,y,angulo,movimento);
 			break;
 	}
@@ -228,12 +378,11 @@ bool Map::loadMap(std::string file)
 	ifs >> this->tamanho_mapa;
 	
 	// ler textura do tecto
-	int tex_tecto;
-	ifs >> tex_tecto;
+	ifs >> this->tex_tecto;
 	
 	// ler textura do chao
-	int tex_chao;
-	ifs >> tex_chao;
+	ifs >> this->tex_chao;
+	
 	std::getline (ifs, linha);
 	boost::char_separator<char> sep(",");
     for(int i=0; i<this->tamanho_mapa; ++i)

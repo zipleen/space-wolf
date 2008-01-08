@@ -15,7 +15,8 @@ Game::Game()
 	this->render = Rendering::GetInstance();
 	this->map = new Map();
 	this->map->loadMap("data/maps/mapa1.map");
-	this->map->loadTextures();
+	if(this->render->useTextures())
+		this->map->loadTextures();
 }
 
 void Game::MainLoop()
