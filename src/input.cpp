@@ -9,3 +9,4 @@
 
 #include "input.h"
 
+Input *Input::m_inputSingleton = NULL;
