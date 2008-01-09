@@ -11,14 +11,28 @@
 #define INPUT_G
 
 #include <SDL.h>
+#include "rendering.h"
+#include "console.h"
 
 class Input
 {
 protected:
 	static Input *m_inputSingleton;
 	
+	Rendering *render;
+	
+	bool keyUpPressed;
+	bool keyDownPressed;
+	bool keyLeftPressed;
+	bool keyRightPressed;
+	bool keyStraffLeftPressed;
+	bool keyStraffRightPressed;
+	bool keyFirePressed;
+	bool keyOpenDoorPressed;
+	bool keyRunPressed;
+	
 public:
-	Input(){}; 
+	Input(); 
 	virtual ~Input(){};
 	
 	static Input *GetInstance( void )
@@ -38,6 +52,9 @@ public:
 		}
 	}
 	
+	void handleKeyPress (SDL_keysym *key, bool value);
+	void mouseMove (Uint16 x, Uint16 y);
+	void processKeyInput();
 };
 
 #endif

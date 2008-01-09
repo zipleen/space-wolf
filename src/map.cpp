@@ -70,7 +70,7 @@ void Map::desenhaPoligono(GLfloat a[], GLfloat b[], GLfloat c[], GLfloat  d[], G
 
 void Map::desenhaCubo(int tipo, const Texture2D* tex)
 {
-#define CUBE_SIZE 1
+#define CUBE_SIZE 0.5
   GLfloat vertices[][3] = { {-CUBE_SIZE,-CUBE_SIZE,-CUBE_SIZE}, 
                             {CUBE_SIZE,-CUBE_SIZE,-CUBE_SIZE}, 
                             {CUBE_SIZE,CUBE_SIZE,-CUBE_SIZE}, 
@@ -123,9 +123,10 @@ void Map::desenhaChao()
 	chao = this->map_textures.find(this->tex_chao);
 	chao->second->bind();
 	
+	//glPushMatrix();
 	glColor3f(0.5f,0.5f,0.5f);
-	for(i=-this->tamanho_mapa;i<=this->tamanho_mapa;i++)
-		for(j=-this->tamanho_mapa;j<=this->tamanho_mapa;j++)
+	for(i=0;i<=this->tamanho_mapa;i++)
+		for(j=0;j<=this->tamanho_mapa;j++)
 		{
 		  glBegin(GL_POLYGON);
 			glNormal3f(0,1,0);
@@ -139,6 +140,7 @@ void Map::desenhaChao()
 			glVertex3f(i+1,0,j);
 		  glEnd();
 		}
+	//glPopMatrix();
 	glBindTexture(GL_TEXTURE_2D, NULL);
 }
 

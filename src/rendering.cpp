@@ -36,7 +36,13 @@ Rendering::Rendering()
 	this->useLigth = true;
 	this->windowTitle = "Wolf3d look-a-like";
 	this->drawFPS = true;
-
+	
+	this->Cam = new glCamera();
+	this->Cam->m_MaxForwardVelocity = 5.0f;
+    this->Cam->m_MaxPitchRate = 5.0f;
+    this->Cam->m_MaxHeadingRate = 5.0f;
+    this->Cam->m_PitchDegrees = 0.0f;
+    this->Cam->m_HeadingDegrees = 0.0f;
 }
 
 bool Rendering::initVideo()
@@ -145,6 +151,8 @@ bool Rendering::initOpenGL()
 	
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_NORMALIZE);
+	
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT,amb);
 
@@ -235,6 +243,7 @@ void Rendering::draw3D(Map *m)
 	
 	// Perform camera transformations
 	gluLookAt(0,50,0,0, 43,7 ,0,50,1);
+	this->Cam->SetPrespective();
 	
 	glEnable (GL_DEPTH_TEST);
 	

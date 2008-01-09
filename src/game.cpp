@@ -13,6 +13,7 @@ Game::Game()
 {
 	this->player = new Player();
 	this->render = Rendering::GetInstance();
+	this->input = Input::GetInstance();
 	this->map = new Map();
 	this->map->loadMap("data/maps/mapa1.map");
 	if(this->render->useTextures())
@@ -43,15 +44,18 @@ void Game::MainLoop()
 					this->render->resizeWindow(event.resize.w, event.resize.h);
 				  
 				  break;
-				/*
+				
+				case SDL_KEYUP:
+					this->input->handleKeyPress (&event.key.keysym,false);
+					break;
 				case SDL_KEYDOWN:
-				  handleKeyPress (&event.key.keysym);
+				  this->input->handleKeyPress (&event.key.keysym,true);
 				  break;
 
 				case SDL_MOUSEMOTION:
-				  mouseMove (event.button.x, event.button.y);
+				  this->input->mouseMove (event.button.x, event.button.y);
 				  break;
-				*/
+				
 				case SDL_QUIT:
 				  //shutdownApp (0);
 				  exit(0);
@@ -68,9 +72,15 @@ void Game::MainLoop()
 		// Draw scene if window is active
 		if (isActive){
 			dt = this->render->timer.current_time - this->render->timer.last_time;
+			// controlador de teclas
+			this->input->processKeyInput();
+			
+			// animacoes
 			this->map->updateAnimations(dt);
 			// player anim?
 			// this->player->updateAnimation(dt);
+			
+			// game cycle
 			this->render->gameCycle (this->map);
 		}
 	}

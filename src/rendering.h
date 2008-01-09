@@ -39,6 +39,7 @@
 
 #include "console.h"
 #include "map.h"
+#include "camera/glCamera.h"
 
 GLenum checkOpenGLErrors (const char *file, int line);
 
@@ -89,6 +90,8 @@ protected:
 	
 public:
 	Timer timer;
+	glCamera *Cam;
+	
 	Rendering(); 
 	virtual ~Rendering(){};
 	

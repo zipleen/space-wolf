@@ -19,6 +19,7 @@
 #include "map.h"
 #include "player.h"
 #include "rendering.h"
+#include "input.h"
 
 class Game
 {
@@ -26,6 +27,7 @@ protected:
 	Map *map; // o nosso mapa actual
 	Player *player;
 	Rendering *render;
+	Input *input;
 	
 public:
 	Game(); 
