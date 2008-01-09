@@ -27,6 +27,8 @@ protected:
 	bool keyRightPressed;
 	bool keyStraffLeftPressed;
 	bool keyStraffRightPressed;
+	bool keyGoFrontPressed;
+	bool keyGoBackPressed;
 	bool keyFirePressed;
 	bool keyOpenDoorPressed;
 	bool keyRunPressed;
@@ -54,7 +56,7 @@ public:
 	
 	void handleKeyPress (SDL_keysym *key, bool value);
 	void mouseMove (Uint16 x, Uint16 y);
-	void processKeyInput();
+	void processKeyInput(Player *p);
 };
 
 #endif

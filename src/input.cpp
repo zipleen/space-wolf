@@ -19,6 +19,8 @@ Input::Input()
 	this->keyRightPressed = false;
 	this->keyStraffLeftPressed = false;
 	this->keyStraffRightPressed = false;
+	this->keyGoBackPressed = false;
+	this->keyGoFrontPressed = false;
 	this->keyFirePressed = false;
 	this->keyOpenDoorPressed = false;
 	this->keyRunPressed = false;
@@ -38,18 +40,18 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 			this->keyRightPressed = value;
 			break;
 		case SDLK_UP:
-			this->keyUpPressed = value;
+			this->keyGoFrontPressed = value;
 			break;
 		case SDLK_DOWN:
-			this->keyDownPressed = value;
+			this->keyGoBackPressed = value;
 			break;
 		case SDLK_w:
 			// frente
-			this->keyUpPressed = value;
+			this->keyGoFrontPressed = value;
 			break;
 		case SDLK_s:
 			// tras
-			this->keyDownPressed = value;
+			this->keyGoBackPressed = value;
 			break;
 		case SDLK_a:
 			// straff esquerda
@@ -67,12 +69,37 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 	}
 }
 
-void Input::mouseMove (Uint16 x, Uint16 y)
+void Input::mouseMove (Uint16 MouseX, Uint16 MouseY)
 {
+	GLfloat DeltaMouse;
+	
+    if(MouseX < this->render->CenterX)
+    {
+		DeltaMouse = GLfloat(this->render->CenterX - MouseX);
+		this->render->Cam->ChangeHeading(-0.1f * DeltaMouse);
+		
+    }
+    else if(MouseX > this->render->CenterX)
+    {
+		DeltaMouse = GLfloat(MouseX - this->render->CenterX);
+		this->render->Cam->ChangeHeading(0.1f * DeltaMouse);
+    }
+    if(MouseY < this->render->CenterY)
+    {
+		DeltaMouse = GLfloat(this->render->CenterY - MouseY);
+		this->render->Cam->ChangePitch(-0.1f * DeltaMouse);
+    }
+    else if(MouseY > this->render->CenterY)
+    {
+		DeltaMouse = GLfloat(MouseY - this->render->CenterY);
+		this->render->Cam->ChangePitch(0.1f * DeltaMouse);
+    }
+	
+    SDL_WarpMouse(this->render->CenterX, this->render->CenterY);
 	
 }
 
-void Input::processKeyInput()
+void Input::processKeyInput(Player *p)
 {
 	if(this->keyLeftPressed){
 		this->render->Cam->ChangeHeading(-1.0f);
@@ -89,5 +116,12 @@ void Input::processKeyInput()
 	if(this->keyDownPressed){
 		this->render->Cam->ChangePitch(-1.0f);
 		Console::addLine("virando pra baixo");
+	}
+	if(this->keyGoBackPressed){
+		// tenho de pegar no vector e andar para a frente com o vector... e nao apenas somar lol
+		p->GoBack();
+	}
+	if(this->keyGoFrontPressed){
+		p->GoFront();
 	}
 }

@@ -19,15 +19,26 @@ protected:
 	int pontos;
 	bool chave_amarela;
 	bool chave_vermelha;
+	float velocidade;
+	
 	Md3Player *player;
 	
-	GLfloat x,y;
 public:
+	GLfloat x,y,z;
+	GLfloat angulo;
+	
 	Player(); 
 	virtual ~Player(){};
 
 	void draw();
 	void setPosition(int x, int y); // posicao do mapa inicial
+	
+	void SetAndar();
+	void SetCorrer();
+	
+	// controlos direccao
+	void GoBack();
+	void GoFront();
 };
 
 

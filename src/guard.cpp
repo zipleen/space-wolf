@@ -58,7 +58,11 @@ void Guard::loadModel()
 
 void Guard::draw()
 {
-	this->guard->draw();
+	glPushMatrix();
+		glTranslatef(this->x,1,this->y);
+		glRotatef(this->angulo,0,1,0);
+		this->guard->draw();
+	glPopMatrix();
 }
 
 void Guard::animate(const double dt)

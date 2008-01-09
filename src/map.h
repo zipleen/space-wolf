@@ -24,6 +24,7 @@
 #include "soldado.h"
 #include "items.h"
 #include "porta.h"
+#include "player.h"
 #include "md3/TextureManager.h"
 #include "console.h"
 #include "StrUtils.h"
@@ -57,7 +58,7 @@ public:
 	
 	// ler mapas
 	bool loadTextures();
-	bool loadMap(std::string file);
+	bool loadMap(std::string file, Player *player);
 	void addGuard(int x, int y, int type, int direction, bool movimento);
 	void addPorta(int x, int y, int type, int direction);
 	
@@ -70,7 +71,6 @@ public:
 	
 	// desenhar opengl
 	void setMaterial();
-	void setLight();
 	void desenhaPoligono(GLfloat a[], GLfloat b[], GLfloat c[], GLfloat  d[], GLfloat normal[],GLfloat tx,GLfloat ty);
 	void desenhaCubo(int tipo, const Texture2D *tex);
 	void desenhaChao();

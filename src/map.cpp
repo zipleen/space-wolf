@@ -34,24 +34,6 @@ void Map::setMaterial()
 	glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess); 
 }
 
-void Map::setLight()
-{	
-	GLfloat light_pos[4] =	{-5.0, 20.0, -5.0, 0.0};
-	GLfloat light_ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
-	GLfloat light_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-	GLfloat light_specular[]=	{ 0.5f, 0.5f, 0.5f, 1.0f };
-
-	glEnable(GL_LIGHTING);
-	// ligar e definir fonte de light 0
-	glEnable(GL_LIGHT0);
-	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
-	glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
-
-	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER,1);
-}
-
 void Map::desenhaPoligono(GLfloat a[], GLfloat b[], GLfloat c[], GLfloat  d[], GLfloat normal[],GLfloat tx,GLfloat ty)
 {
   glBegin(GL_POLYGON);
@@ -125,8 +107,8 @@ void Map::desenhaChao()
 	
 	//glPushMatrix();
 	glColor3f(0.5f,0.5f,0.5f);
-	for(i=0;i<=this->tamanho_mapa;i++)
-		for(j=0;j<=this->tamanho_mapa;j++)
+	for(i=-this->tamanho_mapa;i<=this->tamanho_mapa;i++)
+		for(j=-this->tamanho_mapa;j<=this->tamanho_mapa;j++)
 		{
 		  glBegin(GL_POLYGON);
 			glNormal3f(0,1,0);
@@ -235,11 +217,7 @@ void Map::drawGuards()
 	{
 		for(int i=0;i<this->guardas.size();i++)
 		{
-			glPushMatrix();
-				glTranslatef(this->guardas[i]->x,0,this->guardas[i]->y);
-				this->guardas[i]->draw();
-			glPopMatrix();
-			
+			this->guardas[i]->draw();
 		}
 	}else{
 		// codigo optimizado para nao desenhar tudo...
@@ -282,6 +260,8 @@ void Map::drawMap()
 		// desenhar chao
 		this->desenhaChao();
 		
+		glPushMatrix();
+		glTranslatef(-this->tamanho_mapa*0.5,0.5,-this->tamanho_mapa*0.5);
 		// desenhar as paredes
 		for(int i=0;i<this->map.size();i++)
 		{
@@ -300,6 +280,7 @@ void Map::drawMap()
 				}
 			}
 		}
+		glPopMatrix();
 	}else{
 		// codigo optimizado para nao desenhar tudo...
 	}
@@ -357,18 +338,16 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	
 	switch(type){
 		case 1: // soldados mais faceis
-				Soldado *s = new Soldado(x,y,angulo, movimento);
-			this->guardas.push_back(s);
+			//Soldado *s = new Soldado(x,y,angulo, movimento);
+			//this->guardas.push_back(s);
 			Console::printf("Adicionado guarda facil em %d,%d, angulo: %f, movimento: %b",x,y,angulo,movimento);
 			break;
 	}
 }
 
-bool Map::loadMap(std::string file)
+bool Map::loadMap(std::string file, Player *player)
 {
 	std::string linha; // temp
-	//this->addGuard(1, 1, 1 , 90, true, 3);
-	//return true;
 	
 	Console::printf("Comecar a ler o ficheiro do mapa %s",file.c_str());
 	
@@ -468,7 +447,9 @@ bool Map::loadMap(std::string file)
 						break;
 					case 4010:
 						// start player
-						
+						player->x = i;
+						player->y = 1;
+						player->z = e;
 						break;
 					case 4011:
 						// finish map

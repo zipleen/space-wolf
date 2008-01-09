@@ -107,13 +107,13 @@ bool Rendering::initVideo()
       return false;
 	}
 
-  // Initialize OpenGL
-  this->initOpenGL ();
+	// Initialize OpenGL
+	this->initOpenGL ();
 
-  // Resize OpenGL window
-  this->reshape (this->windowWidth, this->windowHeight);
+	// Resize OpenGL window
+	this->reshape (this->windowWidth, this->windowHeight);
 	Console::printf("Video Initialized");
-  return true;
+	return true;
 }
 
 void
@@ -127,7 +127,7 @@ Rendering::reshape (GLsizei width, GLsizei height)
   // Reinit projection matrix
   glMatrixMode (GL_PROJECTION);
   glLoadIdentity ();
-  gluPerspective (45.0, width/static_cast<GLfloat>(height), 0.1f, 10000.0f);
+  gluPerspective (45.0f, width/static_cast<GLfloat>(height), 0.1f, 10000.0f);
 
   // Reinit model-view matrix
   glMatrixMode (GL_MODELVIEW);
@@ -185,6 +185,10 @@ bool Rendering::resizeWindow(int w,int h)
 		std::cerr << "Could not get a surface after resize: "<< SDL_GetError () << std::endl;
 		return false;
 	}
+	this->windowWidth = w;
+	this->windowHeight = h;
+	this->CenterX = w/2;
+	this->CenterY = h/2;
 	
 	this->reshape (w, h);
 	this->initOpenGL ();
@@ -224,32 +228,51 @@ void Rendering::changeMode()
 
 }
 
-void Rendering::gameCycle (Map *m)
+void Rendering::gameCycle (Map *m, Player *p)
 {
 	this->gameLogic ();
 	
-	this->draw3D (m);
+	this->draw3D (m,p);
 	
 	this->draw2D ();
 	
 	SDL_GL_SwapBuffers ();
 }
 
-void Rendering::draw3D(Map *m)
+void Rendering::setLight()
+{	
+	GLfloat light_pos[4] =	{-5.0, 20.0, -5.0, 0.0};
+	GLfloat light_ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+	GLfloat light_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+	GLfloat light_specular[]=	{ 0.5f, 0.5f, 0.5f, 1.0f };
+	
+	glEnable(GL_LIGHTING);
+	// ligar e definir fonte de light 0
+	glEnable(GL_LIGHT0);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
+	
+	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER,1);
+}
+
+
+void Rendering::draw3D(Map *m, Player *p)
 {
 	// Clear window
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity ();
 	
 	// Perform camera transformations
-	gluLookAt(0,50,0,0, 43,7 ,0,50,1);
+	gluLookAt(p->x,p->y,p->z, 0, 0,0 ,0,0,-1);
 	this->Cam->SetPrespective();
 	
 	glEnable (GL_DEPTH_TEST);
 	
 	if (this->useLigth){
 		//glEnable (GL_LIGHTING);
-		m->setLight();
+		this->setLight();
 	}
 	// isto nao pode ser aki, isto eh no init
 	if (this->useTexturing)

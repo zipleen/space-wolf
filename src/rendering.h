@@ -10,6 +10,12 @@
 #ifndef RENDERING_H
 #define RENDERING_H
 
+#ifndef M_PI
+#define M_PI 3.1415926535897932384626433832795
+#endif
+#define RAD(x)          (M_PI*(x)/180)
+#define GRAUS(x)        (180*(x)/M_PI)
+
 #include <SDL.h>
 
 #include <GL/glew.h>
@@ -39,6 +45,7 @@
 
 #include "console.h"
 #include "map.h"
+#include "player.h"
 #include "camera/glCamera.h"
 
 GLenum checkOpenGLErrors (const char *file, int line);
@@ -89,6 +96,8 @@ protected:
 	
 	
 public:
+	int CenterX;
+	int CenterY;
 	Timer timer;
 	glCamera *Cam;
 	
@@ -114,25 +123,23 @@ public:
 	
 	bool useTextures(){ return this->useTexturing; };
 	
-	void draw3D(Map *m);
+	void draw3D(Map *m, Player *p);
 	bool initOpenGL();
 	
 	bool initVideo();
 	void reshape (GLsizei width, GLsizei height);
 	bool resizeWindow(int w,int h);
-	void gameCycle (Map *m);
+	void gameCycle (Map *m, Player *p);
 	void gameLogic ();
 	
 	void changeMode();
 	
+	void setLight();
 	
 	// 2d
 	void begin2D();
 	void end2D();
-	int glPrintf (const char *format, ...);
 	void draw2D();
 };
-
-
 
 #endif

@@ -15,7 +15,7 @@ Game::Game()
 	this->render = Rendering::GetInstance();
 	this->input = Input::GetInstance();
 	this->map = new Map();
-	this->map->loadMap("data/maps/mapa1.map");
+	this->map->loadMap("data/maps/mapa1.map", this->player);
 	if(this->render->useTextures())
 		this->map->loadTextures();
 }
@@ -73,7 +73,7 @@ void Game::MainLoop()
 		if (isActive){
 			dt = this->render->timer.current_time - this->render->timer.last_time;
 			// controlador de teclas
-			this->input->processKeyInput();
+			this->input->processKeyInput(this->player);
 			
 			// animacoes
 			this->map->updateAnimations(dt);
@@ -81,7 +81,7 @@ void Game::MainLoop()
 			// this->player->updateAnimation(dt);
 			
 			// game cycle
-			this->render->gameCycle (this->map);
+			this->render->gameCycle (this->map, this->player);
 		}
 	}
 }
