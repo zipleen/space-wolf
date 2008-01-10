@@ -177,9 +177,9 @@ Texture2D::Texture2D (const string &filename, TextureFlags flags)
     }
   catch (std::exception &err)
     {
-      cerr << "Error: Couldn't create texture 2D from "
+      /*cerr << "Error: Couldn't create texture 2D from "
 	   << filename << endl;
-      cerr << "Reason: " << err.what () << endl;
+      cerr << "Reason: " << err.what () << endl;*/
     }
 }
 

@@ -230,9 +230,9 @@ Md3Mesh::loadShader (int index)
     {
       // Get texture manager
       Texture2DManager *texMgr = Texture2DManager::getInstance ();
-
-      // Load the texture
-      setTexture (texMgr->load (filename));
+	
+		// Load the texture
+		setTexture (texMgr->load (filename));
 		
 		// vamos tentar adicionar o "data" ah path
 		string filename2 = "data/"+filename;
