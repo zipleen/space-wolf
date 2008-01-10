@@ -9,6 +9,10 @@
 
 #include "map.h"
 
+#define CUBE_SIZE 6.0f
+#define RECT_SIZE 9
+
+bool useNEHEcube;
 Map::Map()
 {
 	texMgr = Texture2DManager::getInstance ();
@@ -18,7 +22,7 @@ Map::Map()
 	this->guardas.clear();
 	this->items.clear();
 	this->portas.clear();
-	this->desenharTudo = true;
+	this->desenharTudo = true;useNEHEcube = false;
 }
 
 /* desenhar */
@@ -38,22 +42,66 @@ void Map::desenhaPoligono(GLfloat a[], GLfloat b[], GLfloat c[], GLfloat  d[], G
 {
   glBegin(GL_POLYGON);
     glNormal3fv(normal);
-    glTexCoord2f(tx+0,ty+0);
+    //glTexCoord2f(tx+0,ty+0);
+	glTexCoord2f(1,1);
     glVertex3fv(a);
-    glTexCoord2f(tx+0,ty+0.25);
+	glTexCoord2f(0,1);
+    //glTexCoord2f(tx+0,ty+0.25);
     glVertex3fv(b);
-    glTexCoord2f(tx+0.25,ty+0.25);
+	glTexCoord2f(0,0);
+    //glTexCoord2f(tx+0.25,ty+0.25);
     glVertex3fv(c);
-    glTexCoord2f(tx+0.25,ty+0);
+	glTexCoord2f(1,0);
+    //glTexCoord2f(tx+0.25,ty+0);
     glVertex3fv(d);
   glEnd();
 }
 
+void Map::glDrawCube(const Texture2D* tex)					// Draw A Cube
+{
+	tex->bind();
+	glBegin(GL_QUADS);			// Start Drawing Quads
+		// Front Face
+		glNormal3f( 0.0f, 0.0f, 1.0f);		// Normal Facing Forward
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(-CUBE_SIZE, -CUBE_SIZE,  CUBE_SIZE);	// Bottom Left Of The Texture and Quad
+		glTexCoord2f(1.0f, 0.0f); glVertex3f( CUBE_SIZE, -CUBE_SIZE,  CUBE_SIZE);	// Bottom Right Of The Texture and Quad
+		glTexCoord2f(1.0f, 1.0f); glVertex3f( CUBE_SIZE,  CUBE_SIZE,  CUBE_SIZE);	// Top Right Of The Texture and Quad
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(-CUBE_SIZE,  CUBE_SIZE,  CUBE_SIZE);	// Top Left Of The Texture and Quad
+		// Back Face
+		glNormal3f( 0.0f, 0.0f,-1.0f);		// Normal Facing Away
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(-CUBE_SIZE, -CUBE_SIZE, -CUBE_SIZE);	// Bottom Right Of The Texture and Quad
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(-CUBE_SIZE,  CUBE_SIZE, -CUBE_SIZE);	// Top Right Of The Texture and Quad
+		glTexCoord2f(0.0f, 1.0f); glVertex3f( CUBE_SIZE,  CUBE_SIZE, -CUBE_SIZE);	// Top Left Of The Texture and Quad
+		glTexCoord2f(0.0f, 0.0f); glVertex3f( CUBE_SIZE, -CUBE_SIZE, -CUBE_SIZE);	// Bottom Left Of The Texture and Quad
+		// Top Face
+		glNormal3f( 0.0f, 1.0f, 0.0f);		// Normal Facing Up
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(-CUBE_SIZE,  CUBE_SIZE, -CUBE_SIZE);	// Top Left Of The Texture and Quad
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(-CUBE_SIZE,  CUBE_SIZE,  CUBE_SIZE);	// Bottom Left Of The Texture and Quad
+		glTexCoord2f(1.0f, 0.0f); glVertex3f( CUBE_SIZE,  CUBE_SIZE,  CUBE_SIZE);	// Bottom Right Of The Texture and Quad
+		glTexCoord2f(1.0f, 1.0f); glVertex3f( CUBE_SIZE,  CUBE_SIZE, -CUBE_SIZE);	// Top Right Of The Texture and Quad
+		// Bottom Face
+		glNormal3f( 0.0f,-1.0f, 0.0f);		// Normal Facing Down
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(-CUBE_SIZE, -CUBE_SIZE, -CUBE_SIZE);	// Top Right Of The Texture and Quad
+		glTexCoord2f(0.0f, 1.0f); glVertex3f( CUBE_SIZE, -CUBE_SIZE, -CUBE_SIZE);	// Top Left Of The Texture and Quad
+		glTexCoord2f(0.0f, 0.0f); glVertex3f( CUBE_SIZE, -CUBE_SIZE,  CUBE_SIZE);	// Bottom Left Of The Texture and Quad
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(-CUBE_SIZE, -CUBE_SIZE,  CUBE_SIZE);	// Bottom Right Of The Texture and Quad
+		// Right face
+		glNormal3f( 1.0f, 0.0f, 0.0f);		// Normal Facing Right
+		glTexCoord2f(1.0f, 0.0f); glVertex3f( CUBE_SIZE, -CUBE_SIZE, -CUBE_SIZE);	// Bottom Right Of The Texture and Quad
+		glTexCoord2f(1.0f, 1.0f); glVertex3f( CUBE_SIZE,  CUBE_SIZE, -CUBE_SIZE);	// Top Right Of The Texture and Quad
+		glTexCoord2f(0.0f, 1.0f); glVertex3f( CUBE_SIZE,  CUBE_SIZE,  CUBE_SIZE);	// Top Left Of The Texture and Quad
+		glTexCoord2f(0.0f, 0.0f); glVertex3f( CUBE_SIZE, -CUBE_SIZE,  CUBE_SIZE);	// Bottom Left Of The Texture and Quad
+		// Left Face
+		glNormal3f(-1.0f, 0.0f, 0.0f);		// Normal Facing Left
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(-CUBE_SIZE, -CUBE_SIZE, -CUBE_SIZE);	// Bottom Left Of The Texture and Quad
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(-CUBE_SIZE, -CUBE_SIZE,  CUBE_SIZE);	// Bottom Right Of The Texture and Quad
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(-CUBE_SIZE,  CUBE_SIZE,  CUBE_SIZE);	// Top Right Of The Texture and Quad
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(-CUBE_SIZE,  CUBE_SIZE, -CUBE_SIZE);	// Top Left Of The Texture and Quad
+	glEnd();					// Done Drawing Quads
+}
 
 void Map::desenhaCubo(const Texture2D* tex)
 {
-#define CUBE_SIZE 6
-#define RECT_SIZE 9
   GLfloat vertices[][3] = { {-CUBE_SIZE,-CUBE_SIZE,-CUBE_SIZE}, 
                             {CUBE_SIZE,-CUBE_SIZE,-CUBE_SIZE}, 
                             {CUBE_SIZE,CUBE_SIZE,-CUBE_SIZE}, 
@@ -236,6 +284,7 @@ void Map::drawItems()
 	}
 	
 }
+
 void Map::drawMap()
 {
 	TexMap::iterator tex;
@@ -261,7 +310,7 @@ void Map::drawMap()
 					}
 					glPushMatrix();
 						glTranslatef(i*CUBE_SIZE*2,0,e*CUBE_SIZE*2);
-						this->desenhaCubo(tex->second);
+						this->glDrawCube(tex->second);
 					glPopMatrix();
 				}
 			}

@@ -48,7 +48,9 @@ protected:
 	int tex_tecto;
 	int tex_chao;
 	bool desenharTudo;
+	
 public:
+	
 	Map(); 
 	virtual ~Map(){};
 	
@@ -73,6 +75,7 @@ public:
 	void setMaterial();
 	void desenhaPoligono(GLfloat a[], GLfloat b[], GLfloat c[], GLfloat  d[], GLfloat normal[],GLfloat tx,GLfloat ty);
 	void desenhaCubo(const Texture2D *tex);
+	void glDrawCube(const Texture2D* tex);
 	void desenhaChao();
 	
 };

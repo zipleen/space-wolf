@@ -65,11 +65,16 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 			// abrir portas
 			this->keyOpenDoorPressed = value;
 			break;
+			
+		case SDLK_r:
+			this->keyUpPressed = value;
+			break;
+		case SDLK_f:
+			this->keyDownPressed = value;
+			break;
+			
 		case SDLK_q:
-			if(this->render->useWireframe)
-				this->render->useWireframe = true;
-			else this->render->useWireframe = false;
-			this->render->changeMode();
+			//this->render->changeMode();
 			break;
 	}
 }
@@ -107,23 +112,22 @@ void Input::mouseMove (Uint16 MouseX, Uint16 MouseY)
 void Input::processKeyInput(Player *p)
 {
 	if(this->keyLeftPressed){
-		this->render->Cam->ChangeHeading(-5.0f);
-		Console::addLine("virando pra esquerda");
+		//this->render->Cam->ChangeHeading(-5.0f);
+		p->GoTurnLeft();
 	}
 	if(this->keyRightPressed){
-		this->render->Cam->ChangeHeading(5.0f);
-		Console::addLine("virando pra direita");
+		p->GoTurnRight();
+		//this->render->Cam->ChangeHeading(5.0f);
 	}
-	//if(this->keyUpPressed){
-	if(keyStraffLeftPressed){
-		this->render->Cam->ChangePitch(5.0f);
-		Console::addLine("virando pra cima");
+	if(this->keyUpPressed){
+		p->y++;
+		//this->render->Cam->ChangePitch(5.0f);
 	}
-	//if(this->keyDownPressed){
-	if(this->keyStraffRightPressed){
-		this->render->Cam->ChangePitch(-5.0f);
-		Console::addLine("virando pra baixo");
+	if(this->keyDownPressed){
+		p->y--;
+		//this->render->Cam->ChangePitch(-5.0f);
 	}
+	
 	if(this->keyGoBackPressed){
 		// tenho de pegar no vector e andar para a frente com o vector... e nao apenas somar lol
 		p->GoBack();
@@ -131,4 +135,11 @@ void Input::processKeyInput(Player *p)
 	if(this->keyGoFrontPressed){
 		p->GoFront();
 	}
+	if(this->keyStraffLeftPressed){
+		p->GoStraffLeft();
+	}
+	if(this->keyStraffRightPressed){
+		p->GoStraffRight();
+	}
+	
 }

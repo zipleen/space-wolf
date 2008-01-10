@@ -40,25 +40,46 @@ void Player::SetAndar()
 	this->velocidade = 0.1;
 }
 
+void Player::GoStraffLeft()
+{
+	this->x++;
+}
+
+void Player::GoStraffRight()
+{
+	this->x--;
+}
+
 void Player::GoFront()
 {
 	// nao esquecer que estes valores tem de ir pelo objecto de fisica
-	GLfloat nx,nz;
-	/*nx=this->x-cos(this->angulo)*this->velocidade;
+	/*GLfloat nx,nz;
+	nx=this->x-cos(this->angulo)*this->velocidade;
 	nz=this->z-sin(-this->angulo)*this->velocidade;
 	
-	this->y = nz;
+	this->z = nz;
 	this->x = nx;*/
-	this->x++;
+	this->z++;
 }
 
 void Player::GoBack()
 {
-	GLfloat nx,nz;
-	/*nx=this->x+cos(this->angulo)*this->velocidade;
+	/*GLfloat nx,nz;
+	nx=this->x+cos(this->angulo)*this->velocidade;
 	nz=this->z+sin(-this->angulo)*this->velocidade;
 	
-	this->y = nz;
+	this->z = nz;
 	this->x = nx;*/
-	this->x--;
+	this->z--;
 }
+
+void Player::GoTurnRight()
+{
+	this->angulo++;
+}
+
+void Player::GoTurnLeft()
+{
+	this->angulo--;
+}
+

@@ -39,6 +39,10 @@ public:
 	// controlos direccao
 	void GoBack();
 	void GoFront();
+	void GoStraffLeft();
+	void GoStraffRight();
+	void GoTurnRight();
+	void GoTurnLeft();
 };
 
 
