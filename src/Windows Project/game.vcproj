@@ -213,14 +213,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\input.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\input.h"
-				>
-			</File>
-			<File
 				RelativePath="..\main.cpp"
 				>
 			</File>
@@ -380,6 +372,54 @@
 					</File>
 					<File
 						RelativePath="..\md3\TextureManager.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="input"
+				>
+				<File
+					RelativePath="..\input.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\input.h"
+					>
+				</File>
+				<Filter
+					Name="camera"
+					>
+					<File
+						RelativePath="..\camera\glCamera.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\camera\glCamera.h"
+						>
+					</File>
+					<File
+						RelativePath="..\camera\glPoint.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\camera\glPoint.h"
+						>
+					</File>
+					<File
+						RelativePath="..\camera\glQuaternion.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\camera\glQuaternion.h"
+						>
+					</File>
+					<File
+						RelativePath="..\camera\glVector.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\camera\glVector.h"
 						>
 					</File>
 				</Filter>
