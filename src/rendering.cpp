@@ -173,6 +173,17 @@ bool Rendering::initOpenGL()
 	Console::printf("GLU Version String: %s",gluGetString (GLU_VERSION));
 	Console::printf("GLEW Version String: %s",glewGetString (GLEW_VERSION));
  
+ 	
+	try
+	{
+      this->font = new TTFont ("data/Vera.ttf", 12, 1);
+    }
+	catch (std::runtime_error &err)
+    {
+      cerr << "Failed to create truetype font" << endl;
+      cerr << "Reason: " << err.what () << endl;
+    }
+ 
 	checkOpenGLErrors (__FILE__, __LINE__);
 	Console::printf("OpenGL initialized");
 	return true;
@@ -238,7 +249,7 @@ void Rendering::gameCycle (Map *m, Player *p)
 	
 	this->draw3D (m,p);
 	
-	this->draw2D ();
+	this->draw2D (p);
 	
 	SDL_GL_SwapBuffers ();
 }
@@ -335,7 +346,7 @@ void Rendering::drawAxes ()
   glPopMatrix();
 }
 
-void Rendering::draw2D()
+void Rendering::draw2D(Player *p)
 {
 		
 	begin2D ();
@@ -360,8 +371,11 @@ void Rendering::draw2D()
 	if(this->drawFPS)
 	{
 		// Print frame rate int the bottom-left corner
-		//this->font->printText (10, 10, "%i fps", this->fps);
+		this->font->printText (10, 10, "%i fps", this->fps);
 	}
+#ifdef DEBUG
+	this->font->printText(10,22,"Player x:%f y:%f z:%f angulo:%f",p->x, p->y, p->z, p->angulo);
+#endif
 	
 	glPopAttrib ();
 	

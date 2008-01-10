@@ -21,9 +21,10 @@
 		AA667BCF0D353E0B0003657B /* glQuaternion.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BC90D353E0B0003657B /* glQuaternion.cc */; };
 		AA667BD00D353E0B0003657B /* glVector.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BCB0D353E0B0003657B /* glVector.cc */; };
 		AA7F76C50D3124670088B254 /* porta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7F76C40D3124670088B254 /* porta.cpp */; };
+		AA968A2E0D367DF000B6E06D /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA968A2C0D367DF000B6E06D /* Font.cpp */; };
+		AA96EC630D313893001FC1B2 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA96EC620D313893001FC1B2 /* libjpeg.a */; };
 		AA9D579B0D27C34100089D4E /* items.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9D579A0D27C34100089D4E /* items.cpp */; };
 		AAB2E5410D2AD3E400B65B5E /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2E5400D2AD3E400B65B5E /* libGLEW.a */; };
-		AAB2E5440D2AD5F100B65B5E /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2E5430D2AD5F100B65B5E /* libjpeg.a */; };
 		AABE74580D26CC2D00A3AA8B /* Mathlib.inl in Resources */ = {isa = PBXBuildFile; fileRef = AABE744C0D26CC2D00A3AA8B /* Mathlib.inl */; };
 		AABE74590D26CC2D00A3AA8B /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE744F0D26CC2D00A3AA8B /* Texture.cpp */; };
 		AABE745A0D26CC2D00A3AA8B /* Md3Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE74510D26CC2D00A3AA8B /* Md3Model.cpp */; };
@@ -86,10 +87,12 @@
 		AA667BCC0D353E0B0003657B /* glVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = glVector.h; path = ../camera/glVector.h; sourceTree = SOURCE_ROOT; };
 		AA7F76C30D3124670088B254 /* porta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = porta.h; path = ../porta.h; sourceTree = SOURCE_ROOT; };
 		AA7F76C40D3124670088B254 /* porta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = porta.cpp; path = ../porta.cpp; sourceTree = SOURCE_ROOT; };
+		AA968A2C0D367DF000B6E06D /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../font/Font.cpp; sourceTree = SOURCE_ROOT; };
+		AA968A2D0D367DF000B6E06D /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Font.h; path = ../font/Font.h; sourceTree = SOURCE_ROOT; };
+		AA96EC620D313893001FC1B2 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = /opt/local/lib/libjpeg.a; sourceTree = "<absolute>"; };
 		AA9D57990D27C34100089D4E /* items.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = items.h; path = ../items.h; sourceTree = SOURCE_ROOT; };
 		AA9D579A0D27C34100089D4E /* items.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = items.cpp; path = ../items.cpp; sourceTree = SOURCE_ROOT; };
 		AAB2E5400D2AD3E400B65B5E /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = lib/libGLEW.a; sourceTree = "<group>"; };
-		AAB2E5430D2AD5F100B65B5E /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = lib/libjpeg.a; sourceTree = "<group>"; };
 		AABE744B0D26CC2D00A3AA8B /* Md3Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Md3Model.h; path = ../md3/Md3Model.h; sourceTree = SOURCE_ROOT; };
 		AABE744C0D26CC2D00A3AA8B /* Mathlib.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Mathlib.inl; path = ../md3/Mathlib.inl; sourceTree = SOURCE_ROOT; };
 		AABE744D0D26CC2D00A3AA8B /* Md3Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Md3Player.h; path = ../md3/Md3Player.h; sourceTree = SOURCE_ROOT; };
@@ -141,7 +144,7 @@
 				AA0886E80D28977E00D7793D /* SDL_mixer.framework in Frameworks */,
 				AAEE411F0D295D9600DE9F02 /* SDL_ttf.framework in Frameworks */,
 				AAB2E5410D2AD3E400B65B5E /* libGLEW.a in Frameworks */,
-				AAB2E5440D2AD5F100B65B5E /* libjpeg.a in Frameworks */,
+				AA96EC630D313893001FC1B2 /* libjpeg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +231,7 @@
 		AA3971530D2C5DEF00855D68 /* includes */ = {
 			isa = PBXGroup;
 			children = (
+				AA968A2B0D367DE600B6E06D /* font */,
 				080E96DDFE201D6D7F000001 /* SDL */,
 				AA3971570D2C5E1500855D68 /* StrUtils.h */,
 				AA3971580D2C5E1500855D68 /* StrUtils.cpp */,
@@ -259,6 +263,15 @@
 				AA667BCC0D353E0B0003657B /* glVector.h */,
 			);
 			name = camera;
+			sourceTree = "<group>";
+		};
+		AA968A2B0D367DE600B6E06D /* font */ = {
+			isa = PBXGroup;
+			children = (
+				AA968A2C0D367DF000B6E06D /* Font.cpp */,
+				AA968A2D0D367DF000B6E06D /* Font.h */,
+			);
+			name = font;
 			sourceTree = "<group>";
 		};
 		AA9D57980D27C25B00089D4E /* guardas */ = {
@@ -353,7 +366,7 @@
 		AABE74960D26CC7E00A3AA8B /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				AAB2E5430D2AD5F100B65B5E /* libjpeg.a */,
+				AA96EC620D313893001FC1B2 /* libjpeg.a */,
 				AAB2E5400D2AD3E400B65B5E /* libGLEW.a */,
 			);
 			name = lib;
@@ -441,6 +454,7 @@
 				AA667BCE0D353E0B0003657B /* glPoint.cc in Sources */,
 				AA667BCF0D353E0B0003657B /* glQuaternion.cc in Sources */,
 				AA667BD00D353E0B0003657B /* glVector.cc in Sources */,
+				AA968A2E0D367DF000B6E06D /* Font.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,7 +546,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = wolf;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
-				VALID_ARCHS = "ppc i386 x86_64";
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};

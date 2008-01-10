@@ -48,6 +48,7 @@
 #include "map.h"
 #include "player.h"
 #include "camera/glCamera.h"
+#include "font/Font.h"
 
 GLenum checkOpenGLErrors (const char *file, int line);
 
@@ -96,7 +97,7 @@ public:
 	int fps;
 	std::string windowTitle;
 	SDL_Surface *surface;
-	
+	TTFont *font;
 	
 public:
 	int CenterX;
@@ -125,10 +126,7 @@ public:
 	}
 	
 	bool useTextures(){ return this->useTexturing; };
-	
-	void draw3D(Map *m, Player *p);
-	bool initOpenGL();
-	
+
 	bool initVideo();
 	void reshape (GLsizei width, GLsizei height);
 	bool resizeWindow(int w,int h);
@@ -137,13 +135,17 @@ public:
 	
 	void changeMode();
 	
+	// 3d
 	void setLight();
 	void drawAxes();
+	
+	void draw3D(Map *m, Player *p);
+	bool initOpenGL();
 	
 	// 2d
 	void begin2D();
 	void end2D();
-	void draw2D();
+	void draw2D(Player *p);
 };
 
 #endif
