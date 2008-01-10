@@ -81,7 +81,7 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 
 void Input::mouseMove (Uint16 MouseX, Uint16 MouseY)
 {
-/*	GLfloat DeltaMouse;
+	GLfloat DeltaMouse;
 	
     if(MouseX < this->render->CenterX)
     {
@@ -106,7 +106,7 @@ void Input::mouseMove (Uint16 MouseX, Uint16 MouseY)
     }
 	
     SDL_WarpMouse(this->render->CenterX, this->render->CenterY);
-	*/
+	
 }
 
 void Input::processKeyInput(Player *p)

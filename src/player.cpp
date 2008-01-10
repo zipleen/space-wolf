@@ -55,24 +55,24 @@ void Player::GoFront()
 	// nao esquecer que estes valores tem de ir pelo objecto de fisica
 	
 	// isto nao bate certo lol
-	GLfloat nx,nz;
+	/*GLfloat nx,nz;
 	nx=this->x-cos(this->angulo)*this->velocidade;
 	nz=this->z-sin(-this->angulo)*this->velocidade;
 	
 	this->z = nz;
-	this->x = nx;
-	//this->z++;
+	this->x = nx;*/
+	this->z++;
 }
 
 void Player::GoBack()
 {
-	GLfloat nx,nz;
+	/*GLfloat nx,nz;
 	nx=this->x+cos(this->angulo)*this->velocidade;
 	nz=this->z+sin(-this->angulo)*this->velocidade;
 	
 	this->z = nz;
-	this->x = nx;
-	//this->z--;
+	this->x = nx;*/
+	this->z--;
 }
 
 void Player::GoTurnRight()
