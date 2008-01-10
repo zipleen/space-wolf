@@ -146,8 +146,8 @@ void Map::desenhaTecto()
 	//glPushMatrix();
 	glColor3f(0.5f,0.5f,0.5f);
 	glTranslatef(0,this->cube_size,0);
-	for(i=0;i<=this->tamanho_mapa*this->cube_size;i+=this->cube_size)
-		for(j=0;j<=this->tamanho_mapa*this->cube_size;j+=this->cube_size)
+	for(i=-this->cube_size;i<=this->tamanho_mapa*this->cube_size*2;i+=this->cube_size)
+		for(j=-this->cube_size;j<=this->tamanho_mapa*this->cube_size*2;j+=this->cube_size)
 		{
 		  glBegin(GL_POLYGON);
 			glNormal3f(0,1,0);
@@ -177,8 +177,8 @@ void Map::desenhaChao()
 	//glPushMatrix();
 	glColor3f(0.5f,0.5f,0.5f);
 	glTranslatef(0,-this->cube_size,0);
-	for(i=-this->tamanho_mapa*this->cube_size;i<=this->tamanho_mapa*this->cube_size;i+=this->cube_size)
-		for(j=-this->tamanho_mapa*this->cube_size;j<=this->tamanho_mapa*this->cube_size;j+=this->cube_size)
+	for(i=-this->cube_size;i<=this->tamanho_mapa*this->cube_size*2;i+=this->cube_size)
+		for(j=-this->cube_size;j<=this->tamanho_mapa*this->cube_size*2;j+=this->cube_size)
 		{
 		  glBegin(GL_POLYGON);
 			glNormal3f(0,1,0);
@@ -365,7 +365,7 @@ void Map::drawMap()
 		glPopMatrix();
 		
 		glPushMatrix();
-		glTranslatef(-this->tamanho_mapa*this->cube_size*2,0,-this->tamanho_mapa*this->cube_size*2);
+		glTranslatef(0,0,-(this->tamanho_mapa*this->cube_size*2)+this->cube_size);
 		// desenhar as paredes
 		for(int i=0;i<this->map.size();i++)
 		{

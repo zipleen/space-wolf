@@ -285,7 +285,7 @@ void Rendering::draw3D(Map *m, Player *p)
 	//gluLookAt(p->x,p->y,p->z, 0, 50,20 ,0,0,-1);
 	glRotatef(p->angulo, 0.0, 1.0, 0.0);
 	glTranslatef(p->x,p->y,p->z);
-	this->Cam->SetPrespective();
+	//this->Cam->SetPrespective();
 	
 	glEnable (GL_DEPTH_TEST);
 	

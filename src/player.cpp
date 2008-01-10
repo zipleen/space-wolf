@@ -15,6 +15,7 @@ Player::Player()
 	this->chave_amarela = false;
 	this->chave_vermelha = false;
 	this->x = this->y = this->z = 0;
+	this->angulo = 0;
 	this->SetAndar();
 }
 
