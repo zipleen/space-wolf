@@ -120,11 +120,11 @@ void Input::processKeyInput(Player *p)
 		//this->render->Cam->ChangeHeading(5.0f);
 	}
 	if(this->keyUpPressed){
-		p->y++;
+		p->y--;
 		//this->render->Cam->ChangePitch(5.0f);
 	}
 	if(this->keyDownPressed){
-		p->y--;
+		p->y++;
 		//this->render->Cam->ChangePitch(-5.0f);
 	}
 	

@@ -48,6 +48,7 @@ protected:
 	int tex_tecto;
 	int tex_chao;
 	bool desenharTudo;
+	GLfloat cube_size;
 	
 public:
 	

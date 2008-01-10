@@ -245,7 +245,7 @@ void Rendering::gameCycle (Map *m, Player *p)
 void Rendering::setLight()
 {	
 	GLfloat light_pos[4] =	{-5.0, 20.0, -5.0, 0.0};
-	GLfloat light_ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+	GLfloat light_ambient[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 	GLfloat light_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 	GLfloat light_specular[]=	{ 0.5f, 0.5f, 0.5f, 1.0f };
 	
