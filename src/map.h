@@ -72,7 +72,7 @@ public:
 	// desenhar opengl
 	void setMaterial();
 	void desenhaPoligono(GLfloat a[], GLfloat b[], GLfloat c[], GLfloat  d[], GLfloat normal[],GLfloat tx,GLfloat ty);
-	void desenhaCubo(int tipo, const Texture2D *tex);
+	void desenhaCubo(const Texture2D *tex);
 	void desenhaChao();
 	
 };

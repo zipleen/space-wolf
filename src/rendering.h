@@ -76,7 +76,8 @@ public:
 
 class Rendering
 {
-protected:
+//protected:
+public:
 	static Rendering *m_renderingSingleton;
 	
 	bool useTexturing;

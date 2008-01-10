@@ -42,20 +42,23 @@ void Player::SetAndar()
 
 void Player::GoFront()
 {
+	// nao esquecer que estes valores tem de ir pelo objecto de fisica
 	GLfloat nx,nz;
-	nx=this->x-cos(this->angulo)*this->velocidade;
+	/*nx=this->x-cos(this->angulo)*this->velocidade;
 	nz=this->z-sin(-this->angulo)*this->velocidade;
 	
 	this->y = nz;
-	this->x = nx;
+	this->x = nx;*/
+	this->x++;
 }
 
 void Player::GoBack()
 {
 	GLfloat nx,nz;
-	nx=this->x+cos(this->angulo)*this->velocidade;
+	/*nx=this->x+cos(this->angulo)*this->velocidade;
 	nz=this->z+sin(-this->angulo)*this->velocidade;
 	
 	this->y = nz;
-	this->x = nx;
+	this->x = nx;*/
+	this->x--;
 }

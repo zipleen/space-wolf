@@ -65,13 +65,18 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 			// abrir portas
 			this->keyOpenDoorPressed = value;
 			break;
-
+		case SDLK_q:
+			if(this->render->useWireframe)
+				this->render->useWireframe = true;
+			else this->render->useWireframe = false;
+			this->render->changeMode();
+			break;
 	}
 }
 
 void Input::mouseMove (Uint16 MouseX, Uint16 MouseY)
 {
-	GLfloat DeltaMouse;
+/*	GLfloat DeltaMouse;
 	
     if(MouseX < this->render->CenterX)
     {
@@ -96,25 +101,27 @@ void Input::mouseMove (Uint16 MouseX, Uint16 MouseY)
     }
 	
     SDL_WarpMouse(this->render->CenterX, this->render->CenterY);
-	
+	*/
 }
 
 void Input::processKeyInput(Player *p)
 {
 	if(this->keyLeftPressed){
-		this->render->Cam->ChangeHeading(-1.0f);
+		this->render->Cam->ChangeHeading(-5.0f);
 		Console::addLine("virando pra esquerda");
 	}
 	if(this->keyRightPressed){
-		this->render->Cam->ChangeHeading(1.0f);
+		this->render->Cam->ChangeHeading(5.0f);
 		Console::addLine("virando pra direita");
 	}
-	if(this->keyUpPressed){
-		this->render->Cam->ChangePitch(1.0f);
+	//if(this->keyUpPressed){
+	if(keyStraffLeftPressed){
+		this->render->Cam->ChangePitch(5.0f);
 		Console::addLine("virando pra cima");
 	}
-	if(this->keyDownPressed){
-		this->render->Cam->ChangePitch(-1.0f);
+	//if(this->keyDownPressed){
+	if(this->keyStraffRightPressed){
+		this->render->Cam->ChangePitch(-5.0f);
 		Console::addLine("virando pra baixo");
 	}
 	if(this->keyGoBackPressed){

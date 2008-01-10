@@ -50,9 +50,10 @@ void Map::desenhaPoligono(GLfloat a[], GLfloat b[], GLfloat c[], GLfloat  d[], G
 }
 
 
-void Map::desenhaCubo(int tipo, const Texture2D* tex)
+void Map::desenhaCubo(const Texture2D* tex)
 {
-#define CUBE_SIZE 0.5
+#define CUBE_SIZE 6
+#define RECT_SIZE 9
   GLfloat vertices[][3] = { {-CUBE_SIZE,-CUBE_SIZE,-CUBE_SIZE}, 
                             {CUBE_SIZE,-CUBE_SIZE,-CUBE_SIZE}, 
                             {CUBE_SIZE,CUBE_SIZE,-CUBE_SIZE}, 
@@ -69,23 +70,8 @@ void Map::desenhaCubo(int tipo, const Texture2D* tex)
                             {0,-1,0}};
 
   GLfloat tx,ty;
-
-  switch(tipo)
-  {
-    case 0: tx=0,ty=0;
-        break;
-    case 1: tx=0,ty=0.25;
-        break;
-    case 2: tx=0,ty=0.5;
-        break;
-    case 3: tx=0,ty=0.75;
-        break;
-    case 4: tx=0.25,ty=0;
-        break;
-
-    default:
-            tx=0.75,ty=0.75;
-  }     
+  tx=0,ty=0;
+  
   tex->bind();
 
   desenhaPoligono(vertices[1],vertices[0],vertices[3],vertices[2],normais[0],tx,ty);
@@ -261,7 +247,7 @@ void Map::drawMap()
 		this->desenhaChao();
 		
 		glPushMatrix();
-		glTranslatef(-this->tamanho_mapa*0.5,0.5,-this->tamanho_mapa*0.5);
+		glTranslatef(-this->tamanho_mapa*CUBE_SIZE*2,CUBE_SIZE*2,-this->tamanho_mapa*CUBE_SIZE*2);
 		// desenhar as paredes
 		for(int i=0;i<this->map.size();i++)
 		{
@@ -274,8 +260,8 @@ void Map::drawMap()
 						tex = this->map_textures.find(this->map[i][e]);
 					}
 					glPushMatrix();
-						glTranslatef(i,0,e);
-						this->desenhaCubo((i+e)%6, tex->second);
+						glTranslatef(i*CUBE_SIZE*2,0,e*CUBE_SIZE*2);
+						this->desenhaCubo(tex->second);
 					glPopMatrix();
 				}
 			}
@@ -338,8 +324,8 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	
 	switch(type){
 		case 1: // soldados mais faceis
-			//Soldado *s = new Soldado(x,y,angulo, movimento);
-			//this->guardas.push_back(s);
+			Soldado *s = new Soldado(x,y,angulo, movimento);
+			this->guardas.push_back(s);
 			Console::printf("Adicionado guarda facil em %d,%d, angulo: %f, movimento: %b",x,y,angulo,movimento);
 			break;
 	}

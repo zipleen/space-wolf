@@ -127,7 +127,7 @@ Rendering::reshape (GLsizei width, GLsizei height)
   // Reinit projection matrix
   glMatrixMode (GL_PROJECTION);
   glLoadIdentity ();
-  gluPerspective (45.0f, width/static_cast<GLfloat>(height), 0.1f, 10000.0f);
+  gluPerspective (90.0f, width/static_cast<GLfloat>(height), 0.1f, 10000.0f);
 
   // Reinit model-view matrix
   glMatrixMode (GL_MODELVIEW);
@@ -224,6 +224,9 @@ void Rendering::changeMode()
 	if(this->useWireframe){
           glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
           glDisable(GL_TEXTURE_2D);
+	}else{
+		glEnable(GL_TEXTURE_2D);
+		glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 	}
 
 }
@@ -265,7 +268,8 @@ void Rendering::draw3D(Map *m, Player *p)
 	glLoadIdentity ();
 	
 	// Perform camera transformations
-	gluLookAt(p->x,p->y,p->z, 0, 0,0 ,0,0,-1);
+	//gluLookAt(p->x,p->y,p->z, 0, 50,20 ,0,0,-1);
+	glTranslatef(p->x,p->y,p->z);
 	this->Cam->SetPrespective();
 	
 	glEnable (GL_DEPTH_TEST);
