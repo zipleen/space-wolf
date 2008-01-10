@@ -403,7 +403,7 @@ void Map::addPorta(int x, int y, int type1, int direction)
 {
 	// type = 0 , 1 , 2
 	// direction = 0 ou 1 (norte ou oeste)
-	Porta *s = new Porta(x,y,type1,direction,this->cube_size);
+	Porta *s = new Porta(x,y,direction,type1,this->cube_size);
 	this->portas.push_back(s);
 	Console::printf("Adicionado porta em %d,%d, tipo: %d, direccao: %d",x,y,type1,direction);			
 }
