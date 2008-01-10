@@ -503,6 +503,28 @@ private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e)
 			this->listBox3->Items->Add("Direccao SE");
 			this->listBox3->Items->Add("Direccao NO");
 			this->listBox3->Items->Add("Direccao SO");
+			
+			// novo guarda
+			// parado						
+						// N
+						this->listBox3->Items->Add(g+" 5/Parado/N");
+						// S
+						this->listBox3->Items->Add(g+" 5/Parado/S");
+						// E
+						this->listBox3->Items->Add(g+" 5/Parado/E");
+						// W
+						this->listBox3->Items->Add(g+" 5/Parado/W");
+					// andar
+						// N
+						this->listBox3->Items->Add(g+" 5/Andar/N");
+						// S
+						this->listBox3->Items->Add(g+" 5/Andar/S");
+						// E
+						this->listBox3->Items->Add(g+" 5/Andar/E");
+						// W
+						this->listBox3->Items->Add(g+" 5/Andar/W");
+
+
 			// floorcodes listbox
 			for(int i=1;i<=50;i++){
 				this->listBox5->Items->Add("Floorcode "+i);
@@ -762,6 +784,10 @@ private: System::Void pintar_quadrados(System::Windows::Forms::PictureBox^ aqui,
 					if(cor>=2025 && cor<=2032){
 						aqui->BackColor = System::Drawing::Color::FromArgb(193,87,1);
 						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"guarda_heavy")));
+					}
+					if(cor>=2041 && cor<=2048){
+						aqui->BackColor = System::Drawing::Color::FromArgb(193,87,1);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"guarda_robo")));
 					}
 					if(cor>=2033){
 						switch(cor){
