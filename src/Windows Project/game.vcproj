@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDLmain.lib SDL_mixer.lib glew32.lib libjpeg.lib"
+				AdditionalDependencies="SDL.lib SDLmain.lib SDL_mixer.lib SDL_ttf.lib glew32.lib libjpeg.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="lib\"
 				IgnoreAllDefaultLibraries="false"
@@ -138,7 +138,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDLmain.lib SDL_mixer.lib glew32.lib glew32s.lib libjpeg.lib"
+				AdditionalDependencies="SDL.lib SDLmain.lib SDL_mixer.lib SDL_ttf.lib glew32.lib libjpeg.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="lib\"
 				IgnoreAllDefaultLibraries="false"
@@ -372,6 +372,18 @@
 					</File>
 					<File
 						RelativePath="..\md3\TextureManager.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="font"
+					>
+					<File
+						RelativePath="..\font\Font.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\font\Font.h"
 						>
 					</File>
 				</Filter>
