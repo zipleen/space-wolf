@@ -365,7 +365,7 @@ void Map::drawMap()
 		glPopMatrix();
 		
 		glPushMatrix();
-		glTranslatef(0,0,-(this->tamanho_mapa*this->cube_size*2)+this->cube_size);
+		glTranslatef(0,0,-(this->tamanho_mapa*this->cube_size*2)+this->cube_size+this->cube_size);
 		// desenhar as paredes
 		for(int i=0;i<this->map.size();i++)
 		{
@@ -445,7 +445,7 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	
 	switch(type){
 		case 1: // soldados mais faceis
-			Soldado *s = new Soldado(x*this->cube_size,y*this->cube_size,angulo, movimento);
+			Soldado *s = new Soldado(x*this->cube_size*2,y*this->cube_size*2,angulo, movimento);
 			this->guardas.push_back(s);
 			Console::printf("Adicionado guarda facil em %d,%d, angulo: %f, movimento: %b",x,y,angulo,movimento);
 			break;
