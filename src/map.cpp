@@ -9,8 +9,6 @@
 
 #include "map.h"
 
-#define RECT_SIZE 9
-
 Map::Map()
 {
 	texMgr = Texture2DManager::getInstance ();
@@ -21,8 +19,13 @@ Map::Map()
 	this->items.clear();
 	this->portas.clear();
 	this->desenharTudo = true;
-	this->cube_size = 30.0f;
-	
+	this->cube_size = 10.0f;
+	this->tex_porta = 1006;
+	this->tex_porta_lado = 1009;
+	this->tex_porta_chave1 = 1007;
+	this->tex_porta_lado_chave1 = 1010;
+	this->tex_porta_chave2 = 1008;
+	this->tex_porta_lado_chave2 = 1011;
 }
 
 /* desenhar */
@@ -65,20 +68,20 @@ void Map::glDrawCube(const Texture2D* tex)					// Draw A Cube
 		glNormal3f( 0.0f, 0.0f, 1.0f);		// Normal Facing Forward
 		glTexCoord2f(0.0f, 0.0f); glVertex3f(-this->cube_size, -this->cube_size,  this->cube_size);	// Bottom Left Of The Texture and Quad
 		glTexCoord2f(1.0f, 0.0f); glVertex3f( this->cube_size, -this->cube_size,  this->cube_size);	// Bottom Right Of The Texture and Quad
-		glTexCoord2f(1.0f, 1.0f); glVertex3f( this->cube_size,  this->cube_size*2,  this->cube_size);	// Top Right Of The Texture and Quad
-		glTexCoord2f(0.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size*2,  this->cube_size);	// Top Left Of The Texture and Quad
+		glTexCoord2f(1.0f, 1.0f); glVertex3f( this->cube_size,  this->cube_size,  this->cube_size);	//*2 Top Right Of The Texture and Quad
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size,  this->cube_size);	//*2 Top Left Of The Texture and Quad
 		// Back Face
 		glNormal3f( 0.0f, 0.0f,-1.0f);		// Normal Facing Away
 		glTexCoord2f(1.0f, 0.0f); glVertex3f(-this->cube_size, -this->cube_size, -this->cube_size);	// Bottom Right Of The Texture and Quad
-		glTexCoord2f(1.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size*2, -this->cube_size);	// Top Right Of The Texture and Quad
-		glTexCoord2f(0.0f, 1.0f); glVertex3f( this->cube_size,  this->cube_size*2, -this->cube_size);	// Top Left Of The Texture and Quad
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size, -this->cube_size);	//*2 Top Right Of The Texture and Quad
+		glTexCoord2f(0.0f, 1.0f); glVertex3f( this->cube_size,  this->cube_size, -this->cube_size);	//*2 Top Left Of The Texture and Quad
 		glTexCoord2f(0.0f, 0.0f); glVertex3f( this->cube_size, -this->cube_size, -this->cube_size);	// Bottom Left Of The Texture and Quad
 		// Top Face
 		glNormal3f( 0.0f, 1.0f, 0.0f);		// Normal Facing Up
-		glTexCoord2f(0.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size*2, -this->cube_size);	// Top Left Of The Texture and Quad
-		glTexCoord2f(0.0f, 0.0f); glVertex3f(-this->cube_size,  this->cube_size*2,  this->cube_size);	// Bottom Left Of The Texture and Quad
-		glTexCoord2f(1.0f, 0.0f); glVertex3f( this->cube_size,  this->cube_size*2,  this->cube_size);	// Bottom Right Of The Texture and Quad
-		glTexCoord2f(1.0f, 1.0f); glVertex3f( this->cube_size,  this->cube_size*2, -this->cube_size);	// Top Right Of The Texture and Quad
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size, -this->cube_size);	//*2 Top Left Of The Texture and Quad
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(-this->cube_size,  this->cube_size,  this->cube_size);	//*2 Bottom Left Of The Texture and Quad
+		glTexCoord2f(1.0f, 0.0f); glVertex3f( this->cube_size,  this->cube_size,  this->cube_size);	//*2 Bottom Right Of The Texture and Quad
+		glTexCoord2f(1.0f, 1.0f); glVertex3f( this->cube_size,  this->cube_size, -this->cube_size);	//*2 Top Right Of The Texture and Quad
 		// Bottom Face
 		glNormal3f( 0.0f,-1.0f, 0.0f);		// Normal Facing Down
 		glTexCoord2f(1.0f, 1.0f); glVertex3f(-this->cube_size, -this->cube_size, -this->cube_size);	// Top Right Of The Texture and Quad
@@ -88,15 +91,15 @@ void Map::glDrawCube(const Texture2D* tex)					// Draw A Cube
 		// Right face
 		glNormal3f( 1.0f, 0.0f, 0.0f);		// Normal Facing Right
 		glTexCoord2f(1.0f, 0.0f); glVertex3f( this->cube_size, -this->cube_size, -this->cube_size);	// Bottom Right Of The Texture and Quad
-		glTexCoord2f(1.0f, 1.0f); glVertex3f( this->cube_size,  this->cube_size*2, -this->cube_size);	// Top Right Of The Texture and Quad
-		glTexCoord2f(0.0f, 1.0f); glVertex3f( this->cube_size,  this->cube_size*2,  this->cube_size);	// Top Left Of The Texture and Quad
+		glTexCoord2f(1.0f, 1.0f); glVertex3f( this->cube_size,  this->cube_size, -this->cube_size);	//*2 Top Right Of The Texture and Quad
+		glTexCoord2f(0.0f, 1.0f); glVertex3f( this->cube_size,  this->cube_size,  this->cube_size);	//*2 Top Left Of The Texture and Quad
 		glTexCoord2f(0.0f, 0.0f); glVertex3f( this->cube_size, -this->cube_size,  this->cube_size);	// Bottom Left Of The Texture and Quad
 		// Left Face
 		glNormal3f(-1.0f, 0.0f, 0.0f);		// Normal Facing Left
 		glTexCoord2f(0.0f, 0.0f); glVertex3f(-this->cube_size, -this->cube_size, -this->cube_size);	// Bottom Left Of The Texture and Quad
 		glTexCoord2f(1.0f, 0.0f); glVertex3f(-this->cube_size, -this->cube_size,  this->cube_size);	// Bottom Right Of The Texture and Quad
-		glTexCoord2f(1.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size*2,  this->cube_size);	// Top Right Of The Texture and Quad
-		glTexCoord2f(0.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size*2, -this->cube_size);	// Top Left Of The Texture and Quad
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size,  this->cube_size);	//*2 Top Right Of The Texture and Quad
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size, -this->cube_size);	//*2 Top Left Of The Texture and Quad
 	glEnd();					// Done Drawing Quads
 }
 
@@ -131,6 +134,38 @@ void Map::desenhaCubo(const Texture2D* tex)
   glBindTexture(GL_TEXTURE_2D, NULL);
 }
 
+void Map::desenhaTecto()
+{
+	// esta coisa parece que esta a desenhar para baixo... portanto serve para o tecto
+	GLfloat i,j;
+	//textura do chao, bind it
+	TexMap::iterator tecto;
+	tecto = this->map_textures.find(this->tex_tecto);
+	tecto->second->bind();
+	
+	//glPushMatrix();
+	glColor3f(0.5f,0.5f,0.5f);
+	glTranslatef(0,this->cube_size,0);
+	for(i=0;i<=this->tamanho_mapa*this->cube_size;i+=this->cube_size)
+		for(j=0;j<=this->tamanho_mapa*this->cube_size;j+=this->cube_size)
+		{
+		  glBegin(GL_POLYGON);
+			glNormal3f(0,1,0);
+			glTexCoord2f(1,1);
+			glVertex3f(i+this->cube_size,0,j+this->cube_size);
+			glTexCoord2f(0,1);
+			glVertex3f(i,0,j+this->cube_size);
+			glTexCoord2f(0,0);
+			glVertex3f(i,0,j);
+			glTexCoord2f(1,0);
+			glVertex3f(i+this->cube_size,0,j);
+			glNormal3f(0,1,0);
+			glEnd();
+		}
+	//glPopMatrix();
+	glBindTexture(GL_TEXTURE_2D, NULL);
+}
+
 void Map::desenhaChao()
 {
 	GLfloat i,j;
@@ -141,25 +176,25 @@ void Map::desenhaChao()
 	
 	//glPushMatrix();
 	glColor3f(0.5f,0.5f,0.5f);
-	for(i=0;i<=this->tamanho_mapa;i++)
-		for(j=0;j<=this->tamanho_mapa;j++)
+	glTranslatef(0,-this->cube_size,0);
+	for(i=0;i<=this->tamanho_mapa*this->cube_size;i+=this->cube_size)
+		for(j=0;j<=this->tamanho_mapa*this->cube_size;j+=this->cube_size)
 		{
 		  glBegin(GL_POLYGON);
 			glNormal3f(0,1,0);
-			glTexCoord2f(1,1);
-			glVertex3f(i+1,0,j+1);
-			glTexCoord2f(0,1);
-			glVertex3f(i,0,j+1);
+			glTexCoord2f(1,0);
+			glVertex3f(i+this->cube_size,0,j);
 			glTexCoord2f(0,0);
 			glVertex3f(i,0,j);
-			glTexCoord2f(1,0);
-			glVertex3f(i+1,0,j);
-		  glEnd();
+			glTexCoord2f(0,1);
+			glVertex3f(i,0,j+this->cube_size);
+			glTexCoord2f(1,1);
+			glVertex3f(i+this->cube_size,0,j+this->cube_size);
+			glEnd();
 		}
 	//glPopMatrix();
 	glBindTexture(GL_TEXTURE_2D, NULL);
 }
-
 
 
 
@@ -187,6 +222,12 @@ bool Map::loadTextures()
 	}
 	needed.insert(this->tex_chao);
 	needed.insert(this->tex_tecto);
+	needed.insert(this->tex_porta);
+	needed.insert(this->tex_porta_lado);
+	needed.insert(this->tex_porta_chave1);
+	needed.insert(this->tex_porta_lado_chave1);
+	needed.insert(this->tex_porta_chave2);
+	needed.insert(this->tex_porta_lado_chave2);
 	
 	while(!ifs.eof())
 	{
@@ -204,10 +245,18 @@ bool Map::loadTextures()
 			if(it!=needed.end()){
 				Console::addLine("Loading texture "+t[0]+" in "+t[1]);
 				Texture2D *tex = texMgr->load (t[1]);
-				map_textures.insert (TexMap::value_type (num, tex));
+				this->map_textures.insert (TexMap::value_type (num, tex));
 			}
 		}
 	}
+	
+	// buscar texturas de portas
+	this->textura_porta = this->map_textures.find(this->tex_porta)->second;
+	this->textura_porta_lado = this->map_textures.find (this->tex_porta_lado)->second;
+	this->textura_porta_chave1 = this->map_textures.find (this->tex_porta_chave1)->second;
+	this->textura_porta_lado_chave1 = this->map_textures.find (this->tex_porta_lado_chave1)->second;
+	this->textura_porta_chave2 = this->map_textures.find(this->tex_porta_chave2)->second;
+	this->textura_porta_lado_chave2 = this->map_textures.find (this->tex_porta_lado_chave2)->second;
 	
 	Console::addLine("Ended loading textures");
 	return true;
@@ -264,7 +313,22 @@ void Map::drawDoors()
 	{
 		for(int i=0;i<this->portas.size();i++)
 		{
-			this->portas[i]->draw();
+			// shortcut.. nao devia fazer isto mas pronto
+			// vou buscar o tipo de porta e passo-lhe a textura consoante o tipo de porta
+			// nao eh assim mt mau, podiamos depois adicionar mais uma linha no ficheiro de mapas
+			// e os mapas passavam a ter as texturas de portas que queriam
+			switch(this->portas[i]->tipo_porta){
+				case 0:
+					this->portas[i]->draw(this->textura_porta, this->textura_porta_lado);
+					break;
+				case 1:
+					this->portas[i]->draw(this->textura_porta_chave1, this->textura_porta_lado_chave1);
+					break;
+				case 2:	
+					this->portas[i]->draw(this->textura_porta_chave2, this->textura_porta_lado_chave2);
+					break;
+			}
+			
 		}
 	}else{
 		// codigo optimizado para nao desenhar tudo...
@@ -292,8 +356,13 @@ void Map::drawMap()
 
 	if(this->desenharTudo)
 	{
-		// desenhar chao
-		this->desenhaChao();
+		glPushMatrix();
+			this->desenhaChao();
+		glPopMatrix();
+		
+		glPushMatrix();
+			this->desenhaTecto();
+		glPopMatrix();
 		
 		glPushMatrix();
 		glTranslatef(-this->tamanho_mapa*this->cube_size*2,this->cube_size*2,-this->tamanho_mapa*this->cube_size*2);
@@ -334,7 +403,10 @@ void Map::addPorta(int x, int y, int type, int direction)
 {
 	// type = 0 , 1 , 2
 	// direction = 0 ou 1 (norte ou oeste)
-	Porta *s = new Porta(x,y,type,direction);
+	TexMap::iterator tex1 =  this->map_textures.find(this->tex_porta);
+	TexMap::iterator tex2 =  this->map_textures.find(this->tex_porta_lado);
+	
+	Porta *s = new Porta(x,y,type,direction,this->cube_size);
 	this->portas.push_back(s);
 	Console::printf("Adicionado porta em %d,%d, tipo: %d, direccao: %d",x,y,type,direction);			
 }
@@ -424,10 +496,11 @@ bool Map::loadMap(std::string file, Player *player)
 				switch(codigos_mapa[e]){
 					case 3001:
 						// porta norte-sul
-						
+						this->addPorta(i,e,0, 0);
 						break;
 					case 3002:
 						// porta oeste-este
+						this->addPorta(i,e,0, 1);
 						break;	
 					case 3003:
 						// porta norte-sul chave amarela
@@ -482,9 +555,9 @@ bool Map::loadMap(std::string file, Player *player)
 						break;
 					case 4010:
 						// start player
-						player->x = i;
+						player->x = i*this->cube_size;
 						player->y = 1;
-						player->z = e;
+						player->z = e*this->cube_size;
 						break;
 					case 4011:
 						// finish map

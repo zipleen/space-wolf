@@ -270,7 +270,7 @@ void Rendering::draw3D(Map *m, Player *p)
 	// Perform camera transformations
 	//gluLookAt(p->x,p->y,p->z, 0, 50,20 ,0,0,-1);
 	glTranslatef(p->x,p->y,p->z);
-	this->Cam->SetPrespective();
+	//this->Cam->SetPrespective();
 	
 	glEnable (GL_DEPTH_TEST);
 	
@@ -289,7 +289,7 @@ void Rendering::draw3D(Map *m, Player *p)
 	
 	// desenhar o mapa (o mapa trata de desenhar texturas + items + guardas + portas)
 	m->drawEverything();
-	// desenhar o hud do player (inclui hud e arma do player)
+	// desenhar o hud do player ( arma do player)
 	
 	glDisable (GL_LIGHTING);
 	glDisable (GL_TEXTURE_2D);
@@ -312,6 +312,9 @@ void Rendering::draw2D()
 	glDisable (GL_DEPTH_TEST);
 	glDisable (GL_LIGHTING);
 	glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
+	
+	// desenhar o hud do player ( vida, balas, etc do player)
+	
 	
 	// White text
 	glColor4f (1.0f, 1.0f, 1.0f, 1.0f);

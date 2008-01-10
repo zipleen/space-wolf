@@ -47,6 +47,23 @@ protected:
 	int tamanho_mapa;
 	int tex_tecto;
 	int tex_chao;
+	
+	// porta normal
+	int tex_porta; // textura da porta
+	const Texture2D *textura_porta;
+	int tex_porta_lado; // parede da direita e esquerda ah beira de uma porta
+	const Texture2D *textura_porta_lado;
+	// porta chave 1
+	int tex_porta_chave1; // textura da porta
+	const Texture2D *textura_porta_chave1;
+	int tex_porta_lado_chave1; // parede da direita e esquerda ah beira de uma porta
+	const Texture2D *textura_porta_lado_chave1;
+	// porta chave 2
+	int tex_porta_chave2; // textura da porta
+	const Texture2D *textura_porta_chave2;
+	int tex_porta_lado_chave2; // parede da direita e esquerda ah beira de uma porta
+	const Texture2D *textura_porta_lado_chave2;
+	
 	bool desenharTudo;
 	GLfloat cube_size;
 	
@@ -78,7 +95,7 @@ public:
 	void desenhaCubo(const Texture2D *tex);
 	void glDrawCube(const Texture2D* tex);
 	void desenhaChao();
-	
+	void desenhaTecto();
 };
 
 #endif
