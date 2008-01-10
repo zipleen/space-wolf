@@ -9,13 +9,13 @@
 
 #include "game.h"
 
-Game::Game()
+Game::Game(char *map_name)
 {
 	this->player = new Player();
 	this->render = Rendering::GetInstance();
 	this->input = Input::GetInstance();
 	this->map = new Map();
-	this->map->loadMap("data/maps/teste1.map", this->player);
+	this->map->loadMap(map_name, this->player);
 	if(this->render->useTextures())
 		this->map->loadTextures();
 }

@@ -28,7 +28,7 @@ void Player::setPosition(int x, int y)
 {
 	this->x = x;
 	this->z = y;
-	this->y = 1;
+	this->y = 2;
 }
 
 void Player::SetCorrer()

@@ -44,6 +44,8 @@ Rendering::Rendering()
     this->Cam->m_MaxHeadingRate = 5.0f;
     this->Cam->m_PitchDegrees = 0.0f;
     this->Cam->m_HeadingDegrees = 0.0f;
+	
+	this->debug_use_cam = false;
 }
 
 bool Rendering::initVideo()
@@ -285,7 +287,8 @@ void Rendering::draw3D(Map *m, Player *p)
 	//gluLookAt(p->x,p->y,p->z, 0, 50,20 ,0,0,-1);
 	glRotatef(p->angulo, 0.0, 1.0, 0.0);
 	glTranslatef(p->x,p->y,p->z);
-	//this->Cam->SetPrespective();
+	if(this->debug_use_cam)
+		this->Cam->SetPrespective();
 	
 	glEnable (GL_DEPTH_TEST);
 	

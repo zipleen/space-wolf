@@ -399,16 +399,13 @@ void Map::drawEverything()
 	this->drawItems();
 }
 
-void Map::addPorta(int x, int y, int type, int direction)
+void Map::addPorta(int x, int y, int type1, int direction)
 {
 	// type = 0 , 1 , 2
 	// direction = 0 ou 1 (norte ou oeste)
-	TexMap::iterator tex1 =  this->map_textures.find(this->tex_porta);
-	TexMap::iterator tex2 =  this->map_textures.find(this->tex_porta_lado);
-	
-	Porta *s = new Porta(x,y,type,direction,this->cube_size);
+	Porta *s = new Porta(x,y,type1,direction,this->cube_size);
 	this->portas.push_back(s);
-	Console::printf("Adicionado porta em %d,%d, tipo: %d, direccao: %d",x,y,type,direction);			
+	Console::printf("Adicionado porta em %d,%d, tipo: %d, direccao: %d",x,y,type1,direction);			
 }
 
 void Map::addGuard(int x, int y, int type, int direction, bool movimento)
@@ -504,20 +501,23 @@ bool Map::loadMap(std::string file, Player *player)
 						break;	
 					case 3003:
 						// porta norte-sul chave amarela
+						this->addPorta(i,e,1, 0);
 						break;
 					case 3004:
 						// porta oeste-este chave amarela
+						this->addPorta(i,e,1, 1);
 						break;
 					case 3005:
 						// porta norte-sul chave vermelha
+						this->addPorta(i,e,2, 0);
 						break;
 					case 3006:
 						// porta oeste-este chave vermelha
-
+						this->addPorta(i,e,2, 1);
 						break;
 					default:
 						Console::printf("Nao entendo este codigo de mapa porta: %d",codigos_mapa[e]);
-						
+						break;
 				}
 				
 			}else
@@ -555,12 +555,10 @@ bool Map::loadMap(std::string file, Player *player)
 						break;
 					case 4010:
 						// start player
-						/*player->x = i*this->cube_size;
-						player->y = 2;
-						player->z = e*this->cube_size;*/
-						player->x = 0;
-						player->y = 2;
-						player->z = 0;
+						player->x = i*this->cube_size*2*-1;
+						player->y = -2;
+						player->z = e*this->cube_size*2*-1;
+						Console::printf("Jogador vai começar em %f %f", player->x, player->z);
 						break;
 					case 4011:
 						// finish map

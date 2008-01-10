@@ -24,7 +24,10 @@ int main(int argc, char *argv[]){
 	r = Rendering::GetInstance();
 	r->initVideo();
 	
-	g = new Game();
+	if(argc>2)
+		g=new Game(argv[1]);
+	else
+		g = new Game("data/maps/mapa1.map");
 	g->MainLoop();
 	
 	// Cleanup

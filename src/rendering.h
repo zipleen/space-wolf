@@ -99,6 +99,7 @@ public:
 	SDL_Surface *surface;
 	TTFont *font;
 	
+	bool debug_use_cam;
 public:
 	int CenterX;
 	int CenterY;

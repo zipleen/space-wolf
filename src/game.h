@@ -30,7 +30,7 @@ protected:
 	Input *input;
 	
 public:
-	Game(); 
+	Game(char *map_name); 
 	virtual ~Game(){};
 	
 	void MainLoop();

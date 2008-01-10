@@ -76,6 +76,12 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 		case SDLK_q:
 			this->render->useWireframe = value;
 			break;
+		case SDLK_c:
+			if(value){
+				if(this->render->debug_use_cam)
+					this->render->debug_use_cam=false;
+				else this->render->debug_use_cam=true;
+			}
 	}
 }
 
