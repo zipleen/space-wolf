@@ -17,6 +17,7 @@
 #define GRAUS(x)        (180*(x)/M_PI)
 
 #include <SDL.h>
+#include <SDL_ttf.h>
 
 #include <GL/glew.h>
 #ifdef __APPLE__
@@ -86,6 +87,7 @@ public:
 	bool useSmooth;
 	bool useLigth;
 	bool drawFPS;
+	bool bCullFace;
 	
 	int windowWidth;
 	int windowHeight;
@@ -136,6 +138,7 @@ public:
 	void changeMode();
 	
 	void setLight();
+	void drawAxes();
 	
 	// 2d
 	void begin2D();

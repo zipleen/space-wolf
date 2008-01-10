@@ -19,7 +19,7 @@ Map::Map()
 	this->items.clear();
 	this->portas.clear();
 	this->desenharTudo = true;
-	this->cube_size = 10.0f;
+	this->cube_size = 5.0f;
 	this->tex_porta = 1006;
 	this->tex_porta_lado = 1009;
 	this->tex_porta_chave1 = 1007;
@@ -177,8 +177,8 @@ void Map::desenhaChao()
 	//glPushMatrix();
 	glColor3f(0.5f,0.5f,0.5f);
 	glTranslatef(0,-this->cube_size,0);
-	for(i=0;i<=this->tamanho_mapa*this->cube_size;i+=this->cube_size)
-		for(j=0;j<=this->tamanho_mapa*this->cube_size;j+=this->cube_size)
+	for(i=-this->tamanho_mapa*this->cube_size;i<=this->tamanho_mapa*this->cube_size;i+=this->cube_size)
+		for(j=-this->tamanho_mapa*this->cube_size;j<=this->tamanho_mapa*this->cube_size;j+=this->cube_size)
 		{
 		  glBegin(GL_POLYGON);
 			glNormal3f(0,1,0);
@@ -365,7 +365,7 @@ void Map::drawMap()
 		glPopMatrix();
 		
 		glPushMatrix();
-		glTranslatef(-this->tamanho_mapa*this->cube_size*2,this->cube_size*2,-this->tamanho_mapa*this->cube_size*2);
+		glTranslatef(-this->tamanho_mapa*this->cube_size*2,0,-this->tamanho_mapa*this->cube_size*2);
 		// desenhar as paredes
 		for(int i=0;i<this->map.size();i++)
 		{
@@ -555,9 +555,12 @@ bool Map::loadMap(std::string file, Player *player)
 						break;
 					case 4010:
 						// start player
-						player->x = i*this->cube_size;
-						player->y = 1;
-						player->z = e*this->cube_size;
+						/*player->x = i*this->cube_size;
+						player->y = 2;
+						player->z = e*this->cube_size;*/
+						player->x = 0;
+						player->y = 2;
+						player->z = 0;
 						break;
 					case 4011:
 						// finish map

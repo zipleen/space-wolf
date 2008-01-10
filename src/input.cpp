@@ -74,7 +74,7 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 			break;
 			
 		case SDLK_q:
-			//this->render->changeMode();
+			this->render->useWireframe = value;
 			break;
 	}
 }

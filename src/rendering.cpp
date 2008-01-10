@@ -36,6 +36,7 @@ Rendering::Rendering()
 	this->useLigth = true;
 	this->windowTitle = "Wolf3d look-a-like";
 	this->drawFPS = true;
+	this->bCullFace = true;
 	
 	this->Cam = new glCamera();
 	this->Cam->m_MaxForwardVelocity = 5.0f;
@@ -127,7 +128,7 @@ Rendering::reshape (GLsizei width, GLsizei height)
   // Reinit projection matrix
   glMatrixMode (GL_PROJECTION);
   glLoadIdentity ();
-  gluPerspective (90.0f, width/static_cast<GLfloat>(height), 0.1f, 10000.0f);
+  gluPerspective (45.0f, width/static_cast<GLfloat>(height), 0.1f, 10000.0f);
 
   // Reinit model-view matrix
   glMatrixMode (GL_MODELVIEW);
@@ -269,6 +270,7 @@ void Rendering::draw3D(Map *m, Player *p)
 	
 	// Perform camera transformations
 	//gluLookAt(p->x,p->y,p->z, 0, 50,20 ,0,0,-1);
+	glRotatef(p->angulo, 0.0, 1.0, 0.0);
 	glTranslatef(p->x,p->y,p->z);
 	//this->Cam->SetPrespective();
 	
@@ -278,9 +280,17 @@ void Rendering::draw3D(Map *m, Player *p)
 		//glEnable (GL_LIGHTING);
 		this->setLight();
 	}
-	// isto nao pode ser aki, isto eh no init
+	
 	if (this->useTexturing)
 		glEnable (GL_TEXTURE_2D);
+	if (this->bCullFace)
+		glEnable (GL_CULL_FACE);
+	else
+		glDisable (GL_CULL_FACE);
+	
+	// Setup polygon mode and shade model
+	glPolygonMode (GL_FRONT_AND_BACK, this->useWireframe ? GL_LINE : GL_FILL);
+	glShadeModel (this->useSmooth ? GL_SMOOTH : GL_FLAT);
 	
 	m->setMaterial();
 	
@@ -291,10 +301,38 @@ void Rendering::draw3D(Map *m, Player *p)
 	m->drawEverything();
 	// desenhar o hud do player ( arma do player)
 	
+	this->drawAxes();
+	
 	glDisable (GL_LIGHTING);
 	glDisable (GL_TEXTURE_2D);
 	glDisable (GL_DEPTH_TEST);
 	
+}
+
+void Rendering::drawAxes ()
+{
+  glPushMatrix();
+  // Setup world model view matrix
+  glLoadIdentity ();
+
+  // Draw the three axes
+  glBegin (GL_LINES);
+    // X-axis in red
+    glColor3f (1.0f, 0.0f, 0.0f);
+    glVertex3fv (kZeroVectorf._v);
+    glVertex3fv (kZeroVectorf + Vector3f (10.0f, 0.0f, 0.0));
+
+    // Y-axis in green
+    glColor3f (0.0f, 1.0f, 0.0f);
+    glVertex3fv (kZeroVectorf._v);
+    glVertex3fv (kZeroVectorf + Vector3f (0.0f, 10.0f, 0.0));
+
+    // Z-axis in blue
+    glColor3f (0.0f, 0.0f, 1.0f);
+    glVertex3fv (kZeroVectorf._v);
+    glVertex3fv (kZeroVectorf + Vector3f (0.0f, 0.0f, 10.0));
+  glEnd ();
+  glPopMatrix();
 }
 
 void Rendering::draw2D()
