@@ -558,7 +558,7 @@ bool Map::loadMap(std::string file, Player *player)
 						player->x = i*this->cube_size*2*-1;
 						player->y = -2;
 						player->z = e*this->cube_size*2*-1;
-						Console::printf("Jogador vai começar em %f %f", player->x, player->z);
+						Console::printf("Jogador vai começar em %f %f. No mapa tem %d %d", player->x, player->z, i, e);
 						break;
 					case 4011:
 						// finish map
@@ -678,37 +678,71 @@ bool Map::loadMap(std::string file, Player *player)
 						// guarda 4
 						case 2025:
 							// Norte / parado
-							this->addGuard(i, e, 3, 1, false );
+							this->addGuard(i, e, 4, 1, false );
 							break;
 						case 2026:
 							// Sul / parado
-							this->addGuard(i, e, 3, 2, false );
+							this->addGuard(i, e, 4, 2, false );
 							break;
 						case 2027:
 							// Este / parado
-							this->addGuard(i, e, 3, 3, false );
+							this->addGuard(i, e, 4, 3, false );
 							break;
 						case 2028:
 							// Oeste / parado
-							this->addGuard(i, e, 3, 4, false );
+							this->addGuard(i, e, 4, 4, false );
 							break;
 						case 2029:
 							// Norte / mover-se
-							this->addGuard(i, e, 3, 1, true );
+							this->addGuard(i, e, 4, 1, true );
 							break;
 						case 2030:
 							// Sul / mover-se
-							this->addGuard(i, e, 3, 2, true );
+							this->addGuard(i, e, 4, 2, true );
 							break;
 						case 2031:
 							// Este / mover-se
-							this->addGuard(i, e, 3, 3, true );
+							this->addGuard(i, e, 4, 3, true );
 							break;
 						case 2032:
 							// Oeste / mover-se
-							this->addGuard(i, e, 3, 4, true );
+							this->addGuard(i, e, 4, 4, true );
 							break;	
-							
+						
+						// guarda 1
+						case 2041:
+							// Norte / parado
+							this->addGuard(i, e, 5, 1, false );
+							break;
+						case 2042:
+							// Sul / parado
+							this->addGuard(i, e, 5, 2, false );
+							break;
+						case 2043:
+							// Este / parado
+							this->addGuard(i, e, 5, 3, false );
+							break;
+						case 2044:
+							// Oeste / parado
+							this->addGuard(i, e, 5, 4, false );
+							break;
+						case 2045:
+							// Norte / mover-se
+							this->addGuard(i, e, 5, 1, true );
+							break;
+						case 2046:
+							// Sul / mover-se
+							this->addGuard(i, e, 5, 2, true );
+							break;
+						case 2047:
+							// Este / mover-se
+							this->addGuard(i, e, 5, 3, true );
+							break;
+						case 2048:
+							// Oeste / mover-se
+							this->addGuard(i, e, 5, 4, true );
+							break;	
+									
 						// direccoes dos guardas -> adicionar no mapa
 						case 2033:
 							to_go=false;
