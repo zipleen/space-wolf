@@ -365,7 +365,8 @@ void Map::drawMap()
 		glPopMatrix();
 		
 		glPushMatrix();
-		glTranslatef(0,0,-(this->tamanho_mapa*this->cube_size*2)+this->cube_size+this->cube_size);
+		// isto tava mal.. nao interessa pq era um erro na leitura do mapa, nao fazia sentido tb
+		//glTranslatef(0,0,-(this->tamanho_mapa*this->cube_size*2)+this->cube_size+this->cube_size);
 		// desenhar as paredes
 		for(int i=0;i<this->map.size();i++)
 		{
@@ -379,6 +380,7 @@ void Map::drawMap()
 					}
 					glPushMatrix();
 						glTranslatef(i*this->cube_size*2,0,e*this->cube_size*2);
+						Console::printf("desenhar em %f %f (%d %d)",i*this->cube_size*2,e*this->cube_size*2,i,e);
 						this->glDrawCube(tex->second);
 					glPopMatrix();
 				}
@@ -444,13 +446,14 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 		case 1: // soldados mais faceis
 			Soldado *s = new Soldado(x*this->cube_size*2,y*this->cube_size*2,angulo, movimento);
 			this->guardas.push_back(s);
-			Console::printf("Adicionado guarda facil em %d,%d, angulo: %f, movimento: %b",x,y,angulo,movimento);
+			Console::printf("Adicionado guarda facil em %d,%d, mapa: %f %f, angulo: %f, movimento: %b",x,y,x*this->cube_size*2,y*this->cube_size*2,angulo,movimento);
 			break;
 	}
 }
 
 bool Map::loadMap(std::string file, Player *player)
 {
+	int i,e;
 	std::string linha; // temp
 	
 	Console::printf("Comecar a ler o ficheiro do mapa %s",file.c_str());
@@ -470,13 +473,14 @@ bool Map::loadMap(std::string file, Player *player)
 	
 	std::getline (ifs, linha);
 	boost::char_separator<char> sep(",");
-    for(int i=0; i<this->tamanho_mapa; ++i)
+    for(i=0; i<this->tamanho_mapa; i++)
 	{
 		std::vector<int> codigos_mapa(this->tamanho_mapa-1);
 		std::vector<int> linha_para_ir(this->tamanho_mapa-1);
 		std::getline (ifs, linha);
 		Tokenize(linha, codigos_mapa ,sep);
-		for(int e=0; e<codigos_mapa.size(); ++e){
+		linha_para_ir.clear();
+		for(e=0; e<codigos_mapa.size(); e++){
 			// stuff pro mapa
 			//	1000 - texturas
 			//	2000 - guardas
@@ -800,7 +804,7 @@ bool Map::loadMap(std::string file, Player *player)
 	}
 	// enter a separar, floorcodes a seguir
 	std::getline (ifs, linha);
-    for(int i=0; i<this->tamanho_mapa; ++i)
+    for(i=0; i<this->tamanho_mapa; ++i)
 	{
 		std::vector<int> codigos_floor(this->tamanho_mapa-1);
 		std::getline (ifs, linha);
