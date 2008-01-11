@@ -40,6 +40,7 @@ Soldado::Soldado(int x, int y, bool em_movimento, GLfloat angulo)
 	this->x = x;
 	this->y = y;
 	this->em_movimento = em_movimento;
+	this->modificou_movimento = true;
 	this->angulo = angulo;
 }
 

@@ -36,6 +36,9 @@ protected:
 	std::string weaponpath;
 	
 	bool em_movimento;
+	bool modificou_movimento;
+	bool modificou_upper_movimento;
+	bool em_disparo;
 	int vida;
 	int velocidade_disparo;
 	int velocidade_correr;
@@ -60,6 +63,7 @@ public:
 	
 	void set_angulo(GLfloat angulo);
 	void set_xy(int x, int y);
+	void set_walking_front();
 };
 
 #endif

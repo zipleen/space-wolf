@@ -13,6 +13,8 @@ Guard::Guard()
 {
 	this->morto = false;
 	this->em_movimento = false;
+	this->modificou_movimento = false;
+	this->em_disparo = false;
 }
 
 void Guard::loadModel()
@@ -60,15 +62,32 @@ void Guard::draw()
 {
 	glPushMatrix();
 		glTranslatef(this->x,-2.6f,this->y);
-		glRotated(this->angulo,0,1,0);
+		glRotatef(this->angulo,0,1,0);
 		this->guard->draw();
 	glPopMatrix();
 }
 
 void Guard::animate(const double dt)
 {
-	if(!this->morto)
+	if(!this->morto){
+		if(this->modificou_movimento){
+			if(this->em_movimento){
+				this->guard->setAnimation (kLegsWalk);
+			}else{
+				this->guard->setAnimation (kLegsIdle);
+			}
+			this->modificou_movimento = false;
+		}
+		if(this->modificou_upper_movimento){
+			if(this->em_disparo){
+				this->guard->setAnimation (kTorsoAttack);
+			}else{
+				this->guard->setAnimation (kTorsoStand);
+			}
+			this->modificou_upper_movimento = false;
+		}
 		this->guard->animate(dt);
+	}
 }
 
 void Guard::set_xy(int x, int y)
@@ -80,3 +99,10 @@ void Guard::set_angulo(GLfloat angulo)
 {
 	this->angulo = angulo;
 }
+
+void Guard::set_walking_front()
+{
+	this->em_movimento = false;
+	this->modificou_movimento = true;
+}
+

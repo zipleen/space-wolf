@@ -426,16 +426,16 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	switch(direction)
 	{
 		case 1:
-			angulo = 90;
+			angulo = 180;
 			break;
 		case 2:
-			angulo = 270;
-			break;
-		case 3:
 			angulo = 0;
 			break;
+		case 3:
+			angulo = 90;
+			break;
 		case 4:
-			angulo = 180;
+			angulo = 270;
 			break;
 		default:
 			angulo = 0;
@@ -444,7 +444,7 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	
 	switch(type){
 		case 1: // soldados mais faceis
-			Soldado *s = new Soldado(y*this->cube_size*2,x*this->cube_size*2,angulo, movimento);
+			Soldado *s = new Soldado(y*this->cube_size*2,x*this->cube_size*2,movimento,angulo);
 			this->guardas.push_back(s);
 			Console::printf("Adicionado guarda facil em %d,%d, mapa: %f %f, angulo: %f, movimento: %b",x,y,x*this->cube_size*2,y*this->cube_size*2,angulo,movimento);
 			break;
