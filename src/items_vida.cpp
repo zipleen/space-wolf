@@ -13,8 +13,8 @@ Items_Vida::Items_Vida(int x,int y)
 {
 	Items();
 #ifdef WIN32
-	this->item_path="data\\models\\players\\razor\\";
-	this->item_skin_path="data\\models\\weapons2\\smg\\";
+	this->item_path="data\\models\\items\\key\\key.md3";
+	this->item_skin_path="data\\models\\items\\key\\gold.tga";
 #else
 	this->item_path="data/models/items/key/key.md3";
 	this->item_skin_path="data/models/items/key/gold.tga";
