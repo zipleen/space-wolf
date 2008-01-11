@@ -379,7 +379,7 @@ void Map::drawMap()
 						tex = this->map_textures.find(this->map[i][e]);
 					}
 					glPushMatrix();
-						glTranslatef(i*this->cube_size*2,0,e*this->cube_size*2);
+						glTranslatef(e*this->cube_size*2,0,i*this->cube_size*2);
 						Console::printf("desenhar em %f %f (%d %d)",i*this->cube_size*2,e*this->cube_size*2,i,e);
 						this->glDrawCube(tex->second);
 					glPopMatrix();
@@ -405,7 +405,7 @@ void Map::addPorta(int x, int y, int type1, int direction)
 {
 	// type = 0 , 1 , 2
 	// direction = 0 ou 1 (norte ou oeste)
-	Porta *s = new Porta(x,y,direction,type1,this->cube_size);
+	Porta *s = new Porta(y,x,direction,type1,this->cube_size);
 	this->portas.push_back(s);
 	Console::printf("Adicionado porta em %d,%d, tipo: %d, direccao: %d",x,y,type1,direction);			
 }
@@ -444,7 +444,7 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	
 	switch(type){
 		case 1: // soldados mais faceis
-			Soldado *s = new Soldado(x*this->cube_size*2,y*this->cube_size*2,angulo, movimento);
+			Soldado *s = new Soldado(y*this->cube_size*2,x*this->cube_size*2,angulo, movimento);
 			this->guardas.push_back(s);
 			Console::printf("Adicionado guarda facil em %d,%d, mapa: %f %f, angulo: %f, movimento: %b",x,y,x*this->cube_size*2,y*this->cube_size*2,angulo,movimento);
 			break;
@@ -559,9 +559,9 @@ bool Map::loadMap(std::string file, Player *player)
 						break;
 					case 4010:
 						// start player
-						player->x = i*this->cube_size*2*-1;
+						player->x = e*this->cube_size*2*-1;
 						player->y = -2;
-						player->z = e*this->cube_size*2*-1;
+						player->z = i*this->cube_size*2*-1;
 						Console::printf("Jogador vai começar em %f %f. No mapa tem %d %d", player->x, player->z, i, e);
 						break;
 					case 4011:
