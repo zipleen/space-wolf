@@ -272,14 +272,6 @@
 				Name="maps"
 				>
 				<File
-					RelativePath="..\items.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\items.h"
-					>
-				</File>
-				<File
 					RelativePath="..\map.cpp"
 					>
 				</File>
@@ -435,6 +427,26 @@
 						>
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="items"
+				>
+				<File
+					RelativePath="..\items.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\items.h"
+					>
+				</File>
+				<File
+					RelativePath="..\items_vida.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\items_vida.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
