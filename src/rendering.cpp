@@ -287,9 +287,9 @@ void Rendering::draw3D(Map *m, Player *p)
 	//gluLookAt(p->x,p->y,p->z, 0, 50,20 ,0,0,-1);
 	// deve-se fazer sempre translate e depois rotate
 	glRotatef(p->angulo, 0.0, 1.0, 0.0);
-	glTranslatef(p->x,p->y,p->z);
 	if(this->debug_use_cam)
 		this->Cam->SetPrespective();
+	glTranslatef(p->x,p->y,p->z);
 	
 	glEnable (GL_DEPTH_TEST);
 	
