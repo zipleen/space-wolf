@@ -21,7 +21,7 @@ class Soldado : public Guard
 	public:
 		Soldado(); 
 		virtual ~Soldado(){};
-		Soldado(int x, int y, bool em_movimento, GLfloat angulo);
+		Soldado(int z, int x, bool em_movimento, GLfloat angulo);
 };
 
 #endif

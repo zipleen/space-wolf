@@ -44,6 +44,9 @@ protected:
 	Texture2DManager *texMgr;
 	TexMap map_textures;
 	
+	GLuint calllists[3];
+	bool usecalllist;
+	
 	int tamanho_mapa;
 	int tex_tecto;
 	int tex_chao;
@@ -91,11 +94,11 @@ public:
 	
 	// desenhar opengl
 	void setMaterial();
-	void desenhaPoligono(GLfloat a[], GLfloat b[], GLfloat c[], GLfloat  d[], GLfloat normal[],GLfloat tx,GLfloat ty);
-	void desenhaCubo(const Texture2D *tex);
+	void createCallListMap();
 	void glDrawCube(const Texture2D* tex);
 	void desenhaChao();
 	void desenhaTecto();
+	void drawAllMap();
 };
 
 #endif

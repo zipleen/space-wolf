@@ -26,8 +26,11 @@ void Player::draw()
 
 void Player::setPosition(int x, int y)
 {
-	this->x = x;
-	this->z = y;
+	// em 3d, o X = Y e Z = X , 
+	// Y é altura
+	// este metodo nao deve ser chamado.... talvez se isto tivesse um demo hehe :P
+	this->x = y;
+	this->z = x;
 	this->y = 2;
 }
 

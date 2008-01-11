@@ -26,6 +26,7 @@ Map::Map()
 	this->tex_porta_lado_chave1 = 1010;
 	this->tex_porta_chave2 = 1008;
 	this->tex_porta_lado_chave2 = 1011;
+	this->usecalllist = false;
 }
 
 /* desenhar */
@@ -39,25 +40,6 @@ void Map::setMaterial()
 	// definir os outros par‚metros estaticamente
 	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 	glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess); 
-}
-
-void Map::desenhaPoligono(GLfloat a[], GLfloat b[], GLfloat c[], GLfloat  d[], GLfloat normal[],GLfloat tx,GLfloat ty)
-{
-  glBegin(GL_POLYGON);
-    glNormal3fv(normal);
-    //glTexCoord2f(tx+0,ty+0);
-	glTexCoord2f(1,1);
-    glVertex3fv(a);
-	glTexCoord2f(0,1);
-    //glTexCoord2f(tx+0,ty+0.25);
-    glVertex3fv(b);
-	glTexCoord2f(0,0);
-    //glTexCoord2f(tx+0.25,ty+0.25);
-    glVertex3fv(c);
-	glTexCoord2f(1,0);
-    //glTexCoord2f(tx+0.25,ty+0);
-    glVertex3fv(d);
-  glEnd();
 }
 
 void Map::glDrawCube(const Texture2D* tex)					// Draw A Cube
@@ -101,37 +83,6 @@ void Map::glDrawCube(const Texture2D* tex)					// Draw A Cube
 		glTexCoord2f(1.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size,  this->cube_size);	//*2 Top Right Of The Texture and Quad
 		glTexCoord2f(0.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size, -this->cube_size);	//*2 Top Left Of The Texture and Quad
 	glEnd();					// Done Drawing Quads
-}
-
-void Map::desenhaCubo(const Texture2D* tex)
-{
-  GLfloat vertices[][3] = { {-this->cube_size,-this->cube_size,-this->cube_size}, 
-                            {this->cube_size,-this->cube_size,-this->cube_size}, 
-                            {this->cube_size,this->cube_size,-this->cube_size}, 
-                            {-this->cube_size,this->cube_size,-this->cube_size}, 
-                            {-this->cube_size,-this->cube_size,this->cube_size},  
-                            {this->cube_size,-this->cube_size,this->cube_size}, 
-                            {this->cube_size,this->cube_size,this->cube_size}, 
-                            {-this->cube_size,this->cube_size,this->cube_size}};
-  GLfloat normais[][3] = {  {0,0,-1}, 
-                            {0,1,0}, 
-                            {-1,0,0}, 
-                            {1,0,0}, 
-                            {0,0,1},  
-                            {0,-1,0}};
-
-  GLfloat tx,ty;
-  tx=0,ty=0;
-  
-  tex->bind();
-
-  desenhaPoligono(vertices[1],vertices[0],vertices[3],vertices[2],normais[0],tx,ty);
-  desenhaPoligono(vertices[2],vertices[3],vertices[7],vertices[6],normais[1],tx,ty);
-  desenhaPoligono(vertices[3],vertices[0],vertices[4],vertices[7],normais[2],tx,ty);
-  desenhaPoligono(vertices[6],vertices[5],vertices[1],vertices[2],normais[3],tx,ty);
-  desenhaPoligono(vertices[4],vertices[5],vertices[6],vertices[7],normais[4],tx,ty);
-  desenhaPoligono(vertices[5],vertices[4],vertices[0],vertices[1],normais[5],tx,ty);
-  glBindTexture(GL_TEXTURE_2D, NULL);
 }
 
 void Map::desenhaTecto()
@@ -259,6 +210,10 @@ bool Map::loadTextures()
 	this->textura_porta_lado_chave2 = this->map_textures.find (this->tex_porta_lado_chave2)->second;
 	
 	Console::addLine("Ended loading textures");
+	
+	Console::addLine("Generating CallLists");
+	this->createCallListMap();
+	Console::addLine("Generating CallLists completed");
 	return true;
 }
 
@@ -349,43 +304,86 @@ void Map::drawItems()
 	
 }
 
-void Map::drawMap()
+void Map::drawAllMap()
 {
 	TexMap::iterator tex;
 	int previous_tex = 0;
 
-	if(this->desenharTudo)
+	for(int i=0;i<this->map.size();i++)
 	{
-		glPushMatrix();
-			this->desenhaChao();
-		glPopMatrix();
-		
-		glPushMatrix();
-			this->desenhaTecto();
-		glPopMatrix();
-		
-		glPushMatrix();
-		// isto tava mal.. nao interessa pq era um erro na leitura do mapa, nao fazia sentido tb
-		//glTranslatef(0,0,-(this->tamanho_mapa*this->cube_size*2)+this->cube_size+this->cube_size);
-		// desenhar as paredes
-		for(int i=0;i<this->map.size();i++)
+		for(int e=0;e<this->map[i].size();e++)
 		{
-			for(int e=0;e<this->map[i].size();e++)
+			if(this->map[i][e]>1000 && this->map[i][e]<2000)
 			{
-				if(this->map[i][e]>1000 && this->map[i][e]<2000)
-				{
-					if(previous_tex!=this->map[i][e]){
-						previous_tex = this->map[i][e];
-						tex = this->map_textures.find(this->map[i][e]);
-					}
-					glPushMatrix();
-						glTranslatef(e*this->cube_size*2,0,i*this->cube_size*2);
-						Console::printf("desenhar em %f %f (%d %d)",i*this->cube_size*2,e*this->cube_size*2,i,e);
-						this->glDrawCube(tex->second);
-					glPopMatrix();
+				if(previous_tex!=this->map[i][e]){
+					previous_tex = this->map[i][e];
+					tex = this->map_textures.find(this->map[i][e]);
 				}
+				glPushMatrix();
+					glTranslatef(e*this->cube_size*2,0,i*this->cube_size*2);
+					this->glDrawCube(tex->second);
+				glPopMatrix();
 			}
 		}
+	}
+}
+
+void Map::createCallListMap()
+{
+	
+	
+	// chao
+	this->calllists[0]=glGenLists(3);
+	glNewList(this->calllists[0], GL_COMPILE);
+		//glPushAttrib(GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT );
+		  this->desenhaChao();
+		//glPopAttrib();
+	glEndList();
+
+	// tecto
+	this->calllists[1]=this->calllists[0]+1;
+	glNewList(this->calllists[1], GL_COMPILE);
+		//glPushAttrib(GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT );
+		  this->desenhaTecto();
+		//glPopAttrib();
+	glEndList();
+
+	// mapa
+	this->calllists[2]=this->calllists[1]+1;
+	glNewList(this->calllists[2], GL_COMPILE);
+		//glPushAttrib(GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT );
+			this->drawAllMap();
+		//glPopAttrib();
+	glEndList();
+}
+
+void Map::drawMap()
+{
+
+	if(this->desenharTudo)
+	{
+		// chao
+		glPushMatrix();
+			if(this->usecalllist)
+				glCallList(this->calllists[0]);
+			else
+				this->desenhaChao();
+		glPopMatrix();
+		
+		// tecto
+		glPushMatrix();
+			if(this->usecalllist)
+				glCallList(this->calllists[1]);
+			else
+				this->desenhaTecto();
+		glPopMatrix();
+		
+		// desenhar as paredes
+		glPushMatrix();
+			if(this->usecalllist)
+				glCallList(this->calllists[2]);
+			else
+				this->drawAllMap();
 		glPopMatrix();
 	}else{
 		// codigo optimizado para nao desenhar tudo...
@@ -444,9 +442,9 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	
 	switch(type){
 		case 1: // soldados mais faceis
-			Soldado *s = new Soldado(y*this->cube_size*2,x*this->cube_size*2,movimento,angulo);
+			Soldado *s = new Soldado(x*this->cube_size*2,y*this->cube_size*2,movimento,angulo);
 			this->guardas.push_back(s);
-			Console::printf("Adicionado guarda facil em %d,%d, mapa: %f %f, angulo: %f, movimento: %b",x,y,x*this->cube_size*2,y*this->cube_size*2,angulo,movimento);
+			Console::printf("Adicionado guarda facil em %d,%d, mapa: %f %f, angulo: %f, movimento: %d",x,y,y*this->cube_size*2,x*this->cube_size*2,angulo,movimento);
 			break;
 	}
 }

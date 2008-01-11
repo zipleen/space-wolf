@@ -61,7 +61,7 @@ void Guard::loadModel()
 void Guard::draw()
 {
 	glPushMatrix();
-		glTranslatef(this->x,-2.6f,this->y);
+		glTranslatef(this->x,this->y,this->z);
 		glRotatef(this->angulo,0,1,0);
 		this->guard->draw();
 	glPopMatrix();
@@ -90,10 +90,11 @@ void Guard::animate(const double dt)
 	}
 }
 
-void Guard::set_xy(int x, int y)
+void Guard::set_xy(int z, int x)
 {
 	this->x = x;
-	this->y = y;
+	this->y = -2.6f;
+	this->z = z;
 }
 void Guard::set_angulo(GLfloat angulo)
 {

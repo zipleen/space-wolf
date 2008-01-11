@@ -50,6 +50,7 @@ public:
 	// posicao no mapa
 	GLfloat x;
 	GLfloat y;
+	GLfloat z;
 	GLfloat angulo;
 	
 	bool morto;
@@ -62,7 +63,7 @@ public:
 	void animate(const double dt);
 	
 	void set_angulo(GLfloat angulo);
-	void set_xy(int x, int y);
+	void set_xy(int z, int x);
 	void set_walking_front();
 };
 
