@@ -75,8 +75,8 @@ void Game::MainLoop()
 			// controlador de teclas
 			this->input->processKeyInput(this->player);
 			
-			// animacoes
-			this->map->updateAnimations(dt);
+			// animacoes , dois tempos, o delta e o tempo corrente
+			this->map->updateAnimations(dt,this->render->timer.current_time);
 			// player anim?
 			// this->player->updateAnimation(dt);
 			

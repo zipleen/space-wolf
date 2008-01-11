@@ -42,6 +42,7 @@
 		AABE748D0D26CC5B00A3AA8B /* console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE747E0D26CC5B00A3AA8B /* console.cpp */; };
 		AABE748E0D26CC5B00A3AA8B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE74810D26CC5B00A3AA8B /* main.cpp */; };
 		AABE748F0D26CC5B00A3AA8B /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE74830D26CC5B00A3AA8B /* game.cpp */; };
+		AAE286200D37B0590016D7C2 /* items_vida.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE2861F0D37B0590016D7C2 /* items_vida.cpp */; };
 		AAEE40520D29371200DE9F02 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAEE40500D29371200DE9F02 /* input.cpp */; };
 		AAEE411F0D295D9600DE9F02 /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEE411E0D295D9600DE9F02 /* SDL_ttf.framework */; };
 /* End PBXBuildFile section */
@@ -128,6 +129,8 @@
 		AABE74810D26CC5B00A3AA8B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = SOURCE_ROOT; };
 		AABE74820D26CC5B00A3AA8B /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = ../main.h; sourceTree = SOURCE_ROOT; };
 		AABE74830D26CC5B00A3AA8B /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game.cpp; path = ../game.cpp; sourceTree = SOURCE_ROOT; };
+		AAE2861E0D37B0590016D7C2 /* items_vida.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = items_vida.h; path = ../items_vida.h; sourceTree = SOURCE_ROOT; };
+		AAE2861F0D37B0590016D7C2 /* items_vida.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = items_vida.cpp; path = ../items_vida.cpp; sourceTree = SOURCE_ROOT; };
 		AAEE40500D29371200DE9F02 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = input.cpp; path = ../input.cpp; sourceTree = SOURCE_ROOT; };
 		AAEE40510D29371200DE9F02 /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = input.h; path = ../input.h; sourceTree = SOURCE_ROOT; };
 		AAEE411E0D295D9600DE9F02 /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = /Library/Frameworks/SDL_ttf.framework; sourceTree = "<absolute>"; };
@@ -288,10 +291,9 @@
 		AA9D579C0D27C34700089D4E /* Maps */ = {
 			isa = PBXGroup;
 			children = (
+				AAE2858B0D37814E0016D7C2 /* items */,
 				AABE747B0D26CC5B00A3AA8B /* map.cpp */,
 				AABE74740D26CC5B00A3AA8B /* map.h */,
-				AA9D579A0D27C34100089D4E /* items.cpp */,
-				AA9D57990D27C34100089D4E /* items.h */,
 				AA7F76C40D3124670088B254 /* porta.cpp */,
 				AA7F76C30D3124670088B254 /* porta.h */,
 			);
@@ -370,6 +372,17 @@
 				AAB2E5400D2AD3E400B65B5E /* libGLEW.a */,
 			);
 			name = lib;
+			sourceTree = "<group>";
+		};
+		AAE2858B0D37814E0016D7C2 /* items */ = {
+			isa = PBXGroup;
+			children = (
+				AA9D579A0D27C34100089D4E /* items.cpp */,
+				AA9D57990D27C34100089D4E /* items.h */,
+				AAE2861F0D37B0590016D7C2 /* items_vida.cpp */,
+				AAE2861E0D37B0590016D7C2 /* items_vida.h */,
+			);
+			name = items;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,6 +468,7 @@
 				AA667BCF0D353E0B0003657B /* glQuaternion.cc in Sources */,
 				AA667BD00D353E0B0003657B /* glVector.cc in Sources */,
 				AA968A2E0D367DF000B6E06D /* Font.cpp in Sources */,
+				AAE286200D37B0590016D7C2 /* items_vida.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

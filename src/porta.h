@@ -33,7 +33,7 @@ class Porta
 		
 		void opendoor();
 		void draw(const Texture2D *textura_porta, const Texture2D *textura_porta_lado);
-		void animate(const double dt);
+		void animate(const double dt,const double dt_cur);
 	};
 
 #endif

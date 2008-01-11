@@ -31,7 +31,7 @@ void Player::setPosition(int x, int y)
 	// este metodo nao deve ser chamado.... talvez se isto tivesse um demo hehe :P
 	this->x = y;
 	this->z = x;
-	this->y = 2;
+	this->y = 0;
 }
 
 void Player::SetCorrer()

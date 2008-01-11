@@ -81,7 +81,7 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 }
 
 
-void Porta::animate(const double dt)
+void Porta::animate(const double dt,const double dt_cur)
 {
 	// actualizar o tempo?!
 	

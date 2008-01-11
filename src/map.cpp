@@ -218,11 +218,11 @@ bool Map::loadTextures()
 }
 
 
-void Map::updateAnimations(double dt)
+void Map::updateAnimations(double dt,double dt_cur)
 {
 	this->updateGuardAnimation(dt);
-	/*this->updateDoorAnimation(dt);
-	 this->updateItemsAnimation(dt);*/
+	this->updateItemsAnimation(dt,dt_cur);
+	this->updateDoorAnimation(dt,dt_cur);
 }
 
 void Map::updateGuardAnimation(double dt)
@@ -232,22 +232,22 @@ void Map::updateGuardAnimation(double dt)
 		this->guardas[i]->animate(dt);
 	}
 }
-/*
-void Map::updateDoorAnimation(double dt)
+
+void Map::updateDoorAnimation(double dt,double dt_cur)
 {
-	for(int i=0;i<(signed)this->guardas.size();i++)
+	for(int i=0;i<(signed)this->portas.size();i++)
 	{
-		this->guardas[i]->animate(dt);
+		this->portas[i]->animate(dt,dt_cur);
 	}
 }
 
-void Map::updateItemsAnimation(double dt)
+void Map::updateItemsAnimation(double dt,double dt_cur)
 {
-	for(int i=0;i<(signed)this->guardas.size();i++)
+	for(int i=0;i<(signed)this->items.size();i++)
 	{
-		this->guardas[i]->animate(dt);
+		this->items[i]->animate(dt,dt_cur);
 	}
-}*/
+}
 
 void Map::drawGuards()
 {
@@ -399,6 +399,18 @@ void Map::drawEverything()
 	this->drawItems();
 }
 
+void Map::addItems(int x, int y, int type)
+{
+	switch(type){
+		case 1:
+			// vida 15
+			Items_Vida *s = new Items_Vida(x*this->cube_size*2,y*this->cube_size*2);
+			this->items.push_back(s);
+			break;
+	}
+
+}
+
 void Map::addPorta(int x, int y, int type1, int direction)
 {
 	// type = 0 , 1 , 2
@@ -528,12 +540,15 @@ bool Map::loadMap(std::string file, Player *player)
 				switch(codigos_mapa[e]){
 					case 4001:
 						// vida 15
+						this->addItems(i,e,1);
 						break;
 					case 4002:
 						// vida 25
+						this->addItems(i,e,1);
 						break;	
 					case 4003:
 						// vida 50
+						this->addItems(i,e,1);
 						break;
 					case 4004:
 						// gun 1
@@ -558,7 +573,7 @@ bool Map::loadMap(std::string file, Player *player)
 					case 4010:
 						// start player
 						player->x = e*this->cube_size*2*-1;
-						player->y = -2;
+						player->y = 0;
 						player->z = i*this->cube_size*2*-1;
 						Console::printf("Jogador vai começar em %f %f. No mapa tem %d %d", player->x, player->z, i, e);
 						break;

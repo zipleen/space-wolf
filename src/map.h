@@ -23,6 +23,7 @@
 #include "guard.h"
 #include "soldado.h"
 #include "items.h"
+#include "items_vida.h"
 #include "porta.h"
 #include "player.h"
 #include "md3/TextureManager.h"
@@ -76,12 +77,15 @@ public:
 	virtual ~Map(){};
 	
 	// animacoes
-	void updateAnimations(double dt);
+	void updateAnimations(double dt,double dt_cur);
 	void updateGuardAnimation(double dt);
+	void updateItemsAnimation(double dt,double dt_cur);
+	void updateDoorAnimation(double dt,double dt_cur);
 	
 	// ler mapas
 	bool loadTextures();
 	bool loadMap(std::string file, Player *player);
+	void addItems(int x, int y, int type);
 	void addGuard(int x, int y, int type, int direction, bool movimento);
 	void addPorta(int x, int y, int type, int direction);
 	
