@@ -907,28 +907,28 @@ private: System::Void code_MouseMove(System::Object^  sender, System::Windows::F
 
 				 if(codemap[x-1][y-1]>1000 && codemap[x-1][y-1]<2000){
 					// paredes
-					this->label1->Text = "Textura:" + this->listBox1->Items[codemap[x-1][y-1]-1000-1];
+					this->label1->Text = "Textura ("+(x-1)+","+(y-1)+"): " + this->listBox1->Items[codemap[x-1][y-1]-1000-1];
 
 				 }else
 				 if(codemap[x-1][y-1]>3000 && codemap[x-1][y-1]<4000){
 					// portas
-					 this->label1->Text = "Porta:" + this->listBox2->Items[codemap[x-1][y-1]-3000-1];
+					 this->label1->Text = "Porta ("+(x-1)+","+(y-1)+"): " + this->listBox2->Items[codemap[x-1][y-1]-3000-1];
 					 
 
 				}else
 					if(codemap[x-1][y-1]>4000 && codemap[x-1][y-1]<5000){
 					// items
-						this->label1->Text = "Item:" + this->listBox4->Items[codemap[x-1][y-1]-4000-1];
+						this->label1->Text = "Item ("+(x-1)+","+(y-1)+"): " + this->listBox4->Items[codemap[x-1][y-1]-4000-1];
 					
 				}else
 					if(codemap[x-1][y-1]>2000 && codemap[x-1][y-1]<3000){
 					// guardas
-						this->label1->Text = "Guarda:" + this->listBox3->Items[codemap[x-1][y-1]-2000-1];
+						this->label1->Text = "Guarda ("+(x-1)+","+(y-1)+"): " + this->listBox3->Items[codemap[x-1][y-1]-2000-1];
 					}else if(codemap[x-1][y-1]==0){
 						this->label1->Text = "Sem nada";
 					}
 				else
-					this->label1->Text = "WTF?! nao pode ser.. falta codigo "+codemap[x-1][y-1];
+					this->label1->Text = "WTF?! nao pode ser.. falta codigo ("+(x-1)+","+(y-1)+"): "+codemap[x-1][y-1];
 				
 			}
 		 }
