@@ -1,7 +1,7 @@
-1001 data/textures/walls/mur027.jpg Parede Tijolo Cinzenta 1
+Ôªø1001 data/textures/walls/mur027.jpg Parede Tijolo Cinzenta 1
 1002 data/textures/walls/mur041.jpg Parede Tijolo  1
 1003 data/textures/walls/mad018.jpg Madeira Castanha 1
-1004 data/textures/walls/sup022.jpg SuperfÌcie Branca 1
+1004 data/textures/walls/sup022.jpg Superf√≠cie Branca 1
 1005 data/textures/walls/mur057.jpg Parede Tijolo Branca 1
 1006 data/textures/doors/porta_1.jpg Porta Normal
 1007 data/textures/doors/porta_chave.tga Porta Chave Amarela
@@ -12,12 +12,12 @@
 1012 data/textures/elevator/elevador.jpg Elevador
 1013 data/textures/elevator/porta_elevador.jpg Porta do Elevador
 1014 data/textures/walls/base_wall001.jpg Parede Preta
-1015 data/textures/walls/betong006.jpg Bet„o Cinzento
+1015 data/textures/walls/betong006.jpg Bet√£o Cinzento
 1016 data/textures/walls/lab_wall007.jpg Parede Cinzenta
 1017 data/textures/walls/lab_wall008.jpg Parede Cinzenta c/risco
-1018 data/textures/walls/9techwall01.jpg Parede TecnolÛgica 1
-1019 data/textures/walls/9techwall06.jpg Parede TecnolÛgica 2
-1020 data/textures/walls/9techwall07.jpg Parede TecnolÛgica 3
+1018 data/textures/walls/9techwall01.jpg Parede Tecnol√≥gica 1
+1019 data/textures/walls/9techwall06.jpg Parede Tecnol√≥gica 2
+1020 data/textures/walls/9techwall07.jpg Parede Tecnol√≥gica 3
 1021 data/textures/walls/cementwall.jpg Cimento Cinzento
 1022 data/textures/walls/defaultmetal.jpg Metal Cinzento
 1023 data/textures/walls/drkmtl_default.jpg Metal Preto
@@ -26,21 +26,21 @@
 1026 data/textures/walls/concrete.jpg Cimento Cinzento Tijolo
 1027 data/textures/walls/mtl_gray3.jpg Metal Cinzento c/Risca
 1028 data/textures/walls/rmetal1b.jpg Metal Cinzento c/Parafusos
-1029 data/textures/walls/tech_dw2gb.tga Parede TecnolÛgica 4
-1030 data/textures/walls/tech_dwb_2g.jpg Parede TecnolÛgica 5
+1029 data/textures/walls/tech_dw2gb.tga Parede Tecnol√≥gica 4
+1030 data/textures/walls/tech_dwb_2g.jpg Parede Tecnol√≥gica 5
 1031 data/textures/elevator/elevador2.jpg Elevador 2
-1032 data/textures/ceiling/mechanical_old.jpg Tecto TecnolÛgico
-1033 data/textures/ceiling/e6cyb0rpipes.jpg Tecto TecnolÛgico 2
-1034 data/textures/floor/e8clangfloor.jpg Ch„o Riscas
-1035 data/textures/floor/flr_tmtl.jpg Ch„o Metal Quadrados
-1036 data/textures/floor/tflooroddtile.jpg Ch„o Cinzento Mosaico
-1037 data/textures/floor/floor_holes.tga Ch„o Buracos
-1038 data/textures/floor/tfloor.jpg Ch„o Cinzento
-1039 data/textures/floor/e8warning256.jpg Ch„o Aviso
-1040 data/textures/floor/e8_base1.jpg Ch„o Preto
-1041 data/textures/floor/e8cretefloor01b.jpg Ch„o Cinzento Mosaico
-1042 data/textures/floor/e6l_floor.jpg Ch„o Rect‚ngulo (128)
-1043 data/textures/floor/lab_floor001.jpg Ch„o Cinzento Quadrados
-1044 data/textures/floor/base_floor001.jpg Ch„o Arame
-1045 data/textures/floor/metal_platedark.jpg Ch„o Riscas Escuro
-
+1032 data/textures/ceiling/mechanical_old.jpg Tecto Tecnol√≥gico
+1033 data/textures/ceiling/e6cyb0rpipes.jpg Tecto Tecnol√≥gico 2
+1034 data/textures/floor/e8clangfloor.jpg Ch√£o Riscas
+1035 data/textures/floor/flr_tmtl.jpg Ch√£o Metal Quadrados
+1036 data/textures/floor/tflooroddtile.jpg Ch√£o Cinzento Mosaico
+1037 data/textures/floor/floor_holes.tga Ch√£o Buracos
+1038 data/textures/floor/tfloor.jpg Ch√£o Cinzento
+1039 data/textures/floor/e8warning256.jpg Ch√£o Aviso
+1040 data/textures/floor/e8_base1.jpg Ch√£o Preto
+1041 data/textures/floor/e8cretefloor01b.jpg Ch√£o Cinzento Mosaico
+1042 data/textures/floor/e6l_floor.jpg Ch√£o Rect√¢ngulo (128)
+1043 data/textures/floor/lab_floor001.jpg Ch√£o Cinzento Quadrados
+1044 data/textures/floor/base_floor001.jpg Ch√£o Arame
+1045 data/textures/floor/metal_platedark.jpg Ch√£o Riscas Escuro
+1046 data/textures/walls/mur027_blood.jpg Parede Tijolo Cinzenta 1 com Sangue
