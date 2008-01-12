@@ -37,6 +37,7 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 	// quer dizer temos mais problemas do que apenas os lados, é preciso fazer umas paredes "fakes" ah esquerda e direita...
 	glPushMatrix();
 	glTranslatef(this->x*this->cube_size*2,0,this->y*this->cube_size*2);
+	glScalef(0.1,1,1);
 	textura_porta->bind();
 	glBegin(GL_QUADS);			// Start Drawing Quads
 		// Front Face
