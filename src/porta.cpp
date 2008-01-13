@@ -19,13 +19,46 @@ Porta::Porta(int x, int y, int direction,int tipo_porta,GLfloat cube_size)
 	this->cube_size = cube_size;
 }
 
+void Porta::tryToOpenDoor(bool chave1, bool chave2)
+{
+	if(!this->open){
+		switch(this->tipo_porta){
+			case 0:
+				// normal, posso abrir
+				this->startOpenDoor();
+				break;
+				
+			case 1:
+				// amarela
+				if(chave1)
+					this->startOpenDoor();
+				break;
+			
+			case 2:
+				if(chave2)
+					this->startOpenDoor();
+				break;
+		}
+	}
+}
+
+/*
+ * aqui vai comecar a iniciar a abertura da porta, isto deve definir o tempo de inicio de abrir a porta
+ * e definir que esta a ser aberta a porta... penso nisto depois
+ */
+void Porta::startOpenDoor()
+{
+	// por agora abre logo
+	this->opendoor();
+}
+
 /*
  * Este metodo nao testa se eh possivel o jogado abrir a porta ou nao, abre-a apenas
  */
 void Porta::opendoor()
 {
 	this->open=true;
-	
+	Fisica::updatePortas(this->y, this->x, true);
 	// codigo para actualizar a porta a "abrir" em opengl?! tempo?!
 
 }

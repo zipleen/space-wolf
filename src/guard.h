@@ -54,6 +54,7 @@ public:
 	GLfloat angulo;
 	
 	bool morto;
+	bool alerta;
 public:
 	Guard(); 
 	virtual ~Guard(){};

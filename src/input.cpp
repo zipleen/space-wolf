@@ -63,7 +63,8 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 			break;
 		case SDLK_SPACE:
 			// abrir portas
-			this->keyOpenDoorPressed = value;
+			if(value==false)
+				this->keyOpenDoorPressed = true;
 			break;
 			
 		case SDLK_r:
@@ -111,11 +112,11 @@ void Input::mouseMove (Uint16 MouseX, Uint16 MouseY)
 		this->render->Cam->ChangePitch(0.1f * DeltaMouse);
     }
 	
-    SDL_WarpMouse(this->render->CenterX, this->render->CenterY);
+    //SDL_WarpMouse(this->render->CenterX, this->render->CenterY);
 	
 }
 
-void Input::processKeyInput(Player *p)
+void Input::processKeyInput(Player *p, Map *m)
 {
 	if(this->keyLeftPressed){
 		//this->render->Cam->ChangeHeading(-5.0f);
@@ -126,11 +127,11 @@ void Input::processKeyInput(Player *p)
 		//this->render->Cam->ChangeHeading(5.0f);
 	}
 	if(this->keyUpPressed){
-		p->y--;
+		p->y-=1;
 		//this->render->Cam->ChangePitch(5.0f);
 	}
 	if(this->keyDownPressed){
-		p->y++;
+		p->y+=1;
 		//this->render->Cam->ChangePitch(-5.0f);
 	}
 	
@@ -147,5 +148,8 @@ void Input::processKeyInput(Player *p)
 	if(this->keyStraffRightPressed){
 		p->GoStraffRight();
 	}
-	
+	if(this->keyOpenDoorPressed){
+		m->openDoor(p);
+		this->keyOpenDoorPressed=false;
+	}
 }

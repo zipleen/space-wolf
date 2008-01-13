@@ -12,16 +12,17 @@
 
 #include "md3/TextureManager.h"
 #include "console.h"
+#include "fisica.h"
 
 class Porta
 	{
-	protected:
+	public:
 		
 		GLfloat cube_size;
 		int x;
 		int y;
 		int direction; // 0 -> norte 1-> oeste 
-		int open;
+		bool open;
 
 		int time_open;
 		// tempo para abertura das portas?
@@ -31,6 +32,8 @@ class Porta
 		Porta(int x, int y, int direction,int tipo_porta,GLfloat cube_size); 
 		virtual ~Porta(){};
 		
+		void startOpenDoor();
+		void tryToOpenDoor(bool chave1, bool chave2);
 		void opendoor();
 		void draw(const Texture2D *textura_porta, const Texture2D *textura_porta_lado);
 		void animate(const double dt,const double dt_cur);

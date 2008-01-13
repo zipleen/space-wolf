@@ -20,21 +20,32 @@
 #include <string>
 #include <fstream>
 
+// guardas
 #include "guard.h"
-#include "soldado.h"
+#include "soldado.h" // guarda 1
+#include "guard_medium.h" // guarda 2
+
+// items
 #include "items.h"
 #include "items_vida.h"
+#include "items_chave.h"
+#include "items_armas.h"
+#include "items_ammo.h"
+
 #include "porta.h"
+#include "objectos_decorativos.h"
+
+#include "shared_render_objects.h"
 #include "player.h"
+#include "fisica.h"
 #include "md3/TextureManager.h"
 #include "console.h"
 #include "StrUtils.h"
 
-typedef map<int, const Texture2D *> TexMap;
-
 class Map
 {
 protected:
+	typedef map<int, const Texture2D *> TexMap;
 	std::vector<std::vector<int> > map; // vector de vector....
 	std::vector<std::vector<int> > floormap; // vector com os floor codes, para o AI
 	/*int map[MAP_SIZE][MAP_SIZE];
@@ -42,6 +53,7 @@ protected:
 	std::vector<Guard*> guardas;
 	std::vector<Items*> items;
 	std::vector<Porta*> portas;
+	std::vector<Objectos_decorativos*> objectos;
 	Texture2DManager *texMgr;
 	TexMap map_textures;
 	
@@ -51,6 +63,9 @@ protected:
 	int tamanho_mapa;
 	int tex_tecto;
 	int tex_chao;
+	
+	int fim_mapa_x;
+	int fim_mapa_y;
 	
 	// porta normal
 	int tex_porta; // textura da porta
@@ -76,6 +91,9 @@ public:
 	Map(); 
 	virtual ~Map(){};
 	
+	// portas
+	void openDoor(Player *p);
+	
 	// animacoes
 	void updateAnimations(double dt,double dt_cur);
 	void updateGuardAnimation(double dt);
@@ -88,12 +106,14 @@ public:
 	void addItems(int x, int y, int type);
 	void addGuard(int x, int y, int type, int direction, bool movimento);
 	void addPorta(int x, int y, int type, int direction);
+	void addObject(int x, int y, int code);
 	
 	// desenhar mapas
 	void drawGuards();
 	void drawDoors();
 	void drawItems();
 	void drawMap();
+	void drawObjectos();
 	void drawEverything();
 	
 	// desenhar opengl

@@ -1,4 +1,12 @@
 /*
+ *  objectos_decorativos.h
+ *  proj
+ *
+ *  Created by zipleen on 1/12/08.
+ *  Copyright 2008 __MyCompanyName__. All rights reserved.
+ *
+ */
+/*
  *  items.h
  *  proj
  *
@@ -11,8 +19,8 @@
 	eliminar o item do vector.
  */
 
-#ifndef ITEMS_H
-#define ITEMS_H
+#ifndef OBJECTOS_DECORATIVOS_H
+#define OBJECTOS_DECORATIVOS_H
 
 #include <GL/glew.h>
 #ifdef __APPLE__
@@ -25,13 +33,9 @@
 
 #include <string>
 #include "console.h"
-#include "player.h"
-#include "md3/Mathlib.h"
-#include "md3/Md3Model.h"
-#include "md3/TextureManager.h"
 #include "shared_render_objects.h"
 
-class Items
+class Objectos_decorativos
 	{
 	protected:
 		GLfloat x;
@@ -39,24 +43,15 @@ class Items
 		GLfloat z;
 		GLfloat angulo;
 		Shared_render_objects::Md3ModelPtr item;
-		std::string item_path;
-		std::string item_skin_path;
-		std::string mesh_name;
 		int item_code;
 		
-		bool used; // se estiver a true ja nao se desenha nada e nao se pode usar
-		double last_dt;
-		bool subir;
-		int tipo_item; // 1 - ammo  | 2 - pontos | 3 - vida | 4 - chaves
-		
 	public:
-		Items(); 
-		virtual ~Items(){ };
-		
-		void loadModel();
-		void animate(const double dt,const double dt_cur);
+		bool impede_passagem;
+		Objectos_decorativos(Shared_render_objects::Md3ModelPtr model, GLfloat x, GLfloat y, GLfloat z, int item_code, bool impede); 
+		virtual ~Objectos_decorativos(){ };
+
 		void draw();
-		void consume(Player *p);
 	};
 
 #endif
+

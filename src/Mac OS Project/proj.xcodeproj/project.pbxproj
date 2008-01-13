@@ -23,7 +23,13 @@
 		AA7F76C50D3124670088B254 /* porta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7F76C40D3124670088B254 /* porta.cpp */; };
 		AA968A2E0D367DF000B6E06D /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA968A2C0D367DF000B6E06D /* Font.cpp */; };
 		AA96EC630D313893001FC1B2 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA96EC620D313893001FC1B2 /* libjpeg.a */; };
+		AA984AF40D381EC0000B2837 /* guard_medium.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA984AF30D381EC0000B2837 /* guard_medium.cpp */; };
 		AA9D579B0D27C34100089D4E /* items.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9D579A0D27C34100089D4E /* items.cpp */; };
+		AAA5B20A0D38F691006F1D6E /* shared_render_objects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA5B2080D38F691006F1D6E /* shared_render_objects.cpp */; };
+		AAA5B2750D38FAAF006F1D6E /* items_ammo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA5B2740D38FAAF006F1D6E /* items_ammo.cpp */; };
+		AAA5B2780D38FAC1006F1D6E /* items_armas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA5B2770D38FAC1006F1D6E /* items_armas.cpp */; };
+		AAA5B27B0D38FAD6006F1D6E /* items_chave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA5B27A0D38FAD6006F1D6E /* items_chave.cpp */; };
+		AAA5B3590D39236D006F1D6E /* objectos_decorativos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA5B3580D39236D006F1D6E /* objectos_decorativos.cpp */; };
 		AAB2E5410D2AD3E400B65B5E /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2E5400D2AD3E400B65B5E /* libGLEW.a */; };
 		AABE74580D26CC2D00A3AA8B /* Mathlib.inl in Resources */ = {isa = PBXBuildFile; fileRef = AABE744C0D26CC2D00A3AA8B /* Mathlib.inl */; };
 		AABE74590D26CC2D00A3AA8B /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE744F0D26CC2D00A3AA8B /* Texture.cpp */; };
@@ -91,8 +97,20 @@
 		AA968A2C0D367DF000B6E06D /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../font/Font.cpp; sourceTree = SOURCE_ROOT; };
 		AA968A2D0D367DF000B6E06D /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Font.h; path = ../font/Font.h; sourceTree = SOURCE_ROOT; };
 		AA96EC620D313893001FC1B2 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = /opt/local/lib/libjpeg.a; sourceTree = "<absolute>"; };
+		AA984AF20D381EC0000B2837 /* guard_medium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = guard_medium.h; path = ../guard_medium.h; sourceTree = SOURCE_ROOT; };
+		AA984AF30D381EC0000B2837 /* guard_medium.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = guard_medium.cpp; path = ../guard_medium.cpp; sourceTree = SOURCE_ROOT; };
 		AA9D57990D27C34100089D4E /* items.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = items.h; path = ../items.h; sourceTree = SOURCE_ROOT; };
 		AA9D579A0D27C34100089D4E /* items.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = items.cpp; path = ../items.cpp; sourceTree = SOURCE_ROOT; };
+		AAA5B2080D38F691006F1D6E /* shared_render_objects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shared_render_objects.cpp; path = ../shared_render_objects.cpp; sourceTree = SOURCE_ROOT; };
+		AAA5B2090D38F691006F1D6E /* shared_render_objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shared_render_objects.h; path = ../shared_render_objects.h; sourceTree = SOURCE_ROOT; };
+		AAA5B2730D38FAAF006F1D6E /* items_ammo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = items_ammo.h; path = ../items_ammo.h; sourceTree = SOURCE_ROOT; };
+		AAA5B2740D38FAAF006F1D6E /* items_ammo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = items_ammo.cpp; path = ../items_ammo.cpp; sourceTree = SOURCE_ROOT; };
+		AAA5B2760D38FAC1006F1D6E /* items_armas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = items_armas.h; path = ../items_armas.h; sourceTree = SOURCE_ROOT; };
+		AAA5B2770D38FAC1006F1D6E /* items_armas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = items_armas.cpp; path = ../items_armas.cpp; sourceTree = SOURCE_ROOT; };
+		AAA5B2790D38FAD6006F1D6E /* items_chave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = items_chave.h; path = ../items_chave.h; sourceTree = SOURCE_ROOT; };
+		AAA5B27A0D38FAD6006F1D6E /* items_chave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = items_chave.cpp; path = ../items_chave.cpp; sourceTree = SOURCE_ROOT; };
+		AAA5B3570D39236D006F1D6E /* objectos_decorativos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = objectos_decorativos.h; path = ../objectos_decorativos.h; sourceTree = SOURCE_ROOT; };
+		AAA5B3580D39236D006F1D6E /* objectos_decorativos.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = objectos_decorativos.cpp; path = ../objectos_decorativos.cpp; sourceTree = SOURCE_ROOT; };
 		AAB2E5400D2AD3E400B65B5E /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = lib/libGLEW.a; sourceTree = "<group>"; };
 		AABE744B0D26CC2D00A3AA8B /* Md3Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Md3Model.h; path = ../md3/Md3Model.h; sourceTree = SOURCE_ROOT; };
 		AABE744C0D26CC2D00A3AA8B /* Mathlib.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Mathlib.inl; path = ../md3/Mathlib.inl; sourceTree = SOURCE_ROOT; };
@@ -284,6 +302,8 @@
 				AABE74760D26CC5B00A3AA8B /* guard.h */,
 				AA08848D0D27F58F00D7793D /* soldado.cpp */,
 				AA08848C0D27F58F00D7793D /* soldado.h */,
+				AA984AF30D381EC0000B2837 /* guard_medium.cpp */,
+				AA984AF20D381EC0000B2837 /* guard_medium.h */,
 			);
 			name = guardas;
 			sourceTree = "<group>";
@@ -291,6 +311,7 @@
 		AA9D579C0D27C34700089D4E /* Maps */ = {
 			isa = PBXGroup;
 			children = (
+				AAA5B2070D38F669006F1D6E /* objectos */,
 				AAE2858B0D37814E0016D7C2 /* items */,
 				AABE747B0D26CC5B00A3AA8B /* map.cpp */,
 				AABE74740D26CC5B00A3AA8B /* map.h */,
@@ -309,6 +330,17 @@
 				AABE74770D26CC5B00A3AA8B /* player.h */,
 			);
 			name = player;
+			sourceTree = "<group>";
+		};
+		AAA5B2070D38F669006F1D6E /* objectos */ = {
+			isa = PBXGroup;
+			children = (
+				AAA5B2080D38F691006F1D6E /* shared_render_objects.cpp */,
+				AAA5B2090D38F691006F1D6E /* shared_render_objects.h */,
+				AAA5B3580D39236D006F1D6E /* objectos_decorativos.cpp */,
+				AAA5B3570D39236D006F1D6E /* objectos_decorativos.h */,
+			);
+			name = objectos;
 			sourceTree = "<group>";
 		};
 		AABE743E0D26CC0600A3AA8B /* Source */ = {
@@ -381,6 +413,12 @@
 				AA9D57990D27C34100089D4E /* items.h */,
 				AAE2861F0D37B0590016D7C2 /* items_vida.cpp */,
 				AAE2861E0D37B0590016D7C2 /* items_vida.h */,
+				AAA5B2740D38FAAF006F1D6E /* items_ammo.cpp */,
+				AAA5B2730D38FAAF006F1D6E /* items_ammo.h */,
+				AAA5B2770D38FAC1006F1D6E /* items_armas.cpp */,
+				AAA5B2760D38FAC1006F1D6E /* items_armas.h */,
+				AAA5B27A0D38FAD6006F1D6E /* items_chave.cpp */,
+				AAA5B2790D38FAD6006F1D6E /* items_chave.h */,
 			);
 			name = items;
 			sourceTree = "<group>";
@@ -469,6 +507,12 @@
 				AA667BD00D353E0B0003657B /* glVector.cc in Sources */,
 				AA968A2E0D367DF000B6E06D /* Font.cpp in Sources */,
 				AAE286200D37B0590016D7C2 /* items_vida.cpp in Sources */,
+				AA984AF40D381EC0000B2837 /* guard_medium.cpp in Sources */,
+				AAA5B20A0D38F691006F1D6E /* shared_render_objects.cpp in Sources */,
+				AAA5B2750D38FAAF006F1D6E /* items_ammo.cpp in Sources */,
+				AAA5B2780D38FAC1006F1D6E /* items_armas.cpp in Sources */,
+				AAA5B27B0D38FAD6006F1D6E /* items_chave.cpp in Sources */,
+				AAA5B3590D39236D006F1D6E /* objectos_decorativos.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -83,3 +83,11 @@ int StrtoInt(const std::string& s)
 	ss >> n;
 	return n;
 }
+
+float StrtoFloat(const std::string& s)
+{
+	stringstream ss(s);
+	float n;
+	ss >> n;
+	return n;
+}

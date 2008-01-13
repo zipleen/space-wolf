@@ -8,81 +8,71 @@
  */
 
 #include "items.h"
-
+#include <iostream>
 Items::Items()
 {
 	this->angulo=0;
 	this->last_dt = 0;
 	this->subir = true;
 	this->y=-3;
+	this->used = false;
+}
+
+void Items::loadModel()
+{
+	this->item = Shared_render_objects::find_or_insert(this->item_code, this->item_path, this->item_skin_path, this->mesh_name);
 }
 
 void Items::animate(const double delta, const double dt)
 {
-	if(last_dt+0.01 < dt){
+	if(this->last_dt+0.01 < dt){
+		double dif = (dt-this->last_dt)*100;
 		if(this->subir){
-			if(this->y>-1.7)
-				this->y+=-1*(this->y)/(1050*delta);
+			if(this->y>-2.7)
+				this->y+=0.01*dif;
 			else
-				this->y+=-1*(this->y)/(400*delta);
-			if(this->y>-1.5){
+				this->y+=0.04*dif;
+			if(this->y>-2.5){
 				this->subir=false;
-				this->y=-1.5;
+				this->y=-2.5;
 			}
 		}else{
 			if(this->y<-3.8)
-				this->y-=-1*(this->y)/(1050*delta);
+				this->y-=0.01*dif;
 			else
-				this->y-=-1*(this->y)/(400*delta);
+				this->y-=0.04*dif;
 			if(this->y<-3.5){
 				this->subir=true;
 				this->y=-3.5;
 			}
 		}
-		this->angulo+=4;
+		this->angulo+=2*dif;
 		if(this->angulo>360)
 			this->angulo=-360;
 		this->last_dt = dt;
 	}
 	
-	
 }
 
 void Items::draw()
 {
-	glPushMatrix ();
-		// mover para o sitio certo, Y eh da animacao
-		glTranslatef(this->x,this->y,this->z);
-		// animacao
-		glRotatef(this->angulo,0,1,0);
-	
-		glRotatef (-90.0, 1.0, 0.0, 0.0);
-		glRotatef (-90.0, 0.0, 0.0, 1.0);
+	if(!this->used){
+		glPushMatrix ();
+			// mover para o sitio certo, Y eh da animacao
+			glTranslatef(this->x,this->y,this->z);
+			// animacao
+			glRotatef(this->angulo,0,1,0);
 		
-		this->item->draw ();
-	glPopMatrix ();
+			glRotatef (-90.0, 1.0, 0.0, 0.0);
+			glRotatef (-90.0, 0.0, 0.0, 1.0);
+			
+			this->item->draw ();
+		glPopMatrix ();
+	}
 }
 
-void Items::loadModel()
+void Items::consume(Player *p)
 {
-	this->item = Md3ModelPtr (new Md3Model (this->item_path));
-	if(this->item_path.size()==0)
-	{
-		Console::addLine("erro: o item nao tem modelo?!");
-		exit(-1);
-	}
-	
-	// ler o modelo md3
-	try
-    {
-		this->item = Md3ModelPtr (new Md3Model (this->item_path));
-		this->item->setScale (0.1f);
-    }
-	catch (std::runtime_error &err)
-    {
-		Console::printf("Error: failed to load %s",this->item_path.c_str() );
-		Console::printf("Reason: %s",err.what ());
-		exit (-1);
-    }	
+	// !??! era suposto isto ser virtual
 
 }

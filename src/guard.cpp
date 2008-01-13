@@ -15,6 +15,7 @@ Guard::Guard()
 	this->em_movimento = false;
 	this->modificou_movimento = false;
 	this->em_disparo = false;
+	this->alerta = false;
 }
 
 void Guard::loadModel()

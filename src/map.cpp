@@ -18,6 +18,7 @@ Map::Map()
 	this->guardas.clear();
 	this->items.clear();
 	this->portas.clear();
+	this->objectos.clear();
 	this->desenharTudo = true;
 	this->cube_size = 5.0f;
 	this->tex_porta = 1006;
@@ -28,6 +29,27 @@ Map::Map()
 	this->tex_porta_lado_chave2 = 1011;
 	this->usecalllist = false;
 }
+
+/* portas */
+void Map::openDoor(Player *p)
+{
+	// so ha um player, vamos buscar os dados la, precisamos de saber onde ele ta
+	// como a porta normalmente eh "ah frente" podemos fazer a conta do player avancando "uma casa" ah frente e vendo qual casa eh essa 
+	int p_z = (int)((((p->z+cos(RAD(p->angulo))*this->cube_size)*-1)/(this->cube_size*2.0f))+0.5);
+	int p_x = (int)((((p->x+sin(-RAD(p->angulo))*this->cube_size)*-1)/(this->cube_size*2.0f))+0.5);
+	/*Console::printf("tentando abrir a porta %d %d %f %f",p_x, p_z,
+					((((p->z+cos(RAD(p->angulo))*this->cube_size)*-1)/(this->cube_size*2.0f))+0.5),
+					((((p->x+sin(-RAD(p->angulo))*this->cube_size)*-1)/(this->cube_size*2.0f))+0.5)
+	);
+	Console::printf("tou em %f %f", ((((p->z)*-1)/(this->cube_size*2.0f))+0.5),
+					((((p->x)*-1)/(this->cube_size*2.0f))+0.5));*/
+	for(int i=0; i<this->portas.size(); i++){
+		if(this->portas[i]->x == p_x && this->portas[i]->y == p_z)
+			this->portas[i]->tryToOpenDoor(p->chave_amarela, p->chave_vermelha);
+
+	}
+}
+
 
 /* desenhar */
 
@@ -147,8 +169,6 @@ void Map::desenhaChao()
 	glBindTexture(GL_TEXTURE_2D, NULL);
 }
 
-
-
 /* texturas */
 bool Map::loadTextures()
 {
@@ -195,7 +215,7 @@ bool Map::loadTextures()
 			it=needed.find(num);
 			if(it!=needed.end()){
 				Console::addLine("Loading texture "+t[0]+" in "+t[1]);
-				Texture2D *tex = texMgr->load (t[1]);
+				Texture2D *tex = this->texMgr->load (t[1]);
 				this->map_textures.insert (TexMap::value_type (num, tex));
 			}
 		}
@@ -303,6 +323,19 @@ void Map::drawItems()
 	}
 	
 }
+void Map::drawObjectos()
+{
+	if(this->desenharTudo)
+	{
+		for(int i=0;i<this->objectos.size();i++)
+		{
+			this->objectos[i]->draw();
+		}
+	}else{
+		// codigo optimizado para nao desenhar tudo...
+	}
+	
+}
 
 void Map::drawAllMap()
 {
@@ -330,10 +363,8 @@ void Map::drawAllMap()
 
 void Map::createCallListMap()
 {
-	
-	
 	// chao
-	this->calllists[0]=glGenLists(3);
+	this->calllists[0]=glGenLists(4);
 	glNewList(this->calllists[0], GL_COMPILE);
 		//glPushAttrib(GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT );
 		  this->desenhaChao();
@@ -355,6 +386,14 @@ void Map::createCallListMap()
 			this->drawAllMap();
 		//glPopAttrib();
 	glEndList();
+	
+	// objectos
+	this->calllists[3]=this->calllists[2]+1;
+	glNewList(this->calllists[3], GL_COMPILE);
+		//glPushAttrib(GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT | GL_ENABLE_BIT );
+			this->drawObjectos();
+		//glPopAttrib();
+	glEndList();	
 }
 
 void Map::drawMap()
@@ -385,6 +424,13 @@ void Map::drawMap()
 			else
 				this->drawAllMap();
 		glPopMatrix();
+		
+		// desenhar os objectos
+		glPushMatrix();
+			if(this->usecalllist)
+				glCallList(this->calllists[3]);
+			else
+				this->drawObjectos();
 	}else{
 		// codigo optimizado para nao desenhar tudo...
 	}
@@ -399,13 +445,106 @@ void Map::drawEverything()
 	this->drawItems();
 }
 
+void Map::addObject(int x, int y, int code){
+	// isto poderia nao passar a vida a abrir e fechar o ficheiro de texto mas depois tinha de ter tudo em memoria...
+	// mais rapido assim
+	std::string line;
+	boost::char_separator<char> sep(",");
+	Console::addLine("Loading object...");
+	std::ifstream ifs ("data/models/objects/objects.def", std::ios::in);
+	if (ifs.fail ()){
+		Console::addLine("Erro a ler o ficheiro de objectos");
+		return;
+	}
+	
+	while(!ifs.eof())
+	{
+		int num;
+		std::vector<std::string> t;
+		// ler linha
+		std::getline(ifs, line);
+		if(line.size()>1){
+			// t[0] -> item number
+			// t[1] -> md3 path
+			// t[2] -> image path
+			// t[3] -> mesh name, se vazio o image path eh o _barrel, se image path for vazio nao tem _barrel
+			// t[4] -> y para por o objecto
+			// t[5] -> impede ou nao (bool)
+			// t[6] -> nome do objecto
+			Tokenize(line, t, sep);
+			num = StrtoInt(t[0]);
+			if(num==code){
+				float y_to_go;
+				bool impede;
+				y_to_go = StrtoFloat(t[4]);
+				if(t[5][0]=='1')
+					impede=true;
+				else 
+					impede=false;
+				Shared_render_objects::Md3ModelPtr model_object = Shared_render_objects::find_or_insert(num, t[1], t[2], t[3]);
+				Objectos_decorativos *o= new Objectos_decorativos(model_object,y*this->cube_size*2,y_to_go-this->cube_size,x*this->cube_size*2,code,impede);
+				this->objectos.push_back(o);
+				Console::printf("Loaded object %s %d at %d %d",t[6].c_str(),code,x,y);
+				return;
+			}
+		}
+	}
+	Console::printf("Nao encontrei o objecto no ficheiro de definicoes para o objecto estatico numero %d",code);
+
+}
+
 void Map::addItems(int x, int y, int type)
 {
+	Items_Vida *v;
+	Items_Armas *a;
+	Items_Ammo *am;
+	Items_Chave *c;
+	
 	switch(type){
 		case 1:
 			// vida 15
-			Items_Vida *s = new Items_Vida(x*this->cube_size*2,y*this->cube_size*2);
-			this->items.push_back(s);
+			v= new Items_Vida(x*this->cube_size*2,y*this->cube_size*2,15);
+			this->items.push_back(v);
+			break;
+		case 2:
+			// vida 25
+			v = new Items_Vida(x*this->cube_size*2,y*this->cube_size*2,25);
+			this->items.push_back(v);
+			break;
+		case 3:
+			// vida 50
+			v = new Items_Vida(x*this->cube_size*2,y*this->cube_size*2,50);
+			this->items.push_back(v);
+			break;
+		case 4:
+			// arma 2
+			a = new Items_Armas(x*this->cube_size*2,y*this->cube_size*2,2);
+			this->items.push_back(a);
+			break;
+		case 5:
+			// arma 3
+			a = new Items_Armas(x*this->cube_size*2,y*this->cube_size*2,3);
+			this->items.push_back(a);
+			break;
+		case 6:
+			// arma 4
+			a = new Items_Armas(x*this->cube_size*2,y*this->cube_size*2,4);
+			this->items.push_back(a);
+			break;
+		case 7:
+			// ammo, default 8 balas?! vamos ser generosos, 15
+			am = new Items_Ammo(x*this->cube_size*2,y*this->cube_size*2,15);
+			this->items.push_back(am);
+			break;
+		case 8:
+			// chave amarela
+			c = new Items_Chave(x*this->cube_size*2,y*this->cube_size*2,1);
+			this->items.push_back(c);
+			break;
+		case 9:
+			// chave vermelha
+			c = new Items_Chave(x*this->cube_size*2,y*this->cube_size*2,2);
+			this->items.push_back(c);
 			break;
 	}
 
@@ -458,6 +597,11 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 			this->guardas.push_back(s);
 			Console::printf("Adicionado guarda facil em %d,%d, mapa: %f %f, angulo: %f, movimento: %d",x,y,y*this->cube_size*2,x*this->cube_size*2,angulo,movimento);
 			break;
+		case 2: // guarda medio
+			Guard_Medium *s1 = new Guard_Medium(x*this->cube_size*2,y*this->cube_size*2,movimento,angulo);
+			this->guardas.push_back(s1);
+			Console::printf("Adicionado guarda medio em %d,%d, mapa: %f %f, angulo: %f, movimento: %d",x,y,y*this->cube_size*2,x*this->cube_size*2,angulo,movimento);
+			break;
 	}
 }
 
@@ -481,6 +625,12 @@ bool Map::loadMap(std::string file, Player *player)
 	// ler textura do chao
 	ifs >> this->tex_chao;
 	
+	// portas para a fisica, vamos por tudo a 0, as portas tem de falar ah fisica para actualizar o seu estado
+	std::vector<std::vector <bool> > to_fisica_portas(this->tamanho_mapa,this->tamanho_mapa);
+	for(int i=0; i<to_fisica_portas.size(); i++)
+		for(int e=0; e<to_fisica_portas.size(); e++)
+			to_fisica_portas[i][e] = true;
+	
 	std::getline (ifs, linha);
 	boost::char_separator<char> sep(",");
     for(i=0; i<this->tamanho_mapa; i++)
@@ -496,6 +646,7 @@ bool Map::loadMap(std::string file, Player *player)
 			//	2000 - guardas
 			//  3000 - portas
 			//  4000 - items
+			//  5000 - objectos mapa
 			bool to_go = true;
 			if(codigos_mapa[e]>1000 && codigos_mapa[e]<2000){
 				// paredes -> enviar para o 
@@ -533,6 +684,9 @@ bool Map::loadMap(std::string file, Player *player)
 						Console::printf("Nao entendo este codigo de mapa porta: %d",codigos_mapa[e]);
 						break;
 				}
+				if(codigos_mapa[e]>=3001 && codigos_mapa[e]<=3006){
+					to_fisica_portas[i][e]=false;
+				}
 				
 			}else
 			if(codigos_mapa[e]>4000 && codigos_mapa[e]<5000){
@@ -544,42 +698,45 @@ bool Map::loadMap(std::string file, Player *player)
 						break;
 					case 4002:
 						// vida 25
-						this->addItems(i,e,1);
+						this->addItems(i,e,2);
 						break;	
 					case 4003:
 						// vida 50
-						this->addItems(i,e,1);
+						this->addItems(i,e,3);
 						break;
 					case 4004:
-						// gun 1
+						// gun 2
+						this->addItems(i,e,4);
 						break;
 					case 4005:
-						// gun 2
+						// gun 3
+						this->addItems(i,e,5);
 						break;
 					case 4006:
-						// gun 3
+						// gun 4
+						this->addItems(i,e,6);
 						break;
 					case 4007:
 						// ammo
-						
+						this->addItems(i,e,7);
 						break;
 					case 4008:
 						// chave 1
-						
+						this->addItems(i,e,8);
 						break;
 					case 4009:
 						// chave 2
+						this->addItems(i,e,9);
 						break;
 					case 4010:
 						// start player
-						player->x = e*this->cube_size*2*-1;
-						player->y = 0;
-						player->z = i*this->cube_size*2*-1;
+						player->setInitialPosition(i*this->cube_size*2*-1 , e*this->cube_size*2*-1);
 						Console::printf("Jogador vai começar em %f %f. No mapa tem %d %d", player->x, player->z, i, e);
 						break;
 					case 4011:
 						// finish map
-						
+						this->fim_mapa_x = i;
+						this->fim_mapa_y = e;
 						break;
 					default:
 						Console::printf("Nao entendo este codigo de mapa item: %d",codigos_mapa[e]);
@@ -800,6 +957,10 @@ bool Map::loadMap(std::string file, Player *player)
 							
 					}
 										
+			}else 
+				if(codigos_mapa[e]>5000 && codigos_mapa[e]<6000){
+					// objectos decorativos para o mapa
+					this->addObject(i,e,codigos_mapa[e]);
 				}else if(codigos_mapa[e]==0){
 					// 0 -> sem nada
 					linha_para_ir.push_back(codigos_mapa[e]);	
@@ -826,21 +987,29 @@ bool Map::loadMap(std::string file, Player *player)
 	}
 	
 	// we're done
-	/*for(int i = 0; i <this->map.size(); i++){
-		std::cout << i << ": " ;
-		for(int e=0; e<this->map[i].size(); e++){
-			std::cout << this->map[i][e] << " ";
+	// necessitamos de fornecer ah fisica as posicoes onde nos nao podemos avancar ate..
+	// para isso vamos criar um vector de vector de booleanos que dizem que podemos ir ou nao podemos ir
+	// percorremos o mapa e os objectos
+	// falta as posicoes dos guardas e posicoes das portas (se tao abertas ou nao)
+	std::vector<std::vector <bool> > to_fisica(this->tamanho_mapa,this->tamanho_mapa);
+	for(int i=0; i<this->map.size(); i++)
+	{
+		//to_fisica[i] = new std::vector<std::vector<bool> >(this->tamanho_mapa);
+		for(e=0; e<this->map[i].size(); e++)
+		{
+			if(this->map[i][e]>1000 && this->map[i][e]<2000)
+				to_fisica[i][e]=true;
+			else to_fisica[i][e]=false;
 		}
-		std::cout << std::endl;
 	}
-	std::cout << "floor" << std::endl;
-	for(int i = 0; i <this->floormap.size(); i++){
-		std::cout << i << ": " ;
-		for(int e=0; e<this->floormap[i].size(); e++){
-			std::cout << this->floormap[i][e] << " ";
-		}
-		std::cout << std::endl;
-	}*/
+	// verificar os items que podem impedir a fisica
+	for(int i=0; i<this->objectos.size(); i++)
+	{
+		if(this->objectos[i]->impede_passagem)
+			to_fisica[i][e]=true;
+	}
+	Fisica::setMap(to_fisica,this->cube_size);
+	Fisica::setPortas(to_fisica_portas);
 	Console::addLine("Mapa OK!");
 	return true;
 }

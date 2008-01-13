@@ -9,17 +9,60 @@
 
 #include "items_vida.h"
 
-Items_Vida::Items_Vida(int x,int y)
+Items_Vida::Items_Vida(GLfloat x,GLfloat y,int valor)
 {
 	Items();
-#ifdef WIN32
-	this->item_path="data\\models\\items\\key\\key.md3";
-	this->item_skin_path="data\\models\\items\\key\\gold.tga";
-#else
-	this->item_path="data/models/items/key/key.md3";
-	this->item_skin_path="data/models/items/key/gold.tga";
-#endif
+	switch(valor){
+		case 15:
+		#ifdef WIN32
+			this->item_path="data\\models\\items\\life\\key.md3";
+			this->item_skin_path="data\\models\\items\\life\\gold.tga";
+		#else
+			this->item_path="data/models/items/life/key.md3";
+			this->item_skin_path="data/models/items/life/gold.tga";
+		#endif
+			this->item_code = 4001;
+			this->mesh_name = "key";		
+			break;
+		case 25:
+		#ifdef WIN32
+			this->item_path="data\\models\\items\\life\\key.md3";
+			this->item_skin_path="data\\models\\items\\life\\gold.tga";
+		#else
+			this->item_path="data/models/items/life/key.md3";
+			this->item_skin_path="data/models/items/life/gold.tga";
+		#endif
+			this->item_code = 4002;
+			this->mesh_name = "key";		
+			break;		
+			break;
+		case 50:
+		#ifdef WIN32
+			this->item_path="data\\models\\items\\life\\key.md3";
+			this->item_skin_path="data\\models\\items\\life\\gold.tga";
+		#else
+			this->item_path="data/models/items/life/key.md3";
+			this->item_skin_path="data/models/items/life/gold.tga";
+		#endif
+			this->item_code = 4003;
+			this->mesh_name = "key";		
+			break;			
+			break;
+	
+	
+	}
+
 	this->loadModel();
 	this->z = x;
 	this->x = y;
+	this->valor_vida = valor;
 }
+
+void Items_Vida::consume(Player *p)
+{
+	if(!this->used){
+		this->used = true;
+		p->giveHealth(this->valor_vida);
+	}
+}
+

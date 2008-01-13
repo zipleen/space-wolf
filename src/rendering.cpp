@@ -8,7 +8,6 @@
  */
 
 #include "rendering.h"
-#include "md3/Md3Player.h"
 
 Rendering *Rendering::m_renderingSingleton = NULL;
 
@@ -132,7 +131,7 @@ Rendering::reshape (GLsizei width, GLsizei height)
   // Reinit projection matrix
   glMatrixMode (GL_PROJECTION);
   glLoadIdentity ();
-  gluPerspective (45.0f, width/static_cast<GLfloat>(height), 0.1f, 10000.0f);
+  gluPerspective (45.0f, width/static_cast<GLfloat>(height), 0.1f, 450.0f); // meter aki 100000 para ver tudo
 
   // Reinit model-view matrix
   glMatrixMode (GL_MODELVIEW);

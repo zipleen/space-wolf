@@ -14,12 +14,13 @@
 
 class Items_Vida : public Items
 	{
-
+		int valor_vida;
 		
 	public:
 		Items_Vida(){};
-		Items_Vida(int x,int y);
+		Items_Vida(GLfloat x,GLfloat y, int valor);
 		virtual ~Items_Vida(){};
+		void consume(Player *p);
 	};
 
 #endif

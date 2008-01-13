@@ -56,7 +56,7 @@ public:
 	
 	void handleKeyPress (SDL_keysym *key, bool value);
 	void mouseMove (Uint16 x, Uint16 y);
-	void processKeyInput(Player *p);
+	void processKeyInput(Player *p, Map *m);
 };
 
 #endif

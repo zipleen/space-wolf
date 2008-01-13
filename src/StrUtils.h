@@ -16,5 +16,6 @@ void Tokenize(const string& str, vector<string>& tokens, boost::char_separator<c
 string  Str(const int val);
 string crop(string str, char what);
 int StrtoInt(const std::string& s);
+float StrtoFloat(const std::string& s);
 
 #endif

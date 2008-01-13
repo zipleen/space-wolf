@@ -73,13 +73,13 @@ void Game::MainLoop()
 		if (isActive){
 			dt = this->render->timer.current_time - this->render->timer.last_time;
 			// controlador de teclas
-			this->input->processKeyInput(this->player);
+			this->input->processKeyInput(this->player, this->map);
 			
 			// animacoes , dois tempos, o delta e o tempo corrente
 			this->map->updateAnimations(dt,this->render->timer.current_time);
 			// player anim?
 			// this->player->updateAnimation(dt);
-			
+
 			// game cycle
 			this->render->gameCycle (this->map, this->player);
 		}
