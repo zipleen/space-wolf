@@ -17,7 +17,7 @@
 class Porta
 	{
 	public:
-		
+		GLfloat altura;
 		GLfloat cube_size;
 		int x;
 		int y;

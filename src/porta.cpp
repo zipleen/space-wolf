@@ -17,6 +17,7 @@ Porta::Porta(int x, int y, int direction,int tipo_porta,GLfloat cube_size)
 	this->direction = direction;
 	this->tipo_porta = tipo_porta;
 	this->cube_size = cube_size;
+	this->altura = 0;
 }
 
 void Porta::tryToOpenDoor(bool chave1, bool chave2)
@@ -71,7 +72,7 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 	if (this->direction == 0)
 	{
 		glPushMatrix();
-		glTranslatef(this->x*this->cube_size*2,0,this->y*this->cube_size*2);
+		glTranslatef(this->x*this->cube_size*2,this->altura,this->y*this->cube_size*2);
 		//glScalef(0.1,1,1);
 		textura_porta_lado->bind();
 		glBegin(GL_QUADS);			// Start Drawing Quads
@@ -122,7 +123,7 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 	if (this->direction == 1)
 	{
 		glPushMatrix();
-		glTranslatef(this->x*this->cube_size*2,0,this->y*this->cube_size*2);
+		glTranslatef(this->x*this->cube_size*2,this->altura,this->y*this->cube_size*2);
 		//glScalef(1,1,0.1);
 		textura_porta->bind();
 		glBegin(GL_QUADS);			// Start Drawing Quads
