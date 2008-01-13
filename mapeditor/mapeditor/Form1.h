@@ -214,8 +214,8 @@ namespace mapeditor {
 			// listBox4
 			// 
 			this->listBox4->FormattingEnabled = true;
-			this->listBox4->Items->AddRange(gcnew cli::array< System::Object^  >(11) {L"Vida - 15%", L"Vida - 25%", L"Vida - 50%", L"Arma 1", 
-				L"Arma 2", L"Arma 3", L"Municoes", L"Chave 1", L"Chave 2", L"Inicio Jogo", L"Fim Jogo"});
+			this->listBox4->Items->AddRange(gcnew cli::array< System::Object^  >(12) {L"Vida - 15%", L"Vida - 25%", L"Vida - 50%", L"Arma 1", 
+				L"Arma 2", L"Arma 3", L"Municoes", L"Chave 1", L"Chave 2", L"Inicio Jogo", L"Fim Jogo", L"Shield"});
 			this->listBox4->Location = System::Drawing::Point(0, 0);
 			this->listBox4->Name = L"listBox4";
 			this->listBox4->Size = System::Drawing::Size(272, 498);
@@ -832,6 +832,10 @@ private: System::Void pintar_quadrados(System::Windows::Forms::PictureBox^ aqui,
 					case 4011:
 						aqui->BackColor = System::Drawing::Color::FromArgb(96,203,1);
 						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"finish")));
+						break;
+					case 4012:
+						aqui->BackColor = System::Drawing::Color::FromArgb(96,203,1);
+						aqui->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"shield")));
 						break;
 				}
 			}else
