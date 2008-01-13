@@ -249,26 +249,6 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="guardas"
-				>
-				<File
-					RelativePath="..\guard.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\guard.h"
-					>
-				</File>
-				<File
-					RelativePath="..\soldado.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\soldado.h"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="maps"
 				>
 				<File
@@ -287,6 +267,98 @@
 					RelativePath="..\porta.h"
 					>
 				</File>
+				<Filter
+					Name="items"
+					>
+					<File
+						RelativePath="..\items.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\items.h"
+						>
+					</File>
+					<File
+						RelativePath="..\items_ammo.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\items_ammo.h"
+						>
+					</File>
+					<File
+						RelativePath="..\items_armas.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\items_armas.h"
+						>
+					</File>
+					<File
+						RelativePath="..\items_chave.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\items_chave.h"
+						>
+					</File>
+					<File
+						RelativePath="..\items_vida.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\items_vida.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="guardas"
+					>
+					<File
+						RelativePath="..\guard.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\guard.h"
+						>
+					</File>
+					<File
+						RelativePath="..\guard_medium.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\guard_medium.h"
+						>
+					</File>
+					<File
+						RelativePath="..\soldado.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\soldado.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="objectos"
+					>
+					<File
+						RelativePath="..\objectos_decorativos.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\objectos_decorativos.h"
+						>
+					</File>
+					<File
+						RelativePath="..\shared_render_objects.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\shared_render_objects.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="opengl"
@@ -427,26 +499,6 @@
 						>
 					</File>
 				</Filter>
-			</Filter>
-			<Filter
-				Name="items"
-				>
-				<File
-					RelativePath="..\items.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\items.h"
-					>
-				</File>
-				<File
-					RelativePath="..\items_vida.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\items_vida.h"
-					>
-				</File>
 			</Filter>
 		</Filter>
 		<Filter

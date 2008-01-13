@@ -562,7 +562,8 @@ void Map::addPorta(int x, int y, int type1, int direction)
 void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 {
 	GLfloat angulo;
-	
+	Soldado *s;
+	Guard_Medium *s1;
 	// 0 -> E
 	// 90 -> N
 	// 180 -> O
@@ -593,12 +594,12 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	
 	switch(type){
 		case 1: // soldados mais faceis
-			Soldado *s = new Soldado(x*this->cube_size*2,y*this->cube_size*2,movimento,angulo);
+			s = new Soldado(x*this->cube_size*2,y*this->cube_size*2,movimento,angulo);
 			this->guardas.push_back(s);
 			Console::printf("Adicionado guarda facil em %d,%d, mapa: %f %f, angulo: %f, movimento: %d",x,y,y*this->cube_size*2,x*this->cube_size*2,angulo,movimento);
 			break;
 		case 2: // guarda medio
-			Guard_Medium *s1 = new Guard_Medium(x*this->cube_size*2,y*this->cube_size*2,movimento,angulo);
+			s1 = new Guard_Medium(x*this->cube_size*2,y*this->cube_size*2,movimento,angulo);
 			this->guardas.push_back(s1);
 			Console::printf("Adicionado guarda medio em %d,%d, mapa: %f %f, angulo: %f, movimento: %d",x,y,y*this->cube_size*2,x*this->cube_size*2,angulo,movimento);
 			break;
