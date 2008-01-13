@@ -74,7 +74,6 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 		glTranslatef(this->x*this->cube_size*2,0,this->y*this->cube_size*2);
 		//glScalef(0.1,1,1);
 		textura_porta_lado->bind();
-		textura_porta->bind();
 		glBegin(GL_QUADS);			// Start Drawing Quads
 			// Front Face
 			glNormal3f( 0.0f, 0.0f, 1.0f);		// Normal Facing Forward
@@ -88,6 +87,9 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 			glTexCoord2f(0.0f, 1.0f); glVertex3f( this->cube_size,  this->cube_size, -this->cube_size+0.01);	//*2 Top Left Of The Texture and Quad
 			glTexCoord2f(1.0f, 1.0f); glVertex3f(-this->cube_size,  this->cube_size, -this->cube_size+0.01);	//*2 Top Right Of The Texture and Quad
 			glTexCoord2f(1.0f, 0.0f); glVertex3f(-this->cube_size, -this->cube_size, -this->cube_size+0.01);	// Bottom Right Of The Texture and Quad
+		glEnd();
+		textura_porta->bind();
+		glBegin(GL_QUADS);
 			// Top Face
 			glNormal3f( 0.0f, 1.0f, 0.0f);		// Normal Facing Up
 			glTexCoord2f(0.0f, 1.0f); glVertex3f(-this->cube_size/10,  this->cube_size, -this->cube_size);	//*2 Top Left Of The Texture and Quad
@@ -122,7 +124,6 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 		glPushMatrix();
 		glTranslatef(this->x*this->cube_size*2,0,this->y*this->cube_size*2);
 		//glScalef(1,1,0.1);
-		textura_porta_lado->bind();
 		textura_porta->bind();
 		glBegin(GL_QUADS);			// Start Drawing Quads
 			// Front Face
@@ -149,6 +150,9 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 			glTexCoord2f(0.0f, 1.0f); glVertex3f( this->cube_size, -this->cube_size, -this->cube_size/10);	// Top Left Of The Texture and Quad
 			glTexCoord2f(0.0f, 0.0f); glVertex3f( this->cube_size, -this->cube_size,  this->cube_size/10);	// Bottom Left Of The Texture and Quad
 			glTexCoord2f(1.0f, 0.0f); glVertex3f(-this->cube_size, -this->cube_size,  this->cube_size/10);	// Bottom Right Of The Texture and Quad
+		glEnd();
+		textura_porta_lado->bind();
+		glBegin(GL_QUADS);
 			// Right face
 			glNormal3f( 1.0f, 0.0f, 0.0f);		// Normal Facing Right
 			glTexCoord2f(0.0f, 0.0f); glVertex3f( this->cube_size-0.01, -this->cube_size,  this->cube_size);	// Bottom Left Of The Texture and Quad
