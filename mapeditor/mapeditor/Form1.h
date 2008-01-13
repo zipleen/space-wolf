@@ -73,6 +73,8 @@ namespace mapeditor {
 			 System::Boolean floor;
 			 System::Boolean key;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::TabPage^  tab6;
+	private: System::Windows::Forms::ListBox^  listBox6;
 
 
 	protected: 
@@ -102,6 +104,8 @@ namespace mapeditor {
 			this->listBox4 = (gcnew System::Windows::Forms::ListBox());
 			this->tab5 = (gcnew System::Windows::Forms::TabPage());
 			this->listBox5 = (gcnew System::Windows::Forms::ListBox());
+			this->tab6 = (gcnew System::Windows::Forms::TabPage());
+			this->listBox6 = (gcnew System::Windows::Forms::ListBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -118,6 +122,7 @@ namespace mapeditor {
 			this->tab3->SuspendLayout();
 			this->tab4->SuspendLayout();
 			this->tab5->SuspendLayout();
+			this->tab6->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -128,10 +133,11 @@ namespace mapeditor {
 			this->tabControl1->Controls->Add(this->tab3);
 			this->tabControl1->Controls->Add(this->tab4);
 			this->tabControl1->Controls->Add(this->tab5);
+			this->tabControl1->Controls->Add(this->tab6);
 			this->tabControl1->Location = System::Drawing::Point(727, 7);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(253, 527);
+			this->tabControl1->Size = System::Drawing::Size(280, 527);
 			this->tabControl1->TabIndex = 2;
 			// 
 			// tab1
@@ -140,7 +146,7 @@ namespace mapeditor {
 			this->tab1->Location = System::Drawing::Point(4, 22);
 			this->tab1->Name = L"tab1";
 			this->tab1->Padding = System::Windows::Forms::Padding(3);
-			this->tab1->Size = System::Drawing::Size(245, 501);
+			this->tab1->Size = System::Drawing::Size(272, 501);
 			this->tab1->TabIndex = 0;
 			this->tab1->Text = L"Paredes";
 			this->tab1->UseVisualStyleBackColor = true;
@@ -150,7 +156,7 @@ namespace mapeditor {
 			this->listBox1->FormattingEnabled = true;
 			this->listBox1->Location = System::Drawing::Point(0, 0);
 			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(245, 498);
+			this->listBox1->Size = System::Drawing::Size(272, 498);
 			this->listBox1->TabIndex = 0;
 			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox1_SelectedIndexChanged);
 			// 
@@ -160,7 +166,7 @@ namespace mapeditor {
 			this->tab2->Location = System::Drawing::Point(4, 22);
 			this->tab2->Name = L"tab2";
 			this->tab2->Padding = System::Windows::Forms::Padding(3);
-			this->tab2->Size = System::Drawing::Size(245, 501);
+			this->tab2->Size = System::Drawing::Size(272, 501);
 			this->tab2->TabIndex = 1;
 			this->tab2->Text = L"Portas";
 			this->tab2->UseVisualStyleBackColor = true;
@@ -172,7 +178,7 @@ namespace mapeditor {
 				L"Porta Chave 1 Norte-Sul ( | )", L"Porta Chave 1 O-E (--)", L"Porta Chave 2 Norte-Sul ( | )", L"Porta Chave 2 O-E (--)"});
 			this->listBox2->Location = System::Drawing::Point(0, 0);
 			this->listBox2->Name = L"listBox2";
-			this->listBox2->Size = System::Drawing::Size(245, 498);
+			this->listBox2->Size = System::Drawing::Size(272, 498);
 			this->listBox2->TabIndex = 0;
 			this->listBox2->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox2_SelectedIndexChanged);
 			// 
@@ -181,7 +187,7 @@ namespace mapeditor {
 			this->tab3->Controls->Add(this->listBox3);
 			this->tab3->Location = System::Drawing::Point(4, 22);
 			this->tab3->Name = L"tab3";
-			this->tab3->Size = System::Drawing::Size(245, 501);
+			this->tab3->Size = System::Drawing::Size(272, 501);
 			this->tab3->TabIndex = 2;
 			this->tab3->Text = L"Guardas";
 			this->tab3->UseVisualStyleBackColor = true;
@@ -191,7 +197,7 @@ namespace mapeditor {
 			this->listBox3->FormattingEnabled = true;
 			this->listBox3->Location = System::Drawing::Point(0, 0);
 			this->listBox3->Name = L"listBox3";
-			this->listBox3->Size = System::Drawing::Size(245, 498);
+			this->listBox3->Size = System::Drawing::Size(272, 498);
 			this->listBox3->TabIndex = 0;
 			this->listBox3->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox3_SelectedIndexChanged);
 			// 
@@ -200,7 +206,7 @@ namespace mapeditor {
 			this->tab4->Controls->Add(this->listBox4);
 			this->tab4->Location = System::Drawing::Point(4, 22);
 			this->tab4->Name = L"tab4";
-			this->tab4->Size = System::Drawing::Size(245, 501);
+			this->tab4->Size = System::Drawing::Size(272, 501);
 			this->tab4->TabIndex = 3;
 			this->tab4->Text = L"Items";
 			this->tab4->UseVisualStyleBackColor = true;
@@ -212,7 +218,7 @@ namespace mapeditor {
 				L"Arma 2", L"Arma 3", L"Municoes", L"Chave 1", L"Chave 2", L"Inicio Jogo", L"Fim Jogo"});
 			this->listBox4->Location = System::Drawing::Point(0, 0);
 			this->listBox4->Name = L"listBox4";
-			this->listBox4->Size = System::Drawing::Size(245, 498);
+			this->listBox4->Size = System::Drawing::Size(272, 498);
 			this->listBox4->TabIndex = 0;
 			this->listBox4->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox4_SelectedIndexChanged);
 			// 
@@ -221,7 +227,7 @@ namespace mapeditor {
 			this->tab5->Controls->Add(this->listBox5);
 			this->tab5->Location = System::Drawing::Point(4, 22);
 			this->tab5->Name = L"tab5";
-			this->tab5->Size = System::Drawing::Size(245, 501);
+			this->tab5->Size = System::Drawing::Size(272, 501);
 			this->tab5->TabIndex = 4;
 			this->tab5->Text = L"Floor";
 			this->tab5->UseVisualStyleBackColor = true;
@@ -231,9 +237,28 @@ namespace mapeditor {
 			this->listBox5->FormattingEnabled = true;
 			this->listBox5->Location = System::Drawing::Point(0, 0);
 			this->listBox5->Name = L"listBox5";
-			this->listBox5->Size = System::Drawing::Size(245, 498);
+			this->listBox5->Size = System::Drawing::Size(272, 498);
 			this->listBox5->TabIndex = 0;
 			this->listBox5->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox5_SelectedIndexChanged);
+			// 
+			// tab6
+			// 
+			this->tab6->Controls->Add(this->listBox6);
+			this->tab6->Location = System::Drawing::Point(4, 22);
+			this->tab6->Name = L"tab6";
+			this->tab6->Size = System::Drawing::Size(272, 501);
+			this->tab6->TabIndex = 5;
+			this->tab6->Text = L"Objects";
+			this->tab6->UseVisualStyleBackColor = true;
+			// 
+			// listBox6
+			// 
+			this->listBox6->FormattingEnabled = true;
+			this->listBox6->Location = System::Drawing::Point(0, 0);
+			this->listBox6->Name = L"listBox6";
+			this->listBox6->Size = System::Drawing::Size(272, 511);
+			this->listBox6->TabIndex = 0;
+			this->listBox6->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox6_SelectedIndexChanged);
 			// 
 			// label1
 			// 
@@ -341,7 +366,7 @@ namespace mapeditor {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(992, 738);
+			this->ClientSize = System::Drawing::Size(1007, 731);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button3);
@@ -361,6 +386,7 @@ namespace mapeditor {
 			this->tab3->ResumeLayout(false);
 			this->tab4->ResumeLayout(false);
 			this->tab5->ResumeLayout(false);
+			this->tab6->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -562,6 +588,44 @@ private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e)
 			{
 				Console::WriteLine("Exception: {0}",e->Message);
 			}
+			// ------------------- LER OBJECTOS ------------------
+
+			try 
+			{
+				//Pass the file path and file name to the StreamReader constructor.
+	#ifdef _DEBUG
+				System::IO::StreamReader^ sr = gcnew System::IO::StreamReader(System::IO::File::OpenRead("..\\..\\data\\models\\objects\\objects.def"));
+	#else
+				System::IO::StreamReader^ sr = gcnew System::IO::StreamReader(System::IO::File::OpenRead("..\\data\\models\\objects\\objects.def"));
+	#endif
+				//Read the first line of text.
+				//line = sr->ReadLine();
+
+				//Continue to read until you reach end of file.
+				while (!sr->EndOfStream) 
+				{
+					//Write the lie to console window.
+					//Console::WriteLine(line);
+					//Read the next line.
+					line = sr->ReadLine();
+					array<String^>^ a = line->Split(',');
+					line =line->Remove(0,line->IndexOf(',')+1);
+					line =line->Remove(0,line->IndexOf(',')+1);
+					line =line->Remove(0,line->IndexOf(',')+1);
+					line =line->Remove(0,line->IndexOf(',')+1);
+					line =line->Remove(0,line->IndexOf(',')+1);
+					line =line->Remove(0,line->IndexOf(',')+1);
+					this->listBox6->Items->Add(line+" ("+a[0]+")");
+				}
+
+				//Close the file.
+				sr->Close();
+			}
+			catch(Exception^ e)
+			{
+				Console::WriteLine("Exception: {0}",e->Message);
+			}
+
 			codigo_a_por=0;
 			floorcodigo_a_por=0;
 			for(int i=0;i<64;i++){
@@ -597,6 +661,7 @@ private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, Sys
 			 this->listBox2->ClearSelected();
 			 this->listBox3->ClearSelected();
 			 this->listBox4->ClearSelected();
+			 this->listBox6->ClearSelected();
 		 }
 private: System::Void listBox2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 			 // portas
@@ -605,6 +670,7 @@ private: System::Void listBox2_SelectedIndexChanged(System::Object^  sender, Sys
 			 this->listBox1->ClearSelected();
 			 this->listBox3->ClearSelected();
 			 this->listBox4->ClearSelected();
+			 this->listBox6->ClearSelected();
 		 }
 private: System::Void listBox3_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 			 // guardas
@@ -613,6 +679,7 @@ private: System::Void listBox3_SelectedIndexChanged(System::Object^  sender, Sys
 			 this->listBox2->ClearSelected();
 			 this->listBox1->ClearSelected();
 			 this->listBox4->ClearSelected();
+			 this->listBox6->ClearSelected();
 		 }
 private: System::Void listBox4_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 			 // items
@@ -621,6 +688,7 @@ private: System::Void listBox4_SelectedIndexChanged(System::Object^  sender, Sys
 			 this->listBox2->ClearSelected();
 			 this->listBox3->ClearSelected();
 			 this->listBox1->ClearSelected();
+			 this->listBox6->ClearSelected();
 		 }
 private: System::Void listBox5_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 			 // floorcodes
@@ -818,7 +886,13 @@ private: System::Void pintar_quadrados(System::Windows::Forms::PictureBox^ aqui,
 						}
 					}
 					this->label1->Text = "SAVE: Guarda:" + this->listBox3->Items[cor-2000-1];
-				}else if(cor==0){
+				}else if(cor>5000 && cor<6000){
+				// objects
+			    aqui->Image = nullptr ;
+				aqui->BackColor = System::Drawing::Color::FromArgb(cor*cor*5%255,100,cor*cor*5%255);
+				this->label1->Text = "SAVE: Objectos:" + this->listBox6->Items[cor-5000-1];
+
+			 }else if(cor==0){
 					aqui->BackColor = System::Drawing::Color::Gray;
 					aqui->Image = nullptr ;
 					this->label1->Text = "SAVE: Sem nada";
@@ -928,6 +1002,13 @@ private: System::Void code_MouseMove(System::Object^  sender, System::Windows::F
 						this->label1->Text = "Sem nada";
 					}
 				else
+					if(codemap[x-1][y-1]>5000 && codemap[x-1][y-1]<6000){
+					// guardas
+						this->label1->Text = "Objecto ("+(x-1)+","+(y-1)+"): " + this->listBox6->Items[codemap[x-1][y-1]-5000-1];
+					}else if(codemap[x-1][y-1]==0){
+						this->label1->Text = "Sem nada";
+					}
+				else
 					this->label1->Text = "WTF?! nao pode ser.. falta codigo ("+(x-1)+","+(y-1)+"): "+codemap[x-1][y-1];
 				
 			}
@@ -971,6 +1052,15 @@ private: System::Void pictureBox2_MouseDown(System::Object^  sender, System::Eve
 				 this->ChangeFloorColor(sender, e);
 		 }
 
+private: System::Void listBox6_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+			// objectos
+			 System::Windows::Forms::ListBox^  t = static_cast<System::Windows::Forms::ListBox^>(sender);
+			 codigo_a_por = t->SelectedIndex + 5001;
+			 this->listBox2->ClearSelected();
+			 this->listBox3->ClearSelected();
+			 this->listBox1->ClearSelected();
+			 this->listBox4->ClearSelected();
+		 }
 };
 }
 
