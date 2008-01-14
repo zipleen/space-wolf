@@ -24,6 +24,10 @@
 #include "guard.h"
 #include "soldado.h" // guarda 1
 #include "guard_medium.h" // guarda 2
+#include "guarda_intermedio.h"
+#include "guarda_dificil.h"
+#include "guard_robo.h"
+#include "boss1.h"
 
 // items
 #include "items.h"
@@ -31,6 +35,7 @@
 #include "items_chave.h"
 #include "items_armas.h"
 #include "items_ammo.h"
+#include "items_armor.h"
 
 #include "porta.h"
 #include "objectos_decorativos.h"

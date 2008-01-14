@@ -15,37 +15,37 @@ Items_Vida::Items_Vida(GLfloat x,GLfloat y,int valor)
 	switch(valor){
 		case 15:
 		#ifdef WIN32
-			this->item_path="data\\models\\items\\life\\key.md3";
+			this->item_path="data\\models\\items\\life\\small_cross.md3";
 			this->item_skin_path="data\\models\\items\\life\\gold.tga";
 		#else
-			this->item_path="data/models/items/life/key.md3";
+			this->item_path="data/models/items/life/small_cross.md3";
 			this->item_skin_path="data/models/items/life/gold.tga";
 		#endif
 			this->item_code = 4001;
-			this->mesh_name = "key";		
+			this->mesh_name = "";		
 			break;
 		case 25:
 		#ifdef WIN32
-			this->item_path="data\\models\\items\\life\\key.md3";
+			this->item_path="data\\models\\items\\life\\medium_cross.md3";
 			this->item_skin_path="data\\models\\items\\life\\gold.tga";
 		#else
-			this->item_path="data/models/items/life/key.md3";
+			this->item_path="data/models/items/life/medium_cross.md3";
 			this->item_skin_path="data/models/items/life/gold.tga";
 		#endif
 			this->item_code = 4002;
-			this->mesh_name = "key";		
+			this->mesh_name = "";		
 			break;		
 			break;
 		case 50:
 		#ifdef WIN32
-			this->item_path="data\\models\\items\\life\\key.md3";
+			this->item_path="data\\models\\items\\life\\large_cross.md3";
 			this->item_skin_path="data\\models\\items\\life\\gold.tga";
 		#else
-			this->item_path="data/models/items/life/key.md3";
+			this->item_path="data/models/items/life/large_cross.md3";
 			this->item_skin_path="data/models/items/life/gold.tga";
 		#endif
 			this->item_code = 4003;
-			this->mesh_name = "key";		
+			this->mesh_name = "";		
 			break;			
 			break;
 	

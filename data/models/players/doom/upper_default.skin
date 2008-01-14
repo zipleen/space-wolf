@@ -1,6 +1,6 @@
 tag_head,
 tag_weapon,
-u_torso,models/players/doom/doom.tga
-u_larm,models/players/doom/doom.tga
-u_rarm,models/players/doom/doom.tga
+u_torso,models/players/doom/omega.jpg
+u_larm,models/players/doom/omega.jpg
+u_rarm,models/players/doom/omega.jpg
 tag_torso,

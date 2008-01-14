@@ -30,6 +30,11 @@
 		AAA5B2780D38FAC1006F1D6E /* items_armas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA5B2770D38FAC1006F1D6E /* items_armas.cpp */; };
 		AAA5B27B0D38FAD6006F1D6E /* items_chave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA5B27A0D38FAD6006F1D6E /* items_chave.cpp */; };
 		AAA5B3590D39236D006F1D6E /* objectos_decorativos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA5B3580D39236D006F1D6E /* objectos_decorativos.cpp */; };
+		AAAE245A0D3C003E0013FB8E /* items_armor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAE24590D3C003E0013FB8E /* items_armor.cpp */; };
+		AAAE24E90D3C0D250013FB8E /* guarda_intermedio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAE24E80D3C0D250013FB8E /* guarda_intermedio.cpp */; };
+		AAAE24EC0D3C0D320013FB8E /* guarda_dificil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAE24EB0D3C0D320013FB8E /* guarda_dificil.cpp */; };
+		AAAE24EF0D3C0D490013FB8E /* boss1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAE24EE0D3C0D490013FB8E /* boss1.cpp */; };
+		AAAE24F20D3C10F40013FB8E /* guard_robo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAE24F10D3C10F40013FB8E /* guard_robo.cpp */; };
 		AAB2E5410D2AD3E400B65B5E /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2E5400D2AD3E400B65B5E /* libGLEW.a */; };
 		AABE74580D26CC2D00A3AA8B /* Mathlib.inl in Resources */ = {isa = PBXBuildFile; fileRef = AABE744C0D26CC2D00A3AA8B /* Mathlib.inl */; };
 		AABE74590D26CC2D00A3AA8B /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE744F0D26CC2D00A3AA8B /* Texture.cpp */; };
@@ -111,6 +116,16 @@
 		AAA5B27A0D38FAD6006F1D6E /* items_chave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = items_chave.cpp; path = ../items_chave.cpp; sourceTree = SOURCE_ROOT; };
 		AAA5B3570D39236D006F1D6E /* objectos_decorativos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = objectos_decorativos.h; path = ../objectos_decorativos.h; sourceTree = SOURCE_ROOT; };
 		AAA5B3580D39236D006F1D6E /* objectos_decorativos.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = objectos_decorativos.cpp; path = ../objectos_decorativos.cpp; sourceTree = SOURCE_ROOT; };
+		AAAE24580D3C003E0013FB8E /* items_armor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = items_armor.h; path = ../items_armor.h; sourceTree = SOURCE_ROOT; };
+		AAAE24590D3C003E0013FB8E /* items_armor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = items_armor.cpp; path = ../items_armor.cpp; sourceTree = SOURCE_ROOT; };
+		AAAE24E70D3C0D250013FB8E /* guarda_intermedio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = guarda_intermedio.h; path = ../guarda_intermedio.h; sourceTree = SOURCE_ROOT; };
+		AAAE24E80D3C0D250013FB8E /* guarda_intermedio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = guarda_intermedio.cpp; path = ../guarda_intermedio.cpp; sourceTree = SOURCE_ROOT; };
+		AAAE24EA0D3C0D320013FB8E /* guarda_dificil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = guarda_dificil.h; path = ../guarda_dificil.h; sourceTree = SOURCE_ROOT; };
+		AAAE24EB0D3C0D320013FB8E /* guarda_dificil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = guarda_dificil.cpp; path = ../guarda_dificil.cpp; sourceTree = SOURCE_ROOT; };
+		AAAE24ED0D3C0D490013FB8E /* boss1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = boss1.h; path = ../boss1.h; sourceTree = SOURCE_ROOT; };
+		AAAE24EE0D3C0D490013FB8E /* boss1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = boss1.cpp; path = ../boss1.cpp; sourceTree = SOURCE_ROOT; };
+		AAAE24F00D3C10F40013FB8E /* guard_robo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = guard_robo.h; path = ../guard_robo.h; sourceTree = SOURCE_ROOT; };
+		AAAE24F10D3C10F40013FB8E /* guard_robo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = guard_robo.cpp; path = ../guard_robo.cpp; sourceTree = SOURCE_ROOT; };
 		AAB2E5400D2AD3E400B65B5E /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = lib/libGLEW.a; sourceTree = "<group>"; };
 		AABE744B0D26CC2D00A3AA8B /* Md3Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Md3Model.h; path = ../md3/Md3Model.h; sourceTree = SOURCE_ROOT; };
 		AABE744C0D26CC2D00A3AA8B /* Mathlib.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Mathlib.inl; path = ../md3/Mathlib.inl; sourceTree = SOURCE_ROOT; };
@@ -304,6 +319,14 @@
 				AA08848C0D27F58F00D7793D /* soldado.h */,
 				AA984AF30D381EC0000B2837 /* guard_medium.cpp */,
 				AA984AF20D381EC0000B2837 /* guard_medium.h */,
+				AAAE24E80D3C0D250013FB8E /* guarda_intermedio.cpp */,
+				AAAE24E70D3C0D250013FB8E /* guarda_intermedio.h */,
+				AAAE24EB0D3C0D320013FB8E /* guarda_dificil.cpp */,
+				AAAE24EA0D3C0D320013FB8E /* guarda_dificil.h */,
+				AAAE24F10D3C10F40013FB8E /* guard_robo.cpp */,
+				AAAE24F00D3C10F40013FB8E /* guard_robo.h */,
+				AAAE24EE0D3C0D490013FB8E /* boss1.cpp */,
+				AAAE24ED0D3C0D490013FB8E /* boss1.h */,
 			);
 			name = guardas;
 			sourceTree = "<group>";
@@ -419,6 +442,8 @@
 				AAA5B2760D38FAC1006F1D6E /* items_armas.h */,
 				AAA5B27A0D38FAD6006F1D6E /* items_chave.cpp */,
 				AAA5B2790D38FAD6006F1D6E /* items_chave.h */,
+				AAAE24590D3C003E0013FB8E /* items_armor.cpp */,
+				AAAE24580D3C003E0013FB8E /* items_armor.h */,
 			);
 			name = items;
 			sourceTree = "<group>";
@@ -513,6 +538,11 @@
 				AAA5B2780D38FAC1006F1D6E /* items_armas.cpp in Sources */,
 				AAA5B27B0D38FAD6006F1D6E /* items_chave.cpp in Sources */,
 				AAA5B3590D39236D006F1D6E /* objectos_decorativos.cpp in Sources */,
+				AAAE245A0D3C003E0013FB8E /* items_armor.cpp in Sources */,
+				AAAE24E90D3C0D250013FB8E /* guarda_intermedio.cpp in Sources */,
+				AAAE24EC0D3C0D320013FB8E /* guarda_dificil.cpp in Sources */,
+				AAAE24EF0D3C0D490013FB8E /* boss1.cpp in Sources */,
+				AAAE24F20D3C10F40013FB8E /* guard_robo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -533,6 +533,7 @@ void Map::addItems(int x, int y, int type)
 	Items_Armas *a;
 	Items_Ammo *am;
 	Items_Chave *c;
+	Items_Armor *aa;
 	
 	switch(type){
 		case 1:
@@ -580,6 +581,11 @@ void Map::addItems(int x, int y, int type)
 			c = new Items_Chave(x*this->cube_size*2,y*this->cube_size*2,2);
 			this->items.push_back(c);
 			break;
+		case 10:
+			// armor
+			aa = new Items_Armor(x*this->cube_size*2, y*this->cube_size*2,100);
+			this->items.push_back(aa);
+			break;
 	}
 
 }
@@ -598,6 +604,10 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	GLfloat angulo;
 	Soldado *s;
 	Guard_Medium *s1;
+	Guard_Intermedio *s2;
+	Guard_Dificil *s3;
+	Guard_Robo *s4;
+	Guard_Boss1 *b1;
 	// 0 -> E
 	// 90 -> N
 	// 180 -> O
@@ -637,6 +647,27 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 			this->guardas.push_back(s1);
 			Console::printf("Adicionado guarda medio em %d,%d, mapa: %f %f, angulo: %f, movimento: %d",x,y,y*this->cube_size*2,x*this->cube_size*2,angulo,movimento);
 			break;
+		case 3: // guarda intermedio
+			s2 = new Guard_Intermedio(x*this->cube_size*2,y*this->cube_size*2,movimento,angulo);
+			this->guardas.push_back(s2);
+			Console::printf("Adicionado guarda intermedio em %d,%d, mapa: %f %f, angulo: %f, movimento: %d",x,y,y*this->cube_size*2,x*this->cube_size*2,angulo,movimento);
+			break;
+		case 4: // guarda dificil
+			s3 = new Guard_Dificil(x*this->cube_size*2,y*this->cube_size*2,movimento,angulo);
+			this->guardas.push_back(s3);
+			Console::printf("Adicionado guarda dificil em %d,%d, mapa: %f %f, angulo: %f, movimento: %d",x,y,y*this->cube_size*2,x*this->cube_size*2,angulo,movimento);
+			break;
+		case 5: // guarda robo
+			s4 = new Guard_Robo(x*this->cube_size*2,y*this->cube_size*2,movimento,angulo);
+			this->guardas.push_back(s4);
+			Console::printf("Adicionado boss1 em %d,%d, mapa: %f %f, angulo: %f, movimento: %d",x,y,y*this->cube_size*2,x*this->cube_size*2,angulo,movimento);
+			break;
+		case 6: // guarda robo
+			b1 = new Guard_Boss1(x*this->cube_size*2,y*this->cube_size*2,movimento,angulo);
+			this->guardas.push_back(b1);
+			Console::printf("Adicionado boss1 em %d,%d, mapa: %f %f, angulo: %f, movimento: %d",x,y,y*this->cube_size*2,x*this->cube_size*2,angulo,movimento);
+			break;
+			
 	}
 }
 
@@ -775,6 +806,9 @@ bool Map::loadMap(std::string file, Player *player)
 						this->fim_mapa_x = i;
 						this->fim_mapa_y = e;
 						break;
+					case 4012:
+						this->addItems(i,e,10);
+						break;
 					default:
 						Console::printf("Nao entendo este codigo de mapa item: %d",codigos_mapa[e]);
 						break;
@@ -784,7 +818,7 @@ bool Map::loadMap(std::string file, Player *player)
 					// guardas
 					// addGuard(int x, int y, int type, int direction, bool movimento)
 					switch(codigos_mapa[e]){
-						// guarda 1
+						// guarda 1 - soldado
 						case 2001:
 							// Norte / parado
 							this->addGuard(i, e, 1, 1, false );
@@ -818,7 +852,7 @@ bool Map::loadMap(std::string file, Player *player)
 							this->addGuard(i, e, 1, 4, true );
 							break;
 							
-						// guarda 2
+						// guarda 2 - medium
 						case 2009:
 							// Norte / parado
 							this->addGuard(i, e, 2, 1, false );
@@ -852,7 +886,7 @@ bool Map::loadMap(std::string file, Player *player)
 							this->addGuard(i, e, 2, 4, true );
 							break;	
 							
-						// guarda 3
+						// guarda 3 - intermedio
 						case 2017:
 							// Norte / parado
 							this->addGuard(i, e, 3, 1, false );
@@ -886,7 +920,7 @@ bool Map::loadMap(std::string file, Player *player)
 							this->addGuard(i, e, 3, 4, true );
 							break;
 							
-						// guarda 4
+						// guarda 4 - dificil
 						case 2025:
 							// Norte / parado
 							this->addGuard(i, e, 4, 1, false );
@@ -920,7 +954,7 @@ bool Map::loadMap(std::string file, Player *player)
 							this->addGuard(i, e, 4, 4, true );
 							break;	
 						
-						// guarda 1
+						// guarda 5 - robo
 						case 2041:
 							// Norte / parado
 							this->addGuard(i, e, 5, 1, false );
@@ -953,7 +987,11 @@ bool Map::loadMap(std::string file, Player *player)
 							// Oeste / mover-se
 							this->addGuard(i, e, 5, 4, true );
 							break;	
-									
+						case 2049:
+							// boss1
+							this->addGuard(i, e, 6, 1, false);
+							break;
+							
 						// direccoes dos guardas -> adicionar no mapa
 						case 2033:
 							to_go=false;

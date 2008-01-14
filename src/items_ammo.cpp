@@ -13,11 +13,11 @@ Items_Ammo::Items_Ammo(GLfloat x,GLfloat y,int valor)
 {
 	Items();
 #ifdef WIN32
-	this->item_path="data\\models\\items\\key\\key.md3";
-	this->item_skin_path="data\\models\\items\\key\\red.tga";
+	this->item_path="data\\models\\items\\ammo\\ammo.md3";
+	this->item_skin_path="data\\models\\items\\ammo\\ammo.tga";
 #else
-	this->item_path="data/models/items/key/key.md3";
-	this->item_skin_path="data/models/items/key/red.tga";
+	this->item_path="data/models/items/ammo/ammo.md3";
+	this->item_skin_path="data/models/items/ammo/ammo.tga";
 #endif
 	this->item_code = 4007;
 	this->mesh_name = "key";
