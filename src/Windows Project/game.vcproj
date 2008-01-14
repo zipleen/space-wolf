@@ -295,6 +295,14 @@
 						>
 					</File>
 					<File
+						RelativePath="..\items_armor.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\items_armor.h"
+						>
+					</File>
+					<File
 						RelativePath="..\items_chave.cpp"
 						>
 					</File>
@@ -315,6 +323,14 @@
 					Name="guardas"
 					>
 					<File
+						RelativePath="..\boss1.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\boss1.h"
+						>
+					</File>
+					<File
 						RelativePath="..\guard.cpp"
 						>
 					</File>
@@ -328,6 +344,30 @@
 					</File>
 					<File
 						RelativePath="..\guard_medium.h"
+						>
+					</File>
+					<File
+						RelativePath="..\guard_robo.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\guard_robo.h"
+						>
+					</File>
+					<File
+						RelativePath="..\guarda_dificil.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\guarda_dificil.h"
+						>
+					</File>
+					<File
+						RelativePath="..\guarda_intermedio.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\guarda_intermedio.h"
 						>
 					</File>
 					<File
