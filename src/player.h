@@ -12,6 +12,7 @@
 
 #include "md3/Md3Player.h"
 #include "fisica.h"
+#include "md3/Mathlib.h"
 
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795
@@ -39,15 +40,23 @@ public:
 	Md3Player *player;
 	GLfloat x_inicial, z_inicial;
 	
+	double dt_cur;
+	double ultimo_andar;
+	double old_ultimo_andar;
+	double ultimo_disparo;
+	
 public:
 	GLfloat x,y,z;
 	GLfloat angulo;
+	GLfloat old_x, old_y, old_z;
+	GLfloat old_angulo;
 	
 	Player(); 
 	virtual ~Player(){};
 	void resetPlayer();
 
 	void draw();
+	void updateAnimation(double dt);
 	void setInitialPosition(int x, int y); // posicao do mapa inicial
 	
 	void SetAndar();
@@ -58,11 +67,15 @@ public:
 	
 	// accoes efectuadas pelos items
 	void giveHealth(int valor);
+	void giveArmadura(int valor);
 	void giveBullets(int valor);
 	void giveChave(int tipo);
 	void giveArmas(int tipo);
 	
 	// controlos direccao
+	void saveValues();
+	void calculateSpeed();
+	float MoveTest();
 	void GoBack();
 	void GoFront();
 	void GoStraffLeft();

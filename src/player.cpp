@@ -33,6 +33,9 @@ void Player::setInitialPosition(int x, int y)
 	this->x = y;
 	this->z = x;
 	this->y = 0;
+	this->old_x = this->x;
+	this->old_y = this->y;
+	this->old_z = this->z;
 }
 
 void Player::SetCorrer()
@@ -42,17 +45,17 @@ void Player::SetCorrer()
 
 void Player::SetAndar()
 {
-	this->velocidade = 1.9;
+	this->velocidade = 1.0;
 }
 
 void Player::resetPlayer()
 {
 	this->vida = 100;
+	this->armadura = 0;
 	this->chave_amarela = false;
 	this->chave_vermelha = false;
 	this->balas = 8;
-	this->x = this->x_inicial;
-	this->z = this->z_inicial;
+	this->setInitialPosition(this->z_inicial, this->x_inicial);
 	this->morto = false;
 	this->angulo = 0;
 	this->arma_em_uso = 1; // ha 3 armas, cada uma dispensa balas mais rapido que a outra e tem mais "forca"
@@ -61,7 +64,15 @@ void Player::resetPlayer()
 // accoes provocadas por outros actores
 void Player::takeHealth(int valor)
 {
-	this->vida-=valor;
+	if(this->armadura>0){
+		// vamos tirar armadura
+		if(this->armadura<valor){
+			this->armadura=0;
+			this->vida-=(valor-this->armadura);
+		}else
+			this->armadura-=valor;
+	}else
+		this->vida-=valor;
 	if(this->vida<=0){
 		this->vida=0;
 		this->morto=true;
@@ -74,6 +85,13 @@ void Player::giveHealth(int valor)
 	this->vida+=valor;
 	if(this->vida>100)
 		this->vida=100;
+}
+
+void Player::giveArmadura(int valor)
+{
+	this->armadura+=valor;
+	if(this->armadura>100)
+		this->armadura=100;
 }
 
 void Player::giveBullets(int valor)
@@ -108,63 +126,134 @@ void Player::giveArmas(int tipo)
 	}
 }
 
+
+/* movimentos */
+
+void Player::updateAnimation(double dt_cur)
+{
+	this->dt_cur = dt_cur;
+}
+
+float Player::MoveTest()
+{
+	if(this->dt_cur+0.01>this->ultimo_andar){
+		// temos de ver se ele ja andou mais do que devia
+		double dt_menos = this->dt_cur-this->ultimo_andar;
+		this->old_ultimo_andar = this->ultimo_andar;
+		this->ultimo_andar = this->dt_cur;
+		if(dt_menos>0.1)
+			return 1+dt_menos;
+		else return 1;
+	 }else return 0;
+}
+
+void Player::saveValues()
+{
+	this->old_z = this->z;
+	this->old_y = this->y;
+	this->old_x = this->x;
+	this->old_angulo = this->angulo;
+}
+
+void Player::calculateSpeed()
+{
+	if((this->dt_cur-this->old_ultimo_andar)==0)
+		return;
+	double dist = sqrt( pow((this->x - this->old_x),2)+pow((this->y-this->old_y),2)+pow((this->z-this->old_z),2) );
+	std::cout << dist / (this->dt_cur-this->old_ultimo_andar) << std::endl;
+}
+
 void Player::GoStraffLeft()
 {
 	GLfloat nx,nz;
-	nx=this->x+sin(-RAD(this->angulo+270))*this->velocidade;
-	nz=this->z+cos(RAD(this->angulo+270))*this->velocidade;
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	nx=this->x+sin(-RAD(this->angulo+270))*(this->velocidade*2/3)*move;
+	nz=this->z+cos(RAD(this->angulo+270))*(this->velocidade*2/3)*move;
 
 	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
+		
+		this->saveValues();
 		this->z = nz;
 		this->x = nx;
+		Player::calculateSpeed();
 	}
 }
 
 void Player::GoStraffRight()
 {
 	GLfloat nx,nz;
-	nx=this->x+sin(-RAD(this->angulo+90))*this->velocidade;
-	nz=this->z+cos(RAD(this->angulo+90))*this->velocidade;
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	nx=this->x+sin(-RAD(this->angulo+90))*(this->velocidade*2/3)*move;
+	nz=this->z+cos(RAD(this->angulo+90))*(this->velocidade*2/3)*move;
 	
 	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
+		
+		this->saveValues();
 		this->z = nz;
 		this->x = nx;
+		Player::calculateSpeed();
 	}
 }
 
 void Player::GoFront()
 {
-	// nao esquecer que estes valores tem de ir pelo objecto de fisica
-	
 	GLfloat nx,nz;
-	nx=this->x+sin(-RAD(this->angulo))*this->velocidade;
-	nz=this->z+cos(RAD(this->angulo))*this->velocidade;
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	nx=this->x+sin(-RAD(this->angulo))*this->velocidade*move;
+	nz=this->z+cos(RAD(this->angulo))*this->velocidade*move;
 	
 	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
+		
+		this->saveValues();
 		this->z = nz;
 		this->x = nx;
+		Player::calculateSpeed();
 	}
 }
 
 void Player::GoBack()
 {
 	GLfloat nx,nz;
-	nx=this->x-sin(-RAD(this->angulo))*this->velocidade;
-	nz=this->z-cos(RAD(this->angulo))*this->velocidade;
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	nx=this->x-sin(-RAD(this->angulo))*this->velocidade*move;
+	nz=this->z-cos(RAD(this->angulo))*this->velocidade*move;
 	
 	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
+		
+		this->saveValues();
 		this->z = nz;
 		this->x = nx;
+		Player::calculateSpeed();
 	}
 }
 
 void Player::GoTurnRight()
 {
-	this->angulo+=2;
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	this->angulo+=3;
 }
 
 void Player::GoTurnLeft()
 {
-	this->angulo-=2;
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	this->angulo-=3;
 }
 

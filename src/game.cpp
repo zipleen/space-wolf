@@ -79,7 +79,7 @@ void Game::MainLoop()
 			// animacoes , dois tempos, o delta e o tempo corrente
 			this->map->updateAnimations(dt,this->render->timer.current_time);
 			// player anim?
-			// this->player->updateAnimation(dt);
+			this->player->updateAnimation(this->render->timer.current_time);
 
 			// game cycle
 			this->render->gameCycle (this->map, this->player);
