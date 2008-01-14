@@ -445,7 +445,7 @@ void Map::drawEverything()
 	this->drawItems();
 }
 
-void Map::addObject(int x, int y, int code){
+void Map::addObject(int x, int y, int code, std::vector<std::vector <bool> > &fisica){
 	// isto poderia nao passar a vida a abrir e fechar o ficheiro de texto mas depois tinha de ter tudo em memoria...
 	// mais rapido assim
 	std::string line;
@@ -481,6 +481,7 @@ void Map::addObject(int x, int y, int code){
 					impede=true;
 				else 
 					impede=false;
+				fisica[x][y]=impede;
 				Shared_render_objects::Md3ModelPtr model_object = Shared_render_objects::find_or_insert(num, t[1], t[2], t[3]);
 				Objectos_decorativos *o= new Objectos_decorativos(model_object,y*this->cube_size*2,y_to_go-this->cube_size,x*this->cube_size*2,code,impede);
 				this->objectos.push_back(o);
@@ -628,10 +629,12 @@ bool Map::loadMap(std::string file, Player *player)
 	
 	// portas para a fisica, vamos por tudo a 0, as portas tem de falar ah fisica para actualizar o seu estado
 	std::vector<std::vector <bool> > to_fisica_portas(this->tamanho_mapa,this->tamanho_mapa);
+	std::vector<std::vector <bool> > to_fisica_objectos(this->tamanho_mapa,this->tamanho_mapa);
 	for(int i=0; i<to_fisica_portas.size(); i++)
-		for(int e=0; e<to_fisica_portas.size(); e++)
+		for(int e=0; e<to_fisica_portas.size(); e++){
 			to_fisica_portas[i][e] = true;
-	
+			to_fisica_objectos[i][e] = false;
+		}
 	std::getline (ifs, linha);
 	boost::char_separator<char> sep(",");
     for(i=0; i<this->tamanho_mapa; i++)
@@ -961,7 +964,7 @@ bool Map::loadMap(std::string file, Player *player)
 			}else 
 				if(codigos_mapa[e]>5000 && codigos_mapa[e]<6000){
 					// objectos decorativos para o mapa
-					this->addObject(i,e,codigos_mapa[e]);
+					this->addObject(i,e,codigos_mapa[e],to_fisica_objectos);
 				}else if(codigos_mapa[e]==0){
 					// 0 -> sem nada
 					linha_para_ir.push_back(codigos_mapa[e]);	
@@ -990,8 +993,8 @@ bool Map::loadMap(std::string file, Player *player)
 	// we're done
 	// necessitamos de fornecer ah fisica as posicoes onde nos nao podemos avancar ate..
 	// para isso vamos criar um vector de vector de booleanos que dizem que podemos ir ou nao podemos ir
-	// percorremos o mapa e os objectos
-	// falta as posicoes dos guardas e posicoes das portas (se tao abertas ou nao)
+	// percorremos o mapa. objectos agora sao calculados num vector ah parte e adicionados aqui ao vector que vai pra fisica
+	// os guardas and such temos de por os guardas a actualizarem o seu estado para o vector de fisica....
 	std::vector<std::vector <bool> > to_fisica(this->tamanho_mapa,this->tamanho_mapa);
 	for(int i=0; i<this->map.size(); i++)
 	{
@@ -1000,14 +1003,13 @@ bool Map::loadMap(std::string file, Player *player)
 		{
 			if(this->map[i][e]>1000 && this->map[i][e]<2000)
 				to_fisica[i][e]=true;
-			else to_fisica[i][e]=false;
+			else {
+				if(to_fisica_objectos[i][e])
+					to_fisica[i][e]=true;
+				else
+					to_fisica[i][e]=false;
+			}
 		}
-	}
-	// verificar os items que podem impedir a fisica
-	for(int i=0; i<this->objectos.size(); i++)
-	{
-		if(this->objectos[i]->impede_passagem)
-			to_fisica[i][e]=true;
 	}
 	Fisica::setMap(to_fisica,this->cube_size);
 	Fisica::setPortas(to_fisica_portas);

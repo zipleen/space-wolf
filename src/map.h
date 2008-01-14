@@ -106,7 +106,7 @@ public:
 	void addItems(int x, int y, int type);
 	void addGuard(int x, int y, int type, int direction, bool movimento);
 	void addPorta(int x, int y, int type, int direction);
-	void addObject(int x, int y, int code);
+	void addObject(int x, int y, int code, std::vector<std::vector <bool> > &a);
 	
 	// desenhar mapas
 	void drawGuards();
