@@ -26,9 +26,6 @@
 #include "md3/Md3Model.h"
 #include "md3/TextureManager.h"
 
-
-
-
 class Shared_render_objects
 {
 	public:

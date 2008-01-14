@@ -48,6 +48,7 @@
 #include "camera/glCamera.h"
 #include "font/Font.h"
 #include "md3/Md3Player.h"
+#include "hud.h"
 
 GLenum checkOpenGLErrors (const char *file, int line);
 

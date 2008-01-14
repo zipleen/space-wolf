@@ -18,6 +18,7 @@ Game::Game(char *map_name)
 	this->map->loadMap(map_name, this->player);
 	if(this->render->useTextures())
 		this->map->loadTextures();
+	Hud::initHud();
 }
 
 void Game::MainLoop()

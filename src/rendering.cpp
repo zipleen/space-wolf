@@ -353,7 +353,6 @@ void Rendering::drawAxes ()
 
 void Rendering::draw2D(Player *p)
 {
-		
 	begin2D ();
 	
 	// Reset texture matrix
@@ -369,7 +368,6 @@ void Rendering::draw2D(Player *p)
 	
 	// desenhar o hud do player ( vida, balas, etc do player)
 	
-	
 	// White text
 	glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 	
@@ -383,7 +381,7 @@ void Rendering::draw2D(Player *p)
 #endif
 	
 	glPopAttrib ();
-	
+	Hud::drawHud(p);
 	end2D ();
 	
 }

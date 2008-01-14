@@ -12,6 +12,7 @@
 Player::Player()
 {
 	this->vida = 100;
+	this->armadura = 0;
 	this->pontos = 0;
 	this->x = this->y = this->z = this->x_inicial = this->z_inicial = 0;
 	this->resetPlayer();

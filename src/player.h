@@ -27,6 +27,7 @@ public:
 	bool morto;
 	int vida;
 	int balas;
+	int armadura;
 	bool chave_amarela;
 	bool chave_vermelha;
 	bool arma2;
