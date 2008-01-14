@@ -8,6 +8,7 @@
  */
 
 #include "guard.h"
+#define VELOCIDADE_ANDAR_GUARDA 0.5
 
 Guard::Guard()
 {
@@ -16,6 +17,7 @@ Guard::Guard()
 	this->modificou_movimento = false;
 	this->em_disparo = false;
 	this->alerta = false;
+	this->velocidade = VELOCIDADE_ANDAR_GUARDA;
 }
 
 void Guard::loadModel()
@@ -71,6 +73,18 @@ void Guard::draw()
 void Guard::animate(const double dt)
 {
 	if(!this->morto){
+		// precisamos de ver se ele tem de fazer coisas ou nao..
+		// estamos em alerta?! se nao, vamos seguir os percursos
+		if(!this->alerta){
+			// se nao tamos em alerta temos de ver se tamos em movimento, se tamos, temos de o mover
+			if(this->em_movimento){
+				this->GoFront();
+			}
+		}else{
+			// temos de pedir ao AI para saber o que fazer
+			
+		}
+		
 		if(this->modificou_movimento){
 			if(this->em_movimento){
 				this->guard->setAnimation (kLegsWalk);
@@ -97,7 +111,7 @@ void Guard::set_xy(int z, int x)
 	this->y = -2.6f;
 	this->z = z;
 }
-void Guard::set_angulo(GLfloat angulo)
+void Guard::setAngulo(GLfloat angulo)
 {
 	this->angulo = angulo;
 }
@@ -106,5 +120,98 @@ void Guard::set_walking_front()
 {
 	this->em_movimento = false;
 	this->modificou_movimento = true;
+}
+
+
+/* movimento */
+
+float Guard::MoveTest()
+{
+	if(this->dt_cur+0.01>this->ultimo_andar){
+		// temos de ver se ele ja andou mais do que devia
+		double dt_menos = this->dt_cur-this->ultimo_andar;
+		this->ultimo_andar = this->dt_cur;
+		if(dt_menos>0.1)
+			return 1+dt_menos;
+		else return 1;
+	}else return 0;
+}
+
+void Guard::GoStraffLeft()
+{
+	GLfloat nx,nz;
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	nx=this->x+sin(-RAD(this->angulo+270))*(this->velocidade*2/3)*move;
+	nz=this->z+cos(RAD(this->angulo+270))*(this->velocidade*2/3)*move;
+	
+	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
+		this->set_xy(this->z, this->x);
+	}
+}
+
+void Guard::GoStraffRight()
+{
+	GLfloat nx,nz;
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	nx=this->x+sin(-RAD(this->angulo+90))*(this->velocidade*2/3)*move;
+	nz=this->z+cos(RAD(this->angulo+90))*(this->velocidade*2/3)*move;
+	
+	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
+		this->set_xy(this->z, this->x);
+	}
+}
+
+void Guard::GoFront()
+{
+	GLfloat nx,nz;
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	nx=this->x+sin(-RAD(this->angulo))*this->velocidade*move;
+	nz=this->z+cos(RAD(this->angulo))*this->velocidade*move;
+	
+	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
+		this->set_xy(this->z, this->x);
+	}
+}
+
+void Guard::GoBack()
+{
+	GLfloat nx,nz;
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	nx=this->x-sin(-RAD(this->angulo))*this->velocidade*move;
+	nz=this->z-cos(RAD(this->angulo))*this->velocidade*move;
+	
+	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
+		this->set_xy(this->z, this->x);
+	}
+}
+
+void Guard::GoTurnRight()
+{
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	this->angulo+=3;
+}
+
+void Guard::GoTurnLeft()
+{
+	float move;
+	move = this->MoveTest();
+	if(move==0)
+		return;
+	this->angulo-=3;
 }
 
