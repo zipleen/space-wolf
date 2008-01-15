@@ -17,19 +17,22 @@
 class Porta
 	{
 	public:
+		// isto vai controlar a altura (que em 3d eh na realidade o Y)
 		GLfloat altura;
+		// o tamanho pelo qual temos de multiplicar o x e y (na realidade Z e X) para ficar no sitio certo
 		GLfloat cube_size;
-		//int x;
-		//int y;
+		// tem uma razao de ser por estes serem int's
+		// estes sao na realidade as coordenadas "no vector bidimensional"
+		// depois nos eh que metemos o cubo no sitio certo multiplicando por cube_size (e aih eh um float)
+		int x;
+		int y;
 		int direction; // 0 -> norte 1-> oeste 
 		bool open;
 
 		int time_open;
 		// tempo para abertura das portas?
-
-		GLfloat x;
-		GLfloat y;
-		GLfloat z;
+		bool porta_a_abrir;
+		
 		double last_dt;
 		GLfloat subir;
 		

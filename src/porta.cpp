@@ -17,12 +17,10 @@ Porta::Porta(int x, int y, int direction,int tipo_porta,GLfloat cube_size)
 	this->direction = direction;
 	this->tipo_porta = tipo_porta;
 	this->cube_size = cube_size;
-	//this->altura = 0;
-
-	this->altura = true;
+	this->altura = 0;
+	this->porta_a_abrir = false;
+	
 	this->last_dt = 0;
-	this->z=-3;
-
 
 }
 
@@ -55,8 +53,10 @@ void Porta::tryToOpenDoor(bool chave1, bool chave2)
  */
 void Porta::startOpenDoor()
 {
-	// por agora abre logo
-	this->opendoor();
+	if(!this->porta_a_abrir){
+		this->porta_a_abrir=true;
+		this->last_dt=0;
+	}
 }
 
 /*
@@ -78,7 +78,7 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 	if (this->direction == 0)
 	{
 		glPushMatrix();
-		glTranslatef(this->x*this->cube_size*2,this->altura,this->y*this->cube_size*2);
+		glTranslatef(this->x*this->cube_size*2,0,this->y*this->cube_size*2);
 		//glScalef(0.1,1,1);
 		textura_porta_lado->bind();
 		glBegin(GL_QUADS);			// Start Drawing Quads
@@ -96,7 +96,7 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 			glTexCoord2f(1.0f, 0.0f); glVertex3f(-this->cube_size, -this->cube_size, -this->cube_size+0.01);	// Bottom Right Of The Texture and Quad
 		glEnd();
 		textura_porta->bind();
-		glTranslatef(0, this->altura*9, 0);
+		glTranslatef(0, this->altura, 0);
 		glBegin(GL_QUADS);
 			// Top Face
 			glNormal3f( 0.0f, 1.0f, 0.0f);		// Normal Facing Up
@@ -130,7 +130,7 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 	if (this->direction == 1)
 	{
 		glPushMatrix();
-		glTranslatef(this->x*this->cube_size*2,this->altura,this->y*this->cube_size*2);
+		glTranslatef(this->x*this->cube_size*2,0,this->y*this->cube_size*2);
 		//glScalef(1,1,0.1);
 		textura_porta_lado->bind();
 		glBegin(GL_QUADS);
@@ -148,7 +148,7 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 			glTexCoord2f(0.0f, 0.0f); glVertex3f(-this->cube_size+0.01, -this->cube_size, -this->cube_size);	// Bottom Left Of The Texture and Quad
 		glEnd();					// Done Drawing Quads
 		textura_porta->bind();
-		glTranslatef(0, this->altura*9, 0);
+		glTranslatef(0, this->altura, 0);
 		glBegin(GL_QUADS);			// Start Drawing Quads
 			// Front Face
 			glNormal3f( 0.0f, 0.0f, 1.0f);		// Normal Facing Forward
@@ -185,31 +185,29 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 
 void Porta::animate(const double dt,const double dt_cur)
 {
-	// actualizar o tempo?!
-	//this->altura+=0.01;
-	if(this->last_dt+0.01 < dt){
-		//double dif = (dt-this->last_dt)*30;
-		if(this->altura){
-			if(this->z>-2.7)
-				this->z+=0.01/**dif*/;
-			else
-				this->z+=0.04/**dif*/;
-			if(this->z>-2.5){
-				this->altura=false;
-				//this->altura-=0.01;
-				this->z=-2.5;
-			}
-		}else{
-			if(this->z<-3.8)
-				this->z-=0.01/**dif*/;
-			else
-				this->z-=0.04/**dif*/;
-			if(this->z<-3.5){
-				this->altura=true;
-				//this->altura+=0.01;
-				this->z=-3.5;
+	// se a porta for para "abrir" entao temos de a animar, senao nao interessa
+	if(this->porta_a_abrir){
+		// temos de fazer batota aki com o last_dt, pois nao podemos definir o last_dt no start... nao o recebemos...
+		if(this->last_dt == 0)
+			this->last_dt = dt-0.01;
+		if(this->last_dt+0.01 >= dt){
+			// subir um bocadinho
+			this->altura+=0.45;
+			// actualizar o ultimo dt
+			this->last_dt = dt;
+			// se ja subiu tudo, entao vamos abrir a porta na fisica e parar com a animacao
+			if(this->altura>=this->cube_size*2){
+				this->porta_a_abrir = false;
+				this->opendoor();
 			}
 		}
-	
+	}else if(this->open){
+		// temos de ver se a porta vai fechar... eh preciso controlar como as portas fecham.. eh por tempo
+		// eh preciso fazer codigo aqui para ver se 
+		// 1) o player nao esta no sitio (deixa isso comigo)
+		// 2) contar o tempo (tipo 5 segundos passaram) para a porta e qd passar, comecar a animacao para fechar
+		//		primeiro fechar a porta na fisica -> Fisica::updatePortas(this->y, this->x, false);
+		//		fazer outra variavel para "porta_a_fechar"
+		
 	}
 }
