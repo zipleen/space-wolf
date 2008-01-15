@@ -19,13 +19,19 @@ class Porta
 	public:
 		GLfloat altura;
 		GLfloat cube_size;
-		int x;
-		int y;
+		//int x;
+		//int y;
 		int direction; // 0 -> norte 1-> oeste 
 		bool open;
 
 		int time_open;
 		// tempo para abertura das portas?
+
+		GLfloat x;
+		GLfloat y;
+		GLfloat z;
+		double last_dt;
+		GLfloat subir;
 		
 	public:
 		int tipo_porta; // 0 - normal 1- chave amarela 2-chave vermelha

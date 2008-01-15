@@ -17,7 +17,13 @@ Porta::Porta(int x, int y, int direction,int tipo_porta,GLfloat cube_size)
 	this->direction = direction;
 	this->tipo_porta = tipo_porta;
 	this->cube_size = cube_size;
-	this->altura = 0;
+	//this->altura = 0;
+
+	this->altura = true;
+	this->last_dt = 0;
+	this->z=-3;
+
+
 }
 
 void Porta::tryToOpenDoor(bool chave1, bool chave2)
@@ -90,6 +96,7 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 			glTexCoord2f(1.0f, 0.0f); glVertex3f(-this->cube_size, -this->cube_size, -this->cube_size+0.01);	// Bottom Right Of The Texture and Quad
 		glEnd();
 		textura_porta->bind();
+		glTranslatef(0, this->altura*9, 0);
 		glBegin(GL_QUADS);
 			// Top Face
 			glNormal3f( 0.0f, 1.0f, 0.0f);		// Normal Facing Up
@@ -125,7 +132,23 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 		glPushMatrix();
 		glTranslatef(this->x*this->cube_size*2,this->altura,this->y*this->cube_size*2);
 		//glScalef(1,1,0.1);
+		textura_porta_lado->bind();
+		glBegin(GL_QUADS);
+			// Right face
+			glNormal3f( 1.0f, 0.0f, 0.0f);		// Normal Facing Right
+			glTexCoord2f(0.0f, 0.0f); glVertex3f( this->cube_size-0.01, -this->cube_size,  this->cube_size);	// Bottom Left Of The Texture and Quad
+			glTexCoord2f(0.0f, 1.0f); glVertex3f( this->cube_size-0.01,  this->cube_size,  this->cube_size);	//*2 Top Left Of The Texture and Quad
+			glTexCoord2f(1.0f, 1.0f); glVertex3f( this->cube_size-0.01,  this->cube_size, -this->cube_size);	//*2 Top Right Of The Texture and Quad
+			glTexCoord2f(1.0f, 0.0f); glVertex3f( this->cube_size-0.01, -this->cube_size, -this->cube_size);	// Bottom Right Of The Texture and Quad
+			// Left Face
+			glNormal3f(-1.0f, 0.0f, 0.0f);		// Normal Facing Left
+			glTexCoord2f(0.0f, 1.0f); glVertex3f(-this->cube_size+0.01,  this->cube_size, -this->cube_size);	//*2 Top Left Of The Texture and Quad
+			glTexCoord2f(1.0f, 1.0f); glVertex3f(-this->cube_size+0.01,  this->cube_size,  this->cube_size);	//*2 Top Right Of The Texture and Quad
+			glTexCoord2f(1.0f, 0.0f); glVertex3f(-this->cube_size+0.01, -this->cube_size,  this->cube_size);	// Bottom Right Of The Texture and Quad
+			glTexCoord2f(0.0f, 0.0f); glVertex3f(-this->cube_size+0.01, -this->cube_size, -this->cube_size);	// Bottom Left Of The Texture and Quad
+		glEnd();					// Done Drawing Quads
 		textura_porta->bind();
+		glTranslatef(0, this->altura*9, 0);
 		glBegin(GL_QUADS);			// Start Drawing Quads
 			// Front Face
 			glNormal3f( 0.0f, 0.0f, 1.0f);		// Normal Facing Forward
@@ -152,21 +175,7 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 			glTexCoord2f(0.0f, 0.0f); glVertex3f( this->cube_size, -this->cube_size,  this->cube_size/10);	// Bottom Left Of The Texture and Quad
 			glTexCoord2f(1.0f, 0.0f); glVertex3f(-this->cube_size, -this->cube_size,  this->cube_size/10);	// Bottom Right Of The Texture and Quad
 		glEnd();
-		textura_porta_lado->bind();
-		glBegin(GL_QUADS);
-			// Right face
-			glNormal3f( 1.0f, 0.0f, 0.0f);		// Normal Facing Right
-			glTexCoord2f(0.0f, 0.0f); glVertex3f( this->cube_size-0.01, -this->cube_size,  this->cube_size);	// Bottom Left Of The Texture and Quad
-			glTexCoord2f(0.0f, 1.0f); glVertex3f( this->cube_size-0.01,  this->cube_size,  this->cube_size);	//*2 Top Left Of The Texture and Quad
-			glTexCoord2f(1.0f, 1.0f); glVertex3f( this->cube_size-0.01,  this->cube_size, -this->cube_size);	//*2 Top Right Of The Texture and Quad
-			glTexCoord2f(1.0f, 0.0f); glVertex3f( this->cube_size-0.01, -this->cube_size, -this->cube_size);	// Bottom Right Of The Texture and Quad
-			// Left Face
-			glNormal3f(-1.0f, 0.0f, 0.0f);		// Normal Facing Left
-			glTexCoord2f(0.0f, 1.0f); glVertex3f(-this->cube_size+0.01,  this->cube_size, -this->cube_size);	//*2 Top Left Of The Texture and Quad
-			glTexCoord2f(1.0f, 1.0f); glVertex3f(-this->cube_size+0.01,  this->cube_size,  this->cube_size);	//*2 Top Right Of The Texture and Quad
-			glTexCoord2f(1.0f, 0.0f); glVertex3f(-this->cube_size+0.01, -this->cube_size,  this->cube_size);	// Bottom Right Of The Texture and Quad
-			glTexCoord2f(0.0f, 0.0f); glVertex3f(-this->cube_size+0.01, -this->cube_size, -this->cube_size);	// Bottom Left Of The Texture and Quad
-		glEnd();					// Done Drawing Quads
+		
 		
 		glPopMatrix();
 	}
@@ -177,5 +186,30 @@ void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_
 void Porta::animate(const double dt,const double dt_cur)
 {
 	// actualizar o tempo?!
+	//this->altura+=0.01;
+	if(this->last_dt+0.01 < dt){
+		//double dif = (dt-this->last_dt)*30;
+		if(this->altura){
+			if(this->z>-2.7)
+				this->z+=0.01/**dif*/;
+			else
+				this->z+=0.04/**dif*/;
+			if(this->z>-2.5){
+				this->altura=false;
+				//this->altura-=0.01;
+				this->z=-2.5;
+			}
+		}else{
+			if(this->z<-3.8)
+				this->z-=0.01/**dif*/;
+			else
+				this->z-=0.04/**dif*/;
+			if(this->z<-3.5){
+				this->altura=true;
+				//this->altura+=0.01;
+				this->z=-3.5;
+			}
+		}
 	
+	}
 }
