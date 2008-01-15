@@ -80,7 +80,10 @@ void Game::MainLoop()
 			this->map->updateAnimations(dt,this->render->timer.current_time);
 			// player anim?
 			this->player->updateAnimation(this->render->timer.current_time);
-
+			
+			// temos de ver se o player passou por cima de algum item e "apanha-lo"
+			this->map->processItems(this->player);
+			
 			// game cycle
 			this->render->gameCycle (this->map, this->player);
 		}
