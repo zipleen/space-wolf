@@ -8,7 +8,7 @@
  */
 
 #include "guard.h"
-#define VELOCIDADE_ANDAR_GUARDA 0.05
+#define VELOCIDADE_ANDAR_GUARDA 0.15
 
 Guard::Guard()
 {
@@ -65,7 +65,7 @@ void Guard::draw()
 {
 	glPushMatrix();
 		glTranslatef(this->x,this->y,this->z);
-		glRotatef(-this->angulo,0,1,0);
+		glRotatef(this->angulo,0,1,0);
 		this->guard->draw();
 	glPopMatrix();
 }
@@ -175,11 +175,11 @@ void Guard::GoFront()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x*-1)+sin(-RAD(this->angulo))*this->velocidade*move;
-	nz=(this->z*-1)+cos(RAD(this->angulo))*this->velocidade*move;
+	nx=(this->x)+sin(-RAD(this->angulo))*this->velocidade*move;
+	nz=(this->z)+cos(RAD(this->angulo))*this->velocidade*move;
 	
-	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz, nx) ){
-		this->set_xy(nz*-1, nx*-1);
+	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx*-1) ){
+		this->set_xy(nz, nx);
 	}
 }
 
