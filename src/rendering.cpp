@@ -381,7 +381,7 @@ void Rendering::draw2D(Player *p)
 #endif
 	
 	glPopAttrib ();
-	Hud::drawHud(p);
+	Hud::drawHud(p, this->font);
 	end2D ();
 	
 }

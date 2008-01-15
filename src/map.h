@@ -98,6 +98,7 @@ public:
 	
 	// portas
 	void openDoor(Player *p);
+	void processItems(Player *p);
 	
 	// animacoes
 	void updateAnimations(double dt,double dt_cur);

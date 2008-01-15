@@ -49,6 +49,30 @@ void Map::openDoor(Player *p)
 
 	}
 }
+void Map::processItems(Player *p)
+{
+	int p_x = (int)(((p->z*-1)/(this->cube_size*2.0f))+0.5);
+	int p_y = (int)(((p->x*-1)/(this->cube_size*2.0f))+0.5);
+	/*std::vector<Items*>::iterator cii;
+	for(cii=this->items.begin(); cii!=this->items.end(); cii++)
+	{
+		Items *t = *cii;
+		if(t->mapa_x == p_x && t->mapa_y == p_y){
+			if(t->consume(p)){
+				// eliminar no vector
+				//this->items.erase(cii);
+			}
+		}
+	}*/
+	for(int i=0; i<this->items.size(); i++)
+	{
+		if(this->items[i]->mapa_x == p_x && this->items[i]->mapa_y == p_y){
+			this->items[i]->consume(p);
+			// era suposto depois eliminar isto do vector...
+		}
+	}
+	
+}
 
 
 /* desenhar */
@@ -538,52 +562,52 @@ void Map::addItems(int x, int y, int type)
 	switch(type){
 		case 1:
 			// vida 15
-			v= new Items_Vida(x*this->cube_size*2,y*this->cube_size*2,15);
+			v= new Items_Vida(x*this->cube_size*2,y*this->cube_size*2,15,x,y);
 			this->items.push_back(v);
 			break;
 		case 2:
 			// vida 25
-			v = new Items_Vida(x*this->cube_size*2,y*this->cube_size*2,25);
+			v = new Items_Vida(x*this->cube_size*2,y*this->cube_size*2,25,x,y);
 			this->items.push_back(v);
 			break;
 		case 3:
 			// vida 50
-			v = new Items_Vida(x*this->cube_size*2,y*this->cube_size*2,50);
+			v = new Items_Vida(x*this->cube_size*2,y*this->cube_size*2,50,x,y);
 			this->items.push_back(v);
 			break;
 		case 4:
 			// arma 2
-			a = new Items_Armas(x*this->cube_size*2,y*this->cube_size*2,2);
+			a = new Items_Armas(x*this->cube_size*2,y*this->cube_size*2,2,x,y);
 			this->items.push_back(a);
 			break;
 		case 5:
 			// arma 3
-			a = new Items_Armas(x*this->cube_size*2,y*this->cube_size*2,3);
+			a = new Items_Armas(x*this->cube_size*2,y*this->cube_size*2,3,x,y);
 			this->items.push_back(a);
 			break;
 		case 6:
 			// arma 4
-			a = new Items_Armas(x*this->cube_size*2,y*this->cube_size*2,4);
+			a = new Items_Armas(x*this->cube_size*2,y*this->cube_size*2,4,x,y);
 			this->items.push_back(a);
 			break;
 		case 7:
 			// ammo, default 8 balas?! vamos ser generosos, 15
-			am = new Items_Ammo(x*this->cube_size*2,y*this->cube_size*2,15);
+			am = new Items_Ammo(x*this->cube_size*2,y*this->cube_size*2,15,x,y);
 			this->items.push_back(am);
 			break;
 		case 8:
 			// chave amarela
-			c = new Items_Chave(x*this->cube_size*2,y*this->cube_size*2,1);
+			c = new Items_Chave(x*this->cube_size*2,y*this->cube_size*2,1,x,y);
 			this->items.push_back(c);
 			break;
 		case 9:
 			// chave vermelha
-			c = new Items_Chave(x*this->cube_size*2,y*this->cube_size*2,2);
+			c = new Items_Chave(x*this->cube_size*2,y*this->cube_size*2,2,x,y);
 			this->items.push_back(c);
 			break;
 		case 10:
 			// armor
-			aa = new Items_Armor(x*this->cube_size*2, y*this->cube_size*2,100);
+			aa = new Items_Armor(x*this->cube_size*2, y*this->cube_size*2,100,x,y);
 			this->items.push_back(aa);
 			break;
 	}

@@ -51,6 +51,9 @@ void Player::SetAndar()
 void Player::resetPlayer()
 {
 	this->vida = 100;
+	this->arma2 = false;
+	this->arma3 = false;
+	this->arma4 = false;
 	this->armadura = 0;
 	this->chave_amarela = false;
 	this->chave_vermelha = false;
@@ -59,6 +62,30 @@ void Player::resetPlayer()
 	this->morto = false;
 	this->angulo = 0;
 	this->arma_em_uso = 1; // ha 3 armas, cada uma dispensa balas mais rapido que a outra e tem mais "forca"
+}
+
+void Player::setGun(int tipo){
+	switch(tipo)
+	{
+		case 1:
+			this->arma_em_uso = 1;
+			break;
+		case 2:
+			if(this->arma2)
+				this->arma_em_uso = 2;
+			break;
+		case 3:
+			if(this->arma3)
+				this->arma_em_uso = 3;
+			break;
+		
+		case 4:
+			if(this->arma4)
+				this->arma_em_uso = 4;
+			break;
+	}
+	// animacao para se mudou a arma?!?!? por agora muda logo a arma..
+	
 }
 
 // accoes provocadas por outros actores
@@ -80,37 +107,45 @@ void Player::takeHealth(int valor)
 }
 
 // items accoes
-void Player::giveHealth(int valor)
+bool Player::giveHealth(int valor)
 {
+	if(this->vida==100)
+		return false; // nao necessitamos de mais vida
 	this->vida+=valor;
 	if(this->vida>100)
 		this->vida=100;
+	return true;
 }
 
-void Player::giveArmadura(int valor)
+bool Player::giveArmadura(int valor)
 {
+	if(this->armadura==100)
+		return false;
 	this->armadura+=valor;
 	if(this->armadura>100)
 		this->armadura=100;
+	return true;
 }
 
-void Player::giveBullets(int valor)
+bool Player::giveBullets(int valor)
 {
 	// so ha 1 tipo de balas HEHE mas mais tipos de balas nao era dificil anyway
 	this->balas+=valor;
 	if(this->balas>200)
 		this->balas = 200;
+	return true;
 }
 
-void Player::giveChave(int tipo)
+bool Player::giveChave(int tipo)
 {
 	if(tipo==1)
 		this->chave_amarela = true;
 	else 
 		this->chave_vermelha = true;
+	return true;
 }
 
-void Player::giveArmas(int tipo)
+bool Player::giveArmas(int tipo)
 {
 	switch(tipo){
 		case 2:
@@ -124,6 +159,7 @@ void Player::giveArmas(int tipo)
 			break;
 	
 	}
+	return true;
 }
 
 
