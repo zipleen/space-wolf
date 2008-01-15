@@ -18,9 +18,9 @@ class Items_Ammo : public Items
 		
 	public:
 		Items_Ammo(){};
-		Items_Ammo(GLfloat x,GLfloat y, int valor);
+		Items_Ammo(GLfloat x,GLfloat y, int valor,int mapa_x, int mapa_y);
 		virtual ~Items_Ammo(){};
-		void consume(Player *p);
+		virtual bool consume(Player *p);
 	};
 
 #endif

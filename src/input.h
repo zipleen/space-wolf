@@ -32,6 +32,8 @@ protected:
 	bool keyFirePressed;
 	bool keyOpenDoorPressed;
 	bool keyRunPressed;
+	bool keyArmaMudar;
+	int ArmaMudarPara;
 	
 public:
 	Input(); 

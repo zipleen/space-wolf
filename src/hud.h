@@ -22,6 +22,7 @@
 #include "player.h"
 #include "StrUtils.h"
 #include "shared_render_objects.h"
+#include "font/Font.h"
 
 class Hud
 {
@@ -32,7 +33,7 @@ public:
 	Hud(){}; 
 	virtual ~Hud(){};
 	
-	static void drawHud(Player *p);
+	static void drawHud(Player *p,TTFont *font);
 	static void initHud();
 };
 

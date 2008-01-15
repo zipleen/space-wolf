@@ -18,9 +18,9 @@ class Items_Vida : public Items
 		
 	public:
 		Items_Vida(){};
-		Items_Vida(GLfloat x,GLfloat y, int valor);
+		Items_Vida(GLfloat x,GLfloat y, int valor, int mapa_x, int mapa_y);
 		virtual ~Items_Vida(){};
-		void consume(Player *p);
+		virtual bool consume(Player *p);
 	};
 
 #endif

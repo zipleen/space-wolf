@@ -50,13 +50,15 @@ class Items
 		int tipo_item; // 1 - ammo  | 2 - pontos | 3 - vida | 4 - chaves
 		
 	public:
+		int mapa_x;
+		int mapa_y;
 		Items(); 
 		virtual ~Items(){ };
 		
 		void loadModel();
 		void animate(const double dt,const double dt_cur);
 		void draw();
-		void consume(Player *p);
+		virtual bool consume(Player *p) = 0;
 	};
 
 #endif

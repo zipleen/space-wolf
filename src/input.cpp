@@ -66,6 +66,22 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 			if(value==false)
 				this->keyOpenDoorPressed = true;
 			break;
+		case SDLK_1:
+			this->keyArmaMudar = true;
+			this->ArmaMudarPara = 1;
+			break;
+		case SDLK_2:
+			this->keyArmaMudar = true;
+			this->ArmaMudarPara = 2;
+			break;
+		case SDLK_3:
+			this->keyArmaMudar = true;
+			this->ArmaMudarPara = 3;
+			break;
+		case SDLK_4:
+			this->keyArmaMudar = true;
+			this->ArmaMudarPara = 4;
+			break;
 			
 		case SDLK_r:
 			this->keyUpPressed = value;
@@ -151,5 +167,10 @@ void Input::processKeyInput(Player *p, Map *m)
 	if(this->keyOpenDoorPressed){
 		m->openDoor(p);
 		this->keyOpenDoorPressed=false;
+	}
+	if(this->keyArmaMudar){
+		p->setGun(this->ArmaMudarPara);
+		this->keyArmaMudar = false;
+		this->ArmaMudarPara = false;
 	}
 }

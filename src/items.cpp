@@ -71,8 +71,3 @@ void Items::draw()
 	}
 }
 
-void Items::consume(Player *p)
-{
-	// !??! era suposto isto ser virtual
-
-}

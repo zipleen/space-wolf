@@ -11,8 +11,17 @@
 
 Shared_render_objects::Md3ModelPtr Hud::arma2;
 
-void Hud::drawHud(Player *p)
+void Hud::drawHud(Player *p, TTFont *font)
 {
+	std::string chaves;
+	if(p->chave_amarela && p->chave_vermelha)
+		chaves = "Amarela & Vermelha";
+	else if(p->chave_amarela && !p->chave_vermelha)
+		chaves = "Amarela";
+	else if(!p->chave_amarela && p->chave_vermelha)
+		chaves = "Vermelha";
+	else chaves = "Nenhuma";
+	font->printText (10, 40, "Vida: %d | Armadura: %d | Arma: %d | Balas: %d | Chaves: %s", p->vida, p->armadura, p->arma_em_uso, p->balas, chaves.c_str());
 	/* descomenta para veres q ele imprime estes dados, sao os dados necessario a usar.
 		para converteres numeros int para strings podes usar Str(p->balas)
 	std::cout << "balas : " << p->balas << std::endl;

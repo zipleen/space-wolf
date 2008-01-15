@@ -9,9 +9,10 @@
 
 #include "items_vida.h"
 
-Items_Vida::Items_Vida(GLfloat x,GLfloat y,int valor)
+Items_Vida::Items_Vida(GLfloat x,GLfloat y,int valor, int mapa_x, int mapa_y) : Items()
 {
-	Items();
+	this->mapa_x = mapa_x;
+	this->mapa_y = mapa_y;
 	switch(valor){
 		case 15:
 		#ifdef WIN32
@@ -58,11 +59,14 @@ Items_Vida::Items_Vida(GLfloat x,GLfloat y,int valor)
 	this->valor_vida = valor;
 }
 
-void Items_Vida::consume(Player *p)
+bool Items_Vida::consume(Player *p)
 {
 	if(!this->used){
-		this->used = true;
-		p->giveHealth(this->valor_vida);
+		if(p->giveHealth(this->valor_vida)){
+			this->used = true;
+			return true;
+		}else return false;
 	}
+	return false;
 }
 

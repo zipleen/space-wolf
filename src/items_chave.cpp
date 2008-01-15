@@ -9,9 +9,10 @@
 
 #include "items_chave.h"
 
-Items_Chave::Items_Chave(GLfloat x,GLfloat y,int tipo)
+Items_Chave::Items_Chave(GLfloat x,GLfloat y,int tipo,int mapa_x, int mapa_y) : Items()
 {
-	Items();
+	this->mapa_x = mapa_x;
+	this->mapa_y = mapa_y;
 	if(tipo==1){
 		// amarela
 	#ifdef WIN32
@@ -40,11 +41,13 @@ Items_Chave::Items_Chave(GLfloat x,GLfloat y,int tipo)
 	this->tipo = tipo;
 }
 
-void Items_Chave::consume(Player *p)
+bool Items_Chave::consume(Player *p)
 {
 	if(!this->used){
 		this->used = true;
 		p->giveChave(this->tipo);
+		return true;
 	}
+	return false;
 }
 

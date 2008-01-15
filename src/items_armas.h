@@ -18,9 +18,9 @@ class Items_Armas : public Items
 		
 	public:
 		Items_Armas(){};
-		Items_Armas(GLfloat x,GLfloat y, int valor);
+		Items_Armas(GLfloat x,GLfloat y, int valor, int mapa_x, int mapa_y);
 		virtual ~Items_Armas(){};
-		void consume(Player *p);
+		virtual bool consume(Player *p);
 	};
 
 #endif

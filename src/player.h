@@ -61,16 +61,17 @@ public:
 	
 	void SetAndar();
 	void SetCorrer();
+	void setGun(int tipo);
 	
 	// accoes causadas por outros actores
 	void takeHealth(int valor);
 	
 	// accoes efectuadas pelos items
-	void giveHealth(int valor);
-	void giveArmadura(int valor);
-	void giveBullets(int valor);
-	void giveChave(int tipo);
-	void giveArmas(int tipo);
+	bool giveHealth(int valor);
+	bool giveArmadura(int valor);
+	bool giveBullets(int valor);
+	bool giveChave(int tipo);
+	bool giveArmas(int tipo);
 	
 	// controlos direccao
 	void saveValues();

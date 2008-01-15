@@ -18,9 +18,9 @@ class Items_Chave : public Items
 		
 	public:
 		Items_Chave(){};
-		Items_Chave(GLfloat x,GLfloat y, int valor);
+		Items_Chave(GLfloat x,GLfloat y, int valor, int mapa_x, int mapa_y);
 		virtual ~Items_Chave(){};
-		void consume(Player *p);
+		virtual bool consume(Player *p);
 	};
 
 #endif
