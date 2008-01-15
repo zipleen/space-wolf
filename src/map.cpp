@@ -257,28 +257,28 @@ void Map::updateGuardAnimation(double dt)
 			if(orig_x>0 && orig_x<=this->tamanho_mapa && orig_y>0 && orig_y<=this->tamanho_mapa && this->map[orig_x][orig_y]>=2033 && this->map[orig_x][orig_y]<=2040){
 				switch(this->map[orig_x][orig_y]){
 					case 2033:
-						this->guardas[i]->setAngulo(0);
+						this->guardas[i]->setAngulo(90);
 						break;
 					case 2034:
-						this->guardas[i]->setAngulo(180);
+						this->guardas[i]->setAngulo(270);
 						break;
 					case 2035:
-						this->guardas[i]->setAngulo(90);
+						this->guardas[i]->setAngulo(0);
 						break;	
 					case 2036:
-						this->guardas[i]->setAngulo(270);
+						this->guardas[i]->setAngulo(180);
 						break;	
 					case 2037:
-						this->guardas[i]->setAngulo(45);
-						break;	
-					case 2038:
-						this->guardas[i]->setAngulo(315);
-						break;	
-					case 2039:
 						this->guardas[i]->setAngulo(135);
 						break;	
-					case 2040:
+					case 2038:
 						this->guardas[i]->setAngulo(225);
+						break;	
+					case 2039:
+						this->guardas[i]->setAngulo(45);
+						break;	
+					case 2040:
+						this->guardas[i]->setAngulo(315);
 						break;	
 				}
 			}
