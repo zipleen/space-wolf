@@ -75,7 +75,7 @@ public:
 	void animate(const double dt);
 	
 	void setAngulo(GLfloat angulo);
-	void set_xy(int z, int x);
+	void set_xy(float z, float x);
 	void set_walking_front();
 	
 	/* movimento */

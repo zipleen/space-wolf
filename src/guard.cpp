@@ -8,7 +8,7 @@
  */
 
 #include "guard.h"
-#define VELOCIDADE_ANDAR_GUARDA 0.5
+#define VELOCIDADE_ANDAR_GUARDA 0.05
 
 Guard::Guard()
 {
@@ -65,7 +65,7 @@ void Guard::draw()
 {
 	glPushMatrix();
 		glTranslatef(this->x,this->y,this->z);
-		glRotatef(this->angulo,0,1,0);
+		glRotatef(-this->angulo,0,1,0);
 		this->guard->draw();
 	glPopMatrix();
 }
@@ -78,6 +78,7 @@ void Guard::animate(const double dt)
 		if(!this->alerta){
 			// se nao tamos em alerta temos de ver se tamos em movimento, se tamos, temos de o mover
 			if(this->em_movimento){
+				std::cout << "vamos andar" << this->z << " " << this->x << std::endl;
 				this->GoFront();
 			}
 		}else{
@@ -105,7 +106,7 @@ void Guard::animate(const double dt)
 	}
 }
 
-void Guard::set_xy(int z, int x)
+void Guard::set_xy(float z, float x)
 {
 	this->x = x;
 	this->y = -2.6f;
@@ -174,11 +175,11 @@ void Guard::GoFront()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=this->x+sin(-RAD(this->angulo))*this->velocidade*move;
-	nz=this->z+cos(RAD(this->angulo))*this->velocidade*move;
+	nx=(this->x*-1)+sin(-RAD(this->angulo))*this->velocidade*move;
+	nz=(this->z*-1)+cos(RAD(this->angulo))*this->velocidade*move;
 	
-	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
-		this->set_xy(this->z, this->x);
+	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz, nx) ){
+		this->set_xy(nz*-1, nx*-1);
 	}
 }
 

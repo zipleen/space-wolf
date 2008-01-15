@@ -252,9 +252,9 @@ void Map::updateGuardAnimation(double dt)
 		this->guardas[i]->animate(dt);
 		if(!this->guardas[i]->alerta && this->guardas[i]->em_movimento){
 			// se nao tao em alerta e tao em movimento vamos ver se estao em nova posicao para nova direccao
-			int orig_x = (int)(((this->guardas[i]->z*-1)/(this->cube_size*2.0f))+0.5);
-			int orig_y = (int)(((this->guardas[i]->x*-1)/(this->cube_size*2.0f))+0.5);
-			if(this->map[orig_x][orig_y]>=2033 && this->map[orig_x][orig_y]<=2040){
+			int orig_x = (int)(((this->guardas[i]->z)/(this->cube_size*2.0f))+0.5);
+			int orig_y = (int)(((this->guardas[i]->x)/(this->cube_size*2.0f))+0.5);
+			if(orig_x>0 && orig_x<=this->tamanho_mapa && orig_y>0 && orig_y<=this->tamanho_mapa && this->map[orig_x][orig_y]>=2033 && this->map[orig_x][orig_y]<=2040){
 				switch(this->map[orig_x][orig_y]){
 					case 2033:
 						this->guardas[i]->setAngulo(0);
@@ -613,10 +613,10 @@ void Map::addGuard(int x, int y, int type, int direction, bool movimento)
 	// 180 -> O
 	// 270 -> S
 	
-	// 1 - N - 90
-	// 2 - S - 270
-	// 3 - E - 0
-	// 4 - O - 180
+	// 1 - N - 90 - 270
+	// 2 - S - 270 - 90
+	// 3 - E - 0 - 180
+	// 4 - O - 180 - 0
 	switch(direction)
 	{
 		case 1:
