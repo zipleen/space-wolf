@@ -40,12 +40,12 @@ void Player::setInitialPosition(int x, int y)
 
 void Player::SetCorrer()
 {
-	this->velocidade = 1.5;
+	this->velocidade = 1.7;
 }
 
 void Player::SetAndar()
 {
-	this->velocidade = 1.0;
+	this->velocidade = 1.3;
 }
 
 void Player::resetPlayer()
