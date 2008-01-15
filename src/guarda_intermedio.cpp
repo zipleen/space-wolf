@@ -9,9 +9,8 @@
 
 #include "guarda_intermedio.h"
 
-Guard_Intermedio::Guard_Intermedio(int z, int x, bool em_movimento, GLfloat angulo)
+Guard_Intermedio::Guard_Intermedio(int z, int x, bool em_movimento, GLfloat angulo) : Guard()
 {
-	Guard();
 #ifdef WIN32
 	this->model_path="data\\models\\players\\doom\\";
 	this->weaponpath="data\\models\\weapons2\\assault\\";

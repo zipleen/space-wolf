@@ -9,9 +9,8 @@
 
 #include "soldado.h"
 
-Soldado::Soldado(int z, int x, bool em_movimento, GLfloat angulo)
+Soldado::Soldado(int z, int x, bool em_movimento, GLfloat angulo) : Guard()
 {
-	Guard();
 #ifdef WIN32
 	this->model_path="data\\models\\players\\bitterman\\";
 	this->weaponpath="data\\models\\weapons2\\smg\\";

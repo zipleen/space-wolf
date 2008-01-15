@@ -9,9 +9,8 @@
 
 #include "guarda_dificil.h"
 
-Guard_Dificil::Guard_Dificil(int z, int x, bool em_movimento, GLfloat angulo)
+Guard_Dificil::Guard_Dificil(int z, int x, bool em_movimento, GLfloat angulo) : Guard()
 {
-	Guard();
 #ifdef WIN32
 	this->model_path="data\\models\\players\\keel\\";
 	this->weaponpath="data\\models\\weapons2\\minigun\\";

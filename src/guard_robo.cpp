@@ -9,9 +9,8 @@
 
 #include "guard_robo.h"
 
-Guard_Robo::Guard_Robo(int z, int x, bool em_movimento, GLfloat angulo)
+Guard_Robo::Guard_Robo(int z, int x, bool em_movimento, GLfloat angulo) : Guard()
 {
-	Guard();
 #ifdef WIN32
 	this->model_path="data\\models\\players\\robot\\";
 	this->weaponpath="";

@@ -9,9 +9,8 @@
 
 #include "boss1.h"
 
-Guard_Boss1::Guard_Boss1(int z, int x, bool em_movimento, GLfloat angulo)
+Guard_Boss1::Guard_Boss1(int z, int x, bool em_movimento, GLfloat angulo) : Guard()
 {
-	Guard();
 #ifdef WIN32
 	this->model_path="data\\models\\players\\SpaceMarine40k\\";
 	this->weaponpath="data\\models\\weapons2\\minigun\\";
