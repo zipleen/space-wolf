@@ -17,6 +17,7 @@ Guard::Guard()
 	this->modificou_movimento = false;
 	this->em_disparo = false;
 	this->alerta = false;
+	this->movimento_contar_vezes = 0;
 	this->velocidade = VELOCIDADE_ANDAR_GUARDA;
 }
 
@@ -78,7 +79,7 @@ void Guard::animate(const double dt)
 		if(!this->alerta){
 			// se nao tamos em alerta temos de ver se tamos em movimento, se tamos, temos de o mover
 			if(this->em_movimento){
-				std::cout << "vamos andar" << this->z << " " << this->x << std::endl;
+				//std::cout << "vamos andar: " << this->z << " " << this->x << std::endl;
 				this->GoFront();
 			}
 		}else{
@@ -145,11 +146,11 @@ void Guard::GoStraffLeft()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=this->x+sin(-RAD(this->angulo+270))*(this->velocidade*2/3)*move;
-	nz=this->z+cos(RAD(this->angulo+270))*(this->velocidade*2/3)*move;
+	nx=(this->x*-1)+sin(RAD(-this->angulo+270))*this->velocidade*move;
+	nz=(this->z)+cos(RAD(this->angulo+270))*this->velocidade*move;
 	
-	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
-		this->set_xy(this->z, this->x);
+	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx, true) ){
+		this->set_xy(nz, nx*-1);
 	}
 }
 
@@ -160,12 +161,13 @@ void Guard::GoStraffRight()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=this->x+sin(-RAD(this->angulo+90))*(this->velocidade*2/3)*move;
-	nz=this->z+cos(RAD(this->angulo+90))*(this->velocidade*2/3)*move;
-	
-	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
-		this->set_xy(this->z, this->x);
+	nx=(this->x*-1)+sin(RAD(-this->angulo+90))*this->velocidade*move;
+	nz=(this->z)+cos(RAD(this->angulo+90))*this->velocidade*move;
+
+	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx, true) ){
+		this->set_xy(nz, nx*-1);
 	}
+	
 }
 
 void Guard::GoFront()
@@ -175,11 +177,18 @@ void Guard::GoFront()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x)+sin(-RAD(this->angulo))*this->velocidade*move;
+	nx=(this->x*-1)+sin(RAD(-this->angulo))*this->velocidade*move;
 	nz=(this->z)+cos(RAD(this->angulo))*this->velocidade*move;
 	
-	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx*-1) ){
-		this->set_xy(nz, nx);
+	/*std::cout << " npc angulo:" << this->angulo << std::endl;
+	std::cout << "-> nz: " << ((this->z)+cos(RAD(this->angulo))*this->velocidade*move) << " nx: " << ((this->x)+sin(-RAD(this->angulo))*this->velocidade*move) << std::endl;
+	std::cout << " nz: " << ((this->z*-1)+cos(RAD(this->angulo))*this->velocidade*move) << " nx: " << (this->x*-1)+sin(-RAD(this->angulo))*this->velocidade*move << std::endl;
+	std::cout << "+90 nz: " << ((this->z*-1)+cos(RAD(this->angulo))*this->velocidade*move) << " nx: " << (this->x*-1)+sin(-RAD(this->angulo+90))*this->velocidade*move << std::endl;
+	std::cout << " nz: " << ((this->z)+cos(RAD(this->angulo))*this->velocidade*move) << " Inv nx: " << (this->x*-1)+sin(-RAD(this->angulo))*this->velocidade*move << std::endl;
+	*/
+	
+	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx,true) ){
+		this->set_xy(nz, nx*-1);
 	}
 }
 
@@ -190,11 +199,11 @@ void Guard::GoBack()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=this->x-sin(-RAD(this->angulo))*this->velocidade*move;
-	nz=this->z-cos(RAD(this->angulo))*this->velocidade*move;
+	nx=(this->x*-1)-sin(RAD(-this->angulo))*this->velocidade*move;
+	nz=(this->z)-cos(RAD(this->angulo))*this->velocidade*move;
 	
-	if( Fisica::canIgoThere(this->z, this->x, nz, nx) ){
-		this->set_xy(this->z, this->x);
+	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx,true) ){
+		this->set_xy(nz, nx*-1);
 	}
 }
 

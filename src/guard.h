@@ -61,6 +61,9 @@ public:
 	GLfloat angulo;
 	bool em_movimento;
 	
+	// batota para ver se conseguimos por as mudancas de movimentos a acontecerem "no meio"
+	int movimento_contar_vezes;
+	
 	double dt_cur;
 	double ultimo_andar;
 	

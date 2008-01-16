@@ -99,6 +99,14 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 					this->render->debug_use_cam=false;
 				else this->render->debug_use_cam=true;
 			}
+			break;
+		case SDLK_i:
+			if(value){
+				if(Fisica::clip_mode)
+					Fisica::clip_mode=false;
+				else Fisica::clip_mode=true;
+			}
+			break;
 	}
 }
 

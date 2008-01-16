@@ -28,6 +28,7 @@ Map::Map()
 	this->tex_porta_chave2 = 1008;
 	this->tex_porta_lado_chave2 = 1011;
 	this->usecalllist = false;
+	Fisica::clip_mode = false;
 }
 
 /* portas */
@@ -47,6 +48,24 @@ void Map::openDoor(Player *p)
 		if(this->portas[i]->x == p_x && this->portas[i]->y == p_z)
 			this->portas[i]->tryToOpenDoor(p->chave_amarela, p->chave_vermelha);
 
+	}
+}
+void Map::openDoor(Guard *p)
+{
+	// so ha um player, vamos buscar os dados la, precisamos de saber onde ele ta
+	// como a porta normalmente eh "ah frente" podemos fazer a conta do player avancando "uma casa" ah frente e vendo qual casa eh essa 
+	int p_z = (int)(((((p->z)+cos(RAD(p->angulo))*this->cube_size)*-1)/(this->cube_size*2.0f))+0.5);
+	int p_x = (int)(((((p->x*-1)+sin(-RAD(p->angulo))*this->cube_size)*-1)/(this->cube_size*2.0f))+0.5);
+	/*Console::printf("tentando abrir a porta %d %d %f %f",p_x, p_z,
+	 ((((p->z+cos(RAD(p->angulo))*this->cube_size)*-1)/(this->cube_size*2.0f))+0.5),
+	 ((((p->x+sin(-RAD(p->angulo))*this->cube_size)*-1)/(this->cube_size*2.0f))+0.5)
+	 );
+	 Console::printf("tou em %f %f", ((((p->z)*-1)/(this->cube_size*2.0f))+0.5),
+	 ((((p->x)*-1)/(this->cube_size*2.0f))+0.5));*/
+	for(int i=0; i<this->portas.size(); i++){
+		if(this->portas[i]->x == p_x && this->portas[i]->y == p_z*-1)
+			this->portas[i]->tryToOpenDoor(true, true);
+		
 	}
 }
 void Map::processItems(Player *p)
@@ -275,35 +294,46 @@ void Map::updateGuardAnimation(double dt)
 	{
 		this->guardas[i]->animate(dt);
 		if(!this->guardas[i]->alerta && this->guardas[i]->em_movimento){
+			// primeiro vamos po-los a abrirem portas coitados :P
+			this->openDoor(this->guardas[i]);
 			// se nao tao em alerta e tao em movimento vamos ver se estao em nova posicao para nova direccao
 			int orig_x = (int)(((this->guardas[i]->z)/(this->cube_size*2.0f))+0.5);
 			int orig_y = (int)(((this->guardas[i]->x)/(this->cube_size*2.0f))+0.5);
 			if(orig_x>0 && orig_x<=this->tamanho_mapa && orig_y>0 && orig_y<=this->tamanho_mapa && this->map[orig_x][orig_y]>=2033 && this->map[orig_x][orig_y]<=2040){
-				switch(this->map[orig_x][orig_y]){
-					case 2033:
-						this->guardas[i]->setAngulo(90);
-						break;
-					case 2034:
-						this->guardas[i]->setAngulo(270);
-						break;
-					case 2035:
-						this->guardas[i]->setAngulo(0);
-						break;	
-					case 2036:
-						this->guardas[i]->setAngulo(180);
-						break;	
-					case 2037:
-						this->guardas[i]->setAngulo(135);
-						break;	
-					case 2038:
-						this->guardas[i]->setAngulo(225);
-						break;	
-					case 2039:
-						this->guardas[i]->setAngulo(45);
-						break;	
-					case 2040:
-						this->guardas[i]->setAngulo(315);
-						break;	
+				this->guardas[i]->movimento_contar_vezes++;
+				if(this->guardas[i]->movimento_contar_vezes>50)
+				{
+					this->guardas[i]->movimento_contar_vezes=0;
+					switch(this->map[orig_x][orig_y]){
+						case 2033:
+							// direita, este
+							this->guardas[i]->setAngulo(90);
+							break;
+						case 2034:
+							// esquerda, oeste
+							this->guardas[i]->setAngulo(270);
+							break;
+						case 2036:
+							// cima norte
+							this->guardas[i]->setAngulo(0);
+							break;	
+						case 2035:
+							// baixo, sul
+							this->guardas[i]->setAngulo(180);
+							break;	
+						case 2037:
+							this->guardas[i]->setAngulo(135);
+							break;	
+						case 2038:
+							this->guardas[i]->setAngulo(225);
+							break;	
+						case 2039:
+							this->guardas[i]->setAngulo(45);
+							break;	
+						case 2040:
+							this->guardas[i]->setAngulo(315);
+							break;	
+					}
 				}
 			}
 		}
