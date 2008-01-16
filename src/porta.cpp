@@ -19,7 +19,7 @@ Porta::Porta(int x, int y, int direction,int tipo_porta,GLfloat cube_size)
 	this->cube_size = cube_size;
 	this->altura = 0;
 	this->porta_a_abrir = false;
-	this->porta_a_fechar = true;
+	this->porta_a_fechar = false;
 	
 	this->tempo_comecou_contar = 0;
 	this->last_dt = 0;
@@ -57,7 +57,9 @@ void Porta::startOpenDoor()
 {
 	if(!this->porta_a_abrir){
 		this->porta_a_abrir=true;
+		this->porta_a_fechar = true;
 		this->last_dt=0;
+		
 	}
 }
 
@@ -211,9 +213,9 @@ void Porta::animate(const double dt,const double dt_cur)
 			if(this->altura>=this->cube_size*2){
 				this->porta_a_abrir = false;
 				this->opendoor();
+				this->tempo_comecou_contar = dt_cur;
 			}
 		}
-	this->tempo_comecou_contar = dt_cur;
 	}else if(this->open){
 		if(this->porta_a_fechar){
 			if (this->tempo_comecou_contar+5<=dt_cur){
