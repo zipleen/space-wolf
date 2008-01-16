@@ -19,7 +19,9 @@ Porta::Porta(int x, int y, int direction,int tipo_porta,GLfloat cube_size)
 	this->cube_size = cube_size;
 	this->altura = 0;
 	this->porta_a_abrir = false;
+	this->porta_a_fechar = true;
 	
+	this->tempo_comecou_contar = 0;
 	this->last_dt = 0;
 
 }
@@ -62,6 +64,14 @@ void Porta::startOpenDoor()
 /*
  * Este metodo nao testa se eh possivel o jogado abrir a porta ou nao, abre-a apenas
  */
+void Porta::closedoor()
+{
+	this->open=false;
+	Fisica::updatePortas(this->y, this->x, false);
+	// codigo para actualizar a porta a "abrir" em opengl?! tempo?!
+
+}
+
 void Porta::opendoor()
 {
 	this->open=true;
@@ -69,6 +79,7 @@ void Porta::opendoor()
 	// codigo para actualizar a porta a "abrir" em opengl?! tempo?!
 
 }
+
 void Porta::draw(const Texture2D *textura_porta, const Texture2D *textura_porta_lado)
 {
 	// desenhar a porta em opengl......
@@ -195,13 +206,27 @@ void Porta::animate(const double dt,const double dt_cur)
 			this->altura+=0.45;
 			// actualizar o ultimo dt
 			this->last_dt = dt;
+			
 			// se ja subiu tudo, entao vamos abrir a porta na fisica e parar com a animacao
 			if(this->altura>=this->cube_size*2){
 				this->porta_a_abrir = false;
 				this->opendoor();
 			}
 		}
+	this->tempo_comecou_contar = dt_cur;
 	}else if(this->open){
+		if(this->porta_a_fechar){
+			if (this->tempo_comecou_contar+5<=dt_cur){
+				//this->open=false;
+				this->altura-=0.45;
+				if(this->altura<=0){
+					this->porta_a_fechar = false;
+					this->closedoor();
+				}
+			}
+		}
+		
+		
 		// temos de ver se a porta vai fechar... eh preciso controlar como as portas fecham.. eh por tempo
 		// eh preciso fazer codigo aqui para ver se 
 		// 1) o player nao esta no sitio (deixa isso comigo)
@@ -210,4 +235,5 @@ void Porta::animate(const double dt,const double dt_cur)
 		//		fazer outra variavel para "porta_a_fechar"
 		
 	}
+
 }

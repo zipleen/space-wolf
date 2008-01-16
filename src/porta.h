@@ -32,8 +32,10 @@ class Porta
 		int time_open;
 		// tempo para abertura das portas?
 		bool porta_a_abrir;
+		bool porta_a_fechar;
 		
 		double last_dt;
+		double tempo_comecou_contar;
 		GLfloat subir;
 		
 	public:
@@ -42,8 +44,10 @@ class Porta
 		virtual ~Porta(){};
 		
 		void startOpenDoor();
+		void startCloseDoor();
 		void tryToOpenDoor(bool chave1, bool chave2);
 		void opendoor();
+		void closedoor();
 		void draw(const Texture2D *textura_porta, const Texture2D *textura_porta_lado);
 		void animate(const double dt,const double dt_cur);
 	};
