@@ -29,6 +29,7 @@ Map::Map()
 	this->tex_porta_lado_chave2 = 1011;
 	this->usecalllist = false;
 	Fisica::clip_mode = false;
+	Fisica::cube_size = this->cube_size;
 }
 
 /* processar eventos */
