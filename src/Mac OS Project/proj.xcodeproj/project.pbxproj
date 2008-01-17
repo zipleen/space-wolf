@@ -17,7 +17,52 @@
 		AA0886E80D28977E00D7793D /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0886E70D28977E00D7793D /* SDL_mixer.framework */; };
 		AA0A634B0D3FF9A0002E4124 /* SDL_mixer.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = AA0886E70D28977E00D7793D /* SDL_mixer.framework */; };
 		AA0A63520D3FF9A2002E4124 /* SDL_ttf.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = AAEE411E0D295D9600DE9F02 /* SDL_ttf.framework */; };
-		AA0A64700D4001E5002E4124 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A646F0D4001E5002E4124 /* libjpeg.a */; };
+		AA0A66930D4012A3002E4124 /* jcapimin.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66650D4012A3002E4124 /* jcapimin.o */; };
+		AA0A66940D4012A3002E4124 /* jcapistd.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66660D4012A3002E4124 /* jcapistd.o */; };
+		AA0A66950D4012A3002E4124 /* jccoefct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66670D4012A3002E4124 /* jccoefct.o */; };
+		AA0A66960D4012A3002E4124 /* jccolor.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66680D4012A3002E4124 /* jccolor.o */; };
+		AA0A66970D4012A3002E4124 /* jcdctmgr.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66690D4012A3002E4124 /* jcdctmgr.o */; };
+		AA0A66980D4012A3002E4124 /* jchuff.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666A0D4012A3002E4124 /* jchuff.o */; };
+		AA0A66990D4012A3002E4124 /* jcinit.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666B0D4012A3002E4124 /* jcinit.o */; };
+		AA0A669A0D4012A3002E4124 /* jcmainct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666C0D4012A3002E4124 /* jcmainct.o */; };
+		AA0A669B0D4012A3002E4124 /* jcmarker.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666D0D4012A3002E4124 /* jcmarker.o */; };
+		AA0A669C0D4012A3002E4124 /* jcmaster.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666E0D4012A3002E4124 /* jcmaster.o */; };
+		AA0A669D0D4012A3002E4124 /* jcomapi.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666F0D4012A3002E4124 /* jcomapi.o */; };
+		AA0A669E0D4012A3002E4124 /* jcparam.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66700D4012A3002E4124 /* jcparam.o */; };
+		AA0A669F0D4012A3002E4124 /* jcphuff.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66710D4012A3002E4124 /* jcphuff.o */; };
+		AA0A66A00D4012A3002E4124 /* jcprepct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66720D4012A3002E4124 /* jcprepct.o */; };
+		AA0A66A10D4012A3002E4124 /* jcsample.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66730D4012A3002E4124 /* jcsample.o */; };
+		AA0A66A20D4012A3002E4124 /* jctrans.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66740D4012A3002E4124 /* jctrans.o */; };
+		AA0A66A30D4012A3002E4124 /* jdapimin.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66750D4012A3002E4124 /* jdapimin.o */; };
+		AA0A66A40D4012A3002E4124 /* jdapistd.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66760D4012A3002E4124 /* jdapistd.o */; };
+		AA0A66A50D4012A3002E4124 /* jdatadst.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66770D4012A3002E4124 /* jdatadst.o */; };
+		AA0A66A60D4012A3002E4124 /* jdatasrc.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66780D4012A3002E4124 /* jdatasrc.o */; };
+		AA0A66A70D4012A3002E4124 /* jdcoefct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66790D4012A3002E4124 /* jdcoefct.o */; };
+		AA0A66A80D4012A3002E4124 /* jdcolor.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667A0D4012A3002E4124 /* jdcolor.o */; };
+		AA0A66A90D4012A3002E4124 /* jddctmgr.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667B0D4012A3002E4124 /* jddctmgr.o */; };
+		AA0A66AA0D4012A3002E4124 /* jdhuff.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667C0D4012A3002E4124 /* jdhuff.o */; };
+		AA0A66AB0D4012A3002E4124 /* jdinput.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667D0D4012A3002E4124 /* jdinput.o */; };
+		AA0A66AC0D4012A3002E4124 /* jdmainct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667E0D4012A3002E4124 /* jdmainct.o */; };
+		AA0A66AD0D4012A3002E4124 /* jdmarker.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667F0D4012A3002E4124 /* jdmarker.o */; };
+		AA0A66AE0D4012A3002E4124 /* jdmaster.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66800D4012A3002E4124 /* jdmaster.o */; };
+		AA0A66AF0D4012A3002E4124 /* jdmerge.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66810D4012A3002E4124 /* jdmerge.o */; };
+		AA0A66B00D4012A3002E4124 /* jdphuff.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66820D4012A3002E4124 /* jdphuff.o */; };
+		AA0A66B10D4012A3002E4124 /* jdpostct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66830D4012A3002E4124 /* jdpostct.o */; };
+		AA0A66B20D4012A3002E4124 /* jdsample.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66840D4012A3002E4124 /* jdsample.o */; };
+		AA0A66B30D4012A3002E4124 /* jdtrans.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66850D4012A3002E4124 /* jdtrans.o */; };
+		AA0A66B40D4012A3002E4124 /* jerror.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66860D4012A3002E4124 /* jerror.o */; };
+		AA0A66B50D4012A3002E4124 /* jfdctflt.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66870D4012A3002E4124 /* jfdctflt.o */; };
+		AA0A66B60D4012A3002E4124 /* jfdctfst.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66880D4012A3002E4124 /* jfdctfst.o */; };
+		AA0A66B70D4012A3002E4124 /* jfdctint.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66890D4012A3002E4124 /* jfdctint.o */; };
+		AA0A66B80D4012A3002E4124 /* jidctflt.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668A0D4012A3002E4124 /* jidctflt.o */; };
+		AA0A66B90D4012A3002E4124 /* jidctfst.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668B0D4012A3002E4124 /* jidctfst.o */; };
+		AA0A66BA0D4012A3002E4124 /* jidctint.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668C0D4012A3002E4124 /* jidctint.o */; };
+		AA0A66BB0D4012A3002E4124 /* jidctred.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668D0D4012A3002E4124 /* jidctred.o */; };
+		AA0A66BC0D4012A3002E4124 /* jmemmgr.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668E0D4012A3002E4124 /* jmemmgr.o */; };
+		AA0A66BD0D4012A3002E4124 /* jmemnobs.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668F0D4012A3002E4124 /* jmemnobs.o */; };
+		AA0A66BE0D4012A3002E4124 /* jquant1.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66900D4012A3002E4124 /* jquant1.o */; };
+		AA0A66BF0D4012A3002E4124 /* jquant2.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66910D4012A3002E4124 /* jquant2.o */; };
+		AA0A66C00D4012A3002E4124 /* jutils.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66920D4012A3002E4124 /* jutils.o */; };
 		AA3971590D2C5E1500855D68 /* StrUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA3971580D2C5E1500855D68 /* StrUtils.cpp */; };
 		AA667BCD0D353E0B0003657B /* glCamera.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BC50D353E0B0003657B /* glCamera.cc */; };
 		AA667BCE0D353E0B0003657B /* glPoint.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BC70D353E0B0003657B /* glPoint.cc */; };
@@ -91,7 +136,52 @@
 		AA08848C0D27F58F00D7793D /* soldado.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = soldado.h; path = ../soldado.h; sourceTree = SOURCE_ROOT; };
 		AA08848D0D27F58F00D7793D /* soldado.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = soldado.cpp; path = ../soldado.cpp; sourceTree = SOURCE_ROOT; };
 		AA0886E70D28977E00D7793D /* SDL_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_mixer.framework; path = /Library/Frameworks/SDL_mixer.framework; sourceTree = "<absolute>"; };
-		AA0A646F0D4001E5002E4124 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = lib/libjpeg.a; sourceTree = "<group>"; };
+		AA0A66650D4012A3002E4124 /* jcapimin.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcapimin.o; path = jpg/jcapimin.o; sourceTree = "<group>"; };
+		AA0A66660D4012A3002E4124 /* jcapistd.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcapistd.o; path = jpg/jcapistd.o; sourceTree = "<group>"; };
+		AA0A66670D4012A3002E4124 /* jccoefct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jccoefct.o; path = jpg/jccoefct.o; sourceTree = "<group>"; };
+		AA0A66680D4012A3002E4124 /* jccolor.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jccolor.o; path = jpg/jccolor.o; sourceTree = "<group>"; };
+		AA0A66690D4012A3002E4124 /* jcdctmgr.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcdctmgr.o; path = jpg/jcdctmgr.o; sourceTree = "<group>"; };
+		AA0A666A0D4012A3002E4124 /* jchuff.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jchuff.o; path = jpg/jchuff.o; sourceTree = "<group>"; };
+		AA0A666B0D4012A3002E4124 /* jcinit.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcinit.o; path = jpg/jcinit.o; sourceTree = "<group>"; };
+		AA0A666C0D4012A3002E4124 /* jcmainct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcmainct.o; path = jpg/jcmainct.o; sourceTree = "<group>"; };
+		AA0A666D0D4012A3002E4124 /* jcmarker.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcmarker.o; path = jpg/jcmarker.o; sourceTree = "<group>"; };
+		AA0A666E0D4012A3002E4124 /* jcmaster.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcmaster.o; path = jpg/jcmaster.o; sourceTree = "<group>"; };
+		AA0A666F0D4012A3002E4124 /* jcomapi.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcomapi.o; path = jpg/jcomapi.o; sourceTree = "<group>"; };
+		AA0A66700D4012A3002E4124 /* jcparam.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcparam.o; path = jpg/jcparam.o; sourceTree = "<group>"; };
+		AA0A66710D4012A3002E4124 /* jcphuff.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcphuff.o; path = jpg/jcphuff.o; sourceTree = "<group>"; };
+		AA0A66720D4012A3002E4124 /* jcprepct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcprepct.o; path = jpg/jcprepct.o; sourceTree = "<group>"; };
+		AA0A66730D4012A3002E4124 /* jcsample.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcsample.o; path = jpg/jcsample.o; sourceTree = "<group>"; };
+		AA0A66740D4012A3002E4124 /* jctrans.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jctrans.o; path = jpg/jctrans.o; sourceTree = "<group>"; };
+		AA0A66750D4012A3002E4124 /* jdapimin.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdapimin.o; path = jpg/jdapimin.o; sourceTree = "<group>"; };
+		AA0A66760D4012A3002E4124 /* jdapistd.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdapistd.o; path = jpg/jdapistd.o; sourceTree = "<group>"; };
+		AA0A66770D4012A3002E4124 /* jdatadst.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdatadst.o; path = jpg/jdatadst.o; sourceTree = "<group>"; };
+		AA0A66780D4012A3002E4124 /* jdatasrc.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdatasrc.o; path = jpg/jdatasrc.o; sourceTree = "<group>"; };
+		AA0A66790D4012A3002E4124 /* jdcoefct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdcoefct.o; path = jpg/jdcoefct.o; sourceTree = "<group>"; };
+		AA0A667A0D4012A3002E4124 /* jdcolor.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdcolor.o; path = jpg/jdcolor.o; sourceTree = "<group>"; };
+		AA0A667B0D4012A3002E4124 /* jddctmgr.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jddctmgr.o; path = jpg/jddctmgr.o; sourceTree = "<group>"; };
+		AA0A667C0D4012A3002E4124 /* jdhuff.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdhuff.o; path = jpg/jdhuff.o; sourceTree = "<group>"; };
+		AA0A667D0D4012A3002E4124 /* jdinput.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdinput.o; path = jpg/jdinput.o; sourceTree = "<group>"; };
+		AA0A667E0D4012A3002E4124 /* jdmainct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdmainct.o; path = jpg/jdmainct.o; sourceTree = "<group>"; };
+		AA0A667F0D4012A3002E4124 /* jdmarker.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdmarker.o; path = jpg/jdmarker.o; sourceTree = "<group>"; };
+		AA0A66800D4012A3002E4124 /* jdmaster.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdmaster.o; path = jpg/jdmaster.o; sourceTree = "<group>"; };
+		AA0A66810D4012A3002E4124 /* jdmerge.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdmerge.o; path = jpg/jdmerge.o; sourceTree = "<group>"; };
+		AA0A66820D4012A3002E4124 /* jdphuff.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdphuff.o; path = jpg/jdphuff.o; sourceTree = "<group>"; };
+		AA0A66830D4012A3002E4124 /* jdpostct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdpostct.o; path = jpg/jdpostct.o; sourceTree = "<group>"; };
+		AA0A66840D4012A3002E4124 /* jdsample.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdsample.o; path = jpg/jdsample.o; sourceTree = "<group>"; };
+		AA0A66850D4012A3002E4124 /* jdtrans.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdtrans.o; path = jpg/jdtrans.o; sourceTree = "<group>"; };
+		AA0A66860D4012A3002E4124 /* jerror.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jerror.o; path = jpg/jerror.o; sourceTree = "<group>"; };
+		AA0A66870D4012A3002E4124 /* jfdctflt.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jfdctflt.o; path = jpg/jfdctflt.o; sourceTree = "<group>"; };
+		AA0A66880D4012A3002E4124 /* jfdctfst.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jfdctfst.o; path = jpg/jfdctfst.o; sourceTree = "<group>"; };
+		AA0A66890D4012A3002E4124 /* jfdctint.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jfdctint.o; path = jpg/jfdctint.o; sourceTree = "<group>"; };
+		AA0A668A0D4012A3002E4124 /* jidctflt.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jidctflt.o; path = jpg/jidctflt.o; sourceTree = "<group>"; };
+		AA0A668B0D4012A3002E4124 /* jidctfst.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jidctfst.o; path = jpg/jidctfst.o; sourceTree = "<group>"; };
+		AA0A668C0D4012A3002E4124 /* jidctint.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jidctint.o; path = jpg/jidctint.o; sourceTree = "<group>"; };
+		AA0A668D0D4012A3002E4124 /* jidctred.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jidctred.o; path = jpg/jidctred.o; sourceTree = "<group>"; };
+		AA0A668E0D4012A3002E4124 /* jmemmgr.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jmemmgr.o; path = jpg/jmemmgr.o; sourceTree = "<group>"; };
+		AA0A668F0D4012A3002E4124 /* jmemnobs.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jmemnobs.o; path = jpg/jmemnobs.o; sourceTree = "<group>"; };
+		AA0A66900D4012A3002E4124 /* jquant1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jquant1.o; path = jpg/jquant1.o; sourceTree = "<group>"; };
+		AA0A66910D4012A3002E4124 /* jquant2.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jquant2.o; path = jpg/jquant2.o; sourceTree = "<group>"; };
+		AA0A66920D4012A3002E4124 /* jutils.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jutils.o; path = jpg/jutils.o; sourceTree = "<group>"; };
 		AA3971570D2C5E1500855D68 /* StrUtils.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; name = StrUtils.h; path = ../StrUtils.h; sourceTree = SOURCE_ROOT; };
 		AA3971580D2C5E1500855D68 /* StrUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; name = StrUtils.cpp; path = ../StrUtils.cpp; sourceTree = SOURCE_ROOT; };
 		AA667BC50D353E0B0003657B /* glCamera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glCamera.cc; path = ../camera/glCamera.cc; sourceTree = SOURCE_ROOT; };
@@ -184,7 +274,52 @@
 				AA0886E80D28977E00D7793D /* SDL_mixer.framework in Frameworks */,
 				AAEE411F0D295D9600DE9F02 /* SDL_ttf.framework in Frameworks */,
 				AAB2E5410D2AD3E400B65B5E /* libGLEW.a in Frameworks */,
-				AA0A64700D4001E5002E4124 /* libjpeg.a in Frameworks */,
+				AA0A66930D4012A3002E4124 /* jcapimin.o in Frameworks */,
+				AA0A66940D4012A3002E4124 /* jcapistd.o in Frameworks */,
+				AA0A66950D4012A3002E4124 /* jccoefct.o in Frameworks */,
+				AA0A66960D4012A3002E4124 /* jccolor.o in Frameworks */,
+				AA0A66970D4012A3002E4124 /* jcdctmgr.o in Frameworks */,
+				AA0A66980D4012A3002E4124 /* jchuff.o in Frameworks */,
+				AA0A66990D4012A3002E4124 /* jcinit.o in Frameworks */,
+				AA0A669A0D4012A3002E4124 /* jcmainct.o in Frameworks */,
+				AA0A669B0D4012A3002E4124 /* jcmarker.o in Frameworks */,
+				AA0A669C0D4012A3002E4124 /* jcmaster.o in Frameworks */,
+				AA0A669D0D4012A3002E4124 /* jcomapi.o in Frameworks */,
+				AA0A669E0D4012A3002E4124 /* jcparam.o in Frameworks */,
+				AA0A669F0D4012A3002E4124 /* jcphuff.o in Frameworks */,
+				AA0A66A00D4012A3002E4124 /* jcprepct.o in Frameworks */,
+				AA0A66A10D4012A3002E4124 /* jcsample.o in Frameworks */,
+				AA0A66A20D4012A3002E4124 /* jctrans.o in Frameworks */,
+				AA0A66A30D4012A3002E4124 /* jdapimin.o in Frameworks */,
+				AA0A66A40D4012A3002E4124 /* jdapistd.o in Frameworks */,
+				AA0A66A50D4012A3002E4124 /* jdatadst.o in Frameworks */,
+				AA0A66A60D4012A3002E4124 /* jdatasrc.o in Frameworks */,
+				AA0A66A70D4012A3002E4124 /* jdcoefct.o in Frameworks */,
+				AA0A66A80D4012A3002E4124 /* jdcolor.o in Frameworks */,
+				AA0A66A90D4012A3002E4124 /* jddctmgr.o in Frameworks */,
+				AA0A66AA0D4012A3002E4124 /* jdhuff.o in Frameworks */,
+				AA0A66AB0D4012A3002E4124 /* jdinput.o in Frameworks */,
+				AA0A66AC0D4012A3002E4124 /* jdmainct.o in Frameworks */,
+				AA0A66AD0D4012A3002E4124 /* jdmarker.o in Frameworks */,
+				AA0A66AE0D4012A3002E4124 /* jdmaster.o in Frameworks */,
+				AA0A66AF0D4012A3002E4124 /* jdmerge.o in Frameworks */,
+				AA0A66B00D4012A3002E4124 /* jdphuff.o in Frameworks */,
+				AA0A66B10D4012A3002E4124 /* jdpostct.o in Frameworks */,
+				AA0A66B20D4012A3002E4124 /* jdsample.o in Frameworks */,
+				AA0A66B30D4012A3002E4124 /* jdtrans.o in Frameworks */,
+				AA0A66B40D4012A3002E4124 /* jerror.o in Frameworks */,
+				AA0A66B50D4012A3002E4124 /* jfdctflt.o in Frameworks */,
+				AA0A66B60D4012A3002E4124 /* jfdctfst.o in Frameworks */,
+				AA0A66B70D4012A3002E4124 /* jfdctint.o in Frameworks */,
+				AA0A66B80D4012A3002E4124 /* jidctflt.o in Frameworks */,
+				AA0A66B90D4012A3002E4124 /* jidctfst.o in Frameworks */,
+				AA0A66BA0D4012A3002E4124 /* jidctint.o in Frameworks */,
+				AA0A66BB0D4012A3002E4124 /* jidctred.o in Frameworks */,
+				AA0A66BC0D4012A3002E4124 /* jmemmgr.o in Frameworks */,
+				AA0A66BD0D4012A3002E4124 /* jmemnobs.o in Frameworks */,
+				AA0A66BE0D4012A3002E4124 /* jquant1.o in Frameworks */,
+				AA0A66BF0D4012A3002E4124 /* jquant2.o in Frameworks */,
+				AA0A66C00D4012A3002E4124 /* jutils.o in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +379,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AA0A65560D401049002E4124 /* New Group */,
 				32CA4F630368D1EE00C91783 /* «PROJECTNAME»_Prefix.pch */,
 			);
 			name = "Other Sources";
@@ -266,6 +402,66 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA0A65560D401049002E4124 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
+		AA0A66070D40123F002E4124 /* libjpeg */ = {
+			isa = PBXGroup;
+			children = (
+				AA0A66650D4012A3002E4124 /* jcapimin.o */,
+				AA0A66660D4012A3002E4124 /* jcapistd.o */,
+				AA0A66670D4012A3002E4124 /* jccoefct.o */,
+				AA0A66680D4012A3002E4124 /* jccolor.o */,
+				AA0A66690D4012A3002E4124 /* jcdctmgr.o */,
+				AA0A666A0D4012A3002E4124 /* jchuff.o */,
+				AA0A666B0D4012A3002E4124 /* jcinit.o */,
+				AA0A666C0D4012A3002E4124 /* jcmainct.o */,
+				AA0A666D0D4012A3002E4124 /* jcmarker.o */,
+				AA0A666E0D4012A3002E4124 /* jcmaster.o */,
+				AA0A666F0D4012A3002E4124 /* jcomapi.o */,
+				AA0A66700D4012A3002E4124 /* jcparam.o */,
+				AA0A66710D4012A3002E4124 /* jcphuff.o */,
+				AA0A66720D4012A3002E4124 /* jcprepct.o */,
+				AA0A66730D4012A3002E4124 /* jcsample.o */,
+				AA0A66740D4012A3002E4124 /* jctrans.o */,
+				AA0A66750D4012A3002E4124 /* jdapimin.o */,
+				AA0A66760D4012A3002E4124 /* jdapistd.o */,
+				AA0A66770D4012A3002E4124 /* jdatadst.o */,
+				AA0A66780D4012A3002E4124 /* jdatasrc.o */,
+				AA0A66790D4012A3002E4124 /* jdcoefct.o */,
+				AA0A667A0D4012A3002E4124 /* jdcolor.o */,
+				AA0A667B0D4012A3002E4124 /* jddctmgr.o */,
+				AA0A667C0D4012A3002E4124 /* jdhuff.o */,
+				AA0A667D0D4012A3002E4124 /* jdinput.o */,
+				AA0A667E0D4012A3002E4124 /* jdmainct.o */,
+				AA0A667F0D4012A3002E4124 /* jdmarker.o */,
+				AA0A66800D4012A3002E4124 /* jdmaster.o */,
+				AA0A66810D4012A3002E4124 /* jdmerge.o */,
+				AA0A66820D4012A3002E4124 /* jdphuff.o */,
+				AA0A66830D4012A3002E4124 /* jdpostct.o */,
+				AA0A66840D4012A3002E4124 /* jdsample.o */,
+				AA0A66850D4012A3002E4124 /* jdtrans.o */,
+				AA0A66860D4012A3002E4124 /* jerror.o */,
+				AA0A66870D4012A3002E4124 /* jfdctflt.o */,
+				AA0A66880D4012A3002E4124 /* jfdctfst.o */,
+				AA0A66890D4012A3002E4124 /* jfdctint.o */,
+				AA0A668A0D4012A3002E4124 /* jidctflt.o */,
+				AA0A668B0D4012A3002E4124 /* jidctfst.o */,
+				AA0A668C0D4012A3002E4124 /* jidctint.o */,
+				AA0A668D0D4012A3002E4124 /* jidctred.o */,
+				AA0A668E0D4012A3002E4124 /* jmemmgr.o */,
+				AA0A668F0D4012A3002E4124 /* jmemnobs.o */,
+				AA0A66900D4012A3002E4124 /* jquant1.o */,
+				AA0A66910D4012A3002E4124 /* jquant2.o */,
+				AA0A66920D4012A3002E4124 /* jutils.o */,
+			);
+			name = libjpeg;
 			sourceTree = "<group>";
 		};
 		AA3971530D2C5DEF00855D68 /* includes */ = {
@@ -427,7 +623,7 @@
 		AABE74960D26CC7E00A3AA8B /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				AA0A646F0D4001E5002E4124 /* libjpeg.a */,
+				AA0A66070D40123F002E4124 /* libjpeg */,
 				AAB2E5400D2AD3E400B65B5E /* libGLEW.a */,
 			);
 			name = lib;
@@ -579,9 +775,11 @@
 					/opt/local/lib,
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/lib\"";
 				PRODUCT_NAME = game;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
@@ -604,9 +802,11 @@
 					/opt/local/lib,
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/lib\"";
 				PRODUCT_NAME = game;
 				WRAPPER_EXTENSION = app;
 			};
