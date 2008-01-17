@@ -25,6 +25,12 @@ Player::Player()
 	this->som_passos[2] = this->s->loadSound("data\\sounds\\footsteps\\boot2.wav");
 	this->som_passos[3] = this->s->loadSound("data\\sounds\\footsteps\\boot3.wav");
 	this->som_passos[4] = this->s->loadSound("data\\sounds\\footsteps\\boot4.wav");
+	
+	this->som_armas[1] = this->s->loadSound("data\\models\\sounds\\handgun\\handgun_fire.wav");
+	this->som_armas[2] = this->s->loadSound("data\\models\\sounds\\smg\\smg_fire.wav");
+	this->som_armas[3] = this->s->loadSound("data\\models\\sounds\\assault\\assault_fire.wav");
+	this->som_armas[4] = this->s->loadSound("data\\models\\sounds\\minigun\\minigun_fire.wav");
+	this->som_sem_balas = this->s->loadSound("data\\models\\sounds\\noammo.wav");
 #else
 	this->som_passos[1] = this->s->loadSound("data/sounds/footsteps/boot1.wav");
 	this->som_passos[2] = this->s->loadSound("data/sounds/footsteps/boot2.wav");
