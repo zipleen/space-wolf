@@ -75,11 +75,17 @@ void Game::MainLoop()
 			dt = this->render->timer.current_time - this->render->timer.last_time;
 			// controlador de teclas
 			this->input->processKeyInput(this->player, this->map);
+
+			// player anim-> actualizar tempo
+			this->player->updateAnimation(this->render->timer.current_time);
+			
+			// temos de processar o AI dos guardas aqui
+			
+			// temos de processar os tiros, o mapa eh q tem a informacao
+			this->map->processTiros(this->player);
 			
 			// animacoes , dois tempos, o delta e o tempo corrente
 			this->map->updateAnimations(dt,this->render->timer.current_time);
-			// player anim?
-			this->player->updateAnimation(this->render->timer.current_time);
 			
 			// temos de ver se o player passou por cima de algum item e "apanha-lo"
 			this->map->processItems(this->player);

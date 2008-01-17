@@ -13,6 +13,7 @@
 #include "md3/Md3Player.h"
 #include "fisica.h"
 #include "md3/Mathlib.h"
+#include "sound.h"
 
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795
@@ -35,14 +36,24 @@ public:
 	bool arma3;
 	bool arma4;
 	int arma_em_uso;
+	bool disparar;
+	float velocidade_disparo;
 	float velocidade;
 	
 	Md3Player *player;
 	GLfloat x_inicial, z_inicial;
+	Sound *s;
+	Mix_Chunk *som_passos[5];
+	int canal_som_passos[5];
+	int som_passo_corrente;
+	Mix_Chunk *som_armas[5];
+	Mix_Chunk *som_sem_balas;
+	int som_disparo_corrente;
 	
 	double dt_cur;
 	double ultimo_andar;
 	double old_ultimo_andar;
+	
 	double ultimo_disparo;
 	
 public:
@@ -59,9 +70,11 @@ public:
 	void updateAnimation(double dt);
 	void setInitialPosition(int x, int y); // posicao do mapa inicial
 	
+	// accoes feitas pelo jogador
 	void SetAndar();
 	void SetCorrer();
 	void setGun(int tipo);
+	bool shootGun();
 	
 	// accoes causadas por outros actores
 	void takeHealth(int valor);

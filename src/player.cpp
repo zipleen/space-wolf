@@ -17,6 +17,32 @@ Player::Player()
 	this->x = this->y = this->z = this->x_inicial = this->z_inicial = 0;
 	this->resetPlayer();
 	this->SetAndar();
+	this->som_disparo_corrente = 0;
+	this->s = Sound::GetInstance();
+	// ler passos
+#ifdef WIN32
+	this->som_passos[1] = this->s->loadSound("data\\sounds\\footsteps\\boot1.wav");
+	this->som_passos[2] = this->s->loadSound("data\\sounds\\footsteps\\boot2.wav");
+	this->som_passos[3] = this->s->loadSound("data\\sounds\\footsteps\\boot3.wav");
+	this->som_passos[4] = this->s->loadSound("data\\sounds\\footsteps\\boot4.wav");
+#else
+	this->som_passos[1] = this->s->loadSound("data/sounds/footsteps/boot1.wav");
+	this->som_passos[2] = this->s->loadSound("data/sounds/footsteps/boot2.wav");
+	this->som_passos[3] = this->s->loadSound("data/sounds/footsteps/boot3.wav");
+	this->som_passos[4] = this->s->loadSound("data/sounds/footsteps/boot4.wav");
+	
+	this->som_armas[1] = this->s->loadSound("data/models/sounds/handgun/handgun_fire.wav");
+	this->som_armas[2] = this->s->loadSound("data/models/sounds/smg/smg_fire.wav");
+	this->som_armas[3] = this->s->loadSound("data/models/sounds/assault/assault_fire.wav");
+	this->som_armas[4] = this->s->loadSound("data/models/sounds/minigun/minigun_fire.wav");
+	this->som_sem_balas = this->s->loadSound("data/models/sounds/noammo.wav");
+#endif
+	this->som_passo_corrente=1;
+	this->canal_som_passos[0]=0;
+	this->canal_som_passos[1]=0;
+	this->canal_som_passos[2]=0;
+	this->canal_som_passos[3]=0;
+	this->canal_som_passos[4]=0;
 }
 
 void Player::draw()
@@ -55,13 +81,15 @@ void Player::resetPlayer()
 	this->arma3 = false;
 	this->arma4 = false;
 	this->armadura = 0;
+	this->disparar = false;
+	this->ultimo_disparo = 0;
 	this->chave_amarela = false;
 	this->chave_vermelha = false;
 	this->balas = 8;
 	this->setInitialPosition(this->z_inicial, this->x_inicial);
 	this->morto = false;
 	this->angulo = 0;
-	this->arma_em_uso = 1; // ha 3 armas, cada uma dispensa balas mais rapido que a outra e tem mais "forca"
+	this->setGun(1);
 }
 
 void Player::setGun(int tipo){
@@ -69,23 +97,55 @@ void Player::setGun(int tipo){
 	{
 		case 1:
 			this->arma_em_uso = 1;
+			this->velocidade_disparo = 0.75;
 			break;
 		case 2:
-			if(this->arma2)
+			if(this->arma2){
 				this->arma_em_uso = 2;
+				this->velocidade_disparo = 0.65;
+			}
 			break;
 		case 3:
-			if(this->arma3)
+			if(this->arma3){
 				this->arma_em_uso = 3;
+				this->velocidade_disparo = 0.25;
+			}
 			break;
 		
 		case 4:
-			if(this->arma4)
+			if(this->arma4){
 				this->arma_em_uso = 4;
+				this->velocidade_disparo = 0.05;
+			}
 			break;
 	}
 	// animacao para se mudou a arma?!?!? por agora muda logo a arma..
 	
+}
+
+bool Player::shootGun()
+{
+	// primeiro temos de ver se podemos disparar, se podemos entao metemos o disparar a true
+	std::cout << "ultimo disparo: " << this->ultimo_disparo << " velocidade: " << this->velocidade_disparo << std::endl;
+	if(this->ultimo_disparo+this->velocidade_disparo < this->dt_cur){
+		// podemos disparar
+		if(this->balas>0){
+			this->disparar = false;
+			this->ultimo_disparo = this->dt_cur;
+			this->balas--;
+			if(Mix_Playing(this->som_disparo_corrente)!=0)
+				Mix_HaltChannel(this->som_disparo_corrente);
+			this->som_disparo_corrente = this->s->playSoundDirect(this->som_armas[this->arma_em_uso]);
+		}else{
+			// som de nao ter balas
+			this->som_disparo_corrente = this->s->playSoundDirect(this->som_sem_balas);
+			this->ultimo_disparo = this->dt_cur;
+		}
+		
+	}
+	if(this->arma_em_uso>=2)
+		return true;
+	else return false;
 }
 
 // accoes provocadas por outros actores
@@ -131,8 +191,8 @@ bool Player::giveBullets(int valor)
 {
 	// so ha 1 tipo de balas HEHE mas mais tipos de balas nao era dificil anyway
 	this->balas+=valor;
-	if(this->balas>200)
-		this->balas = 200;
+	if(this->balas>500)
+		this->balas = 500;
 	return true;
 }
 
@@ -193,10 +253,15 @@ void Player::saveValues()
 
 void Player::calculateSpeed()
 {
+	this->s->player_z = this->z*-1;
+	this->s->player_x = this->x*-1;
+	
 	if((this->dt_cur-this->old_ultimo_andar)==0)
 		return;
-	double dist = sqrt( pow((this->x - this->old_x),2)+pow((this->y-this->old_y),2)+pow((this->z-this->old_z),2) );
-	std::cout << dist / (this->dt_cur-this->old_ultimo_andar) << std::endl;
+	//double dist = sqrt( pow((this->x - this->old_x),2)+pow((this->y-this->old_y),2)+pow((this->z-this->old_z),2) );
+	double dist =  pow((this->x - this->old_x),2)+pow((this->z-this->old_z),2);
+	
+	std::cout << dist / pow((this->dt_cur-this->old_ultimo_andar),2) << std::endl;
 }
 
 void Player::GoStraffLeft()

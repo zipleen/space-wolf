@@ -25,8 +25,8 @@ checkOpenGLErrors (const char *file, int line)
 
 Rendering::Rendering()
 {
-	this->windowWidth = 648;
-	this->windowHeight = 480;
+	this->windowWidth = 800;
+	this->windowHeight = 600;
 	this->windowDepth = 24;
 	this->useTexturing = true;
 	this->useCulling = true;

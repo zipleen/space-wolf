@@ -14,6 +14,8 @@
 #ifndef ITEMS_H
 #define ITEMS_H
 
+#include <SDL.h>
+#include <SDL_mixer.h>
 #include <GL/glew.h>
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -30,10 +32,14 @@
 #include "md3/Md3Model.h"
 #include "md3/TextureManager.h"
 #include "shared_render_objects.h"
+#include "sound.h"
 
 class Items
 	{
 	protected:
+		Sound *s;
+		Mix_Chunk* som_apanhar_item;
+		
 		GLfloat x;
 		GLfloat y;
 		GLfloat z;

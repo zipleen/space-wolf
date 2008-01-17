@@ -23,7 +23,14 @@ Porta::Porta(int x, int y, int direction,int tipo_porta,GLfloat cube_size)
 	
 	this->tempo_comecou_contar = 0;
 	this->last_dt = 0;
-
+	this->s = Sound::GetInstance();
+#ifdef WIN32
+	this->som_porta_abrir = this->s->loadSound("data\\sounds\\doors\\dr1_strt.wav");
+	this->som_porta_fechar = this->s->loadSound("data\\sounds\\doors\\dr1_end.wav");
+#else
+	this->som_porta_abrir = this->s->loadSound("data/sounds/doors/dr1_strt.wav");
+	this->som_porta_fechar = this->s->loadSound("data/sounds/doors/dr1_end.wav");
+#endif
 }
 
 void Porta::tryToOpenDoor(bool chave1, bool chave2)
@@ -59,7 +66,7 @@ void Porta::startOpenDoor()
 		this->porta_a_abrir=true;
 		this->porta_a_fechar = true;
 		this->last_dt=0;
-		
+		this->canal_porta_abrir = this->s->playSound(this->som_porta_abrir, this->y*this->cube_size*2, this->x*this->cube_size*2);
 	}
 }
 
@@ -68,10 +75,12 @@ void Porta::startOpenDoor()
  */
 void Porta::closedoor()
 {
-	this->open=false;
-	Fisica::updatePortas(this->y, this->x, false);
-	// codigo para actualizar a porta a "abrir" em opengl?! tempo?!
-
+	if(this->open){
+		this->open=false;
+		Fisica::updatePortas(this->y, this->x, false);
+		// codigo para actualizar a porta a "abrir" em opengl?! tempo?!
+		this->canal_porta_fechar = this->s->playSound(this->som_porta_fechar, this->y*this->cube_size*2, this->x*this->cube_size*2);
+	}
 }
 
 void Porta::opendoor()
@@ -205,7 +214,7 @@ void Porta::animate(const double dt,const double dt_cur)
 			this->last_dt = dt-0.01;
 		if(this->last_dt+0.01 >= dt){
 			// subir um bocadinho
-			this->altura+=0.45;
+			this->altura+=0.30;
 			// actualizar o ultimo dt
 			this->last_dt = dt;
 			
@@ -216,26 +225,14 @@ void Porta::animate(const double dt,const double dt_cur)
 				this->tempo_comecou_contar = dt_cur;
 			}
 		}
-	}else if(this->open){
-		if(this->porta_a_fechar){
+	}else if(this->porta_a_fechar){
 			if (this->tempo_comecou_contar+5<=dt_cur){
-				//this->open=false;
+				this->closedoor();
 				this->altura-=0.45;
 				if(this->altura<=0){
 					this->porta_a_fechar = false;
-					this->closedoor();
+					
 				}
 			}
-		}
-		
-		
-		// temos de ver se a porta vai fechar... eh preciso controlar como as portas fecham.. eh por tempo
-		// eh preciso fazer codigo aqui para ver se 
-		// 1) o player nao esta no sitio (deixa isso comigo)
-		// 2) contar o tempo (tipo 5 segundos passaram) para a porta e qd passar, comecar a animacao para fechar
-		//		primeiro fechar a porta na fisica -> Fisica::updatePortas(this->y, this->x, false);
-		//		fazer outra variavel para "porta_a_fechar"
-		
 	}
-
 }

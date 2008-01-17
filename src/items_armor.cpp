@@ -11,6 +11,11 @@
 
 Items_Armor::Items_Armor(GLfloat x,GLfloat y,int valor,int mapa_x, int mapa_y) : Items()
 {
+#ifdef WIN32
+	this->som_apanhar_item = this->s->loadSound("data\\sounds\\items\\ar2_pkup.wav");
+#else
+	this->som_apanhar_item = this->s->loadSound("data/sounds/items/ar2_pkup.wav");
+#endif
 	this->mapa_x = mapa_x;
 	this->mapa_y = mapa_y;
 #ifdef WIN32
@@ -32,6 +37,7 @@ bool Items_Armor::consume(Player *p)
 {
 	if(!this->used){
 		if(p->giveArmadura(this->valor_vida)){
+			this->s->playSoundDirect(this->som_apanhar_item);
 			this->used = true;
 			return true;
 		}else return false;

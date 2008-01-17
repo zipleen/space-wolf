@@ -11,7 +11,7 @@
 #define GUARD_H
 
 #include <SDL.h>
-
+#include <SDL_mixer.h>
 #include <GL/glew.h>
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -26,6 +26,7 @@
 #include "md3/Md3Player.h"
 #include "console.h"
 #include "fisica.h"
+#include "sound.h"
 
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795
@@ -37,6 +38,11 @@ class Guard
 {
 
 protected:	
+	Sound *s;
+	Mix_Chunk *som_passos[5];
+	int canal_som_passos[5];
+	int som_passo_corrente;
+	
 	Md3Player *guard;
 	Md3Weapon *weapon;
 	std::string model_path;
@@ -82,6 +88,7 @@ public:
 	void set_walking_front();
 	
 	/* movimento */
+	void playSomPassos();
 	float MoveTest();
 	void GoBack();
 	void GoFront();

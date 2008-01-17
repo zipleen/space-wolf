@@ -13,10 +13,18 @@
 #include "md3/TextureManager.h"
 #include "console.h"
 #include "fisica.h"
+#include <SDL_mixer.h>
+#include "sound.h"
 
 class Porta
 	{
 	public:
+		Sound *s;
+		Mix_Chunk *som_porta_abrir;
+		Mix_Chunk *som_porta_fechar;
+		int canal_porta_abrir;
+		int canal_porta_fechar;
+		
 		// isto vai controlar a altura (que em 3d eh na realidade o Y)
 		GLfloat altura;
 		// o tamanho pelo qual temos de multiplicar o x e y (na realidade Z e X) para ficar no sitio certo

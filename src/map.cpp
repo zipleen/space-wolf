@@ -31,6 +31,20 @@ Map::Map()
 	Fisica::clip_mode = false;
 }
 
+/* processar eventos */
+void Map::processTiros(Player *p)
+{
+	if(p->disparar){
+		// temos de processar o tiro do player, basicamente calcular o proximo quadrado ate encontrar qq coisa, 
+		//  uma parede, um guarda, ou o fim do mapa
+		
+		p->disparar = false;
+	}
+	
+	// agora temos de processar os tiros dos guardas
+}
+
+
 /* portas */
 void Map::openDoor(Player *p)
 {

@@ -11,6 +11,11 @@
 
 Items_Chave::Items_Chave(GLfloat x,GLfloat y,int tipo,int mapa_x, int mapa_y) : Items()
 {
+#ifdef WIN32
+	this->som_apanhar_item = this->s->loadSound("data\\sounds\\items\\use_nothing.wav");
+#else
+	this->som_apanhar_item = this->s->loadSound("data/sounds/items/use_nothing.wav");
+#endif
 	this->mapa_x = mapa_x;
 	this->mapa_y = mapa_y;
 	if(tipo==1){
@@ -46,6 +51,7 @@ bool Items_Chave::consume(Player *p)
 	if(!this->used){
 		this->used = true;
 		p->giveChave(this->tipo);
+		this->s->playSoundDirect(this->som_apanhar_item);
 		return true;
 	}
 	return false;

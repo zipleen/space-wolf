@@ -30,6 +30,7 @@ protected:
 	bool keyGoFrontPressed;
 	bool keyGoBackPressed;
 	bool keyFirePressed;
+	bool keyFireHoldPressed;
 	bool keyOpenDoorPressed;
 	bool keyRunPressed;
 	bool keyArmaMudar;

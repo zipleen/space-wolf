@@ -11,6 +11,11 @@
 
 Items_Vida::Items_Vida(GLfloat x,GLfloat y,int valor, int mapa_x, int mapa_y) : Items()
 {
+#ifdef WIN32
+	this->som_apanhar_item = this->s->loadSound("data\\sounds\\items\\l_health.wav");
+#else
+	this->som_apanhar_item = this->s->loadSound("data/sounds/items/l_health.wav");
+#endif
 	this->mapa_x = mapa_x;
 	this->mapa_y = mapa_y;
 	switch(valor){
@@ -63,6 +68,7 @@ bool Items_Vida::consume(Player *p)
 {
 	if(!this->used){
 		if(p->giveHealth(this->valor_vida)){
+			this->s->playSoundDirect(this->som_apanhar_item);
 			this->used = true;
 			return true;
 		}else return false;

@@ -96,6 +96,9 @@ public:
 	Map(); 
 	virtual ~Map(){};
 	
+	// accoes
+	void processTiros(Player *p);
+	
 	// portas
 	void openDoor(Player *p);
 	void openDoor(Guard *p);

@@ -19,6 +19,25 @@ Guard::Guard()
 	this->alerta = false;
 	this->movimento_contar_vezes = 0;
 	this->velocidade = VELOCIDADE_ANDAR_GUARDA;
+	this->s = Sound::GetInstance();
+	// ler passos
+#ifdef WIN32
+	this->som_passos[1] = this->s->loadSound("data\\sounds\\footsteps\\boot1.wav");
+	this->som_passos[2] = this->s->loadSound("data\\sounds\\footsteps\\boot2.wav");
+	this->som_passos[3] = this->s->loadSound("data\\sounds\\footsteps\\boot3.wav");
+	this->som_passos[4] = this->s->loadSound("data\\sounds\\footsteps\\boot4.wav");
+#else
+	this->som_passos[1] = this->s->loadSound("data/sounds/footsteps/boot1.wav");
+	this->som_passos[2] = this->s->loadSound("data/sounds/footsteps/boot2.wav");
+	this->som_passos[3] = this->s->loadSound("data/sounds/footsteps/boot3.wav");
+	this->som_passos[4] = this->s->loadSound("data/sounds/footsteps/boot4.wav");
+#endif
+	this->som_passo_corrente=1;
+	this->canal_som_passos[0]=0;
+	this->canal_som_passos[1]=0;
+	this->canal_som_passos[2]=0;
+	this->canal_som_passos[3]=0;
+	this->canal_som_passos[4]=0;
 }
 
 void Guard::loadModel()
@@ -71,6 +90,20 @@ void Guard::draw()
 	glPopMatrix();
 }
 
+void Guard::playSomPassos()
+{
+	// verificar se o som está a tocar
+	if(this->canal_som_passos[this->som_passo_corrente]==0 || Mix_Playing(this->canal_som_passos[this->som_passo_corrente])==0){
+		//std::cout << "som corrente "<< this->z << " " << this->x << ": " << this->som_passo_corrente << std::endl;
+		// ja nao toca
+		this->canal_som_passos[this->som_passo_corrente] = this->s->playSound(this->som_passos[this->som_passo_corrente], this->z, this->x);
+		if(this->som_passo_corrente==4)
+			this->som_passo_corrente=1;
+		else this->som_passo_corrente++;
+		
+	}
+}
+
 void Guard::animate(const double dt)
 {
 	if(!this->morto){
@@ -104,6 +137,10 @@ void Guard::animate(const double dt)
 			this->modificou_upper_movimento = false;
 		}
 		this->guard->animate(dt);
+		
+		// som
+		if(this->em_movimento)
+			this->playSomPassos();
 	}
 }
 

@@ -8,7 +8,7 @@
  */
 
 #include "items.h"
-#include <iostream>
+
 Items::Items()
 {
 	this->angulo=0;
@@ -16,6 +16,7 @@ Items::Items()
 	this->subir = true;
 	this->y=-3;
 	this->used = false;
+	this->s = Sound::GetInstance();
 }
 
 void Items::loadModel()

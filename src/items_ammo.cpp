@@ -11,6 +11,11 @@
 
 Items_Ammo::Items_Ammo(GLfloat x,GLfloat y,int valor,int mapa_x, int mapa_y) : Items()
 {
+#ifdef WIN32
+	this->som_apanhar_item = this->s->loadSound("data\\sounds\\items\\am_pkup.wav");
+#else
+	this->som_apanhar_item = this->s->loadSound("data/sounds/items/am_pkup.wav");
+#endif
 	this->mapa_x = mapa_x;
 	this->mapa_y = mapa_y;
 #ifdef WIN32
@@ -32,6 +37,7 @@ bool Items_Ammo::consume(Player *p)
 {
 	if(!this->used){
 		if(p->giveBullets(this->valor)){
+			this->s->playSoundDirect(this->som_apanhar_item);
 			this->used = true;
 			return true;
 		}else return false;

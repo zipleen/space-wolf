@@ -11,6 +11,11 @@
 
 Items_Armas::Items_Armas(GLfloat x,GLfloat y,int valor,int mapa_x, int mapa_y) : Items()
 {
+#ifdef WIN32
+	this->som_apanhar_item = this->s->loadSound("data\\sounds\\items\\w_pkup.wav");
+#else
+	this->som_apanhar_item = this->s->loadSound("data/sounds/items/w_pkup.wav");
+#endif
 	this->mapa_x = mapa_x;
 	this->mapa_y = mapa_y;
 	switch(valor){
@@ -60,6 +65,7 @@ bool Items_Armas::consume(Player *p)
 {
 	if(!this->used){
 		this->used = true;
+		this->s->playSoundDirect(this->som_apanhar_item);
 		p->giveArmas(this->valor);
 		p->giveBullets(8);
 		return true;

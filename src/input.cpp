@@ -24,6 +24,7 @@ Input::Input()
 	this->keyFirePressed = false;
 	this->keyOpenDoorPressed = false;
 	this->keyRunPressed = false;
+	this->keyFireHoldPressed = false;
 	
 	this->render = Rendering::GetInstance();
 }
@@ -32,6 +33,11 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 {
 	switch(key->sym)
 	{
+		case SDLK_b:
+			this->keyFirePressed = value;
+			if(!value)
+				this->keyFireHoldPressed = true;
+			break;
 		case SDLK_LEFT:
 			this->keyLeftPressed = value;
 			break;
@@ -180,5 +186,10 @@ void Input::processKeyInput(Player *p, Map *m)
 		p->setGun(this->ArmaMudarPara);
 		this->keyArmaMudar = false;
 		this->ArmaMudarPara = false;
+	}
+	if(this->keyFirePressed){
+		if(this->keyFireHoldPressed)
+			if(!p->shootGun())
+				this->keyFireHoldPressed=false;
 	}
 }
