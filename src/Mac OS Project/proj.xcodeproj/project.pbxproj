@@ -15,6 +15,9 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		AA08848E0D27F58F00D7793D /* soldado.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA08848D0D27F58F00D7793D /* soldado.cpp */; };
 		AA0886E80D28977E00D7793D /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0886E70D28977E00D7793D /* SDL_mixer.framework */; };
+		AA0A634B0D3FF9A0002E4124 /* SDL_mixer.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = AA0886E70D28977E00D7793D /* SDL_mixer.framework */; };
+		AA0A63520D3FF9A2002E4124 /* SDL_ttf.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = AAEE411E0D295D9600DE9F02 /* SDL_ttf.framework */; };
+		AA0A63C40D3FFC56002E4124 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A63C30D3FFC56002E4124 /* libjpeg.a */; };
 		AA3971590D2C5E1500855D68 /* StrUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA3971580D2C5E1500855D68 /* StrUtils.cpp */; };
 		AA667BCD0D353E0B0003657B /* glCamera.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BC50D353E0B0003657B /* glCamera.cc */; };
 		AA667BCE0D353E0B0003657B /* glPoint.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BC70D353E0B0003657B /* glPoint.cc */; };
@@ -22,7 +25,6 @@
 		AA667BD00D353E0B0003657B /* glVector.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BCB0D353E0B0003657B /* glVector.cc */; };
 		AA7F76C50D3124670088B254 /* porta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7F76C40D3124670088B254 /* porta.cpp */; };
 		AA968A2E0D367DF000B6E06D /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA968A2C0D367DF000B6E06D /* Font.cpp */; };
-		AA96EC630D313893001FC1B2 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA96EC620D313893001FC1B2 /* libjpeg.a */; };
 		AA984AF40D381EC0000B2837 /* guard_medium.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA984AF30D381EC0000B2837 /* guard_medium.cpp */; };
 		AA9D579B0D27C34100089D4E /* items.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9D579A0D27C34100089D4E /* items.cpp */; };
 		AAA5B20A0D38F691006F1D6E /* shared_render_objects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA5B2080D38F691006F1D6E /* shared_render_objects.cpp */; };
@@ -65,6 +67,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AA0A63520D3FF9A2002E4124 /* SDL_ttf.framework in Copy Frameworks into .app bundle */,
+				AA0A634B0D3FF9A0002E4124 /* SDL_mixer.framework in Copy Frameworks into .app bundle */,
 				002F3A0009D0884600EBEB88 /* SDL.framework in Copy Frameworks into .app bundle */,
 			);
 			name = "Copy Frameworks into .app bundle";
@@ -87,6 +91,7 @@
 		AA08848C0D27F58F00D7793D /* soldado.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = soldado.h; path = ../soldado.h; sourceTree = SOURCE_ROOT; };
 		AA08848D0D27F58F00D7793D /* soldado.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = soldado.cpp; path = ../soldado.cpp; sourceTree = SOURCE_ROOT; };
 		AA0886E70D28977E00D7793D /* SDL_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_mixer.framework; path = /Library/Frameworks/SDL_mixer.framework; sourceTree = "<absolute>"; };
+		AA0A63C30D3FFC56002E4124 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = lib/libjpeg.a; sourceTree = "<group>"; };
 		AA3971570D2C5E1500855D68 /* StrUtils.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; name = StrUtils.h; path = ../StrUtils.h; sourceTree = SOURCE_ROOT; };
 		AA3971580D2C5E1500855D68 /* StrUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; name = StrUtils.cpp; path = ../StrUtils.cpp; sourceTree = SOURCE_ROOT; };
 		AA667BC50D353E0B0003657B /* glCamera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glCamera.cc; path = ../camera/glCamera.cc; sourceTree = SOURCE_ROOT; };
@@ -101,7 +106,6 @@
 		AA7F76C40D3124670088B254 /* porta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = porta.cpp; path = ../porta.cpp; sourceTree = SOURCE_ROOT; };
 		AA968A2C0D367DF000B6E06D /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../font/Font.cpp; sourceTree = SOURCE_ROOT; };
 		AA968A2D0D367DF000B6E06D /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Font.h; path = ../font/Font.h; sourceTree = SOURCE_ROOT; };
-		AA96EC620D313893001FC1B2 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = /opt/local/lib/libjpeg.a; sourceTree = "<absolute>"; };
 		AA984AF20D381EC0000B2837 /* guard_medium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = guard_medium.h; path = ../guard_medium.h; sourceTree = SOURCE_ROOT; };
 		AA984AF30D381EC0000B2837 /* guard_medium.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = guard_medium.cpp; path = ../guard_medium.cpp; sourceTree = SOURCE_ROOT; };
 		AA9D57990D27C34100089D4E /* items.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = items.h; path = ../items.h; sourceTree = SOURCE_ROOT; };
@@ -180,7 +184,7 @@
 				AA0886E80D28977E00D7793D /* SDL_mixer.framework in Frameworks */,
 				AAEE411F0D295D9600DE9F02 /* SDL_ttf.framework in Frameworks */,
 				AAB2E5410D2AD3E400B65B5E /* libGLEW.a in Frameworks */,
-				AA96EC630D313893001FC1B2 /* libjpeg.a in Frameworks */,
+				AA0A63C40D3FFC56002E4124 /* libjpeg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +427,7 @@
 		AABE74960D26CC7E00A3AA8B /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				AA96EC620D313893001FC1B2 /* libjpeg.a */,
+				AA0A63C30D3FFC56002E4124 /* libjpeg.a */,
 				AAB2E5400D2AD3E400B65B5E /* libGLEW.a */,
 			);
 			name = lib;
@@ -574,8 +578,10 @@
 					"$(inherited)",
 					/opt/local/lib,
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/lib\"";
 				PRODUCT_NAME = game;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
@@ -597,8 +603,10 @@
 					"$(inherited)",
 					/opt/local/lib,
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/lib\"";
 				PRODUCT_NAME = game;
 				WRAPPER_EXTENSION = app;
 			};
@@ -627,10 +635,7 @@
 				);
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = "\"$(PROJECT_DIR)/../include\"";
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_2 = "\"$(PROJECT_DIR)/include\"";
-				OTHER_CFLAGS = (
-					"-I/opt/local/include/",
-					"-DDEBUG",
-				);
+				OTHER_CFLAGS = "-DDEBUG";
 				PREBINDING = NO;
 				PRODUCT_NAME = wolf;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
@@ -660,11 +665,11 @@
 					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1)",
 				);
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = "\"$(PROJECT_DIR)/../include\"";
-				OTHER_CFLAGS = "-I/opt/local/include/";
+				OTHER_CFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = wolf;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
-				VALID_ARCHS = "ppc i386 x86_64";
+				VALID_ARCHS = "i386 x86_64";
 				VERSIONING_SYSTEM = "";
 			};
 			name = Release;

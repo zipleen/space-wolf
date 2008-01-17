@@ -244,7 +244,7 @@ float Player::MoveTest()
 		double dt_menos = this->dt_cur-this->ultimo_andar;
 		this->old_ultimo_andar = this->ultimo_andar;
 		this->ultimo_andar = this->dt_cur;
-		if(dt_menos>0.1)
+		if(dt_menos>0.1 && dt_menos<1)
 			return 1+dt_menos;
 		else return 1;
 	 }else return 0;
