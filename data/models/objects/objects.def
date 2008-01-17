@@ -1,3 +1,14 @@
 5001,data/models/objects/bones/bbones.md3,data/models/objects/bones/bbones.tga,key,0.15,0,Esqueleto
 5002,data/models/objects/armor/armor.md3,data/models/objects/armor/armor.tga,key,2.6,1,Armadura
+5003,data/models/objects/flag/flag.md3,data/models/objects/flag/flag.tga,key,2.6,1,Bandeira
+5004,data/models/objects/lights/lamp.md3,data/models/objects/lights/dark.tga,key,10.2,0,Lampada
+5005,data/models/objects/barrel/barrel.md3,data/models/objects/barrel/gbarrel.tga,key,2.5,1,Barril
+5006,data/models/objects/plant/flower.md3,data/models/objects/plant/brown.tga,key,2.5,1,Planta
+5007,data/models/objects/puddle/puddle.md3,data/models/objects/puddle/blood.tga,key,0,0,Sangue
+5008,data/models/objects/puddle/puddle.md3,data/models/objects/puddle/water.tga,key,0,0,Agua
+5009,data/models/objects/sink/sink.md3,data/models/objects/sink/sink.tga,key,0.2,1,Lavatorio
+5010,data/models/objects/skel/skeleton.md3,data/models/objects/skel/lskel.tga,key,0.2,0,Esqueleto
+5011,data/models/objects/spears/spears.md3,data/models/objects/spears/spears.tga,key,2.5,1,Lancas
 
+5013,data/models/objects/table/tablenochair.md3,data/models/objects/table/table.tga,key,0,1,Mesa sem cadeira
+5014,data/models/objects/vase/vase.md3,data/models/objects/vase/vase.tga,key,2.5,1,Vaso
