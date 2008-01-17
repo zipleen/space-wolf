@@ -19,6 +19,7 @@ Game::Game(char *map_name)
 	if(this->render->useTextures())
 		this->map->loadTextures();
 	Hud::initHud();
+	srand((unsigned)time(0));
 }
 
 void Game::MainLoop()

@@ -43,6 +43,8 @@ protected:
 	int canal_som_passos[5];
 	int som_passo_corrente;
 	
+	Mix_Chunk *som_morrer[4];
+	
 	Md3Player *guard;
 	Md3Weapon *weapon;
 	std::string model_path;
@@ -74,6 +76,7 @@ public:
 	double ultimo_andar;
 	
 	bool morto;
+	bool a_morrer;
 	bool alerta;
 public:
 	Guard(); 
@@ -86,6 +89,9 @@ public:
 	void setAngulo(GLfloat angulo);
 	void set_xy(float z, float x);
 	void set_walking_front();
+	
+	/* player actions */
+	void takeHealth(GLfloat x, GLfloat y);
 	
 	/* movimento */
 	void playSomPassos();

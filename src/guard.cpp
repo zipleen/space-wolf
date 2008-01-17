@@ -104,6 +104,11 @@ void Guard::playSomPassos()
 	}
 }
 
+void Guard::takeHealth(GLfloat z, GLfloat x)
+{
+	this->morto=true;
+}
+
 void Guard::animate(const double dt)
 {
 	if(!this->morto){
@@ -141,6 +146,30 @@ void Guard::animate(const double dt)
 		// som
 		if(this->em_movimento)
 			this->playSomPassos();
+	}else{
+		// estamos mortos ou vamos morrer
+		if(!this->a_morrer){
+			this->guard->_lowerAnim.executar_anim = false;
+			this->guard->_upperAnim.executar_anim = false;
+			switch(rand()%4+1){
+				case 1:
+					this->guard->setAnimation(kBothDeath1);
+					this->s->playSound(this->som_morrer[1],this->z, this->x);
+					break;
+				case 2:
+					this->guard->setAnimation(kBothDeath2);
+					this->s->playSound(this->som_morrer[2],this->z, this->x);
+					break;
+				default:
+				case 3:
+					this->guard->setAnimation(kBothDeath3);
+					this->s->playSound(this->som_morrer[3],this->z, this->x);
+					break;
+			}
+			
+			this->a_morrer=true;
+		}
+		this->guard->animate(dt);
 	}
 }
 

@@ -307,6 +307,8 @@ Md3Player::Md3AnimState::Md3AnimState ()
   : anim (NULL), curr_time (0.0f), old_time (0.0f),
     curr_frame (0), next_frame (0), interp (0.0f)
 {
+	this->executar_anim = true;
+	this->dont_update = false;
 }
 
 
@@ -341,10 +343,14 @@ Md3Player::Md3AnimState::update (float dt)
   if ((curr_time - old_time) > (1.0 / anim->fps))
     {
       curr_frame = next_frame;
+	if(!this->dont_update)
       next_frame++;
 
-      if (next_frame > (anim->first + anim->num - 1))
-	next_frame = anim->first;
+		if (next_frame > (anim->first + anim->num - 1)){
+			if(this->executar_anim)
+				next_frame = anim->first;
+			else {this->dont_update = true;next_frame--;}
+		}
 
       old_time = curr_time;
     }

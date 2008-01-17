@@ -220,7 +220,8 @@ private:
   public:
     // Constructor
     Md3AnimState ();
-
+	  bool executar_anim;
+	  bool dont_update;
     // Member functions
     void setup (Md3PlayerAnim_t *a);
     void update (float dt);
@@ -276,7 +277,7 @@ private:
   void loadSkins (const string &path)
     throw (Md3Exception);
 
-private:
+public:
   // Member variables
   Md3ModelPtr _lower;
   Md3ModelPtr _upper;

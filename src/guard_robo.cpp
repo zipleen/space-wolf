@@ -28,5 +28,14 @@ Guard_Robo::Guard_Robo(int z, int x, bool em_movimento, GLfloat angulo) : Guard(
 	this->em_movimento = em_movimento;
 	this->modificou_movimento = true;
 	this->angulo = angulo;
+#ifdef WIN32
+	this->som_morrer[1] = this->s->loadSound("data\\models\\sounds\\robot\\death1.wav");
+	this->som_morrer[2] = this->s->loadSound("data\\models\\sounds\\robot\\death2.wav");
+	this->som_morrer[3] = this->s->loadSound("data\\models\\sounds\\robot\\death3.wav");
+#else
+	this->som_morrer[1] = this->s->loadSound("data/models/sounds/robot/death1.wav");
+	this->som_morrer[2] = this->s->loadSound("data/models/sounds/robot/death2.wav");
+	this->som_morrer[3] = this->s->loadSound("data/models/sounds/robot/death3.wav");
+#endif	
 }
 

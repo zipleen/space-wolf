@@ -59,7 +59,7 @@ int Sound::playSound(Mix_Chunk *s, float obj_z, float obj_x)
 	float z = this->player_z - obj_z;
 	float x = this->player_x - obj_x;
 	int dist = sqrt(z*z + x*x)*3/2;
-	std::cout << "dist: " << dist << std::endl;
+	//std::cout << "dist: " << dist << std::endl;
 	if(dist < 250){
 		int canal = Mix_PlayChannel(-1, s, 0);
 		Mix_SetDistance ( canal, dist );

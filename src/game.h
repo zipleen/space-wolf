@@ -15,6 +15,9 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <stdlib.h>
+#include <time.h>
+
 #include <SDL.h>
 #include "map.h"
 #include "player.h"

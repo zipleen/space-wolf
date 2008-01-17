@@ -130,7 +130,7 @@ bool Player::shootGun()
 	if(this->ultimo_disparo+this->velocidade_disparo < this->dt_cur){
 		// podemos disparar
 		if(this->balas>0){
-			this->disparar = false;
+			this->disparar = true;
 			this->ultimo_disparo = this->dt_cur;
 			this->balas--;
 			if(Mix_Playing(this->som_disparo_corrente)!=0)
@@ -138,6 +138,7 @@ bool Player::shootGun()
 			this->som_disparo_corrente = this->s->playSoundDirect(this->som_armas[this->arma_em_uso]);
 		}else{
 			// som de nao ter balas
+			this->disparar = false;
 			this->som_disparo_corrente = this->s->playSoundDirect(this->som_sem_balas);
 			this->ultimo_disparo = this->dt_cur;
 		}

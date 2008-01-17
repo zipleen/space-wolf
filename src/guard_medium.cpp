@@ -28,5 +28,14 @@ Guard_Medium::Guard_Medium(int z, int x, bool em_movimento, GLfloat angulo) : Gu
 	this->em_movimento = em_movimento;
 	this->modificou_movimento = true;
 	this->angulo = angulo;
+#ifdef WIN32
+	this->som_morrer[1] = this->s->loadSound("data\\models\\sounds\\visor\\death1.wav");
+	this->som_morrer[2] = this->s->loadSound("data\\models\\sounds\\visor\\death2.wav");
+	this->som_morrer[3] = this->s->loadSound("data\\models\\sounds\\visor\\death3.wav");
+#else
+	this->som_morrer[1] = this->s->loadSound("data/models/sounds/visor/death1.wav");
+	this->som_morrer[2] = this->s->loadSound("data/models/sounds/visor/death2.wav");
+	this->som_morrer[3] = this->s->loadSound("data/models/sounds/visor/death3.wav");
+#endif	
 }
 

@@ -37,7 +37,42 @@ void Map::processTiros(Player *p)
 	if(p->disparar){
 		// temos de processar o tiro do player, basicamente calcular o proximo quadrado ate encontrar qq coisa, 
 		//  uma parede, um guarda, ou o fim do mapa
-		
+		GLfloat nx,ny;
+		int cx, cy;
+		float a_seguir = this->cube_size;
+		bool acertou = false;
+		for(;;){
+			// primeiro vamos "uma casa" para a frente
+			ny=p->x+sin(-RAD(p->angulo))*a_seguir;
+			nx=p->z+cos(RAD(p->angulo))*a_seguir;
+			cx = (int)(((nx*-1)/(this->cube_size*2.0f))+0.5);
+			cy = (int)(((ny*-1)/(this->cube_size*2.0f))+0.5);
+			//std::cout << "testar: nx: " << nx << " ny: " << ny << " cx: " << cx << " cy: " << cy << std::endl;
+			
+			if(cx>this->tamanho_mapa || cy>this->tamanho_mapa || cx<0 || cy<0)
+				break; // nao acertaste em nada
+			
+			// vamos procurar os guardas todos
+			for(int i=0;i<this->guardas.size();i++){
+				if(!this->guardas[i]->morto){
+					int guarda_x = (int)(((this->guardas[i]->z)/(this->cube_size*2.0f))+0.5);
+					int guarda_y = (int)(((this->guardas[i]->x)/(this->cube_size*2.0f))+0.5);
+					if(guarda_x == cx && guarda_y == cy){
+						this->guardas[i]->takeHealth(p->z, p->x);
+						acertou=true;
+						break;
+					}
+				}
+			}
+			if(acertou)
+				break;
+			/*
+			// mas se ja testamos os guardas todos, para q queremos testar as paredes?!
+			if(this->map[cx][cy]>1000 && this->map[cx][cy]<2000)
+				break; // bateste na parede
+			*/
+			a_seguir+=this->cube_size;
+		}
 		p->disparar = false;
 	}
 	
