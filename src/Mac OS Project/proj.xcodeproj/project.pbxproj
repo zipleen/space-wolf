@@ -17,7 +17,7 @@
 		AA0886E80D28977E00D7793D /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0886E70D28977E00D7793D /* SDL_mixer.framework */; };
 		AA0A634B0D3FF9A0002E4124 /* SDL_mixer.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = AA0886E70D28977E00D7793D /* SDL_mixer.framework */; };
 		AA0A63520D3FF9A2002E4124 /* SDL_ttf.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = AAEE411E0D295D9600DE9F02 /* SDL_ttf.framework */; };
-		AA0A63C40D3FFC56002E4124 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A63C30D3FFC56002E4124 /* libjpeg.a */; };
+		AA0A64700D4001E5002E4124 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A646F0D4001E5002E4124 /* libjpeg.a */; };
 		AA3971590D2C5E1500855D68 /* StrUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA3971580D2C5E1500855D68 /* StrUtils.cpp */; };
 		AA667BCD0D353E0B0003657B /* glCamera.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BC50D353E0B0003657B /* glCamera.cc */; };
 		AA667BCE0D353E0B0003657B /* glPoint.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BC70D353E0B0003657B /* glPoint.cc */; };
@@ -91,7 +91,7 @@
 		AA08848C0D27F58F00D7793D /* soldado.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = soldado.h; path = ../soldado.h; sourceTree = SOURCE_ROOT; };
 		AA08848D0D27F58F00D7793D /* soldado.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = soldado.cpp; path = ../soldado.cpp; sourceTree = SOURCE_ROOT; };
 		AA0886E70D28977E00D7793D /* SDL_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_mixer.framework; path = /Library/Frameworks/SDL_mixer.framework; sourceTree = "<absolute>"; };
-		AA0A63C30D3FFC56002E4124 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = lib/libjpeg.a; sourceTree = "<group>"; };
+		AA0A646F0D4001E5002E4124 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = lib/libjpeg.a; sourceTree = "<group>"; };
 		AA3971570D2C5E1500855D68 /* StrUtils.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; name = StrUtils.h; path = ../StrUtils.h; sourceTree = SOURCE_ROOT; };
 		AA3971580D2C5E1500855D68 /* StrUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; name = StrUtils.cpp; path = ../StrUtils.cpp; sourceTree = SOURCE_ROOT; };
 		AA667BC50D353E0B0003657B /* glCamera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glCamera.cc; path = ../camera/glCamera.cc; sourceTree = SOURCE_ROOT; };
@@ -184,7 +184,7 @@
 				AA0886E80D28977E00D7793D /* SDL_mixer.framework in Frameworks */,
 				AAEE411F0D295D9600DE9F02 /* SDL_ttf.framework in Frameworks */,
 				AAB2E5410D2AD3E400B65B5E /* libGLEW.a in Frameworks */,
-				AA0A63C40D3FFC56002E4124 /* libjpeg.a in Frameworks */,
+				AA0A64700D4001E5002E4124 /* libjpeg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +427,7 @@
 		AABE74960D26CC7E00A3AA8B /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				AA0A63C30D3FFC56002E4124 /* libjpeg.a */,
+				AA0A646F0D4001E5002E4124 /* libjpeg.a */,
 				AAB2E5400D2AD3E400B65B5E /* libGLEW.a */,
 			);
 			name = lib;
@@ -657,15 +657,15 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/include",
+					"$(PROJECT_DIR)/../include",
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 					"$(HEADER_SEARCH_PATHS)",
 					/Library/Frameworks/SDL_mixer.framework/Headers,
 					/Library/Frameworks/SDL_ttf.framework/Headers,
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1)",
 				);
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = "\"$(PROJECT_DIR)/../include\"";
-				OTHER_CFLAGS = "";
+				OTHER_CFLAGS = "-I/opt/local/include";
 				PREBINDING = NO;
 				PRODUCT_NAME = wolf;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;

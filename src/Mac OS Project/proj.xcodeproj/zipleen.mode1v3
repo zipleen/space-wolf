@@ -361,7 +361,7 @@
 							<real>301</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>5 99 1272 679 0 0 1280 778 </string>
+						<string>4 99 1272 679 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -379,7 +379,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>main.cpp</string>
+								<string>player.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -387,11 +387,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>main.cpp</string>
+										<string>player.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>AA0A641C0D3FFD7D002E4124</string>
+										<string>AA0A64950D4002BA002E4124</string>
 										<key>history</key>
 										<array>
 											<string>AABE74410D26CC1300A3AA8B</string>
@@ -464,8 +464,8 @@
 											<string>AA0A63030D3FEDB2002E4124</string>
 											<string>AA0A63280D3FF4AB002E4124</string>
 											<string>AA0A63400D3FF8A6002E4124</string>
-											<string>AA0A63830D3FFAAD002E4124</string>
-											<string>AA0A63840D3FFAAD002E4124</string>
+											<string>AA0A64690D4001C9002E4124</string>
+											<string>AA0A646A0D4001C9002E4124</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -692,6 +692,7 @@
 											<string>AA0A632C0D3FF4AB002E4124</string>
 											<string>AA0A63420D3FF8A6002E4124</string>
 											<string>AA0A63850D3FFAAD002E4124</string>
+											<string>AA0A646B0D4001C9002E4124</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -705,7 +706,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {949, 314}}</string>
 								<key>RubberWindowFrame</key>
-								<string>5 99 1272 679 0 0 1280 778 </string>
+								<string>4 99 1272 679 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -730,7 +731,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>AA0A641D0D3FFD7D002E4124</string>
+										<string>AA0A64960D4002BA002E4124</string>
 										<key>history</key>
 										<array>
 											<string>AABE74410D26CC1300A3AA8B</string>
@@ -908,7 +909,7 @@
 								<key>Frame</key>
 								<string>{{0, 319}, {949, 314}}</string>
 								<key>RubberWindowFrame</key>
-								<string>5 99 1272 679 0 0 1280 778 </string>
+								<string>4 99 1272 679 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -928,7 +929,7 @@
 								<key>Frame</key>
 								<string>{{0, 638}, {949, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>5 99 1272 679 0 0 1280 778 </string>
+								<string>4 99 1272 679 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -1075,7 +1076,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>222297469.63009101</real>
+	<real>222298810.799288</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -1100,7 +1101,7 @@
 		<string>/Users/zipleen/dev/sgrai/trunk/src/Mac OS Project/proj.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>5 99 1272 679 0 0 1280 778 </string>
+	<string>4 99 1272 679 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
