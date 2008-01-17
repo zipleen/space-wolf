@@ -17,9 +17,9 @@ class Fisica
 protected:
 	static std::vector<std::vector <bool> > mapa;
 	static std::vector<std::vector <bool> > portas;
-	static float cube_size;
 	
 public:
+	static float cube_size;
 	Fisica(){}; 
 	virtual ~Fisica(){};
 	static bool clip_mode;
