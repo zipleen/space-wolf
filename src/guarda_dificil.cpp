@@ -21,7 +21,7 @@ Guard_Dificil::Guard_Dificil(int z, int x, bool em_movimento, GLfloat angulo) : 
 	this->loadModel();
 	
 	this->vida=75;
-	this->velocidade_disparo=0.05;
+	this->velocidade_disparo=0.15;
 	this->velocidade_correr=1;
 	
 	this->set_xy(z,x);

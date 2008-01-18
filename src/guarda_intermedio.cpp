@@ -21,7 +21,7 @@ Guard_Intermedio::Guard_Intermedio(int z, int x, bool em_movimento, GLfloat angu
 	this->loadModel();
 	
 	this->vida=75;
-	this->velocidade_disparo=0.25;
+	this->velocidade_disparo=0.35;
 	this->velocidade_correr=1;
 	
 	this->set_xy(z,x);

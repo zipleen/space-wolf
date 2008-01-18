@@ -100,6 +100,20 @@ void Guard::draw()
 void Guard::nextMove()
 {
 	if(this->alerta){
+		switch(rand()%4+1){
+			case 1:
+				this->GoStraffLeft();
+				break;
+			case 2:
+				this->GoStraffRight();
+				break;
+			case 3:
+				this->GoFront();
+				break;
+			case 4:
+				this->GoStraffLeft();
+				break;
+		}
 	   this->shootGun();
 	}
 }
@@ -155,6 +169,7 @@ void Guard::animate(const double dt, double dt_cur)
 				this->vai_para_alerta=false;
 				this->alerta=true;
 				this->s->playSound(this->som_alerta, this->z, this->x);
+				this->velocidade = this->velocidade_correr;
 			}else if(this->em_movimento){ // se nao tamos em alerta temos de ver se tamos em movimento, se tamos, temos de o mover
 				//std::cout << "vamos andar: " << this->z << " " << this->x << std::endl;
 				this->GoFront();

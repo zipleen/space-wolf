@@ -133,7 +133,7 @@ void Player::setGun(int tipo){
 		case 3:
 			if(this->arma3 && this->arma_em_uso!=3){
 				this->arma_em_uso = 3;
-				this->velocidade_disparo = 0.25;
+				this->velocidade_disparo = 0.35;
 				this->s->playSoundDirect(this->som_mudar_arma);
 			}
 			break;
@@ -141,7 +141,7 @@ void Player::setGun(int tipo){
 		case 4:
 			if(this->arma4 && this->arma_em_uso!=4){
 				this->arma_em_uso = 4;
-				this->velocidade_disparo = 0.05;
+				this->velocidade_disparo = 0.15;
 				this->s->playSoundDirect(this->som_mudar_arma);
 			}
 			break;
