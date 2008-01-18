@@ -37,6 +37,7 @@ public:
 	bool arma4;
 	int arma_em_uso;
 	bool disparar;
+	bool muzzle_flash;
 	float velocidade_disparo;
 	float velocidade;
 	int floorcode;

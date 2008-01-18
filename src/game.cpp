@@ -95,6 +95,10 @@ void Game::MainLoop()
 			// game cycle
 			this->render->gameCycle (this->map, this->player);
 		}
+		
+		// verificar se acabamos o mapa!
+		if(this->map->finished_map)
+			break;
 	}
 }
 

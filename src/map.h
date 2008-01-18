@@ -95,6 +95,7 @@ public:
 	
 	Map(); 
 	virtual ~Map(){};
+	bool finished_map;
 	
 	// accoes
 	void processTiros(Player *p);

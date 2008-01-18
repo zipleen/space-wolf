@@ -131,7 +131,7 @@ Rendering::reshape (GLsizei width, GLsizei height)
   // Reinit projection matrix
   glMatrixMode (GL_PROJECTION);
   glLoadIdentity ();
-  gluPerspective (45.0f, width/static_cast<GLfloat>(height), 0.1f, 450.0f); // meter aki 100000 para ver tudo
+  gluPerspective (45.0f, width/static_cast<GLfloat>(height), 0.1f, 450.0f); // meter aki 100000 para ver tudo 450.0f
 
   // Reinit model-view matrix
   glMatrixMode (GL_MODELVIEW);
@@ -259,34 +259,30 @@ void Rendering::gameCycle (Map *m, Player *p)
 
 void Rendering::setLight()
 {	
-	
-	GLfloat light_pos[4] =	{250, 4, 519, 1.0};
+	GLfloat light_pos[4] =	{-5.0, 20.0, -5.0, 0.0};
 	GLfloat light_ambient[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 	GLfloat light_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-	GLfloat light_specular[]= { 0.5f, 0.5f, 0.5f, 1.0f };
+	GLfloat light_specular[]=	{ 0.5f, 0.5f, 0.5f, 1.0f };
 	
-	glEnable(GL_LIGHTING);
-	GLfloat direction[] = { 0.0, -4.0, 0.0 };
-    glLightfv( GL_LIGHT0, GL_POSITION, light_pos );
-    glLightfv( GL_LIGHT0, GL_SPOT_DIRECTION, direction);
-    glLightf ( GL_LIGHT0, GL_SPOT_EXPONENT , 1);
-    glLightf ( GL_LIGHT0, GL_SPOT_CUTOFF, 45.0);
-    
-    glEnable(GL_LIGHT0); 
-
+	// isto eh definido ali atras
+	//glEnable(GL_LIGHTING);
 	// ligar e definir fonte de light 0
-	
-	
+	glEnable(GL_LIGHT0);
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 	glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
-	//glEnable(GL_LIGHTING);
-	//glEnable(GL_LIGHT0);
-	
-
 	
 	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER,1);
+	
+	glEnable(GL_LIGHT1); 
+	GLfloat light_pos1[4] =	{250, 4, 519, 1.0};
+	GLfloat direction[] = { 0.0, -4.0, 0.0 };
+    glLightfv( GL_LIGHT1, GL_POSITION, light_pos1 );
+    glLightfv( GL_LIGHT1, GL_SPOT_DIRECTION, direction);
+    glLightf ( GL_LIGHT1, GL_SPOT_EXPONENT , 1);
+    glLightf ( GL_LIGHT1, GL_SPOT_CUTOFF, 45.0);
+	
 }
 
 
@@ -303,7 +299,6 @@ void Rendering::draw3D(Map *m, Player *p)
 	if(this->debug_use_cam)
 		this->Cam->SetPrespective();
 	glTranslatef(p->x,p->y,p->z);
-	
 	glEnable (GL_DEPTH_TEST);
 	
 	if (this->useLigth){
@@ -324,15 +319,11 @@ void Rendering::draw3D(Map *m, Player *p)
 	
 	m->setMaterial();
 	
-	// mexer a camara para o sitio certo
-	// depende se estamos em clip mode ou no modo jogo
+	// desenhar o hud do player ( arma do player)
+	Hud::drawGun(p);
 	
 	// desenhar o mapa (o mapa trata de desenhar texturas + items + guardas + portas)
 	m->drawEverything();
-	
-	// desenhar o hud do player ( arma do player)
-	
-	this->drawAxes();
 	
 	glDisable (GL_LIGHTING);
 	glDisable (GL_TEXTURE_2D);

@@ -30,6 +30,7 @@ Map::Map()
 	this->usecalllist = false;
 	Fisica::clip_mode = false;
 	Fisica::cube_size = this->cube_size;
+	this->finished_map = false;
 }
 
 /* processar eventos */
@@ -251,6 +252,9 @@ void Map::processItems(Player *p)
 		}
 	}
 	
+	// verificar se o jogador "acabou" o mapa!
+	if(this->map[p_x][p_y]==4011)
+		this->finished_map = true;
 }
 
 
@@ -1342,7 +1346,7 @@ int Map::getFloorcode(GLfloat z, GLfloat x)
 {
 	int cx = (int)(((z)/(this->cube_size*2.0f))+0.5);
 	int cy = (int)(((x)/(this->cube_size*2.0f))+0.5);
-	if(cx>this->tamanho_mapa || cy>this->tamanho_mapa || cx<0 || cy<0)
+	if(cx>=this->tamanho_mapa || cy>=this->tamanho_mapa || cx<0 || cy<0)
 		return 0;
 	return this->floormap[cx][cy];
 }

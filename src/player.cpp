@@ -14,6 +14,7 @@ Player::Player()
 	this->s = Sound::GetInstance();
 	this->vida = 100;
 	this->floorcode=0;
+	this->muzzle_flash=false;
 	this->armadura = 0;
 	this->pontos = 0;
 	this->x = this->y = this->z = this->x_inicial = this->z_inicial = 0;
@@ -141,7 +142,7 @@ void Player::setGun(int tipo){
 		case 4:
 			if(this->arma4 && this->arma_em_uso!=4){
 				this->arma_em_uso = 4;
-				this->velocidade_disparo = 0.15;
+				this->velocidade_disparo = 0.10;
 				this->s->playSoundDirect(this->som_mudar_arma);
 			}
 			break;
@@ -160,6 +161,7 @@ bool Player::shootGun()
 			this->disparar = true;
 			this->ultimo_disparo = this->dt_cur;
 			this->balas--;
+			this->muzzle_flash=true;
 			if(Mix_Playing(this->som_disparo_corrente)!=0)
 				Mix_HaltChannel(this->som_disparo_corrente);
 			this->som_disparo_corrente = this->s->playSoundDirect(this->som_armas[this->arma_em_uso]);
