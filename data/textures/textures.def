@@ -1,4 +1,4 @@
-1001 data/textures/walls/mur027.jpg Parede Tijolo Cinzenta 1
+﻿1001 data/textures/walls/mur027.jpg Parede Tijolo Cinzenta 1
 1002 data/textures/walls/mur041.jpg Parede Tijolo  1
 1003 data/textures/walls/mad018.jpg Madeira Castanha 1
 1004 data/textures/walls/sup022.jpg Superfície Branca 1
@@ -12,7 +12,7 @@
 1012 data/textures/elevator/elevador.jpg Elevador
 1013 data/textures/elevator/porta_elevador.jpg Porta do Elevador
 1014 data/textures/walls/base_wall001.jpg Parede Preta
-1015 data/textures/walls/betong006.jpg Betão Cinzento
+1015 data/textures/walls/betong006.jpg Betao Cinzento
 1016 data/textures/walls/lab_wall007.jpg Parede Cinzenta
 1017 data/textures/walls/lab_wall008.jpg Parede Cinzenta c/risco
 1018 data/textures/walls/9techwall01.jpg Parede Tecnológica 1
@@ -31,16 +31,50 @@
 1031 data/textures/elevator/elevador2.jpg Elevador 2
 1032 data/textures/ceiling/mechanical_old.jpg Tecto Tecnológico
 1033 data/textures/ceiling/e6cyb0rpipes.jpg Tecto Tecnológico 2
-1034 data/textures/floor/e8clangfloor.jpg Chão Riscas
-1035 data/textures/floor/flr_tmtl.jpg Chão Metal Quadrados
-1036 data/textures/floor/tflooroddtile.jpg Chão Cinzento Mosaico
-1037 data/textures/floor/floor_holes.tga Chão Buracos
-1038 data/textures/floor/tfloor.jpg Chão Cinzento
-1039 data/textures/floor/e8warning256.jpg Chão Aviso
-1040 data/textures/floor/e8_base1.jpg Chão Preto
-1041 data/textures/floor/e8cretefloor01b.jpg Chão Cinzento Mosaico
-1042 data/textures/floor/e6l_floor.jpg Chão Rectângulo (128)
-1043 data/textures/floor/lab_floor001.jpg Chão Cinzento Quadrados
-1044 data/textures/floor/base_floor001.jpg Chão Arame
-1045 data/textures/floor/metal_platedark.jpg Chão Riscas Escuro
+1034 data/textures/floor/e8clangfloor.jpg Chao Riscas
+1035 data/textures/floor/flr_tmtl.jpg Chao Metal Quadrados
+1036 data/textures/floor/tflooroddtile.jpg Chao Cinzento Mosaico
+1037 data/textures/floor/floor_holes.tga Chao Buracos
+1038 data/textures/floor/tfloor.jpg Chao Cinzento
+1039 data/textures/floor/e8warning256.jpg Chao Aviso
+1040 data/textures/floor/e8_base1.jpg Chao Preto
+1041 data/textures/floor/e8cretefloor01b.jpg Chao Cinzento Mosaico
+1042 data/textures/floor/e6l_floor.jpg Chao Rectângulo (128)
+1043 data/textures/floor/lab_floor001.jpg Chao Cinzento Quadrados
+1044 data/textures/floor/base_floor001.jpg Chao Arame
+1045 data/textures/floor/metal_platedark.jpg Chao Riscas Escuro
 1046 data/textures/walls/mur027_blood.jpg Parede Tijolo Cinzenta 1 com Sangue
+1047 data/textures/muros/mur013.jpg Muro 1
+1048 data/textures/muros/mur025.jpg Muro 2
+1049 data/textures/muros/mur046.jpg Muro 3
+1050 data/textures/muros/mur047.jpg Muro 4
+1051 data/textures/muros/mur049.jpg Muro 5
+1052 data/textures/muros/mur050.jpg Muro 6
+1053 data/textures/muros/mur051.jpg Muro 7
+1054 data/textures/muros/mur056.jpg Muro 8
+1055 data/textures/muros/mur062.jpg Muro 9
+1056 data/textures/muros/mur064.jpg Muro 10
+1057 data/textures/muros/mur067.jpg Muro 11
+1058 data/textures/muros/mur075.jpg Muro 12
+1059 data/textures/muros/mur077.jpg Muro 13
+1060 data/textures/muros/mur083.jpg Muro 14
+1061 data/textures/muros/mur085.jpg Muro 15
+1062 data/textures/muros/mur085.jpg Muro 16
+1063 data/textures/muros/mur099.jpg Muro 17
+1064 data/textures/muros/mur103.jpg Muro 18
+1065 data/textures/muros/mur105.jpg Muro 19
+1066 data/textures/superficies/sup002.jpg Superficie 1
+1067 data/textures/superficies/sup003.jpg Superficie 2
+1068 data/textures/superficies/sup013.jpg Superficie 3
+1069 data/textures/superficies/sup020.jpg Superficie 4
+1070 data/textures/superficies/sup023.jpg Superficie 5
+1071 data/textures/superficies/sup025.jpg Superficie 6
+1072 data/textures/superficies/sup032.jpg Superficie 7
+1073 data/textures/superficies/sup035.jpg Superficie 8
+1074 data/textures/superficies/sup042.jpg Superficie 9
+1075 data/textures/superficies/sup047.jpg Superficie 10
+1076 data/textures/superficies/sup064.jpg Superficie 11
+1077 data/textures/superficies/sup067.jpg Superficie 12
+1078 data/textures/superficies/sup074.jpg Superficie 13
+1079 data/textures/superficies/sup079.jpg Superficie 14
+1080 data/textures/superficies/sup088.jpg Superficie 15
