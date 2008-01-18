@@ -39,5 +39,6 @@ Guard_Intermedio::Guard_Intermedio(int z, int x, bool em_movimento, GLfloat angu
 	this->som_morrer[3] = this->s->loadSound("data/models/sounds/doom/death3.wav");
 	this->som_arma = this->s->loadSound("data/models/sounds/assault/assault_fire.wav");
 #endif	
+	this->codigo_arma_que_guarda_tem = 3;
 }
 

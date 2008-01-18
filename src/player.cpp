@@ -103,23 +103,35 @@ void Player::resetPlayer()
 	this->setGun(1);
 }
 
+bool Player::tenhoArma(int a){
+	if(a==2 && this->arma2)
+		return true;
+	if(a==3 && this->arma3)
+		return true;
+	if(a==4 && this->arma4)
+		return true;
+	return false;
+}
+
 void Player::setGun(int tipo){
 	switch(tipo)
 	{
 		case 1:
-			this->arma_em_uso = 1;
-			this->velocidade_disparo = 0.75;
-			this->s->playSoundDirect(this->som_mudar_arma);
+			if(this->arma_em_uso!=1){
+				this->arma_em_uso = 1;
+				this->velocidade_disparo = 0.75;
+				this->s->playSoundDirect(this->som_mudar_arma);
+			}
 			break;
 		case 2:
-			if(this->arma2){
+			if(this->arma2 && this->arma_em_uso!=2){
 				this->arma_em_uso = 2;
 				this->velocidade_disparo = 0.65;
 				this->s->playSoundDirect(this->som_mudar_arma);
 			}
 			break;
 		case 3:
-			if(this->arma3){
+			if(this->arma3 && this->arma_em_uso!=3){
 				this->arma_em_uso = 3;
 				this->velocidade_disparo = 0.25;
 				this->s->playSoundDirect(this->som_mudar_arma);
@@ -127,7 +139,7 @@ void Player::setGun(int tipo){
 			break;
 		
 		case 4:
-			if(this->arma4){
+			if(this->arma4 && this->arma_em_uso!=4){
 				this->arma_em_uso = 4;
 				this->velocidade_disparo = 0.05;
 				this->s->playSoundDirect(this->som_mudar_arma);

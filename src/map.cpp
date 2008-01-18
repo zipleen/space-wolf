@@ -125,8 +125,14 @@ void Map::processTiros(Player *p)
 					if(guarda_x == cx && guarda_y == cy){
 						this->guardas[i]->takeHealth(p->z, p->x);
 						if(this->guardas[i]->morto){
-							// se o guarda morreu, vamos meter ammo a boiar...
-							this->addItems(guarda_x,guarda_y,11);
+							// agora vamos meter as armas a boiar se nao tivermos a arma ainda
+							if(!p->tenhoArma(this->guardas[i]->codigo_arma_que_guarda_tem)){
+								// as armas sao os items 4,5 e 6, guardas tem arma 2 3 4, daí o 2+
+								this->addItems(guarda_x,guarda_y, 2+this->guardas[i]->codigo_arma_que_guarda_tem);
+							}else
+								// se o guarda morreu, vamos meter ammo a boiar...
+								this->addItems(guarda_x,guarda_y,11);
+							
 						}
 						acertou=true;
 						break;

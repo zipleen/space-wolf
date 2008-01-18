@@ -39,5 +39,6 @@ Guard_Medium::Guard_Medium(int z, int x, bool em_movimento, GLfloat angulo) : Gu
 	this->som_morrer[3] = this->s->loadSound("data/models/sounds/visor/death3.wav");
 	this->som_arma = this->s->loadSound("data/models/sounds/assault/assault_fire.wav");
 #endif	
+	this->codigo_arma_que_guarda_tem = 3;
 }
 

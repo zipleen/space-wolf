@@ -42,5 +42,6 @@ Soldado::Soldado(int z, int x, bool em_movimento, GLfloat angulo) : Guard()
 	this->som_arma = this->s->loadSound("data/models/sounds/smg/smg_fire.wav");
 	//this->som_alerta = this->s->loadSound();
 #endif	
+	this->codigo_arma_que_guarda_tem = 2;
 }
 

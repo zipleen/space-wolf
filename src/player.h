@@ -71,6 +71,7 @@ public:
 	void draw();
 	void updateAnimation(double dt, int floorcode);
 	void setInitialPosition(int x, int y); // posicao do mapa inicial
+	bool tenhoArma(int a);
 	
 	// accoes feitas pelo jogador
 	void SetAndar();

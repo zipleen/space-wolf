@@ -39,5 +39,6 @@ Guard_Dificil::Guard_Dificil(int z, int x, bool em_movimento, GLfloat angulo) : 
 	this->som_morrer[3] = this->s->loadSound("data/models/sounds/keel/death3.wav");
 	this->som_arma = this->s->loadSound("data/models/sounds/minigun/minigun_fire.wav");
 #endif	
+	this->codigo_arma_que_guarda_tem = 4;
 }
 

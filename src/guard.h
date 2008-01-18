@@ -64,6 +64,8 @@ public:
 	float velocidade;
 	int floorcode;
 	
+	int codigo_arma_que_guarda_tem;
+	
 public:
 	// posicao no mapa
 	GLfloat x;
