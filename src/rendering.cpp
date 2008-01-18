@@ -377,7 +377,7 @@ void Rendering::draw2D(Player *p)
 		this->font->printText (10, 10, "%i fps", this->fps);
 	}
 #ifdef DEBUG
-	this->font->printText(10,22,"Player x:%f y:%f z:%f angulo:%f",p->x, p->y, p->z, p->angulo);
+	this->font->printText(10,22,"Player x:%f y:%f z:%f angulo:%f floorcode:%d",p->x, p->y, p->z, p->angulo,p->floorcode);
 #endif
 	
 	glPopAttrib ();

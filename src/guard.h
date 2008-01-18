@@ -45,6 +45,7 @@ protected:
 	
 	Mix_Chunk *som_morrer[4];
 	Mix_Chunk *som_arma;
+	Mix_Chunk *som_alerta;
 	int som_disparo_arma;
 	
 	Md3Player *guard;
@@ -61,6 +62,7 @@ public:
 	float velocidade_correr;
 	float damage_arma;
 	float velocidade;
+	int floorcode;
 	
 public:
 	// posicao no mapa
@@ -80,6 +82,7 @@ public:
 	bool morto;
 	bool a_morrer;
 	bool alerta;
+	bool vai_para_alerta;
 public:
 	Guard(); 
 	virtual ~Guard(){};

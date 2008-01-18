@@ -34,11 +34,13 @@ Soldado::Soldado(int z, int x, bool em_movimento, GLfloat angulo) : Guard()
 	this->som_morrer[2] = this->s->loadSound("data\\models\\sounds\\bitterman\\death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data\\models\\sounds\\bitterman\\death3.wav");
 	this->som_arma = this->s->loadSound("data\\models\\sounds\\smg\\smg_fire.wav");
+	//this->som_alerta = this->s->loadSound();
 #else
 	this->som_morrer[1] = this->s->loadSound("data/models/sounds/bitterman/death1.wav");
 	this->som_morrer[2] = this->s->loadSound("data/models/sounds/bitterman/death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data/models/sounds/bitterman/death3.wav");
 	this->som_arma = this->s->loadSound("data/models/sounds/smg/smg_fire.wav");
+	//this->som_alerta = this->s->loadSound();
 #endif	
 }
 

@@ -21,6 +21,8 @@ Porta::Porta(int x, int y, int direction,int tipo_porta,GLfloat cube_size)
 	this->porta_a_abrir = false;
 	this->porta_a_fechar = false;
 	
+	this->floorcode1 = this->floorcode2 = 0;
+	
 	this->tempo_comecou_contar = 0;
 	this->last_dt = 0;
 	this->s = Sound::GetInstance();

@@ -23,6 +23,7 @@ Guard::Guard()
 	this->ultimo_andar = 0;
 	this->velocidade = VELOCIDADE_ANDAR_GUARDA;
 	this->z=this->x=0;
+	this->vai_para_alerta = false;
 	this->s = Sound::GetInstance();
 	// ler passos
 #ifdef WIN32
@@ -30,11 +31,13 @@ Guard::Guard()
 	this->som_passos[2] = this->s->loadSound("data\\sounds\\footsteps\\boot2.wav");
 	this->som_passos[3] = this->s->loadSound("data\\sounds\\footsteps\\boot3.wav");
 	this->som_passos[4] = this->s->loadSound("data\\sounds\\footsteps\\boot4.wav");
+	this->som_alerta = this->s->loadSound("data\\sounds\\teste.wav");
 #else
 	this->som_passos[1] = this->s->loadSound("data/sounds/footsteps/boot1.wav");
 	this->som_passos[2] = this->s->loadSound("data/sounds/footsteps/boot2.wav");
 	this->som_passos[3] = this->s->loadSound("data/sounds/footsteps/boot3.wav");
 	this->som_passos[4] = this->s->loadSound("data/sounds/footsteps/boot4.wav");
+	this->som_alerta = this->s->loadSound("data/sounds/teste.wav");
 #endif
 	this->som_passo_corrente=1;
 	this->canal_som_passos[0]=0;
@@ -96,8 +99,9 @@ void Guard::draw()
 
 void Guard::nextMove()
 {
-	this->shootGun();
-	
+	if(this->alerta){
+	   this->shootGun();
+	}
 }
 
 void Guard::shootGun()
@@ -147,8 +151,11 @@ void Guard::animate(const double dt, double dt_cur)
 		// precisamos de ver se ele tem de fazer coisas ou nao..
 		// estamos em alerta?! se nao, vamos seguir os percursos
 		if(!this->alerta){
-			// se nao tamos em alerta temos de ver se tamos em movimento, se tamos, temos de o mover
-			if(this->em_movimento){
+			if(this->vai_para_alerta){
+				this->vai_para_alerta=false;
+				this->alerta=true;
+				this->s->playSound(this->som_alerta, this->z, this->x);
+			}else if(this->em_movimento){ // se nao tamos em alerta temos de ver se tamos em movimento, se tamos, temos de o mover
 				//std::cout << "vamos andar: " << this->z << " " << this->x << std::endl;
 				this->GoFront();
 			}

@@ -74,16 +74,16 @@ void Game::MainLoop()
 		// Draw scene if window is active
 		if (isActive){
 			dt = this->render->timer.current_time - this->render->timer.last_time;
-			// controlador de teclas
+			// controlador de teclas, aqui o player mexeu-se
 			this->input->processKeyInput(this->player, this->map);
 
 			// player anim-> actualizar tempo
-			this->player->updateAnimation(this->render->timer.current_time);
+			this->player->updateAnimation(this->render->timer.current_time, this->map->getFloorcode(this->player->z*-1, this->player->x*-1));
 			
-			// temos de processar o AI dos guardas aqui
+			// temos de processar o AI dos guardas aqui -> aqui os guardas mexeram-se
 			this->map->processAIguards();
 			
-			// temos de processar os tiros, o mapa eh q tem a informacao
+			// temos de processar os tiros, o mapa eh q tem a informacao, aqui podemos actualizar o floorcode dos guardas
 			this->map->processTiros(this->player);
 			
 			// animacoes , dois tempos, o delta e o tempo corrente

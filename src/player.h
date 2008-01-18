@@ -39,6 +39,7 @@ public:
 	bool disparar;
 	float velocidade_disparo;
 	float velocidade;
+	int floorcode;
 	
 	Md3Player *player;
 	GLfloat x_inicial, z_inicial;
@@ -49,6 +50,7 @@ public:
 	Mix_Chunk *som_armas[5];
 	Mix_Chunk *som_sem_balas;
 	int som_disparo_corrente;
+	Mix_Chunk *som_mudar_arma;
 	
 	double dt_cur;
 	double ultimo_andar;
@@ -67,7 +69,7 @@ public:
 	void resetPlayer();
 
 	void draw();
-	void updateAnimation(double dt);
+	void updateAnimation(double dt, int floorcode);
 	void setInitialPosition(int x, int y); // posicao do mapa inicial
 	
 	// accoes feitas pelo jogador

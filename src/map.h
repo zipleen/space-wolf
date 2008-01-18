@@ -134,6 +134,10 @@ public:
 	void desenhaChao();
 	void desenhaTecto();
 	void drawAllMap();
+	
+	int getFloorcode(int x, int y);
+	int getFloorcode(GLfloat z, GLfloat x);
+	
 };
 
 #endif

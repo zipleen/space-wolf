@@ -44,6 +44,15 @@ void Map::processAIguards()
 
 void Map::processTiros(Player *p)
 {
+	// vamos processar os floorcodes dos guardas todos
+	for(int i=0;i<this->guardas.size();i++){
+		if(!this->guardas[i]->morto){
+			int f = this->getFloorcode(this->guardas[i]->z, this->guardas[i]->x);
+			if(f!=0)
+				this->guardas[i]->floorcode = f;
+		}
+	}
+	
 	if(p->disparar){
 		// temos de processar o tiro do player, basicamente calcular o proximo quadrado ate encontrar qq coisa, 
 		//  uma parede, um guarda, ou o fim do mapa
@@ -51,6 +60,52 @@ void Map::processTiros(Player *p)
 		int cx, cy;
 		float a_seguir = this->cube_size;
 		bool acertou = false;
+		
+		// antes de vermos se acertamos nos guardas, temos de verificar se eles vao ficar em alerta
+		// para isso necessitamos de um set para saber quais floorcodes estao em questao
+		std::set<int> fused;
+		fused.insert(p->floorcode); // onde estamos...
+		set<int>::iterator it1,it2;
+		// vamos ter de ir às portas todas, procurar se algum dos floorcodes faz match, se a porta tiver aberta
+		for(int i=0;i<this->portas.size();++i){
+			if(this->portas[i]->open){ // soh nos interessam portas abertas
+				it1=fused.find(this->portas[i]->floorcode1);
+				if(it1!=fused.end()) // encontrou 1
+				{
+					// encontrar o segundo, se encontrou este eh pq ja foi adicionada a porta e temos de avancar
+					it2=fused.find(this->portas[i]->floorcode2);
+					if(it2==fused.end()){
+						// NAO encontrou, adicionar ao set e comecar do 0 outra vez
+						fused.insert(this->portas[i]->floorcode2);
+						i=0;
+					}
+				}else{ // nao encontrou, vamos fazer a logica ao contrario
+					it2=fused.find(this->portas[i]->floorcode2);
+					if(it2!=fused.end()){
+						it1=fused.find(this->portas[i]->floorcode1);
+						if(it1==fused.end()){
+							fused.insert(this->portas[i]->floorcode1);
+							i=0;
+						}
+					}
+					
+				}
+			}
+		}
+		
+		//for(it1=fused.begin(); it1!=fused.end(); it1++)
+		//	std::cout << "bla: " << *it1 << " ";
+		//std::cout << std::endl;
+		
+		for(int i=0;i<this->guardas.size();i++){
+			if(!this->guardas[i]->morto && !this->guardas[i]->alerta){
+				// se o guarda nao ta morto e nao esta em alerta, vamos ver se vai ficar
+				it1=fused.find(this->guardas[i]->floorcode);
+				if(it1!=fused.end())
+					this->guardas[i]->vai_para_alerta = true;
+			}
+		}
+		
 		for(;;){
 			// primeiro vamos "uma casa" para a frente
 			ny=p->x+sin(-RAD(p->angulo))*a_seguir;
@@ -71,7 +126,7 @@ void Map::processTiros(Player *p)
 						this->guardas[i]->takeHealth(p->z, p->x);
 						if(this->guardas[i]->morto){
 							// se o guarda morreu, vamos meter ammo a boiar...
-							this->addItems(guarda_x,guarda_y,7);
+							this->addItems(guarda_x,guarda_y,11);
 						}
 						acertou=true;
 						break;
@@ -100,7 +155,7 @@ void Map::processTiros(Player *p)
 		if(!this->guardas[i]->morto && this->guardas[i]->disparar){
 			GLfloat nx,ny;
 			int cx, cy;
-			float a_seguir = this->cube_size;std::cout << "." ;
+			float a_seguir = this->cube_size;
 			for(;;){
 				// primeiro vamos "uma casa" para a frente
 				ny=(this->guardas[i]->x*-1)+sin(-RAD(this->guardas[i]->angulo))*a_seguir;
@@ -721,7 +776,7 @@ void Map::addItems(int x, int y, int type)
 			break;
 		case 7:
 			// ammo, default 8 balas?! vamos ser generosos, 15
-			am = new Items_Ammo(x*this->cube_size*2,y*this->cube_size*2,15,x,y);
+			am = new Items_Ammo(x*this->cube_size*2,y*this->cube_size*2,15,x,y,false);
 			this->items.push_back(am);
 			break;
 		case 8:
@@ -739,6 +794,11 @@ void Map::addItems(int x, int y, int type)
 			aa = new Items_Armor(x*this->cube_size*2, y*this->cube_size*2,100,x,y);
 			this->items.push_back(aa);
 			break;
+		case 11:
+			// clip, largado pelos guardas
+			am = new Items_Ammo(x*this->cube_size*2,y*this->cube_size*2,7,x,y,true);
+			this->items.push_back(am);
+			break;
 	}
 
 }
@@ -749,7 +809,7 @@ void Map::addPorta(int x, int y, int type1, int direction)
 	// direction = 0 ou 1 (norte ou oeste)
 	Porta *s = new Porta(y,x,direction,type1,this->cube_size);
 	this->portas.push_back(s);
-	Console::printf("Adicionado porta em %d,%d, tipo: %d, direccao: %d",x,y,type1,direction);			
+	Console::printf("Adicionado porta em %d,%d, tipo: %d, direccao: %d",y,x,type1,direction);			
 }
 
 void Map::addGuard(int x, int y, int type, int direction, bool movimento)
@@ -1222,7 +1282,6 @@ bool Map::loadMap(std::string file, Player *player)
 	// necessitamos de fornecer ah fisica as posicoes onde nos nao podemos avancar ate..
 	// para isso vamos criar um vector de vector de booleanos que dizem que podemos ir ou nao podemos ir
 	// percorremos o mapa. objectos agora sao calculados num vector ah parte e adicionados aqui ao vector que vai pra fisica
-	// os guardas and such temos de por os guardas a actualizarem o seu estado para o vector de fisica....
 	std::vector<std::vector <bool> > to_fisica(this->tamanho_mapa,this->tamanho_mapa);
 	for(int i=0; i<this->map.size(); i++)
 	{
@@ -1241,6 +1300,43 @@ bool Map::loadMap(std::string file, Player *player)
 	}
 	Fisica::setMap(to_fisica,this->cube_size);
 	Fisica::setPortas(to_fisica_portas);
+	
+	// eh necessario agora actualizar os floorcodes de toda a gente e coisas
+	// portas eh o + importante + guardas + o nosso player
+	// cada guarda vai mudar de floorcode, ptt tal como o player necessita de receber novo floorcode
+	player->floorcode = this->getFloorcode(player->z, player->x); // este n eh mt necessario pq no segundo frame ja vai tar certo
+	for(int i=0; i<this->guardas.size(); i++)
+	{
+		this->guardas[i]->floorcode = this->getFloorcode(this->guardas[i]->z, this->guardas[i]->x);
+	}
+	for(int i=0; i<this->portas.size();i++)
+	{
+		if(this->portas[i]->direction==0)
+		{
+			this->portas[i]->floorcode1 = this->floormap[this->portas[i]->y][this->portas[i]->x-1];
+			this->portas[i]->floorcode2 = this->floormap[this->portas[i]->y][this->portas[i]->x+1];
+		}else
+		{
+			this->portas[i]->floorcode1 = this->floormap[this->portas[i]->y-1][this->portas[i]->x];
+			this->portas[i]->floorcode2 = this->floormap[this->portas[i]->y+1][this->portas[i]->x];
+		}
+		//std::cout << "porta posicao " << this->portas[i]->x << " " << this->portas[i]->y << " floor:" << this->portas[i]->floorcode1 << " " << this->portas[i]->floorcode2 << std::endl;
+	}
+	
 	Console::addLine("Mapa OK!");
 	return true;
+}
+
+int Map::getFloorcode(int x, int y)
+{
+	return this->floormap[x][y];
+}
+
+int Map::getFloorcode(GLfloat z, GLfloat x)
+{
+	int cx = (int)(((z)/(this->cube_size*2.0f))+0.5);
+	int cy = (int)(((x)/(this->cube_size*2.0f))+0.5);
+	if(cx>this->tamanho_mapa || cy>this->tamanho_mapa || cx<0 || cy<0)
+		return 0;
+	return this->floormap[cx][cy];
 }

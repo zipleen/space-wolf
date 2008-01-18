@@ -18,7 +18,7 @@ class Items_Ammo : public Items
 		
 	public:
 		Items_Ammo(){};
-		Items_Ammo(GLfloat x,GLfloat y, int valor,int mapa_x, int mapa_y);
+		Items_Ammo(GLfloat x,GLfloat y, int valor,int mapa_x, int mapa_y, bool clip);
 		virtual ~Items_Ammo(){};
 		virtual bool consume(Player *p);
 	};

@@ -11,14 +11,13 @@
 
 Player::Player()
 {
+	this->s = Sound::GetInstance();
 	this->vida = 100;
+	this->floorcode=0;
 	this->armadura = 0;
 	this->pontos = 0;
 	this->x = this->y = this->z = this->x_inicial = this->z_inicial = 0;
-	this->resetPlayer();
-	this->SetAndar();
 	this->som_disparo_corrente = 0;
-	this->s = Sound::GetInstance();
 	// ler passos
 #ifdef WIN32
 	this->som_passos[1] = this->s->loadSound("data\\sounds\\footsteps\\boot1.wav");
@@ -31,6 +30,7 @@ Player::Player()
 	this->som_armas[3] = this->s->loadSound("data\\models\\sounds\\assault\\assault_fire.wav");
 	this->som_armas[4] = this->s->loadSound("data\\models\\sounds\\minigun\\minigun_fire.wav");
 	this->som_sem_balas = this->s->loadSound("data\\models\\sounds\\noammo.wav");
+	this->som_mudar_arma = this->s->loadSound("data\\models\\sounds\\change.wav");
 #else
 	this->som_passos[1] = this->s->loadSound("data/sounds/footsteps/boot1.wav");
 	this->som_passos[2] = this->s->loadSound("data/sounds/footsteps/boot2.wav");
@@ -42,6 +42,7 @@ Player::Player()
 	this->som_armas[3] = this->s->loadSound("data/models/sounds/assault/assault_fire.wav");
 	this->som_armas[4] = this->s->loadSound("data/models/sounds/minigun/minigun_fire.wav");
 	this->som_sem_balas = this->s->loadSound("data/models/sounds/noammo.wav");
+	this->som_mudar_arma = this->s->loadSound("data/models/sounds/change.wav");
 #endif
 	this->som_passo_corrente=1;
 	this->canal_som_passos[0]=0;
@@ -49,6 +50,8 @@ Player::Player()
 	this->canal_som_passos[2]=0;
 	this->canal_som_passos[3]=0;
 	this->canal_som_passos[4]=0;
+	this->resetPlayer();
+	this->SetAndar();
 }
 
 void Player::draw()
@@ -68,6 +71,8 @@ void Player::setInitialPosition(int x, int y)
 	this->old_x = this->x;
 	this->old_y = this->y;
 	this->old_z = this->z;
+	this->s->player_z = this->z;
+	this->s->player_x = this->x;
 }
 
 void Player::SetCorrer()
@@ -104,17 +109,20 @@ void Player::setGun(int tipo){
 		case 1:
 			this->arma_em_uso = 1;
 			this->velocidade_disparo = 0.75;
+			this->s->playSoundDirect(this->som_mudar_arma);
 			break;
 		case 2:
 			if(this->arma2){
 				this->arma_em_uso = 2;
 				this->velocidade_disparo = 0.65;
+				this->s->playSoundDirect(this->som_mudar_arma);
 			}
 			break;
 		case 3:
 			if(this->arma3){
 				this->arma_em_uso = 3;
 				this->velocidade_disparo = 0.25;
+				this->s->playSoundDirect(this->som_mudar_arma);
 			}
 			break;
 		
@@ -122,6 +130,7 @@ void Player::setGun(int tipo){
 			if(this->arma4){
 				this->arma_em_uso = 4;
 				this->velocidade_disparo = 0.05;
+				this->s->playSoundDirect(this->som_mudar_arma);
 			}
 			break;
 	}
@@ -238,9 +247,11 @@ bool Player::giveArmas(int tipo)
 
 /* movimentos */
 
-void Player::updateAnimation(double dt_cur)
+void Player::updateAnimation(double dt_cur, int floorcode)
 {
 	this->dt_cur = dt_cur;
+	if(floorcode!=0)
+		this->floorcode = floorcode;
 }
 
 float Player::MoveTest()
