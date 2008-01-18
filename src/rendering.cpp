@@ -259,18 +259,32 @@ void Rendering::gameCycle (Map *m, Player *p)
 
 void Rendering::setLight()
 {	
-	GLfloat light_pos[4] =	{-5.0, 20.0, -5.0, 0.0};
+	
+	GLfloat light_pos[4] =	{250, 4, 519, 1.0};
 	GLfloat light_ambient[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 	GLfloat light_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-	GLfloat light_specular[]=	{ 0.5f, 0.5f, 0.5f, 1.0f };
+	GLfloat light_specular[]= { 0.5f, 0.5f, 0.5f, 1.0f };
 	
 	glEnable(GL_LIGHTING);
+	GLfloat direction[] = { 0.0, -4.0, 0.0 };
+    glLightfv( GL_LIGHT0, GL_POSITION, light_pos );
+    glLightfv( GL_LIGHT0, GL_SPOT_DIRECTION, direction);
+    glLightf ( GL_LIGHT0, GL_SPOT_EXPONENT , 1);
+    glLightf ( GL_LIGHT0, GL_SPOT_CUTOFF, 45.0);
+    
+    glEnable(GL_LIGHT0); 
+
 	// ligar e definir fonte de light 0
-	glEnable(GL_LIGHT0);
+	
+	
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 	glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
+	//glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHT0);
+	
+
 	
 	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER,1);
 }
@@ -293,7 +307,7 @@ void Rendering::draw3D(Map *m, Player *p)
 	glEnable (GL_DEPTH_TEST);
 	
 	if (this->useLigth){
-		//glEnable (GL_LIGHTING);
+		glEnable (GL_LIGHTING);
 		this->setLight();
 	}
 	
@@ -315,6 +329,7 @@ void Rendering::draw3D(Map *m, Player *p)
 	
 	// desenhar o mapa (o mapa trata de desenhar texturas + items + guardas + portas)
 	m->drawEverything();
+	
 	// desenhar o hud do player ( arma do player)
 	
 	this->drawAxes();
@@ -322,6 +337,7 @@ void Rendering::draw3D(Map *m, Player *p)
 	glDisable (GL_LIGHTING);
 	glDisable (GL_TEXTURE_2D);
 	glDisable (GL_DEPTH_TEST);
+	
 	
 }
 
