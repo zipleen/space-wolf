@@ -33,6 +33,15 @@ Map::Map()
 }
 
 /* processar eventos */
+void Map::processAIguards()
+{
+	for(int i=0;i<this->guardas.size();i++){
+		if(!this->guardas[i]->morto){
+			this->guardas[i]->nextMove();
+		}
+	}
+}
+
 void Map::processTiros(Player *p)
 {
 	if(p->disparar){
@@ -55,11 +64,15 @@ void Map::processTiros(Player *p)
 			
 			// vamos procurar os guardas todos
 			for(int i=0;i<this->guardas.size();i++){
-				if(!this->guardas[i]->morto){
+				if(!this->guardas[i]->morto){					
 					int guarda_x = (int)(((this->guardas[i]->z)/(this->cube_size*2.0f))+0.5);
 					int guarda_y = (int)(((this->guardas[i]->x)/(this->cube_size*2.0f))+0.5);
 					if(guarda_x == cx && guarda_y == cy){
 						this->guardas[i]->takeHealth(p->z, p->x);
+						if(this->guardas[i]->morto){
+							// se o guarda morreu, vamos meter ammo a boiar...
+							this->addItems(guarda_x,guarda_y,7);
+						}
 						acertou=true;
 						break;
 					}
@@ -67,17 +80,53 @@ void Map::processTiros(Player *p)
 			}
 			if(acertou)
 				break;
-			/*
+			
 			// mas se ja testamos os guardas todos, para q queremos testar as paredes?!
+			// pq depois de ver todos os guardas, se acertaste na parede os teus tiros nao sao milagrosos =)
 			if(this->map[cx][cy]>1000 && this->map[cx][cy]<2000)
 				break; // bateste na parede
-			*/
+			if(Fisica::portas[cx][cy]==false)
+				break; // bateu na porta hehe
 			a_seguir+=this->cube_size;
 		}
 		p->disparar = false;
 	}
 	
+	int p_x = (int)(((p->z*-1)/(this->cube_size*2.0f))+0.5);
+	int p_y = (int)(((p->x*-1)/(this->cube_size*2.0f))+0.5);
+	
 	// agora temos de processar os tiros dos guardas
+	for(int i=0;i<this->guardas.size();i++){
+		if(!this->guardas[i]->morto && this->guardas[i]->disparar){
+			GLfloat nx,ny;
+			int cx, cy;
+			float a_seguir = this->cube_size;std::cout << "." ;
+			for(;;){
+				// primeiro vamos "uma casa" para a frente
+				ny=(this->guardas[i]->x*-1)+sin(-RAD(this->guardas[i]->angulo))*a_seguir;
+				nx=(this->guardas[i]->z)+cos(RAD(this->guardas[i]->angulo))*a_seguir;
+				cx = (int)(((nx)/(this->cube_size*2.0f))+0.5);
+				cy = (int)(((ny)/(this->cube_size*2.0f))+0.5)*-1;
+				//std::cout << "testar: nx: " << nx << " ny: " << ny << " cx: " << cx << " cy: " << cy << std::endl;
+				
+				if(cx>this->tamanho_mapa || cy>this->tamanho_mapa || cx<0 || cy<0)
+					break; // nao acertaste em nada
+				//std::cout << "tentou: " << cx << " " << cy << " eu:" << p_x << " " << p_y << std::endl;
+				if(cx==p_x && cy==p_y){
+					//std::cout << "guarda " << this->guardas[i]->z << " " << this->guardas[i]->x << " tirou saude" << std::endl;
+					p->takeHealth(this->guardas[i]->z, this->guardas[i]->x);
+					break;
+				}
+				if(this->map[cx][cy]>1000 && this->map[cx][cy]<2000)
+					break; // bateste na parede
+				// falta portas!!
+				if(Fisica::portas[cx][cy]==false)
+					break; // bateu na porta hehe
+				a_seguir+=this->cube_size;
+			}
+			this->guardas[i]->disparar = false;
+		}
+	}
 }
 
 
@@ -333,16 +382,16 @@ bool Map::loadTextures()
 
 void Map::updateAnimations(double dt,double dt_cur)
 {
-	this->updateGuardAnimation(dt);
+	this->updateGuardAnimation(dt,dt_cur);
 	this->updateItemsAnimation(dt,dt_cur);
 	this->updateDoorAnimation(dt,dt_cur);
 }
 
-void Map::updateGuardAnimation(double dt)
+void Map::updateGuardAnimation(double dt,double dt_cur)
 {
 	for(int i=0;i<(signed)this->guardas.size();i++)
 	{
-		this->guardas[i]->animate(dt);
+		this->guardas[i]->animate(dt,dt_cur);
 		if(!this->guardas[i]->alerta && this->guardas[i]->em_movimento){
 			// primeiro vamos po-los a abrirem portas coitados :P
 			this->openDoor(this->guardas[i]);
@@ -798,11 +847,15 @@ bool Map::loadMap(std::string file, Player *player)
 	// portas para a fisica, vamos por tudo a 0, as portas tem de falar ah fisica para actualizar o seu estado
 	std::vector<std::vector <bool> > to_fisica_portas(this->tamanho_mapa,this->tamanho_mapa);
 	std::vector<std::vector <bool> > to_fisica_objectos(this->tamanho_mapa,this->tamanho_mapa);
+	std::vector<std::vector <bool> > fisica_guardas(this->tamanho_mapa,this->tamanho_mapa);
 	for(int i=0; i<to_fisica_portas.size(); i++)
 		for(int e=0; e<to_fisica_portas.size(); e++){
 			to_fisica_portas[i][e] = true;
 			to_fisica_objectos[i][e] = false;
+			fisica_guardas[i][e] = false;
 		}
+	Fisica::setGuardas(fisica_guardas);
+	
 	std::getline (ifs, linha);
 	boost::char_separator<char> sep(",");
     for(i=0; i<this->tamanho_mapa; i++)

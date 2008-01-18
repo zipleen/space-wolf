@@ -81,6 +81,7 @@ void Game::MainLoop()
 			this->player->updateAnimation(this->render->timer.current_time);
 			
 			// temos de processar o AI dos guardas aqui
+			this->map->processAIguards();
 			
 			// temos de processar os tiros, o mapa eh q tem a informacao
 			this->map->processTiros(this->player);

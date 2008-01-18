@@ -21,7 +21,7 @@ Guard_Intermedio::Guard_Intermedio(int z, int x, bool em_movimento, GLfloat angu
 	this->loadModel();
 	
 	this->vida=75;
-	this->velocidade_disparo=10;
+	this->velocidade_disparo=0.25;
 	this->velocidade_correr=1;
 	
 	this->set_xy(z,x);
@@ -32,10 +32,12 @@ Guard_Intermedio::Guard_Intermedio(int z, int x, bool em_movimento, GLfloat angu
 	this->som_morrer[1] = this->s->loadSound("data\\models\\sounds\\doom\\death1.wav");
 	this->som_morrer[2] = this->s->loadSound("data\\models\\sounds\\doom\\death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data\\models\\sounds\\doom\\death3.wav");
+	this->som_arma = this->s->loadSound("data\\models\\sounds\\assault\\assault_fire.wav");
 #else
 	this->som_morrer[1] = this->s->loadSound("data/models/sounds/doom/death1.wav");
 	this->som_morrer[2] = this->s->loadSound("data/models/sounds/doom/death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data/models/sounds/doom/death3.wav");
+	this->som_arma = this->s->loadSound("data/models/sounds/assault/assault_fire.wav");
 #endif	
 }
 

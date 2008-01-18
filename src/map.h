@@ -98,6 +98,7 @@ public:
 	
 	// accoes
 	void processTiros(Player *p);
+	void processAIguards();
 	
 	// portas
 	void openDoor(Player *p);
@@ -106,7 +107,7 @@ public:
 	
 	// animacoes
 	void updateAnimations(double dt,double dt_cur);
-	void updateGuardAnimation(double dt);
+	void updateGuardAnimation(double dt,double dt_cur);
 	void updateItemsAnimation(double dt,double dt_cur);
 	void updateDoorAnimation(double dt,double dt_cur);
 	

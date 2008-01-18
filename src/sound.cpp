@@ -31,9 +31,15 @@ void Sound::shutdown()
 	Mix_CloseAudio();	
 }
 
-Mix_Chunk* Sound::loadSound(const char *path)
+Mix_Chunk* Sound::loadSound(std::string path)
 {
-	return Mix_LoadWAV(path);
+	std::map<std::string, Mix_Chunk *>::iterator temp = this->sons.find(path);
+	if(temp==this->sons.end()){
+		Mix_Chunk* t = Mix_LoadWAV(path.c_str());
+		this->sons.insert(std::map<std::string, Mix_Chunk *>::value_type(path, t));
+		temp = this->sons.find(path);
+	}
+	return temp->second;
 }
 
 /*
@@ -58,7 +64,7 @@ int Sound::playSound(Mix_Chunk *s, float obj_z, float obj_x)
 	// distancia
 	float z = this->player_z - obj_z;
 	float x = this->player_x - obj_x;
-	int dist = sqrt(z*z + x*x)*3/2;
+	int dist = sqrt(z*z + x*x);
 	//std::cout << "dist: " << dist << std::endl;
 	if(dist < 250){
 		int canal = Mix_PlayChannel(-1, s, 0);

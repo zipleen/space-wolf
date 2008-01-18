@@ -21,7 +21,7 @@ Guard_Medium::Guard_Medium(int z, int x, bool em_movimento, GLfloat angulo) : Gu
 	this->loadModel();
 	
 	this->vida=50;
-	this->velocidade_disparo=5;
+	this->velocidade_disparo=0.65;
 	this->velocidade_correr=1;
 	
 	this->set_xy(z,x);
@@ -32,10 +32,12 @@ Guard_Medium::Guard_Medium(int z, int x, bool em_movimento, GLfloat angulo) : Gu
 	this->som_morrer[1] = this->s->loadSound("data\\models\\sounds\\visor\\death1.wav");
 	this->som_morrer[2] = this->s->loadSound("data\\models\\sounds\\visor\\death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data\\models\\sounds\\visor\\death3.wav");
+	this->som_arma = this->s->loadSound("data\\models\\sounds\\assault\\assault_fire.wav");
 #else
 	this->som_morrer[1] = this->s->loadSound("data/models/sounds/visor/death1.wav");
 	this->som_morrer[2] = this->s->loadSound("data/models/sounds/visor/death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data/models/sounds/visor/death3.wav");
+	this->som_arma = this->s->loadSound("data/models/sounds/assault/assault_fire.wav");
 #endif	
 }
 

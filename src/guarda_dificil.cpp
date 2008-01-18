@@ -21,7 +21,7 @@ Guard_Dificil::Guard_Dificil(int z, int x, bool em_movimento, GLfloat angulo) : 
 	this->loadModel();
 	
 	this->vida=75;
-	this->velocidade_disparo=10;
+	this->velocidade_disparo=0.05;
 	this->velocidade_correr=1;
 	
 	this->set_xy(z,x);
@@ -32,10 +32,12 @@ Guard_Dificil::Guard_Dificil(int z, int x, bool em_movimento, GLfloat angulo) : 
 	this->som_morrer[1] = this->s->loadSound("data\\models\\sounds\\keel\\death1.wav");
 	this->som_morrer[2] = this->s->loadSound("data\\models\\sounds\\keel\\death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data\\models\\sounds\\keel\\death3.wav");
+	this->som_arma = this->s->loadSound("data\\models\\sounds\\minigun\\minigun_fire.wav");
 #else
 	this->som_morrer[1] = this->s->loadSound("data/models/sounds/keel/death1.wav");
 	this->som_morrer[2] = this->s->loadSound("data/models/sounds/keel/death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data/models/sounds/keel/death3.wav");
+	this->som_arma = this->s->loadSound("data/models/sounds/minigun/minigun_fire.wav");
 #endif	
 }
 

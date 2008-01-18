@@ -44,6 +44,8 @@ protected:
 	int som_passo_corrente;
 	
 	Mix_Chunk *som_morrer[4];
+	Mix_Chunk *som_arma;
+	int som_disparo_arma;
 	
 	Md3Player *guard;
 	Md3Weapon *weapon;
@@ -53,13 +55,12 @@ public:
 	bool modificou_movimento;
 	bool modificou_upper_movimento;
 	bool em_disparo;
+	bool disparar;
 	int vida;
-	int velocidade_disparo;
-	int velocidade_correr;
-	int damage_arma;
+	float velocidade_disparo;
+	float velocidade_correr;
+	float damage_arma;
 	float velocidade;
-	
-	int ultimo_disparo; // guarda-se aqui o tick do ultimo disparo para se saber quando se pode disparar outra vez
 	
 public:
 	// posicao no mapa
@@ -74,6 +75,7 @@ public:
 	
 	double dt_cur;
 	double ultimo_andar;
+	double ultimo_disparo;
 	
 	bool morto;
 	bool a_morrer;
@@ -84,11 +86,16 @@ public:
 
 	void loadModel();
 	void draw();
-	void animate(const double dt);
+	void animate(const double dt, double dt_cur);
 	
 	void setAngulo(GLfloat angulo);
 	void set_xy(float z, float x);
 	void set_walking_front();
+	
+	/* AI ?! */
+	void nextMove();
+	
+	void shootGun();
 	
 	/* player actions */
 	void takeHealth(GLfloat x, GLfloat y);

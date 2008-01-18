@@ -18,7 +18,11 @@ Guard::Guard()
 	this->em_disparo = false;
 	this->alerta = false;
 	this->movimento_contar_vezes = 0;
+	this->som_disparo_arma = 0;
+	this->ultimo_disparo = 0;
+	this->ultimo_andar = 0;
 	this->velocidade = VELOCIDADE_ANDAR_GUARDA;
+	this->z=this->x=0;
 	this->s = Sound::GetInstance();
 	// ler passos
 #ifdef WIN32
@@ -90,6 +94,29 @@ void Guard::draw()
 	glPopMatrix();
 }
 
+void Guard::nextMove()
+{
+	this->shootGun();
+	
+}
+
+void Guard::shootGun()
+{
+	// primeiro temos de ver se podemos disparar, se podemos entao metemos o disparar a true
+	//std::cout << "ult disp"<< this->ultimo_disparo << " velocidade: " << this->velocidade_disparo << " dt_cir: " << this->dt_cur << std::endl;
+	if(this->ultimo_disparo+this->velocidade_disparo < this->dt_cur){
+		// podemos disparar
+		this->disparar = true;
+		this->em_disparo = true;
+		this->ultimo_disparo = this->dt_cur;
+		if(Mix_Playing(this->som_disparo_arma)!=0)
+			Mix_HaltChannel(this->som_disparo_arma);
+		this->som_disparo_arma = this->s->playSound(this->som_arma,this->z,this->x);
+		this->guard->setAnimation (kTorsoAttack);
+	}
+}
+
+
 void Guard::playSomPassos()
 {
 	// verificar se o som está a tocar
@@ -107,10 +134,15 @@ void Guard::playSomPassos()
 void Guard::takeHealth(GLfloat z, GLfloat x)
 {
 	this->morto=true;
+	int orig_x = (int)(((this->z)/(Fisica::cube_size*2.0f))+0.5);
+	int orig_y = (int)(((this->x)/(Fisica::cube_size*2.0f))+0.5);
+	Fisica::guardas[orig_x][orig_y] = false;
+	
 }
 
-void Guard::animate(const double dt)
+void Guard::animate(const double dt, double dt_cur)
 {
+	this->dt_cur = dt_cur;
 	if(!this->morto){
 		// precisamos de ver se ele tem de fazer coisas ou nao..
 		// estamos em alerta?! se nao, vamos seguir os percursos
@@ -135,7 +167,9 @@ void Guard::animate(const double dt)
 		}
 		if(this->modificou_upper_movimento){
 			if(this->em_disparo){
-				this->guard->setAnimation (kTorsoAttack);
+				//this->guard->setAnimation (kTorsoAttack);
+				if(this->ultimo_disparo+this->velocidade_disparo < this->dt_cur)
+					this->em_disparo=false;
 			}else{
 				this->guard->setAnimation (kTorsoStand);
 			}
@@ -149,6 +183,7 @@ void Guard::animate(const double dt)
 	}else{
 		// estamos mortos ou vamos morrer
 		if(!this->a_morrer){
+			this->guard->unlinkWeapon();
 			this->guard->_lowerAnim.executar_anim = false;
 			this->guard->_upperAnim.executar_anim = false;
 			switch(rand()%4+1){
@@ -175,9 +210,19 @@ void Guard::animate(const double dt)
 
 void Guard::set_xy(float z, float x)
 {
+	// temos de ir ah fisica retirar o nosso valor para 0
+	int orig_x = (int)(((this->z)/(Fisica::cube_size*2.0f))+0.5);
+	int orig_y = (int)(((this->x)/(Fisica::cube_size*2.0f))+0.5);
+	Fisica::guardas[orig_x][orig_y] = false;
+
 	this->x = x;
 	this->y = -2.6f;
 	this->z = z;
+	
+	// actualizar para novo valor
+	orig_x = (int)(((this->z)/(Fisica::cube_size*2.0f))+0.5);
+	orig_y = (int)(((this->x)/(Fisica::cube_size*2.0f))+0.5);
+	Fisica::guardas[orig_x][orig_y] = true;
 }
 void Guard::setAngulo(GLfloat angulo)
 {
@@ -199,7 +244,7 @@ float Guard::MoveTest()
 		// temos de ver se ele ja andou mais do que devia
 		double dt_menos = this->dt_cur-this->ultimo_andar;
 		this->ultimo_andar = this->dt_cur;
-		if(dt_menos>0.1)
+		if(dt_menos>0.1 && dt_menos <2)
 			return 1+dt_menos;
 		else return 1;
 	}else return 0;

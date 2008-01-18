@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
+#include <map>
 #include <cmath>
 #include <SDL.h>
 #include <SDL_mixer.h>
@@ -29,7 +30,7 @@ protected:
 	
 public:
 	static Sound *m_soundSingleton;
-	std::vector<Mix_Chunk*> sons;
+	std::map<std::string, Mix_Chunk *> sons;
 	
 	int audio_rate;
 	Uint16 audio_format; 
@@ -58,7 +59,7 @@ public:
 	}
 
 	void shutdown();
-	Mix_Chunk* loadSound(const char *path);
+	Mix_Chunk* loadSound(std::string path);
 	int playSoundDirect(Mix_Chunk *s);
 	int playSound(Mix_Chunk *s, float obj_x, float obj_y);
 };

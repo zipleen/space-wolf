@@ -132,7 +132,7 @@ void Player::setGun(int tipo){
 bool Player::shootGun()
 {
 	// primeiro temos de ver se podemos disparar, se podemos entao metemos o disparar a true
-	std::cout << "ultimo disparo: " << this->ultimo_disparo << " velocidade: " << this->velocidade_disparo << std::endl;
+	//std::cout << "ultimo disparo: " << this->ultimo_disparo << " velocidade: " << this->velocidade_disparo << std::endl;
 	if(this->ultimo_disparo+this->velocidade_disparo < this->dt_cur){
 		// podemos disparar
 		if(this->balas>0){
@@ -171,6 +171,12 @@ void Player::takeHealth(int valor)
 		this->vida=0;
 		this->morto=true;
 	}
+}
+
+void Player::takeHealth(GLfloat x, GLfloat y)
+{
+	this->takeHealth(25);
+	
 }
 
 // items accoes
@@ -266,9 +272,9 @@ void Player::calculateSpeed()
 	if((this->dt_cur-this->old_ultimo_andar)==0)
 		return;
 	//double dist = sqrt( pow((this->x - this->old_x),2)+pow((this->y-this->old_y),2)+pow((this->z-this->old_z),2) );
-	double dist =  pow((this->x - this->old_x),2)+pow((this->z-this->old_z),2);
+	//double dist =  pow((this->x - this->old_x),2)+pow((this->z-this->old_z),2);
 	
-	std::cout << dist / pow((this->dt_cur-this->old_ultimo_andar),2) << std::endl;
+	//std::cout << dist / pow((this->dt_cur-this->old_ultimo_andar),2) << std::endl;
 }
 
 void Player::GoStraffLeft()

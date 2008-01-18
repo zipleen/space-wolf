@@ -78,6 +78,7 @@ public:
 	
 	// accoes causadas por outros actores
 	void takeHealth(int valor);
+	void takeHealth(GLfloat x, GLfloat y);
 	
 	// accoes efectuadas pelos items
 	bool giveHealth(int valor);

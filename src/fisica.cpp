@@ -11,6 +11,7 @@
 
 std::vector<std::vector <bool> > Fisica::mapa;
 std::vector<std::vector <bool> > Fisica::portas;
+std::vector<std::vector <bool> > Fisica::guardas;
 float Fisica::cube_size;
 bool Fisica::clip_mode;
 
@@ -40,8 +41,17 @@ bool Fisica::canIgoThere(float from_z, float from_x, float to_z,float to_x,bool 
 	if(pode_ir_paredes){
 		// eh preciso verificar nas portas se estao abertas
 		pode_ir_portas = (Fisica::portas[map_x_a1][map_y_a1] && Fisica::portas[map_x_a1][map_y_a2] && Fisica::portas[map_x_a2][map_y_a1] && Fisica::portas[map_x_a2][map_y_a2]);
-		if(pode_ir_portas)
+		if(pode_ir_portas){
+			if(guarda)
+				return true;
+			else{
+				// verificar guardas
+				if((!Fisica::guardas[map_x_a1][map_y_a1] && !Fisica::guardas[map_x_a1][map_y_a2] && !Fisica::guardas[map_x_a2][map_y_a1] && !Fisica::guardas[map_x_a2][map_y_a2]))
+					return true;
+				else return false;
+			}
 			return true;
+		}
 	}
 	return false;
 }
