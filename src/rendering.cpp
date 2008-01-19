@@ -374,50 +374,6 @@ void Rendering::draw2D(Player *p)
 	glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 	
 	// desenhar o hud do player ( vida, balas, etc do player)
-	
-	
-	glPushMatrix();
-	glTranslatef(27,50,0);
-	glBegin(GL_QUADS);
-		glVertex2f(-16,-16);
-		glVertex2f(16,-16);
-		glVertex2f(16,16);
-		glVertex2f(-16,16);
-	glEnd();
-	
-	glTranslatef(90,0,0);
-	glBegin(GL_QUADS);
-		glVertex2f(-16,-16);
-		glVertex2f(16,-16);
-		glVertex2f(16,16);
-		glVertex2f(-16,16);
-	glEnd();
-
-
-	glTranslatef(90,0,0);
-	glBegin(GL_QUADS);
-		glVertex2f(-16,-16);
-		glVertex2f(16,-16);
-		glVertex2f(16,16);
-		glVertex2f(-16,16);
-	glEnd();
-
-	glTranslatef(65,0,0);
-	glBegin(GL_QUADS);
-		glVertex2f(-16,-16);
-		glVertex2f(16,-16);
-		glVertex2f(16,16);
-		glVertex2f(-16,16);
-	glEnd();
-	
-	glTranslatef(90,0,0);
-	glBegin(GL_QUADS);
-		glVertex2f(-16,-16);
-		glVertex2f(16,-16);
-		glVertex2f(16,16);
-		glVertex2f(-16,16);
-	glEnd();
-	glPopMatrix();
 
 	Hud::drawHud(p);
 	
