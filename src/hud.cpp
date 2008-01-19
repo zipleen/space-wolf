@@ -14,74 +14,114 @@ Md3Model *Hud::arma1_f, *Hud::arma2_f, *Hud::arma3_f, *Hud::arma4_f, *Hud::arma4
 float Hud::yaw, Hud::yaw_walk;
 bool Hud::yaw_up, Hud::yaw_up_walk;
 TTFont *Hud::font;
-Texture2D *Hud::tex_balas, *Hud::tex_armor, *Hud::tex_chave1, *Hud::tex_chave2, *Hud::tex_vida;
+Texture2D *Hud::tex_balas, *Hud::tex_armor, *Hud::tex_chave1, *Hud::tex_chave2, *Hud::tex_ammo, *Hud::tex_vida;
 
 
 
 void Hud::drawHud(Player *p)
 {
 	
-	std::string chaves;
+	/*std::string chaves;
 	if(p->chave_amarela && p->chave_vermelha)
 		chaves = "Amarela & Vermelha";
 	else if(p->chave_amarela && !p->chave_vermelha)
 		chaves = "Amarela";
 	else if(!p->chave_amarela && p->chave_vermelha)
 		chaves = "Vermelha";
-	else chaves = "Nenhuma";
+	else chaves = "Nenhuma";*/
 	glPushMatrix();
 
 	glEnable (GL_TEXTURE_2D);
 	
-	glTranslatef(27,50,0);
+	glTranslatef(35,60,0);
+	tex_vida->bind();
 	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 0.0); glVertex2f(-16,-16);	
-		glTexCoord2f(0.0, 1.0);	glVertex2f(16,-16);
-		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
-		glTexCoord2f(1.0, 0.0); glVertex2f(-16,16);	
+		glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
+		glTexCoord2f(1.0, 0.0);	glVertex2f(24,-24);
+		glTexCoord2f(1.0, 1.0); glVertex2f(24,24);
+		glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);		
 	glEnd();
 	
-	glTranslatef(90,0,0);
+	glTranslatef(150,0,0);
+	tex_armor->bind();
 	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 0.0); glVertex2f(-16,-16);	
-		glTexCoord2f(0.0, 1.0);	glVertex2f(16,-16);
-		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
-		glTexCoord2f(1.0, 0.0); glVertex2f(-16,16);	
+		glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
+		glTexCoord2f(1.0, 0.0);	glVertex2f(24,-24);
+		glTexCoord2f(1.0, 1.0); glVertex2f(24,24);
+		glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);	
 	glEnd();
 
 	
-	glTranslatef(90,0,0);
-	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 0.0); glVertex2f(-16,-16);	
-		glTexCoord2f(0.0, 1.0);	glVertex2f(16,-16);
-		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
-		glTexCoord2f(1.0, 0.0); glVertex2f(-16,16);	
-	glEnd();
-
-	glTranslatef(65,0,0);
+	glTranslatef(150,0,0);
 	tex_balas->bind();
 	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 0.0); glVertex2f(-16,-16);	
-		glTexCoord2f(0.0, 1.0);	glVertex2f(16,-16);
-		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
-		glTexCoord2f(1.0, 0.0); glVertex2f(-16,16);		
+		glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
+		glTexCoord2f(1.0, 0.0);	glVertex2f(24,-24);
+		glTexCoord2f(1.0, 1.0); glVertex2f(24,24);
+		glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);	
+	glEnd();
+
+	glTranslatef(90,0,0);
+	tex_ammo->bind();
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
+		glTexCoord2f(1.0, 0.0);	glVertex2f(24,-24);
+		glTexCoord2f(1.0, 1.0); glVertex2f(24,24);
+		glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);	
 	glEnd();
 	
-	glTranslatef(90,0,0);
-	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 0.0); glVertex2f(-16,-16);	
-		glTexCoord2f(0.0, 1.0);	glVertex2f(16,-16);
-		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
-		glTexCoord2f(1.0, 0.0); glVertex2f(-16,16);	
-	glEnd();
+	if(p->chave_amarela && p->chave_vermelha)
+	{
+		glTranslatef(150,0,0);
+		tex_chave1->bind();
+		glBegin(GL_QUADS);
+			glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
+			glTexCoord2f(1.0, 0.0);	glVertex2f(24,-24);
+			glTexCoord2f(1.0, 1.0); glVertex2f(24,24);
+			glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);	
+		glEnd();
+
+		glTranslatef(60,0,0);
+		tex_chave2->bind();
+		glBegin(GL_QUADS);
+			glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
+			glTexCoord2f(1.0, 0.0);	glVertex2f(24,-24);
+			glTexCoord2f(1.0, 1.0); glVertex2f(24,24);
+			glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);	
+		glEnd();
+		
+	}
+	else if(p->chave_amarela && !p->chave_vermelha)
+	{
+		glTranslatef(150,0,0);
+		tex_chave1->bind();
+		glBegin(GL_QUADS);
+			glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
+			glTexCoord2f(1.0, 0.0);	glVertex2f(24,-24);
+			glTexCoord2f(1.0, 1.0); glVertex2f(24,24);
+			glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);	
+		glEnd();
+	
+	}
+	else if(!p->chave_amarela && p->chave_vermelha)
+	{
+		glTranslatef(150,0,0);
+		tex_chave2->bind();
+		glBegin(GL_QUADS);
+			glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
+			glTexCoord2f(1.0, 0.0);	glVertex2f(24,-24);
+			glTexCoord2f(1.0, 1.0); glVertex2f(24,24);
+			glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);		
+		glEnd();
+	}
 	glPopMatrix();
 
 	glPushMatrix();
-	Hud::font->printText (45, 40, "%d", p->vida);
-	Hud::font->printText (135, 40, "%d", p->armadura);	
-	Hud::font->printText (225, 40, "%d", p->arma_em_uso);	
-	Hud::font->printText (290, 40, "%d", p->balas);	
-	Hud::font->printText (380, 40, "%s", chaves.c_str());	
+	Hud::font->printText (60, 45, "%d", p->vida);
+	Hud::font->printText (215, 45, "%d", p->armadura);	
+	Hud::font->printText (365, 45, "%d", p->arma_em_uso);	
+	Hud::font->printText (455, 45, "%d", p->balas);	
+	//Hud::font->printText (380, 40, "%s", chaves.c_str());	
 	glPopMatrix();
 
 	
@@ -161,7 +201,12 @@ void Hud::initHud()
 #ifdef WIN32
 
 #define PATH_ICON_BALAS "data\\HUD\\icona_shotgun.tga"
-//tex_balas = Shared_render_objects::loadTexture("data\\HUD\\icona_shotgun.tga");
+#define PATH_ICON_VIDA "data\\HUD\\vida.jpg"
+#define PATH_ICON_ARMOR "data\\HUD\\armor.jpg"
+#define PATH_ICON_AMMO "data\\HUD\\ammo.jpg"
+#define PATH_ICON_CHAVE1 "data\\HUD\\chave1.jpg"
+#define PATH_ICON_CHAVE2 "data\\HUD\\chave2.jpg"
+
 
 #define ARMA1_PATH "data\\models\\weapons2\\standardgun\\standardgun_hand.md3"
 #define ARMA1_F_PATH "data\\models\\weapons2\\standardgun\\standardgun_flash.md3"
@@ -193,6 +238,11 @@ void Hud::initHud()
 #endif
 	
 	Hud::tex_balas = Shared_render_objects::loadTexture(PATH_ICON_BALAS);
+	Hud::tex_vida = Shared_render_objects::loadTexture(PATH_ICON_VIDA);
+	Hud::tex_armor = Shared_render_objects::loadTexture(PATH_ICON_ARMOR);
+	Hud::tex_ammo = Shared_render_objects::loadTexture(PATH_ICON_AMMO);
+	Hud::tex_chave1 = Shared_render_objects::loadTexture(PATH_ICON_CHAVE1);
+	Hud::tex_chave2 = Shared_render_objects::loadTexture(PATH_ICON_CHAVE2);
 	
 	Hud::arma1 = Md3ModelPtr (new Md3Model (ARMA1_PATH));
 	Hud::arma1_f = new Md3Model (ARMA1_F_PATH);
@@ -233,7 +283,7 @@ void Hud::initHud()
 	
 	try
 	{
-		Hud::font = new TTFont ("data/Quake.ttf", 22, 1);
+		Hud::font = new TTFont ("data/Quake.ttf", 30, 1);
     }
 	catch (std::runtime_error &err)
     {
