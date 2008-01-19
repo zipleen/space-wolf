@@ -20,8 +20,9 @@ Guard_Boss1::Guard_Boss1(int z, int x, bool em_movimento, GLfloat angulo) : Guar
 #endif
 	this->loadModel();
 	
-	this->vida=2000;
+	this->vida=3000;
 	this->velocidade_disparo=0.05;
+	this->potencia_arma=3;
 	this->velocidade_correr=1;
 	
 	this->set_xy(z,x);

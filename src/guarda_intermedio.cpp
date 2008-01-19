@@ -20,8 +20,9 @@ Guard_Intermedio::Guard_Intermedio(int z, int x, bool em_movimento, GLfloat angu
 #endif
 	this->loadModel();
 	
-	this->vida=75;
+	this->vida=100;
 	this->velocidade_disparo=0.35;
+	this->potencia_arma=5;
 	this->velocidade_correr=1;
 	
 	this->set_xy(z,x);

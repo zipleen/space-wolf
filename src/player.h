@@ -36,6 +36,7 @@ public:
 	bool arma3;
 	bool arma4;
 	int arma_em_uso;
+	int potencia_arma;
 	bool disparar;
 	bool muzzle_flash;
 	float velocidade_disparo;
@@ -82,7 +83,7 @@ public:
 	
 	// accoes causadas por outros actores
 	void takeHealth(int valor);
-	void takeHealth(GLfloat x, GLfloat y);
+	void takeHealth(GLfloat x, GLfloat y,int v);
 	
 	// accoes efectuadas pelos items
 	bool giveHealth(int valor);

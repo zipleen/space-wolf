@@ -121,6 +121,7 @@ void Player::setGun(int tipo){
 			if(this->arma_em_uso!=1){
 				this->arma_em_uso = 1;
 				this->velocidade_disparo = 0.75;
+				this->potencia_arma = 2;
 				this->s->playSoundDirect(this->som_mudar_arma);
 			}
 			break;
@@ -128,6 +129,7 @@ void Player::setGun(int tipo){
 			if(this->arma2 && this->arma_em_uso!=2){
 				this->arma_em_uso = 2;
 				this->velocidade_disparo = 0.65;
+				this->potencia_arma = 3;
 				this->s->playSoundDirect(this->som_mudar_arma);
 			}
 			break;
@@ -135,6 +137,7 @@ void Player::setGun(int tipo){
 			if(this->arma3 && this->arma_em_uso!=3){
 				this->arma_em_uso = 3;
 				this->velocidade_disparo = 0.35;
+				this->potencia_arma = 6;
 				this->s->playSoundDirect(this->som_mudar_arma);
 			}
 			break;
@@ -143,6 +146,7 @@ void Player::setGun(int tipo){
 			if(this->arma4 && this->arma_em_uso!=4){
 				this->arma_em_uso = 4;
 				this->velocidade_disparo = 0.10;
+				this->potencia_arma = 4;
 				this->s->playSoundDirect(this->som_mudar_arma);
 			}
 			break;
@@ -181,6 +185,7 @@ bool Player::shootGun()
 // accoes provocadas por outros actores
 void Player::takeHealth(int valor)
 {
+	//std::cout << "vida que tirar a mim: " << valor << std::endl;
 	if(this->armadura>0){
 		// vamos tirar armadura
 		if(this->armadura<valor){
@@ -196,10 +201,15 @@ void Player::takeHealth(int valor)
 	}
 }
 
-void Player::takeHealth(GLfloat x, GLfloat y)
+void Player::takeHealth(GLfloat z, GLfloat x,int valor_arma)
 {
-	this->takeHealth(25);
-	
+	float z1 = (this->z*-1) - z;
+	float x1 = (this->x*-1) - x;
+	int dist = (int)sqrt(z1*z1 + x1*x1);
+	if(dist!=0){
+		//std::cout << "dist:" << dist << std::endl;
+		this->takeHealth( (100-(dist/valor_arma))/2 );
+	}else this->takeHealth(100);
 }
 
 // items accoes

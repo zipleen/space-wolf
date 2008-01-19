@@ -124,7 +124,7 @@ void Map::processTiros(Player *p)
 					int guarda_x = (int)(((this->guardas[i]->z)/(this->cube_size*2.0f))+0.5);
 					int guarda_y = (int)(((this->guardas[i]->x)/(this->cube_size*2.0f))+0.5);
 					if(guarda_x == cx && guarda_y == cy){
-						this->guardas[i]->takeHealth(p->z, p->x);
+						this->guardas[i]->takeHealth(p->z, p->x,p->potencia_arma);
 						if(this->guardas[i]->morto){
 							// agora vamos meter as armas a boiar se nao tivermos a arma ainda
 							if(!p->tenhoArma(this->guardas[i]->codigo_arma_que_guarda_tem)){
@@ -176,7 +176,7 @@ void Map::processTiros(Player *p)
 				//std::cout << "tentou: " << cx << " " << cy << " eu:" << p_x << " " << p_y << std::endl;
 				if(cx==p_x && cy==p_y){
 					//std::cout << "guarda " << this->guardas[i]->z << " " << this->guardas[i]->x << " tirou saude" << std::endl;
-					p->takeHealth(this->guardas[i]->z, this->guardas[i]->x);
+					p->takeHealth(this->guardas[i]->z, this->guardas[i]->x, this->guardas[i]->potencia_arma);
 					break;
 				}
 				if(this->map[cx][cy]>1000 && this->map[cx][cy]<2000)
@@ -464,9 +464,9 @@ void Map::updateGuardAnimation(double dt,double dt_cur)
 			int orig_x = (int)(((this->guardas[i]->z)/(this->cube_size*2.0f))+0.5);
 			int orig_y = (int)(((this->guardas[i]->x)/(this->cube_size*2.0f))+0.5);
 			if(orig_x>0 && orig_x<=this->tamanho_mapa && orig_y>0 && orig_y<=this->tamanho_mapa && this->map[orig_x][orig_y]>=2033 && this->map[orig_x][orig_y]<=2040){
-				this->guardas[i]->movimento_contar_vezes++;
-				if(this->guardas[i]->movimento_contar_vezes>50)
-				{
+				//this->guardas[i]->movimento_contar_vezes++;
+				//if(this->guardas[i]->movimento_contar_vezes>50)
+				//{
 					this->guardas[i]->movimento_contar_vezes=0;
 					switch(this->map[orig_x][orig_y]){
 						case 2033:
@@ -498,7 +498,7 @@ void Map::updateGuardAnimation(double dt,double dt_cur)
 							this->guardas[i]->setAngulo(315);
 							break;	
 					}
-				}
+				//}
 			}
 		}
 	}

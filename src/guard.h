@@ -57,6 +57,7 @@ public:
 	bool modificou_upper_movimento;
 	bool em_disparo;
 	bool disparar;
+	int potencia_arma;
 	int vida;
 	float velocidade_disparo;
 	float velocidade_correr;
@@ -103,7 +104,8 @@ public:
 	void shootGun();
 	
 	/* player actions */
-	void takeHealth(GLfloat x, GLfloat y);
+	void takeHealth(int valor);
+	void takeHealth(GLfloat x, GLfloat y, int v);
 	
 	/* movimento */
 	void playSomPassos();

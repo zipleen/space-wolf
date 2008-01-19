@@ -149,13 +149,27 @@ void Guard::playSomPassos()
 	}
 }
 
-void Guard::takeHealth(GLfloat z, GLfloat x)
+void Guard::takeHealth(int valor)
 {
-	this->morto=true;
-	int orig_x = (int)(((this->z)/(Fisica::cube_size*2.0f))+0.5);
-	int orig_y = (int)(((this->x)/(Fisica::cube_size*2.0f))+0.5);
-	Fisica::guardas[orig_x][orig_y] = false;
-	
+	//std::cout << "vida que vai ser tirada do guarda: " << valor << std::endl;
+	this->vida-=valor;
+	if(this->vida<=0){
+		this->vida=0;
+		this->morto=true;
+		int orig_x = (int)(((this->z)/(Fisica::cube_size*2.0f))+0.5);
+		int orig_y = (int)(((this->x)/(Fisica::cube_size*2.0f))+0.5);
+		Fisica::guardas[orig_x][orig_y] = false;
+	}
+}
+
+void Guard::takeHealth(GLfloat z, GLfloat x, int valor_arma)
+{
+	float z1 = this->z - (z*-1);
+	float x1 = this->x - (x*-1);
+	int dist = (int)sqrt(z1*z1 + x1*x1);
+	if(dist!=0){
+		this->takeHealth(100-(dist/valor_arma));
+	}else this->takeHealth(100);
 }
 
 void Guard::animate(const double dt, double dt_cur)
