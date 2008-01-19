@@ -33,7 +33,7 @@ void Hud::drawHud(Player *p)
 
 	glEnable (GL_TEXTURE_2D);
 	
-	glTranslatef(35,60,0);
+	glTranslatef(150,60,0);
 	tex_vida->bind();
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
@@ -52,7 +52,7 @@ void Hud::drawHud(Player *p)
 	glEnd();
 
 
-	glTranslatef(150+90,0,0);
+	glTranslatef(150,0,0);
 	tex_ammo->bind();
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
@@ -108,10 +108,10 @@ void Hud::drawHud(Player *p)
 	glPopMatrix();
 
 	glPushMatrix();
-	Hud::font->printText (60, 45, "%d", p->vida);
-	Hud::font->printText (215, 45, "%d", p->armadura);	
+	Hud::font->printText (185, 45, "%d", p->vida);
+	Hud::font->printText (330, 45, "%d", p->armadura);	
 	//Hud::font->printText (365, 45, "%d", p->arma_em_uso);	
-	Hud::font->printText (455, 45, "%d", p->balas);	
+	Hud::font->printText (480, 45, "%d", p->balas);	
 	//Hud::font->printText (380, 40, "%s", chaves.c_str());	
 	glPopMatrix();
 
