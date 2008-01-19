@@ -14,7 +14,7 @@ Md3Model *Hud::arma1_f, *Hud::arma2_f, *Hud::arma3_f, *Hud::arma4_f, *Hud::arma4
 float Hud::yaw, Hud::yaw_walk;
 bool Hud::yaw_up, Hud::yaw_up_walk;
 TTFont *Hud::font;
-Texture2D *Hud::tex_balas, *Hud::tex_armor, *Hud::tex_chave1, *Hud::tex_chave2, *Hud::tex_ammo, *Hud::tex_vida;
+Texture2D *Hud::tex_armor, *Hud::tex_chave1, *Hud::tex_chave2, *Hud::tex_ammo, *Hud::tex_vida;
 
 
 
@@ -51,17 +51,8 @@ void Hud::drawHud(Player *p)
 		glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);	
 	glEnd();
 
-	
-	glTranslatef(150,0,0);
-	tex_balas->bind();
-	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
-		glTexCoord2f(1.0, 0.0);	glVertex2f(24,-24);
-		glTexCoord2f(1.0, 1.0); glVertex2f(24,24);
-		glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);	
-	glEnd();
 
-	glTranslatef(90,0,0);
+	glTranslatef(150+90,0,0);
 	tex_ammo->bind();
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
@@ -119,7 +110,7 @@ void Hud::drawHud(Player *p)
 	glPushMatrix();
 	Hud::font->printText (60, 45, "%d", p->vida);
 	Hud::font->printText (215, 45, "%d", p->armadura);	
-	Hud::font->printText (365, 45, "%d", p->arma_em_uso);	
+	//Hud::font->printText (365, 45, "%d", p->arma_em_uso);	
 	Hud::font->printText (455, 45, "%d", p->balas);	
 	//Hud::font->printText (380, 40, "%s", chaves.c_str());	
 	glPopMatrix();
@@ -200,7 +191,6 @@ void Hud::initHud()
 {	
 #ifdef WIN32
 
-#define PATH_ICON_BALAS "data\\HUD\\icona_shotgun.tga"
 #define PATH_ICON_VIDA "data\\HUD\\vida.jpg"
 #define PATH_ICON_ARMOR "data\\HUD\\armor.jpg"
 #define PATH_ICON_AMMO "data\\HUD\\ammo.jpg"
@@ -222,7 +212,12 @@ void Hud::initHud()
 #define ARMA4_F_PATH "data\\models\\weapons2\\minigun\\minigun_flash.md3"
 #else
 	
-#define PATH_ICON_BALAS "data/HUD/ammo.jpg"	
+#define PATH_ICON_VIDA "data/HUD/vida.jpg"
+#define PATH_ICON_ARMOR "data/HUD/armor.jpg"
+#define PATH_ICON_AMMO "data/HUD/ammo.jpg"
+#define PATH_ICON_CHAVE1 "data/HUD/chave1.jpg"
+#define PATH_ICON_CHAVE2 "data/HUD/chave2.jpg"
+	
 #define ARMA1_PATH "data/models/weapons2/standardgun/standardgun_hand.md3"
 #define ARMA1_F_PATH "data/models/weapons2/standardgun/standardgun_flash.md3"
 	
@@ -237,7 +232,6 @@ void Hud::initHud()
 #define ARMA4_F_PATH "data/models/weapons2/minigun/minigun_flash.md3"	
 #endif
 	
-	Hud::tex_balas = Shared_render_objects::loadTexture(PATH_ICON_BALAS);
 	Hud::tex_vida = Shared_render_objects::loadTexture(PATH_ICON_VIDA);
 	Hud::tex_armor = Shared_render_objects::loadTexture(PATH_ICON_ARMOR);
 	Hud::tex_ammo = Shared_render_objects::loadTexture(PATH_ICON_AMMO);
