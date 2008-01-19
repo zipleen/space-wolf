@@ -25,7 +25,20 @@ void Hud::drawHud(Player *p)
 	else if(!p->chave_amarela && p->chave_vermelha)
 		chaves = "Vermelha";
 	else chaves = "Nenhuma";
-	Hud::font->printText (10, 40, "Vida: %d | Armadura: %d | Arma: %d | Balas: %d | Chaves: %s", p->vida, p->armadura, p->arma_em_uso, p->balas, chaves.c_str());
+	Hud::font->printText (45, 40, "%d", p->vida);
+	Hud::font->printText (135, 40, "%d", p->armadura);	
+	Hud::font->printText (225, 40, "%d", p->arma_em_uso);	
+	Hud::font->printText (290, 40, "%d", p->balas);	
+	Hud::font->printText (380, 40, "%s", chaves.c_str());	
+	
+
+	/*glTranslatef(80,35,0);
+	glBegin(GL_QUADS);
+		glVertex2f(-15,-15);
+		glVertex2f(15,-15);
+		glVertex2f(15,15);
+		glVertex2f(-15,15);
+	glEnd();*/
 	/* descomenta para veres q ele imprime estes dados, sao os dados necessario a usar.
 		para converteres numeros int para strings podes usar Str(p->balas)
 	std::cout << "balas : " << p->balas << std::endl;
@@ -165,7 +178,7 @@ void Hud::initHud()
 	
 	try
 	{
-		Hud::font = new TTFont ("data/Vera.ttf", 25, 1);
+		Hud::font = new TTFont ("data/Quake.ttf", 18, 1);
     }
 	catch (std::runtime_error &err)
     {

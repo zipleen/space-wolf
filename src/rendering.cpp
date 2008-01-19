@@ -260,9 +260,9 @@ void Rendering::gameCycle (Map *m, Player *p)
 void Rendering::setLight()
 {	
 	GLfloat light_pos[4] =	{-5.0, 20.0, -5.0, 0.0};
-	GLfloat light_ambient[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-	GLfloat light_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-	GLfloat light_specular[]=	{ 0.5f, 0.5f, 0.5f, 1.0f };
+	GLfloat light_ambient[4] = { 0.8f, 0.8f, 0.8f, 1.0f };
+	GLfloat light_diffuse[4] = { 0.8f, 0.8f, 0.8f, 1.0f };
+	GLfloat light_specular[4]=	{ 0.5f, 0.5f, 0.5f, 1.0f };
 	
 	// isto eh definido ali atras
 	//glEnable(GL_LIGHTING);
@@ -281,7 +281,7 @@ void Rendering::setLight()
     glLightfv( GL_LIGHT1, GL_POSITION, light_pos1 );
     glLightfv( GL_LIGHT1, GL_SPOT_DIRECTION, direction);
     glLightf ( GL_LIGHT1, GL_SPOT_EXPONENT , 1);
-    glLightf ( GL_LIGHT1, GL_SPOT_CUTOFF, 45.0);
+    glLightf ( GL_LIGHT1, GL_SPOT_CUTOFF, 180);
 	
 }
 
@@ -374,6 +374,51 @@ void Rendering::draw2D(Player *p)
 	glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 	
 	// desenhar o hud do player ( vida, balas, etc do player)
+	
+	
+	glPushMatrix();
+	glTranslatef(27,50,0);
+	glBegin(GL_QUADS);
+		glVertex2f(-16,-16);
+		glVertex2f(16,-16);
+		glVertex2f(16,16);
+		glVertex2f(-16,16);
+	glEnd();
+	
+	glTranslatef(90,0,0);
+	glBegin(GL_QUADS);
+		glVertex2f(-16,-16);
+		glVertex2f(16,-16);
+		glVertex2f(16,16);
+		glVertex2f(-16,16);
+	glEnd();
+
+
+	glTranslatef(90,0,0);
+	glBegin(GL_QUADS);
+		glVertex2f(-16,-16);
+		glVertex2f(16,-16);
+		glVertex2f(16,16);
+		glVertex2f(-16,16);
+	glEnd();
+
+	glTranslatef(65,0,0);
+	glBegin(GL_QUADS);
+		glVertex2f(-16,-16);
+		glVertex2f(16,-16);
+		glVertex2f(16,16);
+		glVertex2f(-16,16);
+	glEnd();
+	
+	glTranslatef(90,0,0);
+	glBegin(GL_QUADS);
+		glVertex2f(-16,-16);
+		glVertex2f(16,-16);
+		glVertex2f(16,16);
+		glVertex2f(-16,16);
+	glEnd();
+	glPopMatrix();
+
 	Hud::drawHud(p);
 	
 	// White text
