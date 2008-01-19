@@ -21,9 +21,10 @@ Soldado::Soldado(int z, int x, bool em_movimento, GLfloat angulo) : Guard()
 	this->loadModel();
 	
 	this->vida=25;
-	this->velocidade_disparo=0.75;
+	this->velocidade_disparo=1.0;
 	this->potencia_arma=2;
-	this->velocidade_correr=8;
+	this->velocidade_correr=16;
+	this->tempo_reaccao = 2;
 	
 	this->setInitial(z,x);
 	this->setWalk(em_movimento);
