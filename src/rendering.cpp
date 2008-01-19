@@ -374,6 +374,7 @@ void Rendering::draw2D(Player *p)
 	glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 	
 	// desenhar o hud do player ( vida, balas, etc do player)
+	Hud::drawHud(p);
 	
 	// White text
 	glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
@@ -388,7 +389,7 @@ void Rendering::draw2D(Player *p)
 #endif
 	
 	glPopAttrib ();
-	Hud::drawHud(p, this->font);
+	
 	end2D ();
 	
 }

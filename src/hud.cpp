@@ -13,8 +13,9 @@ Hud::Md3ModelPtr Hud::arma1, Hud::arma2, Hud::arma3, Hud::arma4 ;
 Md3Model *Hud::arma1_f, *Hud::arma2_f, *Hud::arma3_f, *Hud::arma4_f, *Hud::arma4_1;
 float Hud::yaw, Hud::yaw_walk;
 bool Hud::yaw_up, Hud::yaw_up_walk;
+TTFont *Hud::font;
 
-void Hud::drawHud(Player *p, TTFont *font)
+void Hud::drawHud(Player *p)
 {
 	std::string chaves;
 	if(p->chave_amarela && p->chave_vermelha)
@@ -24,7 +25,7 @@ void Hud::drawHud(Player *p, TTFont *font)
 	else if(!p->chave_amarela && p->chave_vermelha)
 		chaves = "Vermelha";
 	else chaves = "Nenhuma";
-	font->printText (10, 40, "Vida: %d | Armadura: %d | Arma: %d | Balas: %d | Chaves: %s", p->vida, p->armadura, p->arma_em_uso, p->balas, chaves.c_str());
+	Hud::font->printText (10, 40, "Vida: %d | Armadura: %d | Arma: %d | Balas: %d | Chaves: %s", p->vida, p->armadura, p->arma_em_uso, p->balas, chaves.c_str());
 	/* descomenta para veres q ele imprime estes dados, sao os dados necessario a usar.
 		para converteres numeros int para strings podes usar Str(p->balas)
 	std::cout << "balas : " << p->balas << std::endl;
@@ -161,5 +162,15 @@ void Hud::initHud()
 	Hud::yaw_up = false;
 	Hud::yaw_walk = 1;
 	Hud::yaw_up_walk = false;
+	
+	try
+	{
+		Hud::font = new TTFont ("data/Vera.ttf", 25, 1);
+    }
+	catch (std::runtime_error &err)
+    {
+		std::cerr << "Failed to create truetype font" << endl;
+		std::cerr << "Reason: " << err.what () << endl;
+    }
 }
 

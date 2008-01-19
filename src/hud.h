@@ -19,6 +19,8 @@
 #include <GL/glu.h>
 #endif
 
+#include <SDL_ttf.h>
+
 #include "player.h"
 #include "StrUtils.h"
 #include "md3/Md3Model.h"
@@ -32,12 +34,13 @@ protected:
 	static Md3Model *arma1_f, *arma2_f, *arma3_f, *arma4_f, *arma4_1;
 	static float yaw,yaw_walk;
 	static bool yaw_up,yaw_up_walk;
+	static TTFont *font;
 	
 public:
 	Hud(){}; 
 	virtual ~Hud(){};
 	
-	static void drawHud(Player *p,TTFont *font);
+	static void drawHud(Player *p);
 	static void initHud();
 	static void drawGun(Player *p);
 };
