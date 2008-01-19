@@ -23,7 +23,8 @@ Guard_Robo::Guard_Robo(int z, int x, bool em_movimento, GLfloat angulo) : Guard(
 	this->vida=75;
 	this->velocidade_disparo=0.25;
 	this->potencia_arma=6;
-	this->velocidade_correr=8;
+	this->velocidade_correr=12;
+	this->tempo_reaccao = 1.3;
 	
 	this->set_xy(z,x);
 	this->setWalk(em_movimento);

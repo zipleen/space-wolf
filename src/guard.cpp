@@ -390,8 +390,8 @@ void Guard::GoStraffLeft()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x*-1)+sin(RAD(-this->angulo+270))*this->velocidade;
-	nz=(this->z)+cos(RAD(this->angulo+270))*this->velocidade;
+	nx=(this->x*-1)+sin(RAD(-this->angulo+270))*this->velocidade/this->tempo_reaccao;
+	nz=(this->z)+cos(RAD(this->angulo+270))*this->velocidade/this->tempo_reaccao;
 	
 	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx, true) ){
 		this->IwannaGoTo(nz, nx*-1);
@@ -405,8 +405,8 @@ void Guard::GoStraffRight()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x*-1)+sin(RAD(-this->angulo+90))*this->velocidade;
-	nz=(this->z)+cos(RAD(this->angulo+90))*this->velocidade;
+	nx=(this->x*-1)+sin(RAD(-this->angulo+90))*this->velocidade/this->tempo_reaccao;
+	nz=(this->z)+cos(RAD(this->angulo+90))*this->velocidade/this->tempo_reaccao;
 
 	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx, true) ){
 		this->IwannaGoTo(nz, nx*-1);
@@ -421,8 +421,8 @@ void Guard::GoFront()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x*-1)+sin(RAD(-this->angulo))*this->velocidade*this->tempo_reaccao;
-	nz=(this->z)+cos(RAD(this->angulo))*this->velocidade*this->tempo_reaccao;
+	nx=(this->x*-1)+sin(RAD(-this->angulo))*this->velocidade/this->tempo_reaccao;
+	nz=(this->z)+cos(RAD(this->angulo))*this->velocidade/this->tempo_reaccao;
 	
 	/*std::cout << " npc angulo:" << this->angulo << std::endl;
 	std::cout << "-> nz: " << ((this->z)+cos(RAD(this->angulo))*this->velocidade*move) << " nx: " << ((this->x)+sin(-RAD(this->angulo))*this->velocidade*move) << std::endl;
@@ -443,8 +443,8 @@ void Guard::GoBack()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x*-1)-sin(RAD(-this->angulo))*this->velocidade;
-	nz=(this->z)-cos(RAD(this->angulo))*this->velocidade;
+	nx=(this->x*-1)-sin(RAD(-this->angulo))*this->velocidade/this->tempo_reaccao;
+	nz=(this->z)-cos(RAD(this->angulo))*this->velocidade/this->tempo_reaccao;
 	
 	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx,true) ){
 		this->IwannaGoTo(nz, nx*-1);

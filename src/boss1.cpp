@@ -23,7 +23,8 @@ Guard_Boss1::Guard_Boss1(int z, int x, bool em_movimento, GLfloat angulo) : Guar
 	this->vida=3000;
 	this->velocidade_disparo=0.05;
 	this->potencia_arma=3;
-	this->velocidade_correr=1;
+	this->velocidade_correr=6;
+	this->tempo_reaccao = 1.0;
 	
 	this->set_xy(z,x);
 	this->setWalk(em_movimento);
