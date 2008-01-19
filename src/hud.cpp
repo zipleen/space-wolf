@@ -20,7 +20,7 @@ Texture2D *Hud::tex_balas, *Hud::tex_armor, *Hud::tex_chave1, *Hud::tex_chave2, 
 
 void Hud::drawHud(Player *p)
 {
-	glEnable (GL_LIGHTING);
+	
 	std::string chaves;
 	if(p->chave_amarela && p->chave_vermelha)
 		chaves = "Amarela & Vermelha";
@@ -31,6 +31,8 @@ void Hud::drawHud(Player *p)
 	else chaves = "Nenhuma";
 	glPushMatrix();
 
+	glEnable (GL_TEXTURE_2D);
+	
 	glTranslatef(27,50,0);
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 0.0); glVertex2f(-16,-16);	
@@ -174,6 +176,8 @@ void Hud::initHud()
 #define ARMA4_1_PATH "data\\models\\weapons2\\minigun\\minigun_barrel.md3"
 #define ARMA4_F_PATH "data\\models\\weapons2\\minigun\\minigun_flash.md3"
 #else
+	
+#define PATH_ICON_BALAS "data/HUD/ammo.jpg"	
 #define ARMA1_PATH "data/models/weapons2/standardgun/standardgun_hand.md3"
 #define ARMA1_F_PATH "data/models/weapons2/standardgun/standardgun_flash.md3"
 	
@@ -188,7 +192,7 @@ void Hud::initHud()
 #define ARMA4_F_PATH "data/models/weapons2/minigun/minigun_flash.md3"	
 #endif
 	
-	Hud::tex_balas = Shared_render_objects::loadTexture("data\\HUD\\icona_shotgun.tga");
+	Hud::tex_balas = Shared_render_objects::loadTexture(PATH_ICON_BALAS);
 	
 	Hud::arma1 = Md3ModelPtr (new Md3Model (ARMA1_PATH));
 	Hud::arma1_f = new Md3Model (ARMA1_F_PATH);
