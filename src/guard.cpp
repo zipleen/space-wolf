@@ -230,25 +230,15 @@ void Guard::animate(const double dt, double dt_cur)
 		// temos de primeiro "mexe-lo"
 		// a ideia do mexer eh que eles tem uma posicao para a qual QUEREM ir,
 		// mas para irem para ela, temos de passar por todas as outras anteriores
-		std::cout << "touZ:" << this->z << " touX:" << this->x << "|"  ;
+		/*std::cout << "touZ:" << this->z << " touX:" << this->x << "|"  ;
 		std::cout << "OLDgoZ:" << this->old_go_to_z << " OLDgoX:" << this->old_go_to_x << "|"  ;
-		std::cout << "goZ:" << this->go_to_z << " goX:" << this->go_to_x << std::endl;
+		std::cout << "goZ:" << this->go_to_z << " goX:" << this->go_to_x << std::endl;*/
 		if( (this->go_to_z!=this->z) || (this->go_to_x!=this->x) )
 		{
 			GLfloat nz, nx;
-			//this->normaliza(this->go_to_z, this->z, this->go_to_x, this->x, &nx, &ny);
-			//std::cout << "z: " << this->z+nx << " x:" <<  this->x+ny << std::endl;
-			//this->set_xy(this->z+(nx*0.1), this->x+(ny*0.1));
-			////this->set_xy(this->go_to_z, this->go_to_x);
-			/*float cc = Angle(this->x, this->go_to_x,  this->z, this->go_to_z);
-			this->angulo = GRAUS(cc);
-			std::cout << "angulo:" << angulo << std::endl;
-			nx=(this->x)+sin(-cc)*0.1;
-			nz=(this->z)+cos(cc)*0.1;
-			this->set_xy(nz,nx);*/
-			std::cout << "ur:" <<  this->ultima_reaccao << " treacao:" << this->tempo_reaccao << "dt: " << this->dt_cur;
+			//std::cout << "ur:" <<  this->ultima_reaccao << " treacao:" << this->tempo_reaccao << "dt: " << this->dt_cur;
 			
-			float t = this->dt_cur-this->ultima_reaccao;std::cout << " t: " << t << std::endl;
+			float t = this->dt_cur-this->ultima_reaccao;//std::cout << " t: " << t << std::endl;
 			if(t<=this->tempo_reaccao){
 
 				nz = (this->go_to_z - this->old_go_to_z )*( t/this->tempo_reaccao ) ;
@@ -278,6 +268,7 @@ void Guard::animate(const double dt, double dt_cur)
 		// se ja passou tempo suficiente para interpolarmos as animacoes...
 		if(this->dt_cur+0.01>this->ultimo_andar){
 			if(this->old_x!=this->x || this->old_z!=this->z){
+				std::cout << "ja passou tempo suficiente! oldx: " << this->old_x << " x:" << this->x << " oldZ: " << this->old_z << " z:" << this->z << std::endl;
 				// esta a andar
 				if(!this->em_movimento){
 					this->guard->setAnimation (kLegsWalk);
@@ -347,6 +338,9 @@ void Guard::IwannaGoTo(float z,float x)
 		this->go_to_z = z;
 		this->go_to_x = x;
 		this->ultima_reaccao=this->dt_cur;
+		
+		// calcular novo angulo para onde ele quer ir
+		std::cout <<"angulo:" << GRAUS(Angle(this->go_to_z, this->go_to_x, this->old_go_to_z,this->old_go_to_x)) << std::endl;
 	}
 	
 }
@@ -365,7 +359,8 @@ void Guard::set_xy(float z, float x)
 	this->x = x;
 	this->y = -2.6f;
 	this->z = z;
-	std::cout << "desenhar em:" << this->z << " " << this->x << std::endl;
+	//std::cout << "desenhar em:" << this->z << " " << this->x << std::endl;
+	
 	// actualizar para novo valor
 	orig_x = (int)(((this->z)/(Fisica::cube_size*2.0f))+0.5);
 	orig_y = (int)(((this->x)/(Fisica::cube_size*2.0f))+0.5);

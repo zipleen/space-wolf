@@ -26,7 +26,7 @@ Guard_Intermedio::Guard_Intermedio(int z, int x, bool em_movimento, GLfloat angu
 	this->velocidade_correr=14;
 	this->tempo_reaccao = 1.1;
 	
-	this->set_xy(z,x);
+	this->setInitial(z,x);
 	this->setWalk(em_movimento);
 	this->angulo = angulo;
 #ifdef WIN32
