@@ -20,6 +20,7 @@ Texture2D *Hud::tex_balas, *Hud::tex_armor, *Hud::tex_chave1, *Hud::tex_chave2, 
 
 void Hud::drawHud(Player *p)
 {
+	glEnable (GL_LIGHTING);
 	std::string chaves;
 	if(p->chave_amarela && p->chave_vermelha)
 		chaves = "Amarela & Vermelha";
@@ -32,27 +33,27 @@ void Hud::drawHud(Player *p)
 
 	glTranslatef(27,50,0);
 	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 1.0); glVertex2f(-16,16);	
+		glTexCoord2f(0.0, 0.0); glVertex2f(-16,-16);	
+		glTexCoord2f(0.0, 1.0);	glVertex2f(16,-16);
 		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
-		glTexCoord2f(1.0, 0.0); glVertex2f(16,-16);
-		glTexCoord2f(0.0, 0.0);	glVertex2f(-16,-16);
+		glTexCoord2f(1.0, 0.0); glVertex2f(-16,16);	
 	glEnd();
 	
 	glTranslatef(90,0,0);
 	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 0.0);	glVertex2f(-16,-16);
-		glTexCoord2f(1.0, 0.0); glVertex2f(16,-16);
+		glTexCoord2f(0.0, 0.0); glVertex2f(-16,-16);	
+		glTexCoord2f(0.0, 1.0);	glVertex2f(16,-16);
 		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
-		glTexCoord2f(0.0, 1.0); glVertex2f(-16,16);
+		glTexCoord2f(1.0, 0.0); glVertex2f(-16,16);	
 	glEnd();
 
 	
 	glTranslatef(90,0,0);
 	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 0.0);	glVertex2f(-16,-16);
-		glTexCoord2f(1.0, 0.0); glVertex2f(16,-16);
+		glTexCoord2f(0.0, 0.0); glVertex2f(-16,-16);	
+		glTexCoord2f(0.0, 1.0);	glVertex2f(16,-16);
 		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
-		glTexCoord2f(0.0, 1.0); glVertex2f(-16,16);
+		glTexCoord2f(1.0, 0.0); glVertex2f(-16,16);	
 	glEnd();
 
 	glTranslatef(65,0,0);
@@ -66,10 +67,10 @@ void Hud::drawHud(Player *p)
 	
 	glTranslatef(90,0,0);
 	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 0.0);	glVertex2f(-16,-16);
-		glTexCoord2f(1.0, 0.0); glVertex2f(16,-16);
+		glTexCoord2f(0.0, 0.0); glVertex2f(-16,-16);	
+		glTexCoord2f(0.0, 1.0);	glVertex2f(16,-16);
 		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
-		glTexCoord2f(0.0, 1.0); glVertex2f(-16,16);
+		glTexCoord2f(1.0, 0.0); glVertex2f(-16,16);	
 	glEnd();
 	glPopMatrix();
 
