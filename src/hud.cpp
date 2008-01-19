@@ -14,6 +14,9 @@ Md3Model *Hud::arma1_f, *Hud::arma2_f, *Hud::arma3_f, *Hud::arma4_f, *Hud::arma4
 float Hud::yaw, Hud::yaw_walk;
 bool Hud::yaw_up, Hud::yaw_up_walk;
 TTFont *Hud::font;
+Texture2D *Hud::tex_balas, *Hud::tex_armor, *Hud::tex_chave1, *Hud::tex_chave2, *Hud::tex_vida;
+
+
 
 void Hud::drawHud(Player *p)
 {
@@ -25,20 +28,61 @@ void Hud::drawHud(Player *p)
 	else if(!p->chave_amarela && p->chave_vermelha)
 		chaves = "Vermelha";
 	else chaves = "Nenhuma";
+	glPushMatrix();
+
+	glTranslatef(27,50,0);
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0, 1.0); glVertex2f(-16,16);	
+		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
+		glTexCoord2f(1.0, 0.0); glVertex2f(16,-16);
+		glTexCoord2f(0.0, 0.0);	glVertex2f(-16,-16);
+	glEnd();
+	
+	glTranslatef(90,0,0);
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0, 0.0);	glVertex2f(-16,-16);
+		glTexCoord2f(1.0, 0.0); glVertex2f(16,-16);
+		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
+		glTexCoord2f(0.0, 1.0); glVertex2f(-16,16);
+	glEnd();
+
+	
+	glTranslatef(90,0,0);
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0, 0.0);	glVertex2f(-16,-16);
+		glTexCoord2f(1.0, 0.0); glVertex2f(16,-16);
+		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
+		glTexCoord2f(0.0, 1.0); glVertex2f(-16,16);
+	glEnd();
+
+	glTranslatef(65,0,0);
+	tex_balas->bind();
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0, 0.0); glVertex2f(-16,-16);	
+		glTexCoord2f(0.0, 1.0);	glVertex2f(16,-16);
+		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
+		glTexCoord2f(1.0, 0.0); glVertex2f(-16,16);		
+	glEnd();
+	
+	glTranslatef(90,0,0);
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0, 0.0);	glVertex2f(-16,-16);
+		glTexCoord2f(1.0, 0.0); glVertex2f(16,-16);
+		glTexCoord2f(1.0, 1.0); glVertex2f(16,16);
+		glTexCoord2f(0.0, 1.0); glVertex2f(-16,16);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
 	Hud::font->printText (45, 40, "%d", p->vida);
 	Hud::font->printText (135, 40, "%d", p->armadura);	
 	Hud::font->printText (225, 40, "%d", p->arma_em_uso);	
 	Hud::font->printText (290, 40, "%d", p->balas);	
 	Hud::font->printText (380, 40, "%s", chaves.c_str());	
+	glPopMatrix();
+
 	
 
-	/*glTranslatef(80,35,0);
-	glBegin(GL_QUADS);
-		glVertex2f(-15,-15);
-		glVertex2f(15,-15);
-		glVertex2f(15,15);
-		glVertex2f(-15,15);
-	glEnd();*/
 	/* descomenta para veres q ele imprime estes dados, sao os dados necessario a usar.
 		para converteres numeros int para strings podes usar Str(p->balas)
 	std::cout << "balas : " << p->balas << std::endl;
@@ -112,6 +156,10 @@ void Hud::drawGun(Player *p)
 void Hud::initHud()
 {	
 #ifdef WIN32
+
+#define PATH_ICON_BALAS "data\\HUD\\icona_shotgun.tga"
+//tex_balas = Shared_render_objects::loadTexture("data\\HUD\\icona_shotgun.tga");
+
 #define ARMA1_PATH "data\\models\\weapons2\\standardgun\\standardgun_hand.md3"
 #define ARMA1_F_PATH "data\\models\\weapons2\\standardgun\\standardgun_flash.md3"
 	
@@ -138,6 +186,8 @@ void Hud::initHud()
 #define ARMA4_1_PATH "data/models/weapons2/minigun/minigun_barrel.md3"
 #define ARMA4_F_PATH "data/models/weapons2/minigun/minigun_flash.md3"	
 #endif
+	
+	Hud::tex_balas = Shared_render_objects::loadTexture("data\\HUD\\icona_shotgun.tga");
 	
 	Hud::arma1 = Md3ModelPtr (new Md3Model (ARMA1_PATH));
 	Hud::arma1_f = new Md3Model (ARMA1_F_PATH);
@@ -178,7 +228,7 @@ void Hud::initHud()
 	
 	try
 	{
-		Hud::font = new TTFont ("data/Quake.ttf", 18, 1);
+		Hud::font = new TTFont ("data/Quake.ttf", 22, 1);
     }
 	catch (std::runtime_error &err)
     {
