@@ -23,11 +23,10 @@ Soldado::Soldado(int z, int x, bool em_movimento, GLfloat angulo) : Guard()
 	this->vida=25;
 	this->velocidade_disparo=0.75;
 	this->potencia_arma=2;
-	this->velocidade_correr=1;
+	this->velocidade_correr=8;
 	
-	this->set_xy(z,x);
-	this->em_movimento = em_movimento;
-	this->modificou_movimento = true;
+	this->setInitial(z,x);
+	this->setWalk(em_movimento);
 	this->angulo = angulo;
 	
 #ifdef WIN32

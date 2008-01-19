@@ -8,21 +8,26 @@
  */
 
 #include "guard.h"
-#define VELOCIDADE_ANDAR_GUARDA 0.15
+#define VELOCIDADE_ANDAR_GUARDA 5
 
 Guard::Guard()
 {
 	this->morto = false;
 	this->em_movimento = false;
-	this->modificou_movimento = false;
 	this->em_disparo = false;
 	this->alerta = false;
-	this->movimento_contar_vezes = 0;
+	//this->movimento_contar_vezes = 0;
 	this->som_disparo_arma = 0;
 	this->ultimo_disparo = 0;
 	this->ultimo_andar = 0;
 	this->velocidade = VELOCIDADE_ANDAR_GUARDA;
-	this->z=this->x=0;
+	this->tempo_reaccao = 1.6;
+	this->go_to_x = 0;
+	this->go_to_z = 0;
+	this->old_go_to_x = 0;
+	this->old_go_to_z = 0;
+	this->z=this->x=this->old_x=this->old_z=0;
+	this->y=this->old_y=2.6f;
 	this->vai_para_alerta = false;
 	this->s = Sound::GetInstance();
 	// ler passos
@@ -97,9 +102,23 @@ void Guard::draw()
 	glPopMatrix();
 }
 
+// isto nao eh chamado mais
+void Guard::setWalk(bool v){
+	if(v){
+		this->guard->setAnimation (kLegsWalk);
+		this->guardar_em_movimento=true;
+		this->em_movimento=true;
+	}else{
+		this->guard->setAnimation (kLegsIdle);
+		this->guardar_em_movimento=false;
+		this->em_movimento=false;
+	}
+}
+
 void Guard::nextMove()
 {
 	if(this->alerta){
+		//this->GoFront();
 		switch(rand()%4+1){
 			case 1:
 				this->GoStraffLeft();
@@ -111,7 +130,8 @@ void Guard::nextMove()
 				this->GoFront();
 				break;
 			case 4:
-				this->GoStraffLeft();
+				
+				//this->GoStraffLeft();
 				break;
 		}
 	   this->shootGun();
@@ -168,14 +188,76 @@ void Guard::takeHealth(GLfloat z, GLfloat x, int valor_arma)
 	float x1 = this->x - (x*-1);
 	int dist = (int)sqrt(z1*z1 + x1*x1);
 	if(dist!=0){
-		this->takeHealth(100-(dist/valor_arma));
+		this->takeHealth( (100-(dist/valor_arma))/2 );
 	}else this->takeHealth(100);
+}
+
+float Angle(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
+{
+	float cosine = (x1 * x2 + y1 * y2) / (sqrt(x1*x1 + y1*y1) * sqrt(x2*x2 + y2*y2));
+	// rounding errors might make dotproduct out of range for cosine
+	if (cosine > 1) cosine = 1;
+	else if (cosine < -1) cosine = -1;
+	
+	if ((x1 * y2 - y1 * x2) < 0)
+		return -acos(cosine);
+	else
+		return acos(cosine);
+}
+
+void Guard::normaliza(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat *nx, GLfloat *ny)
+{
+	float vx = x2-x1;
+	float vy = y2-y1;
+	float dist = sqrt(vx*vx + vy*vy);
+	*nx = vx/dist;
+	*ny = vy/dist;
+	
+	std::cout << "norm_x:" << *nx << " norm_y:" << *ny << std::endl;
+}
+
+void Guard::setInitial(float z, float x)
+{
+	this->z=this->old_z=this->go_to_z=this->old_go_to_z=z;
+	this->x=this->old_x=this->go_to_x=this->old_go_to_x=x;
+	this->y = -2.6f;
 }
 
 void Guard::animate(const double dt, double dt_cur)
 {
 	this->dt_cur = dt_cur;
 	if(!this->morto){
+		// temos de primeiro "mexe-lo"
+		// a ideia do mexer eh que eles tem uma posicao para a qual QUEREM ir,
+		// mas para irem para ela, temos de passar por todas as outras anteriores
+		std::cout << "touZ:" << this->z << " touX:" << this->x << "|"  ;
+		std::cout << "OLDgoZ:" << this->old_go_to_z << " OLDgoX:" << this->old_go_to_x << "|"  ;
+		std::cout << "goZ:" << this->go_to_z << " goX:" << this->go_to_x << std::endl;
+		if( (this->go_to_z!=this->z) || (this->go_to_x!=this->x) )
+		{
+			GLfloat nz, nx;
+			//this->normaliza(this->go_to_z, this->z, this->go_to_x, this->x, &nx, &ny);
+			//std::cout << "z: " << this->z+nx << " x:" <<  this->x+ny << std::endl;
+			//this->set_xy(this->z+(nx*0.1), this->x+(ny*0.1));
+			////this->set_xy(this->go_to_z, this->go_to_x);
+			/*float cc = Angle(this->x, this->go_to_x,  this->z, this->go_to_z);
+			this->angulo = GRAUS(cc);
+			std::cout << "angulo:" << angulo << std::endl;
+			nx=(this->x)+sin(-cc)*0.1;
+			nz=(this->z)+cos(cc)*0.1;
+			this->set_xy(nz,nx);*/
+			std::cout << "ur:" <<  this->ultima_reaccao << " treacao:" << this->tempo_reaccao << "dt: " << this->dt_cur;
+			
+			float t = this->dt_cur-this->ultima_reaccao;std::cout << " t: " << t << std::endl;
+			if(t<=this->tempo_reaccao){
+
+				nz = (this->go_to_z - this->old_go_to_z )*( t/this->tempo_reaccao ) ;
+				nx = (this->go_to_x - this->old_go_to_x )*( t/this->tempo_reaccao ) ;
+				this->set_xy(this->old_go_to_z+nz,this->old_go_to_x+nx);
+			}
+			
+		}
+		
 		// precisamos de ver se ele tem de fazer coisas ou nao..
 		// estamos em alerta?! se nao, vamos seguir os percursos
 		if(!this->alerta){
@@ -184,7 +266,7 @@ void Guard::animate(const double dt, double dt_cur)
 				this->alerta=true;
 				this->s->playSound(this->som_alerta, this->z, this->x);
 				this->velocidade = this->velocidade_correr;
-			}else if(this->em_movimento){ // se nao tamos em alerta temos de ver se tamos em movimento, se tamos, temos de o mover
+			}else if(this->guardar_em_movimento){ // se nao tamos em alerta temos de ver se tamos em movimento, se tamos, temos de o mover
 				//std::cout << "vamos andar: " << this->z << " " << this->x << std::endl;
 				this->GoFront();
 			}
@@ -193,14 +275,23 @@ void Guard::animate(const double dt, double dt_cur)
 			
 		}
 		
-		if(this->modificou_movimento){
-			if(this->em_movimento){
-				this->guard->setAnimation (kLegsWalk);
+		// se ja passou tempo suficiente para interpolarmos as animacoes...
+		if(this->dt_cur+0.01>this->ultimo_andar){
+			if(this->old_x!=this->x || this->old_z!=this->z){
+				// esta a andar
+				if(!this->em_movimento){
+					this->guard->setAnimation (kLegsWalk);
+					this->em_movimento=true;
+				}
 			}else{
-				this->guard->setAnimation (kLegsIdle);
+				// esta parado
+				if(this->em_movimento){
+					this->guard->setAnimation (kLegsIdle);
+					this->em_movimento=false;
+				}
 			}
-			this->modificou_movimento = false;
 		}
+		
 		if(this->modificou_upper_movimento){
 			if(this->em_disparo){
 				//this->guard->setAnimation (kTorsoAttack);
@@ -244,6 +335,22 @@ void Guard::animate(const double dt, double dt_cur)
 	}
 }
 
+void Guard::IwannaGoTo(float z,float x)
+{
+	//std::cout << "ur: " << this->ultima_reaccao << " tr:" << this->tempo_reaccao << " dt_cur:" << this->dt_cur << std::endl;
+	if(this->ultima_reaccao+this->tempo_reaccao < this->dt_cur ) // se ja passou o tempo de reaccao, podemos mudar de direccao
+	{
+		std::cout << "vou para novo sitio:" << z << " " <<x << std::endl;
+		this->old_go_to_x = this->x;
+		this->old_go_to_z = this->z;
+		
+		this->go_to_z = z;
+		this->go_to_x = x;
+		this->ultima_reaccao=this->dt_cur;
+	}
+	
+}
+
 void Guard::set_xy(float z, float x)
 {
 	// temos de ir ah fisica retirar o nosso valor para 0
@@ -251,10 +358,14 @@ void Guard::set_xy(float z, float x)
 	int orig_y = (int)(((this->x)/(Fisica::cube_size*2.0f))+0.5);
 	Fisica::guardas[orig_x][orig_y] = false;
 
+	this->old_x = this->x;
+	this->old_y = this->y;
+	this->old_z = this->z;
+	
 	this->x = x;
 	this->y = -2.6f;
 	this->z = z;
-	
+	std::cout << "desenhar em:" << this->z << " " << this->x << std::endl;
 	// actualizar para novo valor
 	orig_x = (int)(((this->z)/(Fisica::cube_size*2.0f))+0.5);
 	orig_y = (int)(((this->x)/(Fisica::cube_size*2.0f))+0.5);
@@ -265,25 +376,11 @@ void Guard::setAngulo(GLfloat angulo)
 	this->angulo = angulo;
 }
 
-void Guard::set_walking_front()
-{
-	this->em_movimento = false;
-	this->modificou_movimento = true;
-}
-
-
 /* movimento */
 
 float Guard::MoveTest()
 {
-	if(this->dt_cur+0.01>this->ultimo_andar){
-		// temos de ver se ele ja andou mais do que devia
-		double dt_menos = this->dt_cur-this->ultimo_andar;
-		this->ultimo_andar = this->dt_cur;
-		if(dt_menos>0.1 && dt_menos <2)
-			return 1+dt_menos;
-		else return 1;
-	}else return 0;
+	   return 1;
 }
 
 void Guard::GoStraffLeft()
@@ -293,11 +390,11 @@ void Guard::GoStraffLeft()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x*-1)+sin(RAD(-this->angulo+270))*this->velocidade*move;
-	nz=(this->z)+cos(RAD(this->angulo+270))*this->velocidade*move;
+	nx=(this->x*-1)+sin(RAD(-this->angulo+270))*this->velocidade;
+	nz=(this->z)+cos(RAD(this->angulo+270))*this->velocidade;
 	
 	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx, true) ){
-		this->set_xy(nz, nx*-1);
+		this->IwannaGoTo(nz, nx*-1);
 	}
 }
 
@@ -308,11 +405,11 @@ void Guard::GoStraffRight()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x*-1)+sin(RAD(-this->angulo+90))*this->velocidade*move;
-	nz=(this->z)+cos(RAD(this->angulo+90))*this->velocidade*move;
+	nx=(this->x*-1)+sin(RAD(-this->angulo+90))*this->velocidade;
+	nz=(this->z)+cos(RAD(this->angulo+90))*this->velocidade;
 
 	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx, true) ){
-		this->set_xy(nz, nx*-1);
+		this->IwannaGoTo(nz, nx*-1);
 	}
 	
 }
@@ -324,8 +421,8 @@ void Guard::GoFront()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x*-1)+sin(RAD(-this->angulo))*this->velocidade*move;
-	nz=(this->z)+cos(RAD(this->angulo))*this->velocidade*move;
+	nx=(this->x*-1)+sin(RAD(-this->angulo))*this->velocidade*this->tempo_reaccao;
+	nz=(this->z)+cos(RAD(this->angulo))*this->velocidade*this->tempo_reaccao;
 	
 	/*std::cout << " npc angulo:" << this->angulo << std::endl;
 	std::cout << "-> nz: " << ((this->z)+cos(RAD(this->angulo))*this->velocidade*move) << " nx: " << ((this->x)+sin(-RAD(this->angulo))*this->velocidade*move) << std::endl;
@@ -335,7 +432,7 @@ void Guard::GoFront()
 	*/
 	
 	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx,true) ){
-		this->set_xy(nz, nx*-1);
+		this->IwannaGoTo(nz, nx*-1);
 	}
 }
 
@@ -346,11 +443,11 @@ void Guard::GoBack()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x*-1)-sin(RAD(-this->angulo))*this->velocidade*move;
-	nz=(this->z)-cos(RAD(this->angulo))*this->velocidade*move;
+	nx=(this->x*-1)-sin(RAD(-this->angulo))*this->velocidade;
+	nz=(this->z)-cos(RAD(this->angulo))*this->velocidade;
 	
 	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx,true) ){
-		this->set_xy(nz, nx*-1);
+		this->IwannaGoTo(nz, nx*-1);
 	}
 }
 

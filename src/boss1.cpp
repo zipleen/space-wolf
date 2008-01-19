@@ -26,8 +26,7 @@ Guard_Boss1::Guard_Boss1(int z, int x, bool em_movimento, GLfloat angulo) : Guar
 	this->velocidade_correr=1;
 	
 	this->set_xy(z,x);
-	this->em_movimento = em_movimento;
-	this->modificou_movimento = true;
+	this->setWalk(em_movimento);
 	this->angulo = angulo;
 #ifdef WIN32
 	this->som_morrer[1] = this->s->loadSound("data\\models\\sounds\\boss\\death1.wav");

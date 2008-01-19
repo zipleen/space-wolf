@@ -27,7 +27,7 @@ int main(int argc, char *argv[]){
 	if(argc>1)
 		g=new Game(argv[1]);
 	else
-		g = new Game("data/maps/mapa2.map");
+		g = new Game("data/maps/mapa1.map");
 	g->MainLoop();
 	
 	// Cleanup

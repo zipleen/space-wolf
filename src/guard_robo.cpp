@@ -23,11 +23,10 @@ Guard_Robo::Guard_Robo(int z, int x, bool em_movimento, GLfloat angulo) : Guard(
 	this->vida=75;
 	this->velocidade_disparo=0.25;
 	this->potencia_arma=6;
-	this->velocidade_correr=1;
+	this->velocidade_correr=8;
 	
 	this->set_xy(z,x);
-	this->em_movimento = em_movimento;
-	this->modificou_movimento = true;
+	this->setWalk(em_movimento);
 	this->angulo = angulo;
 #ifdef WIN32
 	this->som_morrer[1] = this->s->loadSound("data\\models\\sounds\\robot\\death1.wav");

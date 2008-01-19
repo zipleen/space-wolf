@@ -23,11 +23,10 @@ Guard_Intermedio::Guard_Intermedio(int z, int x, bool em_movimento, GLfloat angu
 	this->vida=100;
 	this->velocidade_disparo=0.35;
 	this->potencia_arma=5;
-	this->velocidade_correr=1;
+	this->velocidade_correr=11;
 	
 	this->set_xy(z,x);
-	this->em_movimento = em_movimento;
-	this->modificou_movimento = true;
+	this->setWalk(em_movimento);
 	this->angulo = angulo;
 #ifdef WIN32
 	this->som_morrer[1] = this->s->loadSound("data\\models\\sounds\\doom\\death1.wav");

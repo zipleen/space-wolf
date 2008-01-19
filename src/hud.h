@@ -25,6 +25,7 @@
 #include "StrUtils.h"
 #include "md3/Md3Model.h"
 #include "font/Font.h"
+#include "md3/TextureManager.h"
 
 class Hud
 {

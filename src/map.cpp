@@ -467,7 +467,7 @@ void Map::updateGuardAnimation(double dt,double dt_cur)
 				//this->guardas[i]->movimento_contar_vezes++;
 				//if(this->guardas[i]->movimento_contar_vezes>50)
 				//{
-					this->guardas[i]->movimento_contar_vezes=0;
+					//this->guardas[i]->movimento_contar_vezes=0;
 					switch(this->map[orig_x][orig_y]){
 						case 2033:
 							// direita, este

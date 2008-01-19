@@ -53,16 +53,14 @@ protected:
 	std::string model_path;
 	std::string weaponpath;
 public:
-	bool modificou_movimento;
-	bool modificou_upper_movimento;
-	bool em_disparo;
-	bool disparar;
+	bool modificou_upper_movimento; // com esta a true temos de avaliar o novo movimento "em_disparo"
+	bool em_disparo; // se estivermos em disparo vamos por a animacao do disparo ou nao
+	bool disparar; // vamos disparar, esta accao depois de disparada torna a 0
 	int potencia_arma;
 	int vida;
 	float velocidade_disparo;
 	float velocidade_correr;
-	float damage_arma;
-	float velocidade;
+	float velocidade; // esta eh a velocidade que interessa, as outras sao so valores q guardam a velocidade
 	int floorcode;
 	
 	int codigo_arma_que_guarda_tem;
@@ -73,14 +71,26 @@ public:
 	GLfloat y;
 	GLfloat z;
 	GLfloat angulo;
-	bool em_movimento;
 	
-	// batota para ver se conseguimos por as mudancas de movimentos a acontecerem "no meio"
-	int movimento_contar_vezes;
+	GLfloat old_x, old_y, old_z;
+	GLfloat old_angulo;
+	bool em_movimento;
+	bool guardar_em_movimento;
+	
+	// batota para ver se conseguimos por as mudancas de movimentos a acontecerem "no meio" -> ja nao uso
+	//int movimento_contar_vezes;
 	
 	double dt_cur;
 	double ultimo_andar;
 	double ultimo_disparo;
+	
+	// reaccao
+	double ultima_reaccao;
+	double tempo_reaccao;
+	GLfloat go_to_x;
+	GLfloat go_to_z;
+	GLfloat old_go_to_x;
+	GLfloat old_go_to_z;
 	
 	bool morto;
 	bool a_morrer;
@@ -94,14 +104,17 @@ public:
 	void draw();
 	void animate(const double dt, double dt_cur);
 	
+	void setInitial(float z, float x);
 	void setAngulo(GLfloat angulo);
 	void set_xy(float z, float x);
-	void set_walking_front();
+	void IwannaGoTo(float z,float x);
 	
 	/* AI ?! */
 	void nextMove();
+	void normaliza(float x1, float y1, float x2, float y2, float *nx, float *ny);
 	
 	void shootGun();
+	void setWalk(bool v);
 	
 	/* player actions */
 	void takeHealth(int valor);
