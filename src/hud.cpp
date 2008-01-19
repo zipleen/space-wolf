@@ -77,32 +77,32 @@ void Hud::drawGun(Player *p)
 	switch(p->arma_em_uso)
 	{
 		case 1:
-			Hud::arma1->draw();
 			if(p->muzzle_flash){
 				Hud::arma1->link("tag_flash", Hud::arma1_f);
 				p->muzzle_flash=false;
 			}else Hud::arma1->unlink("tag_flash");
+			Hud::arma1->draw();
 			break;
 		case 2:
-			Hud::arma2->draw();
 			if(p->muzzle_flash){
 				Hud::arma2->link("tag_flash", Hud::arma2_f);
 				p->muzzle_flash=false;
 			}else Hud::arma2->unlink("tag_flash");
+			Hud::arma2->draw();
 			break;
 		case 3:
-			Hud::arma3->draw();
 			if(p->muzzle_flash){
 				Hud::arma3->link("tag_flash", Hud::arma3_f);
 				p->muzzle_flash=false;
 			}else Hud::arma3->unlink("tag_flash");
+			Hud::arma3->draw();
 			break;
 		case 4:
-			Hud::arma4->draw();
 			if(p->muzzle_flash){
 				Hud::arma4->link("tag_flash", Hud::arma4_f);
 				p->muzzle_flash=false;
 			}else Hud::arma4->unlink("tag_flash");
+			Hud::arma4->draw();
 			break;
 	}
 	glPopMatrix();

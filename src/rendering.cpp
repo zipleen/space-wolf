@@ -76,7 +76,7 @@ bool Rendering::initVideo()
   this->videoFlags  = SDL_OPENGL;             // Uses OpenGL
   this->videoFlags |= SDL_GL_DOUBLEBUFFER;    // Uses double buffering
   this->videoFlags |= SDL_HWPALETTE;
-  this->videoFlags |= SDL_RESIZABLE;          // App. window is resizable
+  //this->videoFlags |= SDL_RESIZABLE;          // App. window is resizable
 
   // Check if we can allocate memory in hardware for the window
   if (videoInfo->hw_available)
