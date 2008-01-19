@@ -35,44 +35,9 @@ void Hud::drawHud(Player *p, TTFont *font)
 	std::cout << "arma em uso:" << p->arma_em_uso << std::endl;*/
 	
 	// esta funcao eh chamada em void Rendering::draw2D(Player *p) no rendering.cpp
-	// (neste momento na linha 384). muda o Hud::drawHud(p); de sitio nessa funcao se for necessario por causa das inicializacoes
+	// (neste momento na linha 377). muda o Hud::drawHud(p); de sitio nessa funcao se for necessario por causa das inicializacoes
 	// que aquilo faz as matrizes
 	
-	//GLint viewport[4];
-	//glGetIntegerv (GL_VIEWPORT, viewport);
-	
-	/*
-	glPushMatrix();
-	glLoadIdentity();
-	//glOrtho (0, viewport[2], 0, viewport[3], -1, 1);
-	
-	glTranslatef(200,200,0);
-	 
-	 // ele nao me ta a imprimir isto, era suposto desenhar o objecto... mas eh preciso arranjar maneira 
-	 // de dizer ao opengl que queremos que ele desenhe isto mas ah frente do utilizador, ou seja, no ecra sempre ah nossa frente
-	 // tem algo a haver com este glLoadidentity mas a uma das matrizes (projection ou matrix ou lá o que eh)
-	Hud::arma2->draw();
-	
-	glBegin (GL_LINES);
-    // X-axis in red
-    glColor3f (1.0f, 0.0f, 0.0f);
-    glVertex3fv (kZeroVectorf._v);
-    glVertex3fv (kZeroVectorf + Vector3f (100.0f, 0.0f, 0.0));
-	
-    // Y-axis in green
-    glColor3f (0.0f, 1.0f, 0.0f);
-    glVertex3fv (kZeroVectorf._v);
-    glVertex3fv (kZeroVectorf + Vector3f (0.0f, 100.0f, 0.0));
-	
-    // Z-axis in blue
-    glColor3f (0.0f, 0.0f, 1.0f);
-    glVertex3fv (kZeroVectorf._v);
-    glVertex3fv (kZeroVectorf + Vector3f (0.0f, 0.0f, 100.0));
-	glEnd ();
-	
-
-	glPopMatrix ();*/
-
 }
 
 void Hud::drawGun(Player *p)
