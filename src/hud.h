@@ -39,7 +39,7 @@ protected:
 	static float yaw,yaw_walk;
 	static bool yaw_up,yaw_up_walk;
 	static TTFont *font;
-	static Texture2D *tex_balas, *tex_armor, *tex_chave1, *tex_chave2, *tex_vida;
+	static Texture2D *tex_balas, *tex_armor, *tex_chave1, *tex_chave2, *tex_ammo, *tex_vida;
 	
 public:
 	Hud(){}; 
