@@ -24,6 +24,7 @@ Menu::Menu()
 	
 	
 	this->font = new TTFont ("data/generis.TTF", this->tamanho_font, 1);
+	this->font2 = new TTFont ("data/generis.TTF", 50, 1);
 	this->render = Rendering::GetInstance();
 	
 	// ler texturas
@@ -172,6 +173,8 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 
 void Menu::desenharDefinicoes()
 {
+	
+	
 	// esta mexe com o vector menu_definicoes
 	// eh preciso meter codigo para cada linha por causa da resolucao e fullscreen
 	if (this->num_menu < 1)
@@ -189,13 +192,14 @@ void Menu::desenharDefinicoes()
 		{
 			glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 		}
-		this->font->printText (0,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_definicoes[i-1].c_str());
+		this->font->printText (10,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_definicoes[i-1].c_str());
 	}
 	glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 void Menu::desenharMainMenu()
 {
+	this->font2->printText (10, this->render->windowHeight-50, "Funky Shit");
 	if (this->num_menu < 1)
 		this->num_menu = 6;
 	if (this->num_menu > 6)
@@ -211,7 +215,7 @@ void Menu::desenharMainMenu()
 		{
 			glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 		}
-		this->font->printText (0,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_principal[i-1].c_str());
+		this->font->printText (10,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_principal[i-1].c_str());
 	}
 	glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 }

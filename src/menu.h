@@ -39,9 +39,10 @@ public:
 
 protected:
 	TTFont *font;
+	TTFont *font2;
 	int tamanho_font;
 	int subir_descer[4];
-	Texture2D *controlos, *background;
+	Texture2D *controlos, *background, *loading;
 	std::vector<std::string> menu_principal;
 	std::vector<std::string> menu_definicoes;
 
