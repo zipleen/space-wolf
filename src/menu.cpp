@@ -126,7 +126,26 @@ void Menu::MainLoopMenu()
 				this->num_menu = 6;
 			if (this->num_menu > 6)
 				this->num_menu = 1;
-			if (this->num_menu==1)
+
+			std::vector<std::string> vector_com_nomes;
+			vector_com_nomes.push_back("novo jogo");
+			vector_com_nomes.push_back("selecionar mapa");
+			vector_com_nomes.push_back("bla");
+			for(int i = 0; i<vector_com_nomes.size(); i++)
+			{
+				if(i==this->num_menu)
+				{
+					glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
+				}
+				else
+				{
+					glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
+				}
+				//this->font->printText (0,this->render->windowHeight - (this->tamanho_font + 4) * i,  vector_com_nomes[i]);
+				this->font->printText (0,this->render->windowHeight / i*1.1 , vector_com_nomes[i]);
+			}
+
+			/*if (this->num_menu==1)
 			{
 				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
 				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
@@ -193,7 +212,7 @@ void Menu::MainLoopMenu()
 				this->font->printText (0,this->render->windowHeight/11,  "Sair");
 				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 			}
-			
+			*/
 			this->end2D();
 			
 			SDL_GL_SwapBuffers ();
