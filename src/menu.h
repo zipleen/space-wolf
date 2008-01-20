@@ -24,11 +24,16 @@
 
 class Menu
 {
-protected:
+public:
 	Rendering *render;
+	bool keyUpPressed;
+	bool keyDownPressed;
+
+protected:
 	TTFont *font;
 	int tamanho_font;
-	
+	int subir_descer[4];
+
 public:
 	Menu(); 
 	virtual ~Menu(){};
