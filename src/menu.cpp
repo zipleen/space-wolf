@@ -91,6 +91,19 @@ void Menu::MainLoopMenu()
 			this->start2D();
 
 			glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			glPushMatrix();
+			glTranslatef(400,300,0);
+			this->background->bind();
+			glBegin(GL_QUADS);
+				glTexCoord2f(0.0, 0.0); glVertex2f(-400,-300);	
+				glTexCoord2f(1.0, 0.0);	glVertex2f(400,-300);
+				glTexCoord2f(1.0, 1.0); glVertex2f(400,300);
+				glTexCoord2f(0.0, 1.0); glVertex2f(-400,300);	
+			glEnd();
+			glPopMatrix();
+
+
 			glLoadIdentity ();
 			glEnable(GL_LIGHTING);
 			// aqui podia haver um QUAD qq 2D (como no hud) para meter quadrados e desenhos
@@ -178,6 +191,7 @@ void Menu::MainLoopMenu()
 				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
 				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
 				this->font->printText (0,this->render->windowHeight/11,  "Sair");
+				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 			}
 			
 			this->end2D();
