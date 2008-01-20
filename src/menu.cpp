@@ -13,6 +13,7 @@ Menu::Menu()
 {
 	this->keyUpPressed = false;
 	this->keyDownPressed = false;
+	this->keyEnterPressed = false;
 	this->tamanho_font = 30;
 	this->num_menu = 1;
 	this->font = new TTFont ("data/generis.TTF", this->tamanho_font, 1);
@@ -53,6 +54,18 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 			/* codigo para ir pra baixo */
 			this->keyDownPressed = value;
 			this->num_menu++;
+			break;
+		case SDLK_KP_ENTER:
+			this->keyEnterPressed = value;
+			if (num_menu==1)
+			{
+				Game *g;
+				g = new Game("data/maps/v1.map");
+				g->MainLoop();
+				delete g;
+			}
+			
+
 			break;
 			
 		break;
