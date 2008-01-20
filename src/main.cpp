@@ -18,6 +18,8 @@ Player *p;
 
 int main(int argc, char *argv[]){
 	Game *g;
+//descomentar a linha para ir ao menu
+	//	Menu *m;
 	Rendering *r;
 	Console::printf("Built release %s at %s" , __DATE__ , __TIME__ );
 	
@@ -28,6 +30,11 @@ int main(int argc, char *argv[]){
 		g=new Game(argv[1]);
 	else
 		g = new Game("data/maps/mapa1.map");
+	//descomentar as duas linhas seguintes para ir ao menu	
+	//m = new Menu();
+	
+	//m->MainLoopMenu();
+	
 	g->MainLoop();
 	
 	// Cleanup
