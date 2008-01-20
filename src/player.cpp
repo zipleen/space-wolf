@@ -21,6 +21,7 @@ Player::Player()
 	this->x = this->y = this->z = this->x_inicial = this->z_inicial = 0;
 	this->som_disparo_corrente = 0;
 	this->auto_switch_weapon = true;
+	this->canal_som_perder_vida = 0;
 	// ler passos
 #ifdef WIN32
 	this->som_passos[1] = this->s->loadSound("data\\sounds\\footsteps\\boot1.wav");
@@ -34,6 +35,12 @@ Player::Player()
 	this->som_armas[4] = this->s->loadSound("data\\models\\sounds\\minigun\\minigun_fire.wav");
 	this->som_sem_balas = this->s->loadSound("data\\models\\sounds\\noammo.wav");
 	this->som_mudar_arma = this->s->loadSound("data\\models\\sounds\\change.wav");
+	
+	this->som_perder_vida[1] = this->s->loadSound("data\\models\\sounds\\player\\pain25_1.wav");
+	this->som_perder_vida[2] = this->s->loadSound("data\\models\\sounds\\player\\pain50_1.wav");
+	this->som_perder_vida[3] = this->s->loadSound("data\\models\\sounds\\player\\pain75_1.wav");
+	this->som_perder_vida[4] = this->s->loadSound("data\\models\\sounds\\player\\pain100_1.wav");
+	this->som_morrer = this->s->loadSound("data\\models\\sounds\\player\\death1.wav");
 #else
 	this->som_passos[1] = this->s->loadSound("data/sounds/footsteps/boot1.wav");
 	this->som_passos[2] = this->s->loadSound("data/sounds/footsteps/boot2.wav");
@@ -46,6 +53,12 @@ Player::Player()
 	this->som_armas[4] = this->s->loadSound("data/models/sounds/minigun/minigun_fire.wav");
 	this->som_sem_balas = this->s->loadSound("data/models/sounds/noammo.wav");
 	this->som_mudar_arma = this->s->loadSound("data/models/sounds/change.wav");
+	
+	this->som_perder_vida[1] = this->s->loadSound("data/models/sounds/player/pain25_1.wav");
+	this->som_perder_vida[2] = this->s->loadSound("data/models/sounds/player/pain50_1.wav");
+	this->som_perder_vida[3] = this->s->loadSound("data/models/sounds/player/pain75_1.wav");
+	this->som_perder_vida[4] = this->s->loadSound("data/models/sounds/player/pain100_1.wav");
+	this->som_morrer = this->s->loadSound("data/models/sounds/player/death1.wav");
 #endif
 	this->som_passo_corrente=1;
 	this->canal_som_passos[0]=0;
@@ -182,6 +195,16 @@ bool Player::shootGun()
 	else return false;
 }
 
+void Player::playSoundTakeHealth(int valor){
+	int tocar = rand()%4+1;
+	if(tocar<0)
+		tocar = 1;
+	if(this->canal_som_perder_vida==0 || Mix_Playing(canal_som_perder_vida)==0)
+	{
+		this->canal_som_perder_vida = this->s->playSoundDirect(this->som_perder_vida[tocar]);
+	}
+}
+
 // accoes provocadas por outros actores
 void Player::takeHealth(int valor)
 {
@@ -191,13 +214,21 @@ void Player::takeHealth(int valor)
 			if(this->armadura<valor){
 				this->armadura=0;
 				this->vida-=(valor-this->armadura);
-			}else
+				this->playSoundTakeHealth(valor-this->armadura);
+			}else{
 				this->armadura-=valor;
-		}else
+				this->playSoundTakeHealth(valor);
+			}
+		}else{
 			this->vida-=valor;
+			this->playSoundTakeHealth(valor);
+		}
 		if(this->vida<=0){
 			this->vida=0;
 			this->morto=true;
+			if(Mix_Playing(canal_som_perder_vida)!=0)
+				Mix_HaltChannel(this->canal_som_perder_vida);
+			this->s->playSoundDirect(this->som_morrer);
 		}
 	}
 }

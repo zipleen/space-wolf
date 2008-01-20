@@ -55,6 +55,9 @@ public:
 	Mix_Chunk *som_sem_balas;
 	int som_disparo_corrente;
 	Mix_Chunk *som_mudar_arma;
+	Mix_Chunk *som_perder_vida[5];
+	int canal_som_perder_vida;
+	Mix_Chunk *som_morrer;
 	
 	double dt_cur;
 	double ultimo_andar;
@@ -83,6 +86,7 @@ public:
 	bool shootGun();
 	
 	// accoes causadas por outros actores
+	void playSoundTakeHealth(int valor);
 	void takeHealth(int valor);
 	void takeHealth(GLfloat x, GLfloat y,int v);
 	
