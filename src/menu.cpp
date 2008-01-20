@@ -13,6 +13,8 @@ Menu::Menu()
 {
 	this->keyUpPressed = false;
 	this->keyDownPressed = false;
+	this->keyLeftPressed = false;
+	this->keyRightPressed = false;
 	this->keyEnterPressed = false;
 	this->tamanho_font = 30;
 	this->num_menu = 1;
@@ -50,7 +52,7 @@ Menu::Menu()
 	this->menu_principal.push_back("Voltar ao jogo");
 	this->menu_principal.push_back("Sair");
 	
-	this->menu_definicoes.push_back("Resolução: ");
+	this->menu_definicoes.push_back("Resolucao: ");
 	this->menu_definicoes.push_back("Fullscreen: ");
 	this->menu_definicoes.push_back("Voltar atras");
 }
@@ -107,8 +109,8 @@ void Menu::handleMenuHit()
 			// menu principal, aki temos codigo que controla o que vai acontecer nas varias opcoes do menu 1
 			switch(this->num_menu){
 				case 1: // resolucao mexer
-					
-					break;
+
+
 				case 2:
 					// fullscreen
 					
@@ -137,6 +139,10 @@ void Menu::handleLeftRight(int tecla)
 	if(this->menu_to_render==3){
 		switch(this->num_menu){
 			case 1:
+				if (tecla == 1)
+				{
+					this->font2->printText (0, 0, "800 * 600");
+				}
 				
 				break;
 			case 2:
@@ -144,9 +150,7 @@ void Menu::handleLeftRight(int tecla)
 					this->config_fullscreen=false;
 				else this->config_fullscreen = true;
 				break;
-				
 		}
-		
 	}
 }
 
@@ -173,10 +177,12 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 			break;
 		
 		case SDLK_LEFT:
+			this->keyLeftPressed = value;
 			this->handleLeftRight(1);
 			
 			break;
 		case SDLK_RIGHT:
+			this->keyRightPressed = value;
 			this->handleLeftRight(2);
 			
 			break;
