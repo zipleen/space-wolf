@@ -90,10 +90,10 @@ void Menu::MainLoopMenu()
 			
 			// desenhar lá em cima, no canto esquerdo, reparem q eh necessario RETIRAR o tamanho da fonte pq o opengl desenha de baixo para cima,
 			// ptt a fonte vai ser desenhada lá em cima MENOS o tamanho da fonte
-			this->font->printText (this->render->windowWidth/3.1,this->render->windowHeight/1.2,  "Novo Jogo");
-			this->font->printText (this->render->windowWidth/5.5,this->render->windowHeight/1.7,  "Seleccionar mapa");
-			this->font->printText (this->render->windowWidth/3.3,this->render->windowHeight/3,  "Definicoes");
-			this->font->printText (this->render->windowWidth/2.5,this->render->windowHeight/9,  "Sair");
+			this->font->printText (this->render->windowWidth/4,this->render->windowHeight/1.2,  "1 - Novo Jogo");
+			this->font->printText (this->render->windowWidth/6,this->render->windowHeight/1.7,  "2 - Seleccionar mapa");
+			this->font->printText (this->render->windowWidth/4.2,this->render->windowHeight/3,  "3 - Definicoes");
+			this->font->printText (this->render->windowWidth/3,this->render->windowHeight/9,  "4 - Sair");
 			
 			this->end2D();
 			
