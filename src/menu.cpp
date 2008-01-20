@@ -83,14 +83,17 @@ void Menu::MainLoopMenu()
 			// CUIDADO COM AS COORDENADAS!!! USAR SEMPRE SEMPRE SEMPRE o this->render->windowHeight / this->render->windowWidth / this->tamanho_font
 			
 			// comecar a desenhar a meio, cuidado que isto nao desenha "no meio do ecra", desenha A PARTIR do meio, ou seja vai ficar pra direita
-			this->font->printText (this->render->windowWidth/2,this->render->windowHeight/2,  "Comecer no meio do ecra, desenha pra direita");
+			//this->font->printText (this->render->windowWidth/2,this->render->windowHeight/2,  "Comecer no meio do ecra, desenha pra direita");
 				
 			// desenhar no fundo do ecra
-			this->font->printText (0,0,  "Comecer ah esquerda, fundo do ecra");
+			//this->font->printText (0,0,  "Comecer ah esquerda, fundo do ecra");
 			
 			// desenhar lá em cima, no canto esquerdo, reparem q eh necessario RETIRAR o tamanho da fonte pq o opengl desenha de baixo para cima,
 			// ptt a fonte vai ser desenhada lá em cima MENOS o tamanho da fonte
-			this->font->printText (0,this->render->windowHeight-this->tamanho_font,  "Comecer ah esquerda, fundo do ecra");
+			this->font->printText (0,this->render->windowHeight-this->tamanho_font,  "Novo Jogo");
+			this->font->printText (this->render->windowWidth,this->render->windowHeight/2,  "Seleccionar mapa");
+			this->font->printText (this->render->windowWidth/3.3,this->render->windowHeight/3,  "Definicoes");
+			this->font->printText (this->render->windowWidth/2.5,this->render->windowHeight/9,  "Sair");
 			
 			this->end2D();
 			
