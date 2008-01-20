@@ -15,7 +15,7 @@ Menu::Menu()
 	this->keyDownPressed = false;
 	this->tamanho_font = 30;
 	this->num_menu = 1;
-	this->font = new TTFont ("data/Quake.ttf", this->tamanho_font, 1);
+	this->font = new TTFont ("data/generis.TTF", this->tamanho_font, 1);
 	this->render = Rendering::GetInstance();
 	
 	// ler texturas
@@ -27,6 +27,14 @@ Menu::Menu()
 	this->controlos = texMgr->load ("data/HUD/controlos.jpg");
 	this->background = texMgr->load ("data/HUD/background.jpg");
 #endif
+	
+	this->menu_principal.push_back("Novo Jogo");
+	this->menu_principal.push_back("Seleccionar mapa");
+	this->menu_principal.push_back("Definicoes");
+	this->menu_principal.push_back("Ver comandos");
+	this->menu_principal.push_back("Voltar ao jogo");
+	this->menu_principal.push_back("Sair");
+	
 }
 
 
@@ -126,12 +134,8 @@ void Menu::MainLoopMenu()
 				this->num_menu = 6;
 			if (this->num_menu > 6)
 				this->num_menu = 1;
-
-			std::vector<std::string> vector_com_nomes;
-			vector_com_nomes.push_back("novo jogo");
-			vector_com_nomes.push_back("selecionar mapa");
-			vector_com_nomes.push_back("bla");
-			for(int i = 0; i<vector_com_nomes.size(); i++)
+			
+			for(int i = 1; i<=this->menu_principal.size(); i++)
 			{
 				if(i==this->num_menu)
 				{
@@ -141,78 +145,9 @@ void Menu::MainLoopMenu()
 				{
 					glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 				}
-				//this->font->printText (0,this->render->windowHeight - (this->tamanho_font + 4) * i,  vector_com_nomes[i]);
-				this->font->printText (0,this->render->windowHeight / i*1.1 , vector_com_nomes[i]);
+				this->font->printText (0,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_principal[i-1].c_str());
 			}
 
-			/*if (this->num_menu==1)
-			{
-				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
-				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
-				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
-				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
-				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
-				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
-				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
-				this->font->printText (0,this->render->windowHeight/11,  "Sair");
-
-			}
-			if (this->num_menu==2)
-			{
-				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
-				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
-				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
-				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
-				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
-				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
-				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
-				this->font->printText (0,this->render->windowHeight/11,  "Sair");
-			}
-			if (this->num_menu==3)
-			{
-				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
-				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
-				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
-				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
-				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
-				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
-				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
-				this->font->printText (0,this->render->windowHeight/11,  "Sair");
-			}
-			if (this->num_menu==4)
-			{
-				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
-				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
-				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
-				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
-				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
-				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
-				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
-				this->font->printText (0,this->render->windowHeight/11,  "Sair");
-			}
-			if (this->num_menu==5)
-			{
-				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
-				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
-				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
-				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
-				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
-				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
-				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
-				this->font->printText (0,this->render->windowHeight/11,  "Sair");
-			}
-			if (this->num_menu==6)
-			{
-				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
-				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
-				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
-				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
-				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
-				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
-				this->font->printText (0,this->render->windowHeight/11,  "Sair");
-				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
-			}
-			*/
 			this->end2D();
 			
 			SDL_GL_SwapBuffers ();

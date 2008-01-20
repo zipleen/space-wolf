@@ -37,6 +37,7 @@ protected:
 	int tamanho_font;
 	int subir_descer[4];
 	Texture2D *controlos, *background;
+	std::vector<std::string> menu_principal;
 
 public:
 	Menu(); 
