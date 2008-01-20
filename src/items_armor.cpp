@@ -20,7 +20,7 @@ Items_Armor::Items_Armor(GLfloat x,GLfloat y,int valor,int mapa_x, int mapa_y) :
 	this->mapa_y = mapa_y;
 #ifdef WIN32
 			this->item_path="data\\models\\powerups\\armor\\armor_red.md3";
-			this->item_skin_path="";
+			this->item_skin_path="data\\models\\powerups\\armor\\newred.tga";
 #else
 			this->item_path="data/models/powerups/armor/armor_red.md3";
 			this->item_skin_path="data/models/powerups/armor/newred.tga";
