@@ -221,6 +221,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\menu.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\menu.h"
+				>
+			</File>
+			<File
 				RelativePath="..\sound.cpp"
 				>
 			</File>
