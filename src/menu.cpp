@@ -256,7 +256,7 @@ void Menu::GameLoop()
 		if(this->new_game){
 			// novo jogo, vamos cria-lo
 			// mostrar ecra de loading
-			
+			this->new_game = false;
 			this->game = new Game("data/maps/mapa1.map");
 			switch(this->game->MainLoop()){
 				case 1:
