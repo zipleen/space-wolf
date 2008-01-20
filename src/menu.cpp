@@ -207,7 +207,8 @@ void Menu::desenharDefinicoes()
 
 void Menu::desenharMainMenu()
 {
-	this->font2->printText (10, this->render->windowHeight-50, "Funky Shit");
+	glColor4f (0.5f, 0.6f, 0.8f, 1.0f);
+	this->font2->printText (this->render->windowWidth/2-150, this->render->windowHeight-50, "Funky Shit");
 	if (this->num_menu < 1)
 		this->num_menu = 6;
 	if (this->num_menu > 6)
