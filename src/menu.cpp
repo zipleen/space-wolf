@@ -18,6 +18,7 @@ Menu::Menu()
 	this->num_menu = 1;
 	this->menu_to_render = 1;
 	
+	
 	// configs
 	this->config_fullscreen = false;
 	
@@ -47,6 +48,12 @@ Menu::Menu()
 	this->menu_definicoes.push_back("Voltar atras");
 }
 
+void Menu::shutdown()
+{
+	// n sei o q fazer nisto, tenho de verificar o q fazer
+	exit(0);
+}
+
 void Menu::handleMenuHit()
 {
 	switch(this->menu_to_render){
@@ -67,7 +74,8 @@ void Menu::handleMenuHit()
 					break;
 				case 4:
 					// ver comandos
-					
+					this->menu_to_render = 4;
+					this->num_menu = 1;
 					break;
 				case 5:
 					// back to game
@@ -75,7 +83,7 @@ void Menu::handleMenuHit()
 					break;
 				case 6:
 					// sair
-					
+					this->shutdown();
 					break;
 					
 			}
@@ -98,6 +106,13 @@ void Menu::handleMenuHit()
 					break;
 					
 			}
+			break;
+		
+		// menu 4 -> ver controlos
+		case 4:
+			// se alguem carregou em qq tecla, voltar ao menu inicial
+			this->menu_to_render = 1;
+			
 			break;
 	}
 }
@@ -199,6 +214,12 @@ void Menu::desenharMainMenu()
 	}	
 }
 
+void Menu::mostrar_imagem_controlos()
+{
+	// faz aki o desenho para mostrar em fullscreen a imagem dos controlos
+	// this->controlos->bind()
+}
+
 void Menu::MainLoopMenu()
 {
 	bool isActive = true;
@@ -282,7 +303,7 @@ void Menu::MainLoopMenu()
 					break;
 				case 4:
 					// mostrar imagem
-					
+					this->mostrar_imagem_controlos();
 					break;
 			}
 

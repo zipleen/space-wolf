@@ -54,8 +54,11 @@ public:
 	void end2D();
 	void start2D();
 	
+	void shutdown();
+	
 	void desenharMainMenu();
 	void desenharDefinicoes();
+	void mostrar_imagem_controlos();
 	
 	void handleLeftRight(int v);
 	void handleMenuHit();
