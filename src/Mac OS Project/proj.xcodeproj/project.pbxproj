@@ -64,10 +64,6 @@
 		AA0A66BF0D4012A3002E4124 /* jquant2.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66910D4012A3002E4124 /* jquant2.o */; };
 		AA0A66C00D4012A3002E4124 /* jutils.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66920D4012A3002E4124 /* jutils.o */; };
 		AA3971590D2C5E1500855D68 /* StrUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA3971580D2C5E1500855D68 /* StrUtils.cpp */; };
-		AA667BCD0D353E0B0003657B /* glCamera.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BC50D353E0B0003657B /* glCamera.cc */; };
-		AA667BCE0D353E0B0003657B /* glPoint.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BC70D353E0B0003657B /* glPoint.cc */; };
-		AA667BCF0D353E0B0003657B /* glQuaternion.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BC90D353E0B0003657B /* glQuaternion.cc */; };
-		AA667BD00D353E0B0003657B /* glVector.cc in Sources */ = {isa = PBXBuildFile; fileRef = AA667BCB0D353E0B0003657B /* glVector.cc */; };
 		AA7F76C50D3124670088B254 /* porta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7F76C40D3124670088B254 /* porta.cpp */; };
 		AA968A2E0D367DF000B6E06D /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA968A2C0D367DF000B6E06D /* Font.cpp */; };
 		AA984AF40D381EC0000B2837 /* guard_medium.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA984AF30D381EC0000B2837 /* guard_medium.cpp */; };
@@ -184,14 +180,6 @@
 		AA0A66920D4012A3002E4124 /* jutils.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jutils.o; path = jpg/jutils.o; sourceTree = "<group>"; };
 		AA3971570D2C5E1500855D68 /* StrUtils.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; name = StrUtils.h; path = ../StrUtils.h; sourceTree = SOURCE_ROOT; };
 		AA3971580D2C5E1500855D68 /* StrUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; name = StrUtils.cpp; path = ../StrUtils.cpp; sourceTree = SOURCE_ROOT; };
-		AA667BC50D353E0B0003657B /* glCamera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glCamera.cc; path = ../camera/glCamera.cc; sourceTree = SOURCE_ROOT; };
-		AA667BC60D353E0B0003657B /* glCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = glCamera.h; path = ../camera/glCamera.h; sourceTree = SOURCE_ROOT; };
-		AA667BC70D353E0B0003657B /* glPoint.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glPoint.cc; path = ../camera/glPoint.cc; sourceTree = SOURCE_ROOT; };
-		AA667BC80D353E0B0003657B /* glPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = glPoint.h; path = ../camera/glPoint.h; sourceTree = SOURCE_ROOT; };
-		AA667BC90D353E0B0003657B /* glQuaternion.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glQuaternion.cc; path = ../camera/glQuaternion.cc; sourceTree = SOURCE_ROOT; };
-		AA667BCA0D353E0B0003657B /* glQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = glQuaternion.h; path = ../camera/glQuaternion.h; sourceTree = SOURCE_ROOT; };
-		AA667BCB0D353E0B0003657B /* glVector.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glVector.cc; path = ../camera/glVector.cc; sourceTree = SOURCE_ROOT; };
-		AA667BCC0D353E0B0003657B /* glVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = glVector.h; path = ../camera/glVector.h; sourceTree = SOURCE_ROOT; };
 		AA7F76C30D3124670088B254 /* porta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = porta.h; path = ../porta.h; sourceTree = SOURCE_ROOT; };
 		AA7F76C40D3124670088B254 /* porta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = porta.cpp; path = ../porta.cpp; sourceTree = SOURCE_ROOT; };
 		AA968A2C0D367DF000B6E06D /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../font/Font.cpp; sourceTree = SOURCE_ROOT; };
@@ -479,26 +467,10 @@
 		AA667BC40D353DF50003657B /* input */ = {
 			isa = PBXGroup;
 			children = (
-				AA667BD10D353E120003657B /* camera */,
 				AAEE40500D29371200DE9F02 /* input.cpp */,
 				AAEE40510D29371200DE9F02 /* input.h */,
 			);
 			name = input;
-			sourceTree = "<group>";
-		};
-		AA667BD10D353E120003657B /* camera */ = {
-			isa = PBXGroup;
-			children = (
-				AA667BC50D353E0B0003657B /* glCamera.cc */,
-				AA667BC60D353E0B0003657B /* glCamera.h */,
-				AA667BC70D353E0B0003657B /* glPoint.cc */,
-				AA667BC80D353E0B0003657B /* glPoint.h */,
-				AA667BC90D353E0B0003657B /* glQuaternion.cc */,
-				AA667BCA0D353E0B0003657B /* glQuaternion.h */,
-				AA667BCB0D353E0B0003657B /* glVector.cc */,
-				AA667BCC0D353E0B0003657B /* glVector.h */,
-			);
-			name = camera;
 			sourceTree = "<group>";
 		};
 		AA968A2B0D367DE600B6E06D /* font */ = {
@@ -726,10 +698,6 @@
 				AAEE40520D29371200DE9F02 /* input.cpp in Sources */,
 				AA3971590D2C5E1500855D68 /* StrUtils.cpp in Sources */,
 				AA7F76C50D3124670088B254 /* porta.cpp in Sources */,
-				AA667BCD0D353E0B0003657B /* glCamera.cc in Sources */,
-				AA667BCE0D353E0B0003657B /* glPoint.cc in Sources */,
-				AA667BCF0D353E0B0003657B /* glQuaternion.cc in Sources */,
-				AA667BD00D353E0B0003657B /* glVector.cc in Sources */,
 				AA968A2E0D367DF000B6E06D /* Font.cpp in Sources */,
 				AAE286200D37B0590016D7C2 /* items_vida.cpp in Sources */,
 				AA984AF40D381EC0000B2837 /* guard_medium.cpp in Sources */,

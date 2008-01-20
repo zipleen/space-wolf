@@ -45,7 +45,6 @@
 #include "console.h"
 #include "map.h"
 #include "player.h"
-#include "camera/glCamera.h"
 #include "font/Font.h"
 #include "md3/Md3Player.h"
 #include "hud.h"
@@ -98,13 +97,12 @@ public:
 	std::string windowTitle;
 	SDL_Surface *surface;
 	TTFont *font;
-	
-	bool debug_use_cam;
+
 public:
 	int CenterX;
 	int CenterY;
 	Timer timer;
-	glCamera *Cam;
+
 	
 	Rendering(); 
 	virtual ~Rendering(){};

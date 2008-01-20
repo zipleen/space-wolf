@@ -100,8 +100,8 @@ public:
 	void GoFront();
 	void GoStraffLeft();
 	void GoStraffRight();
-	void GoTurnRight();
-	void GoTurnLeft();
+	void GoTurnRight(bool mouse = false, int value = 0);
+	void GoTurnLeft(bool mouse = false, int value = 0);
 };
 
 

@@ -55,9 +55,29 @@ void Game::MainLoop()
 				  break;
 
 				case SDL_MOUSEMOTION:
-				  this->input->mouseMove (event.button.x, event.button.y);
+				  this->input->mouseMove (event.button.x, event.button.y, this->player);
 				  break;
 				
+				case SDL_MOUSEBUTTONUP:
+					
+					if( SDL_BUTTON(SDL_GetMouseState(NULL,NULL)) != SDL_BUTTON_LEFT ){
+						// disparar
+						this->input->keyFireHoldPressed = false;
+					}
+					break;
+					
+					
+				case SDL_MOUSEBUTTONDOWN:
+					if( SDL_GetMouseState(0, 0) & SDL_BUTTON(SDL_BUTTON_LEFT) ){
+						// disparar
+						this->input->keyFirePressed = true;
+						this->input->keyFireHoldPressed = true;
+					}else if(SDL_GetMouseState(0, 0) & SDL_BUTTON(SDL_BUTTON_RIGHT))
+					{
+						// abrir portas
+						this->map->openDoor(this->player);
+					}
+					break;
 				case SDL_QUIT:
 				  //shutdownApp (0);
 				  exit(0);

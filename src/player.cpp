@@ -209,7 +209,7 @@ void Player::takeHealth(GLfloat z, GLfloat x,int valor_arma)
 	int dist = (int)sqrt(z1*z1 + x1*x1);
 	if(dist!=0){
 		//std::cout << "dist:" << dist << std::endl;
-		this->takeHealth( (100-(dist/valor_arma))/2 );
+		this->takeHealth( (100-(dist/valor_arma))/4 );
 	}else this->takeHealth(100);
 }
 
@@ -390,21 +390,20 @@ void Player::GoBack()
 	}
 }
 
-void Player::GoTurnRight()
+void Player::GoTurnRight(bool mouse, int value)
 {
-	float move;
-	move = this->MoveTest();
-	if(move==0)
-		return;
+	if(mouse)
+		this->angulo+=value;
+	else
+		
 	this->angulo+=3;
 }
 
-void Player::GoTurnLeft()
+void Player::GoTurnLeft(bool mouse, int value)
 {
-	float move;
-	move = this->MoveTest();
-	if(move==0)
-		return;
-	this->angulo-=3;
+	if(mouse)
+		this->angulo-=value;
+	else
+		this->angulo-=3;
 }
 

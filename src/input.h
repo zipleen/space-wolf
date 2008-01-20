@@ -16,7 +16,7 @@
 
 class Input
 {
-protected:
+public:
 	static Input *m_inputSingleton;
 	
 	Rendering *render;
@@ -58,7 +58,7 @@ public:
 	}
 	
 	void handleKeyPress (SDL_keysym *key, bool value);
-	void mouseMove (Uint16 x, Uint16 y);
+	void mouseMove (Uint16 x, Uint16 y, Player *p);
 	void processKeyInput(Player *p, Map *m);
 };
 

@@ -24,7 +24,7 @@ Input::Input()
 	this->keyFirePressed = false;
 	this->keyOpenDoorPressed = false;
 	this->keyRunPressed = false;
-	this->keyFireHoldPressed = false;
+	this->keyFireHoldPressed = true;
 	
 	this->render = Rendering::GetInstance();
 }
@@ -100,11 +100,6 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 			this->render->useWireframe = value;
 			break;
 		case SDLK_c:
-			if(value){
-				if(this->render->debug_use_cam)
-					this->render->debug_use_cam=false;
-				else this->render->debug_use_cam=true;
-			}
 			break;
 		case SDLK_i:
 			if(value){
@@ -116,33 +111,22 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 	}
 }
 
-void Input::mouseMove (Uint16 MouseX, Uint16 MouseY)
+void Input::mouseMove (Uint16 MouseX, Uint16 MouseY, Player *p)
 {
 	GLfloat DeltaMouse;
 	
-    if(MouseX < this->render->CenterX)
+	if(MouseX < this->render->CenterX)
     {
 		DeltaMouse = GLfloat(this->render->CenterX - MouseX);
-		this->render->Cam->ChangeHeading(-0.1f * DeltaMouse);
-		
+		p->GoTurnLeft(true,0.15f *DeltaMouse);
     }
     else if(MouseX > this->render->CenterX)
     {
 		DeltaMouse = GLfloat(MouseX - this->render->CenterX);
-		this->render->Cam->ChangeHeading(0.1f * DeltaMouse);
-    }
-    if(MouseY < this->render->CenterY)
-    {
-		DeltaMouse = GLfloat(this->render->CenterY - MouseY);
-		this->render->Cam->ChangePitch(-0.1f * DeltaMouse);
-    }
-    else if(MouseY > this->render->CenterY)
-    {
-		DeltaMouse = GLfloat(MouseY - this->render->CenterY);
-		this->render->Cam->ChangePitch(0.1f * DeltaMouse);
+		p->GoTurnRight(true,0.15f *DeltaMouse);
     }
 	
-    //SDL_WarpMouse(this->render->CenterX, this->render->CenterY);
+    SDL_WarpMouse(this->render->CenterX, this->render->CenterY);
 	
 }
 
