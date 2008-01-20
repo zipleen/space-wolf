@@ -28,6 +28,7 @@ public:
 	Rendering *render;
 	bool keyUpPressed;
 	bool keyDownPressed;
+	int num_menu;
 
 protected:
 	TTFont *font;

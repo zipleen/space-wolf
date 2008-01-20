@@ -13,8 +13,8 @@ Menu::Menu()
 {
 	this->keyUpPressed = false;
 	this->keyDownPressed = false;
-	int num_menu = 1;
 	this->tamanho_font = 30;
+	this->num_menu = 1;
 	this->font = new TTFont ("data/Quake.ttf", this->tamanho_font, 1);
 	this->render = Rendering::GetInstance();
 
@@ -27,15 +27,15 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 	{
 		case SDLK_UP:
 			/* codigo para ir pra cima */
-			this->keyGoFrontPressed = value;
-			num_menu--;
+			this->keyUpPressed = value;
+			this->num_menu--;
 			break;
 			
 			break;
 		case SDLK_DOWN:
 			/* codigo para ir pra baixo */
-			this->keyGoBackPressed = value;
-			num_menu++;
+			this->keyDownPressed = value;
+			this->num_menu++;
 			break;
 			
 			break;
@@ -100,28 +100,28 @@ void Menu::MainLoopMenu()
 			
 			// desenhar lá em cima, no canto esquerdo, reparem q eh necessario RETIRAR o tamanho da fonte pq o opengl desenha de baixo para cima,
 			// ptt a fonte vai ser desenhada lá em cima MENOS o tamanho da fonte
-			if (num_menu==1)
+			if (this->num_menu==1)
 			{
 				this->font->printText (this->render->windowWidth/4,this->render->windowHeight/1.2,  "1 - Novo Jogo - aqui");
 				this->font->printText (this->render->windowWidth/6,this->render->windowHeight/1.7,  "2 - Seleccionar mapa");
 				this->font->printText (this->render->windowWidth/4.2,this->render->windowHeight/3,  "3 - Definicoes");
 				this->font->printText (this->render->windowWidth/3,this->render->windowHeight/9,  "4 - Sair");
 			}
-			if (num_menu==2)
+			if (this->num_menu==2)
 			{
 				this->font->printText (this->render->windowWidth/4,this->render->windowHeight/1.2,  "1 - Novo Jogo");
 				this->font->printText (this->render->windowWidth/6,this->render->windowHeight/1.7,  "2 - Seleccionar mapa - aqui");
 				this->font->printText (this->render->windowWidth/4.2,this->render->windowHeight/3,  "3 - Definicoes");
 				this->font->printText (this->render->windowWidth/3,this->render->windowHeight/9,  "4 - Sair");
 			}
-			if (num_menu==3)
+			if (this->num_menu==3)
 			{
 				this->font->printText (this->render->windowWidth/4,this->render->windowHeight/1.2,  "1 - Novo Jogo");
 				this->font->printText (this->render->windowWidth/6,this->render->windowHeight/1.7,  "2 - Seleccionar mapa");
 				this->font->printText (this->render->windowWidth/4.2,this->render->windowHeight/3,  "3 - Definicoes - aqui");
 				this->font->printText (this->render->windowWidth/3,this->render->windowHeight/9,  "4 - Sair");
 			}
-			if (num_menu==4)
+			if (this->num_menu==4)
 			{
 				this->font->printText (this->render->windowWidth/4,this->render->windowHeight/1.2,  "1 - Novo Jogo");
 				this->font->printText (this->render->windowWidth/6,this->render->windowHeight/1.7,  "2 - Seleccionar mapa");
