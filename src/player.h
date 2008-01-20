@@ -43,6 +43,7 @@ public:
 	float velocidade_disparo;
 	float velocidade;
 	int floorcode;
+	bool god_mode;
 	
 	Md3Player *player;
 	GLfloat x_inicial, z_inicial;

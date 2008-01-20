@@ -25,6 +25,7 @@ Input::Input()
 	this->keyOpenDoorPressed = false;
 	this->keyRunPressed = false;
 	this->keyFireHoldPressed = true;
+	this->keyGodModePressed = false;
 	
 	this->render = Rendering::GetInstance();
 }
@@ -104,7 +105,10 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 		case SDLK_q:
 			this->render->useWireframe = value;
 			break;
-		case SDLK_c:
+		case SDLK_g:
+			if(value){
+				this->keyGodModePressed = true;
+			}
 			break;
 		case SDLK_i:
 			if(value){
@@ -184,4 +188,11 @@ void Input::processKeyInput(Player *p, Map *m)
 	if(this->keyRunPressed){
 		p->SetCorrer(true);
 	}else p->SetCorrer(false);
+	
+	if(this->keyGodModePressed){
+		if(p->god_mode)
+			p->god_mode=false;
+		else p->god_mode=true;
+		this->keyGodModePressed=false;
+	}
 }

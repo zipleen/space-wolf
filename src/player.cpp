@@ -12,6 +12,7 @@
 Player::Player()
 {
 	this->s = Sound::GetInstance();
+	this->god_mode = false;
 	this->vida = 100;
 	this->floorcode=0;
 	this->muzzle_flash=false;
@@ -184,19 +185,20 @@ bool Player::shootGun()
 // accoes provocadas por outros actores
 void Player::takeHealth(int valor)
 {
-	//std::cout << "vida que tirar a mim: " << valor << std::endl;
-	if(this->armadura>0){
-		// vamos tirar armadura
-		if(this->armadura<valor){
-			this->armadura=0;
-			this->vida-=(valor-this->armadura);
+	if(!this->god_mode){
+		if(this->armadura>0){
+			// vamos tirar armadura
+			if(this->armadura<valor){
+				this->armadura=0;
+				this->vida-=(valor-this->armadura);
+			}else
+				this->armadura-=valor;
 		}else
-			this->armadura-=valor;
-	}else
-		this->vida-=valor;
-	if(this->vida<=0){
-		this->vida=0;
-		this->morto=true;
+			this->vida-=valor;
+		if(this->vida<=0){
+			this->vida=0;
+			this->morto=true;
+		}
 	}
 }
 
