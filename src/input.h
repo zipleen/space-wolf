@@ -34,6 +34,7 @@ public:
 	bool keyOpenDoorPressed;
 	bool keyRunPressed;
 	bool keyArmaMudar;
+	bool keyGodModePressed;
 	int ArmaMudarPara;
 	
 public:

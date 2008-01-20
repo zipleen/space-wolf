@@ -95,12 +95,13 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 			this->ArmaMudarPara = 4;
 			break;
 			
-		case SDLK_r:
+		/*ja nao andamos para cima e para baixo no mapa (nos YY)
+		 case SDLK_r:
 			this->keyUpPressed = value;
 			break;
 		case SDLK_f:
 			this->keyDownPressed = value;
-			break;
+			break;*/
 			
 		case SDLK_q:
 			this->render->useWireframe = value;
@@ -142,20 +143,16 @@ void Input::mouseMove (Uint16 MouseX, Uint16 MouseY, Player *p)
 void Input::processKeyInput(Player *p, Map *m)
 {
 	if(this->keyLeftPressed){
-		//this->render->Cam->ChangeHeading(-5.0f);
 		p->GoTurnLeft();
 	}
 	if(this->keyRightPressed){
 		p->GoTurnRight();
-		//this->render->Cam->ChangeHeading(5.0f);
 	}
 	if(this->keyUpPressed){
 		p->y-=1;
-		//this->render->Cam->ChangePitch(5.0f);
 	}
 	if(this->keyDownPressed){
 		p->y+=1;
-		//this->render->Cam->ChangePitch(-5.0f);
 	}
 	
 	if(this->keyGoBackPressed){

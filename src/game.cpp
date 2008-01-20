@@ -32,6 +32,9 @@ int Game::MainLoop()
 {
 	bool isActive = true;
 	double dt;
+	
+	SDL_ShowCursor(SDL_DISABLE);
+	
 	// Loop until the end
 	while (1)
 	{
