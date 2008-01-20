@@ -33,7 +33,7 @@ void Hud::drawHud(Player *p)
 
 	glEnable (GL_TEXTURE_2D);
 	
-	glTranslatef(150,60,0);
+	glTranslatef(70,60,0);
 	tex_vida->bind();
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
@@ -42,7 +42,7 @@ void Hud::drawHud(Player *p)
 		glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);		
 	glEnd();
 	
-	glTranslatef(150,0,0);
+	glTranslatef(170,0,0);
 	tex_armor->bind();
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
@@ -52,7 +52,7 @@ void Hud::drawHud(Player *p)
 	glEnd();
 
 
-	glTranslatef(150,0,0);
+	glTranslatef(170,0,0);
 	tex_ammo->bind();
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
@@ -63,7 +63,7 @@ void Hud::drawHud(Player *p)
 	
 	if(p->chave_amarela && p->chave_vermelha)
 	{
-		glTranslatef(150,0,0);
+		glTranslatef(170,0,0);
 		tex_chave1->bind();
 		glBegin(GL_QUADS);
 			glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
@@ -72,7 +72,7 @@ void Hud::drawHud(Player *p)
 			glTexCoord2f(0.0, 1.0); glVertex2f(-24,24);	
 		glEnd();
 
-		glTranslatef(60,0,0);
+		glTranslatef(70,0,0);
 		tex_chave2->bind();
 		glBegin(GL_QUADS);
 			glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
@@ -84,7 +84,7 @@ void Hud::drawHud(Player *p)
 	}
 	else if(p->chave_amarela && !p->chave_vermelha)
 	{
-		glTranslatef(150,0,0);
+		glTranslatef(170,0,0);
 		tex_chave1->bind();
 		glBegin(GL_QUADS);
 			glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
@@ -96,7 +96,7 @@ void Hud::drawHud(Player *p)
 	}
 	else if(!p->chave_amarela && p->chave_vermelha)
 	{
-		glTranslatef(150,0,0);
+		glTranslatef(170,0,0);
 		tex_chave2->bind();
 		glBegin(GL_QUADS);
 			glTexCoord2f(0.0, 0.0); glVertex2f(-24,-24);	
@@ -108,10 +108,10 @@ void Hud::drawHud(Player *p)
 	glPopMatrix();
 
 	glPushMatrix();
-	Hud::font->printText (185, 45, "%d", p->vida);
-	Hud::font->printText (330, 45, "%d", p->armadura);	
+	Hud::font->printText (100, 45, "%d", p->vida);
+	Hud::font->printText (270, 45, "%d", p->armadura);	
 	//Hud::font->printText (365, 45, "%d", p->arma_em_uso);	
-	Hud::font->printText (480, 45, "%d", p->balas);	
+	Hud::font->printText (440, 45, "%d", p->balas);	
 	//Hud::font->printText (380, 40, "%s", chaves.c_str());	
 	glPopMatrix();
 
