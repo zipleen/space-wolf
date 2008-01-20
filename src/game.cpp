@@ -57,6 +57,8 @@ int Game::MainLoop()
 				  break;
 				
 				case SDL_KEYUP:
+					if(event.key.keysym.sym == SDLK_ESCAPE)
+					   return 3;
 					this->input->handleKeyPress (&event.key.keysym,false);
 					break;
 				case SDL_KEYDOWN:
@@ -90,10 +92,7 @@ int Game::MainLoop()
 				case SDL_QUIT:
 					exit(0);
 					break;
-				case SDLK_ESCAPE:
-				  //shutdownApp (0);
-					return 3;
-				  break;
+				
 
 				default:
 				  break;
