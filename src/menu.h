@@ -19,6 +19,7 @@
 #include <time.h>
 
 #include <SDL.h>
+#include <vector>
 #include "rendering.h"
 #include "font/Font.h"
 #include "Md3/TextureManager.h"
