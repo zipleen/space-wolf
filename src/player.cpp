@@ -19,6 +19,7 @@ Player::Player()
 	this->pontos = 0;
 	this->x = this->y = this->z = this->x_inicial = this->z_inicial = 0;
 	this->som_disparo_corrente = 0;
+	this->auto_switch_weapon = true;
 	// ler passos
 #ifdef WIN32
 	this->som_passos[1] = this->s->loadSound("data\\sounds\\footsteps\\boot1.wav");
@@ -256,13 +257,25 @@ bool Player::giveArmas(int tipo)
 {
 	switch(tipo){
 		case 2:
-			this->arma2 = true;
+			if(!this->arma2){
+				this->arma2 = true;
+				if(this->auto_switch_weapon)
+					this->setGun(2);
+			}
 			break;
 		case 3:
-			this->arma3 = true;
+			if(!this->arma3){
+				this->arma3 = true;
+				if(this->auto_switch_weapon)
+					this->setGun(3);
+			}
 			break;
 		case 4:
-			this->arma4 = true;
+			if(!this->arma4){
+				this->arma4 = true;
+				if(this->auto_switch_weapon)
+					this->setGun(4);
+			}
 			break;
 	
 	}

@@ -33,7 +33,8 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 {
 	switch(key->sym)
 	{
-		case SDLK_b:
+		case SDLK_LCTRL:
+		case SDLK_RCTRL:
 			this->keyFirePressed = value;
 			if(!value)
 				this->keyFireHoldPressed = true;

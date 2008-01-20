@@ -35,6 +35,7 @@ public:
 	bool arma2;
 	bool arma3;
 	bool arma4;
+	bool auto_switch_weapon;
 	int arma_em_uso;
 	int potencia_arma;
 	bool disparar;
