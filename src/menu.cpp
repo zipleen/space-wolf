@@ -14,6 +14,8 @@ TTFont *Menu::font;
 Menu::Menu()
 {
 	Menu::font = new TTFont ("data/Quake.ttf", 30, 1);
+	this->keyUpPressed = false;
+	this->keyDownPressed = false;
 }
 
 
@@ -22,10 +24,10 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 	switch(key->sym)
 	{
 		case SDLK_UP:
-			this->keyGoFrontPressed = value;
+			this->keyUpPressed = value;
 			break;
 		case SDLK_DOWN:
-			this->keyGoBackPressed = value;
+			this->keyDownPressed = value;
 			break;
 	}
 }
