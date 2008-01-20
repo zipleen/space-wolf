@@ -65,6 +65,7 @@
 		AA0A66C00D4012A3002E4124 /* jutils.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66920D4012A3002E4124 /* jutils.o */; };
 		AA3971590D2C5E1500855D68 /* StrUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA3971580D2C5E1500855D68 /* StrUtils.cpp */; };
 		AA7F76C50D3124670088B254 /* porta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7F76C40D3124670088B254 /* porta.cpp */; };
+		AA8C5BAE0D43828A006EC666 /* menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA8C5BAD0D43828A006EC666 /* menu.cpp */; };
 		AA968A2E0D367DF000B6E06D /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA968A2C0D367DF000B6E06D /* Font.cpp */; };
 		AA984AF40D381EC0000B2837 /* guard_medium.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA984AF30D381EC0000B2837 /* guard_medium.cpp */; };
 		AA9D579B0D27C34100089D4E /* items.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9D579A0D27C34100089D4E /* items.cpp */; };
@@ -182,6 +183,8 @@
 		AA3971580D2C5E1500855D68 /* StrUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; name = StrUtils.cpp; path = ../StrUtils.cpp; sourceTree = SOURCE_ROOT; };
 		AA7F76C30D3124670088B254 /* porta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = porta.h; path = ../porta.h; sourceTree = SOURCE_ROOT; };
 		AA7F76C40D3124670088B254 /* porta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = porta.cpp; path = ../porta.cpp; sourceTree = SOURCE_ROOT; };
+		AA8C5BAC0D43828A006EC666 /* menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = menu.h; path = ../menu.h; sourceTree = SOURCE_ROOT; };
+		AA8C5BAD0D43828A006EC666 /* menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = menu.cpp; path = ../menu.cpp; sourceTree = SOURCE_ROOT; };
 		AA968A2C0D367DF000B6E06D /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../font/Font.cpp; sourceTree = SOURCE_ROOT; };
 		AA968A2D0D367DF000B6E06D /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Font.h; path = ../font/Font.h; sourceTree = SOURCE_ROOT; };
 		AA984AF20D381EC0000B2837 /* guard_medium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = guard_medium.h; path = ../guard_medium.h; sourceTree = SOURCE_ROOT; };
@@ -473,6 +476,15 @@
 			name = input;
 			sourceTree = "<group>";
 		};
+		AA8C5BAB0D438278006EC666 /* menu */ = {
+			isa = PBXGroup;
+			children = (
+				AA8C5BAC0D43828A006EC666 /* menu.h */,
+				AA8C5BAD0D43828A006EC666 /* menu.cpp */,
+			);
+			name = menu;
+			sourceTree = "<group>";
+		};
 		AA968A2B0D367DE600B6E06D /* font */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,6 +600,7 @@
 				AABE747D0D26CC5B00A3AA8B /* game.h */,
 				AABE74810D26CC5B00A3AA8B /* main.cpp */,
 				AABE74820D26CC5B00A3AA8B /* main.h */,
+				AA8C5BAB0D438278006EC666 /* menu */,
 			);
 			name = game;
 			sourceTree = "<group>";
@@ -711,6 +724,7 @@
 				AAAE24EC0D3C0D320013FB8E /* guarda_dificil.cpp in Sources */,
 				AAAE24EF0D3C0D490013FB8E /* boss1.cpp in Sources */,
 				AAAE24F20D3C10F40013FB8E /* guard_robo.cpp in Sources */,
+				AA8C5BAE0D43828A006EC666 /* menu.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

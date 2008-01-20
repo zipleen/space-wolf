@@ -43,6 +43,6 @@ Guard_Boss1::Guard_Boss1(int z, int x, bool em_movimento, GLfloat angulo) : Guar
 	this->som_arma = this->s->loadSound("data/models/sounds/minigun/minigun_fire.wav");
 	this->som_alerta = this->s->loadSound("data/models/sounds/boss/pain75_1.wav");
 #endif	
-	this->codigo_arma_que_guarda_tem = 4;
+	this->codigo_arma_que_guarda_tem = 5;
 }
 

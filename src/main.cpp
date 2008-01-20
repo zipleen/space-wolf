@@ -20,23 +20,28 @@ int main(int argc, char *argv[]){
 	Game *g;
 
 //descomentar a linha para ir ao menu
-	//	Menu *m;
+	Menu *m;
 	Rendering *r;
 	Console::printf("Built release %s at %s" , __DATE__ , __TIME__ );
 	
 	r = Rendering::GetInstance();
 	r->initVideo();
-	
-	if(argc>1)
-		g=new Game(argv[1]);
-	else
-		g = new Game("data/maps/mapa1.map");
+	/*
+	for(;;){
+		if(argc>1)
+			g=new Game(argv[1]);
+		else
+			g = new Game("data/maps/v1.map");
+		
+		
+		
+		
+		g->MainLoop();
+		delete g;
+	}*/
 	//descomentar as duas linhas seguintes para ir ao menu	
-	//m = new Menu();
-	
-	//m->MainLoopMenu();
-	
-	g->MainLoop();
+	m = new Menu();
+	m->MainLoopMenu();
 	
 	// Cleanup
 	SDL_Quit();

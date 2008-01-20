@@ -15,6 +15,7 @@ Guard::Guard()
 	this->morto = false;
 	this->em_movimento = false;
 	this->em_disparo = false;
+	this->a_morrer=false;
 	this->alerta = false;
 	//this->movimento_contar_vezes = 0;
 	this->som_disparo_arma = 0;

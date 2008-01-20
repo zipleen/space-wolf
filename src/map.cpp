@@ -57,50 +57,56 @@ void Map::processAIguards(Player *p)
 {
 	for(int i=0;i<this->guardas.size();i++){
 		if(!this->guardas[i]->morto){
-			/*if(!this->guardas[i]->alerta){
+			if(!this->guardas[i]->alerta){
+				/*
 				// se nao esta em alerta, vamos ver se ele pode ou nao ficar em alerta
 				// de modo visual (o modo sonoro eh no processTiros)
 				// para isso simplesmente vamos ver se os guardas podem "ver" o utilizador
 				// 1- vamos ver a posicao do guarda, se ele tiver numa posicao de poder ver vamos processa-lo
-				//	  - nos Z : entre 270 e 90 (270 && 360 || 0 && 90) -> Guarda>player
-				//	  - nos Z : entre 90 e 270 (90 && 270) -> Guarda < Player
+				//	  - nos Z : entre 270 a 90 (270 && 360 || 0 && 90) -> Guarda>player
+				//	  - nos Z : entre 90 a 270 (90 && 270) -> Guarda < Player
 				//    - nos X : entre 0 e 180 (0 && 180) -> Guarda > Player
 				//    - nos X : entre 180 e 0 (180 && 0) -> Guarda < Player
+				// problema grave, os guardas o 180 eh o 0 e 0 o 180!
+				
 				if(this->guardas[i]->angulo > 90 && this->guardas[i]->angulo <= 270){
 					// segundo caso, Zguarda < Zplayer
-					if(this->guardas[i]->angulo > 0 && this->guardas[i]->angulo <=180){
+					if(this->guardas[i]->angulo >= 0 && this->guardas[i]->angulo <=180){
 						// terceiro caso, Xguarda > Xplayer
-						if(this->guardas[i]->z < (p->z*-1) && this->guardas[i]->x > (p->x*-1)){
+						if(this->guardas[i]->z > (p->z*-1) && this->guardas[i]->x < (p->x*-1)){
 						   // verificar se fisica deixa "ver" o meu player
 						   if(Fisica::canIgoThere(this->guardas[i]->z*-1,this->guardas[i]->x*-1, p->z, p->x))
 							   this->guardas[i]->vai_para_alerta = true;
 						}
 					}else{
 						// quarto caso, Xguarda < Xplayer
-						if(this->guardas[i]->z < (p->z*-1) && this->guardas[i]->x < (p->x*-1)){
+						if(this->guardas[i]->z > (p->z*-1) && this->guardas[i]->x > (p->x*-1)){
 							if(Fisica::canIgoThere(this->guardas[i]->z*-1,this->guardas[i]->x*-1, p->z, p->x))
 								this->guardas[i]->vai_para_alerta = true;
 						}
 					}
 				}else{
 					// primeiro caso, Zguarda > Zplayer
-					if(this->guardas[i]->angulo > 0 && this->guardas[i]->angulo <=180){
+					if(this->guardas[i]->angulo >= 0 && this->guardas[i]->angulo <=180){
 						// terceiro caso, Xguarda > Xplayer
-						if(this->guardas[i]->z > (p->z*-1) && this->guardas[i]->x > (p->x*-1)){
+						if(this->guardas[i]->z < (p->z*-1) && this->guardas[i]->x < (p->x*-1)){
 							// verificar se fisica deixa "ver" o meu player
 							if(Fisica::canIgoThere(this->guardas[i]->z*-1,this->guardas[i]->x*-1, p->z, p->x))
 								this->guardas[i]->vai_para_alerta = true;
 						}
 					}else{
 						// quarto caso, Xguarda < Xplayer
-						if(this->guardas[i]->z > (p->z*-1) && this->guardas[i]->x < (p->x*-1)){
+						if(this->guardas[i]->z < (p->z*-1) && this->guardas[i]->x > (p->x*-1)){
 							if(Fisica::canIgoThere(this->guardas[i]->z*-1,this->guardas[i]->x*-1, p->z, p->x))
 								this->guardas[i]->vai_para_alerta = true;
 						}
 					}
 					
-				}
-			}*/
+				}*/
+				// a approach de cima eh mt bonita mas seleciona so UM QUADRANTE, eu quero sempre dois. vamos tentar outra vez diferente
+				//std::cout << "ang:" << Fisica::AngleBetweenVectandPoint(this->guardas[i]->z*-1, this->guardas[i]->x*-1,this->guardas[i]->angulo ,p->z ,p->x) << std::endl;
+				std::cout <<std::endl << "vejo-te:" << Fisica::canIgoThere(this->guardas[i]->z*-1, this->guardas[i]->x*-1,p->z ,p->x) << std::endl;
+			}
 			this->guardas[i]->nextMove(p->z, p->x);
 		}
 	}
@@ -189,13 +195,19 @@ void Map::processTiros(Player *p)
 					if(guarda_x == cx && guarda_y == cy){
 						this->guardas[i]->takeHealth(p->z, p->x,p->potencia_arma);
 						if(this->guardas[i]->morto){
-							// agora vamos meter as armas a boiar se nao tivermos a arma ainda
-							if(!p->tenhoArma(this->guardas[i]->codigo_arma_que_guarda_tem)){
-								// as armas sao os items 4,5 e 6, guardas tem arma 2 3 4, daí o 2+
-								this->addItems(guarda_x,guarda_y, 2+this->guardas[i]->codigo_arma_que_guarda_tem);
-							}else
-								// se o guarda morreu, vamos meter ammo a boiar...
-								this->addItems(guarda_x,guarda_y,11);
+							if(this->guardas[i]->codigo_arma_que_guarda_tem==5) // boss, larga uma chave so
+							{
+								this->addItems(guarda_x,guarda_y,8);
+								
+							}else{
+								// agora vamos meter as armas a boiar se nao tivermos a arma ainda
+								if(!p->tenhoArma(this->guardas[i]->codigo_arma_que_guarda_tem)){
+									// as armas sao os items 4,5 e 6, guardas tem arma 2 3 4, daí o 2+
+									this->addItems(guarda_x,guarda_y, 2+this->guardas[i]->codigo_arma_que_guarda_tem);
+								}else
+									// se o guarda morreu, vamos meter ammo a boiar...
+									this->addItems(guarda_x,guarda_y,11);
+							}
 							
 						}
 						acertou=true;
@@ -1279,7 +1291,7 @@ bool Map::loadMap(std::string file, Player *player)
 							break;	
 						case 2049:
 							// boss1
-							this->addGuard(i, e, 6, 1, false);
+							this->addGuard(i, e, 6, 2, false);
 							break;
 							
 						// direccoes dos guardas -> adicionar no mapa

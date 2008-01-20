@@ -15,6 +15,28 @@ std::vector<std::vector <bool> > Fisica::guardas;
 float Fisica::cube_size;
 bool Fisica::clip_mode;
 
+/* 1 VECTOR e 1 ponto, qual o angulo? NAO WORKA*/
+float Fisica::AngleBetweenVectandPoint(float x1, float y1,float ang1, float x2, float y2)
+{
+	// achar vector do 1 ponto+angulo
+	float vx1 = x1+cos(RAD(ang1));
+	float vy1 = y1+sin(RAD(ang1));
+	// achar segundo vector, desta vez com o primeiro ponto do primeiro 
+	float vx2 = x2-x1;
+	float vy2 = y2-y1;
+	
+	float cosine = (vx1 * vx2 + vy1 * vy1) / (sqrt( (vx1*vx1) + (vy1*vy1) ) * sqrt( (vx2*vx2) + (vy2*vy2) ));
+	// rounding errors might make dotproduct out of range for cosine
+	if (cosine > 1) cosine = 1;
+	else if (cosine < -1) cosine = -1;
+	
+	if ((vx1 * vy2 - vy1 * vx2) < 0)
+		return GRAUS(-acos(cosine));
+	else
+		return GRAUS(acos(cosine));
+}
+
+
 /* se tivermos dois pontos e 2 angulos (ou seja 1 ponto com um angulo pode ser um vector director), podemos achar os angulos entre eles */
 float Fisica::AngleBetween2Vect(float x1, float y1,float ang1, float x2, float y2, float ang2)
 {
@@ -92,10 +114,14 @@ bool Fisica::canIgoThere(float from_z, float from_x, float to_z,float to_x,bool 
 	float dist = sqrt(vx*vx + vy*vy);
 	if(dist>=(Fisica::cube_size*2)){
 		
-		/*float new_z = to_z - from_z + Fisica::cube_size;
-		float new_x = to_x - from_x + Fisica::cube_size;
-		return Fisica::canIgoThere(from_z, from_x, from_z+new_z,from_x+new_x,guarda);*/
-		return Fisica::canIgoThereIn(from_z, from_x, to_z,to_x,guarda);
+		int ang = Fisica::Angle(from_x*-1, from_z*-1, to_x*-1, to_z*-1);
+		//std::cout << "FROM:("<<from_z << "," << from_x << ") TO("<< to_z << "," << to_x << ") ang: " << ang << " ";
+		std::cout << "ang: " << ang << " ";
+		float newx = to_x + (sin(-RAD(ang))*Fisica::cube_size);
+		float newz = to_z + (cos(RAD(ang))*Fisica::cube_size);
+		if( Fisica::canIgoThereIn(from_z, from_x, to_z,to_x,guarda) )
+			return Fisica::canIgoThere(from_z, from_x, newz, newx, guarda);
+		else return false;
 	}else return Fisica::canIgoThereIn(from_z, from_x, to_z,to_x,guarda);
 }
 
@@ -126,8 +152,15 @@ bool Fisica::canIgoThereIn(float from_z, float from_x, float to_z,float to_x,boo
 		// eh preciso verificar nas portas se estao abertas
 		pode_ir_portas = (Fisica::portas[map_x_a1][map_y_a1] && Fisica::portas[map_x_a1][map_y_a2] && Fisica::portas[map_x_a2][map_y_a1] && Fisica::portas[map_x_a2][map_y_a2]);
 		if(pode_ir_portas){
-			if(guarda)
-				return true;
+			if(guarda){
+				// ja tou farto do guarda andar por cima do player!!!
+				Sound *s = Sound::GetInstance();
+				int p_x = (int)(((s->player_z)/(Fisica::cube_size*2.0f))+0.5);
+				int p_y = (int)(((s->player_x)/(Fisica::cube_size*2.0f))+0.5);
+				if( (p_x == map_orig_x && p_y == map_orig_y) || (p_x == map_x_a1 && p_y == map_y_a1) ||  (p_x == map_x_a2 && p_y == map_y_a2) )
+					return false;
+				else return true;
+			}
 			else{
 				// verificar guardas
 				if((!Fisica::guardas[map_x_a1][map_y_a1] && !Fisica::guardas[map_x_a1][map_y_a2] && !Fisica::guardas[map_x_a2][map_y_a1] && !Fisica::guardas[map_x_a2][map_y_a2]))
