@@ -218,6 +218,19 @@ void Menu::mostrar_imagem_controlos()
 {
 	// faz aki o desenho para mostrar em fullscreen a imagem dos controlos
 	// this->controlos->bind()
+	glDisable(GL_LIGHTING);
+	
+	glPushMatrix();
+	glTranslatef(this->render->windowWidth/2,this->render->windowHeight/2,0);
+	this->controlos->bind();
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0, 0.0); glVertex2f(-this->render->windowWidth/2,-this->render->windowHeight/2);	
+	glTexCoord2f(1.0, 0.0);	glVertex2f(this->render->windowWidth/2,-this->render->windowHeight/2);
+	glTexCoord2f(1.0, 1.0); glVertex2f(this->render->windowWidth/2,this->render->windowHeight/2);
+	glTexCoord2f(0.0, 1.0); glVertex2f(-this->render->windowWidth/2,this->render->windowHeight/2);	
+	glEnd();
+	glPopMatrix();
+	glEnable(GL_LIGHTING);
 }
 
 void Menu::MainLoopMenu()
