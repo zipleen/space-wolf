@@ -14,6 +14,7 @@
 #endif
 
 #include "rendering.h"
+
 //descomentar a linha para ir ao menu
 //#include "menu.h"
 #include "game.h"

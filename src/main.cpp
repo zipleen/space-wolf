@@ -18,6 +18,7 @@ Player *p;
 
 int main(int argc, char *argv[]){
 	Game *g;
+
 //descomentar a linha para ir ao menu
 	//	Menu *m;
 	Rendering *r;
