@@ -9,13 +9,11 @@
 
 #include "menu.h"
 
-TTFont *Menu::font;
-
 Menu::Menu()
 {
-	Menu::font = new TTFont ("data/Quake.ttf", 30, 1);
-	this->keyUpPressed = false;
-	this->keyDownPressed = false;
+	this->tamanho_font = 30;
+	this->font = new TTFont ("data/Quake.ttf", this->tamanho_font, 1);
+	this->render = Rendering::GetInstance();
 }
 
 
@@ -24,10 +22,12 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 	switch(key->sym)
 	{
 		case SDLK_UP:
-			this->keyUpPressed = value;
+			/* codigo para ir pra cima */
+			
 			break;
 		case SDLK_DOWN:
-			this->keyDownPressed = value;
+			/* codigo para ir pra baixo */
+			
 			break;
 	}
 }
@@ -36,7 +36,7 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 void Menu::MainLoopMenu()
 {
 	bool isActive = true;
-	double dt;
+	//double dt;
 	// Loop until the end
 	while (1)
 	{
@@ -49,23 +49,13 @@ void Menu::MainLoopMenu()
 			{
 				case SDL_ACTIVEEVENT:
 				  // Don't draw scene if the window has been minimized
-						isActive = !((event.active.gain == 0) && (event.active.state & SDL_APPACTIVE));
-						break;
-
-				//case SDL_VIDEORESIZE:
-					// Resize Window
-				//	this->render->resizeWindow(event.resize.w, event.resize.h);
-				  
-				//  break;
+					isActive = !((event.active.gain == 0) && (event.active.state & SDL_APPACTIVE));
+					break;
 				
 				case SDL_KEYUP:
 					this->handleKeyPress (&event.key.keysym,false);
 					break;
 
-				/*case SDL_MOUSEMOTION:
-				  this->Menu->mouseMove (event.button.x, event.button.y);
-				  break;
-				*/
 				case SDL_QUIT:
 				  //shutdownApp (0);
 				  exit(0);
@@ -75,68 +65,70 @@ void Menu::MainLoopMenu()
 				  break;
 			}
 		}
-		
-		// Update the timer
-		//this->render->timer.update ();
 
 		// Draw scene if window is active
 		if (isActive){
 
-				GLint viewport[4];
-					glGetIntegerv (GL_VIEWPORT, viewport);
-					
-					glMatrixMode (GL_PROJECTION);
-					glPushMatrix ();
-					
-					glLoadIdentity ();
-					glOrtho (0, viewport[2], 0, viewport[3], -1, 1);
-					
-					glMatrixMode (GL_MODELVIEW);
-					glLoadIdentity();
-				glMatrixMode (GL_TEXTURE);
-					glLoadIdentity ();
-					glMatrixMode (GL_MODELVIEW);
-					
-					glPushAttrib (GL_ENABLE_BIT | GL_POLYGON_BIT);
-					glDisable (GL_DEPTH_TEST);
-					glDisable (GL_LIGHTING);
-					glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
+			this->start2D();
 
-					glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
+			glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glLoadIdentity ();
+			
+			// aqui podia haver um QUAD qq 2D (como no hud) para meter quadrados e desenhos
+			// se calhar necessitam de activar o controle de DEPTH_TEST
+			
+			// desenhar BRANCO
+			glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 					
-					font->printText (10, 10, "TEXTO %F", 324234);
-					glMatrixMode (GL_PROJECTION);
-						glPopMatrix ();
-						glMatrixMode (GL_MODELVIEW);
-
-			/*
-			dt = this->render->timer.current_time - this->render->timer.last_time;
-			// controlador de teclas, aqui o player mexeu-se
-			this->input->processKeyInput(this->player, this->map);
-
-			// player anim-> actualizar tempo
-			this->player->updateAnimation(this->render->timer.current_time, this->map->getFloorcode(this->player->z*-1, this->player->x*-1));
+			// CUIDADO COM AS COORDENADAS!!! USAR SEMPRE SEMPRE SEMPRE o this->render->windowHeight / this->render->windowWidth / this->tamanho_font
 			
-			// temos de processar o AI dos guardas aqui -> aqui os guardas mexeram-se
-			this->map->processAIguards();
+			// comecar a desenhar a meio, cuidado que isto nao desenha "no meio do ecra", desenha A PARTIR do meio, ou seja vai ficar pra direita
+			this->font->printText (this->render->windowWidth/2,this->render->windowHeight/2,  "Comecer no meio do ecra, desenha pra direita");
+				
+			// desenhar no fundo do ecra
+			this->font->printText (0,0,  "Comecer ah esquerda, fundo do ecra");
 			
-			// temos de processar os tiros, o mapa eh q tem a informacao, aqui podemos actualizar o floorcode dos guardas
-			this->map->processTiros(this->player);
+			// desenhar lá em cima, no canto esquerdo, reparem q eh necessario RETIRAR o tamanho da fonte pq o opengl desenha de baixo para cima,
+			// ptt a fonte vai ser desenhada lá em cima MENOS o tamanho da fonte
+			this->font->printText (0,this->render->windowHeight-this->tamanho_font,  "Comecer ah esquerda, fundo do ecra");
 			
-			// animacoes , dois tempos, o delta e o tempo corrente
-			this->map->updateAnimations(dt,this->render->timer.current_time);
+			this->end2D();
 			
-			// temos de ver se o player passou por cima de algum item e "apanha-lo"
-			this->map->processItems(this->player);
-			
-			// game cycle
-			this->render->gameCycle (this->map, this->player);
-			*/
+			SDL_GL_SwapBuffers ();
 		}
 		
-		// verificar se acabamos o mapa!
-		//if(this->map->finished_map)
-		//	break;
 	}
 }
 
+void Menu::end2D()
+{
+	glMatrixMode (GL_PROJECTION);
+	glPopMatrix ();
+	glMatrixMode (GL_MODELVIEW);	
+}
+
+void Menu::start2D()
+{
+	//GLint viewport[4];
+	//glGetIntegerv (GL_VIEWPORT, viewport);
+	
+	glMatrixMode (GL_PROJECTION);
+	glPushMatrix ();
+	
+	glLoadIdentity ();
+	//glOrtho (0, viewport[2], 0, viewport[3], -1, 1);
+	glOrtho(0,this->render->windowWidth,0,this->render->windowHeight, -1 ,1 );
+	
+	glMatrixMode (GL_MODELVIEW);
+	glLoadIdentity();
+	glMatrixMode (GL_TEXTURE);
+	glLoadIdentity ();
+	glMatrixMode (GL_MODELVIEW);
+	
+	glPushAttrib (GL_ENABLE_BIT | GL_POLYGON_BIT);
+	glDisable (GL_DEPTH_TEST);
+	glDisable (GL_LIGHTING);
+	glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
+	
+	glEnable(GL_TEXTURE_2D);
+}

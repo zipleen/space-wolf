@@ -26,12 +26,8 @@ class Menu
 {
 protected:
 	Rendering *render;
-	static TTFont *font;
-
-	bool keyUpPressed;
-	bool keyDownPressed;
-
-	
+	TTFont *font;
+	int tamanho_font;
 	
 public:
 	Menu(); 
@@ -39,6 +35,8 @@ public:
 	
 	void handleKeyPress (SDL_keysym *key, bool value);
 	void MainLoopMenu();
+	void end2D();
+	void start2D();
 };
 
 #endif
