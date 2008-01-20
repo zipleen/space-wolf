@@ -100,6 +100,10 @@ void Menu::MainLoopMenu()
 			
 			// desenhar lá em cima, no canto esquerdo, reparem q eh necessario RETIRAR o tamanho da fonte pq o opengl desenha de baixo para cima,
 			// ptt a fonte vai ser desenhada lá em cima MENOS o tamanho da fonte
+			if (this->num_menu < 1)
+				this->num_menu = 1;
+			if (this->num_menu > 4)
+				this->num_menu = 4;
 			if (this->num_menu==1)
 			{
 				this->font->printText (this->render->windowWidth/4,this->render->windowHeight/1.2,  "1 - Novo Jogo - aqui");
