@@ -296,10 +296,12 @@ void Guard::animate(const double dt, double dt_cur)
 	}else{
 		// estamos mortos ou vamos morrer
 		if(!this->a_morrer){
+			this->ultima_reaccao = this->dt_cur; // eh a ultima reaccao q ele vai ter ne AHAH :P
 			this->guard->unlinkWeapon();
 			if(Mix_Playing(this->canal_som_levar_na_tromba)!=0)
 				Mix_HaltChannel(this->canal_som_levar_na_tromba);
-			switch(rand()%3+1){
+			this->animacao_morrer =rand()%3+1; 
+			switch(this->animacao_morrer){
 				case 1:
 					this->guard->setAnimation(kBothDeath1);
 					this->s->playSound(this->som_morrer[1],this->z, this->x,this->angulo);
@@ -317,8 +319,26 @@ void Guard::animate(const double dt, double dt_cur)
 			this->guard->_lowerAnim.executar_anim = false;
 			this->guard->_upperAnim.executar_anim = false;
 			this->a_morrer=true;
+			this->guard->animate(dt);
+		}else{
+			if(this->ultima_reaccao+6<this->dt_cur) // 6 segundos depois de morrer
+			{
+				this->a_morrer = true; // morreste por completo
+				switch(this->animacao_morrer){
+					case 1:
+						this->guard->setAnimation(kBothDead1);
+						break;
+					case 2:
+						this->guard->setAnimation(kBothDead2);
+						break;
+					case 3:
+						this->guard->setAnimation(kBothDead3);
+						break;
+				}
+				
+			}else this->guard->animate(dt); // depois de morto nao interessa animar mais
 		}
-		this->guard->animate(dt);
+		
 	}
 }
 
@@ -327,7 +347,7 @@ void Guard::IwannaGoTo(float z,float x)
 	//std::cout << "ur: " << this->ultima_reaccao << " tr:" << this->tempo_reaccao << " dt_cur:" << this->dt_cur << std::endl;
 	if(this->ultima_reaccao+this->tempo_reaccao < this->dt_cur ) // se ja passou o tempo de reaccao, podemos mudar de direccao
 	{
-		std::cout << "vou para novo sitio:" << z << " " <<x << std::endl;
+		//std::cout << "Guard::IwannaGoTo: vou para novo sitio:" << z << " " <<x << std::endl;
 		this->old_go_to_x = this->x;
 		this->old_go_to_z = this->z;
 		

@@ -54,6 +54,7 @@ protected:
 	Md3Weapon *weapon;
 	std::string model_path;
 	std::string weaponpath;
+	int animacao_morrer;
 public:
 	bool modificou_upper_movimento; // com esta a true temos de avaliar o novo movimento "em_disparo"
 	bool em_disparo; // se estivermos em disparo vamos por a animacao do disparo ou nao
