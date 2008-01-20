@@ -16,6 +16,7 @@ Menu::Menu()
 	this->keyEnterPressed = false;
 	this->tamanho_font = 30;
 	this->num_menu = 1;
+	this->menu_to_render = 1;
 	this->font = new TTFont ("data/generis.TTF", this->tamanho_font, 1);
 	this->render = Rendering::GetInstance();
 	
@@ -38,6 +39,45 @@ Menu::Menu()
 	
 }
 
+void Menu::handleMenuHit()
+{
+	switch(this->menu_to_render){
+		case 1:
+			// menu principal, aki temos codigo que controla o que vai acontecer nas varias opcoes do menu 1
+			switch(this->num_menu){
+				case 1: // novo jogo
+					
+					break;
+				case 2:
+					 // escolher mapa
+					
+					break;
+				case 3:
+					// definicoes
+					this->menu_to_render = 3;
+					break;
+				case 4:
+					// ver comandos
+					
+					break;
+				case 5:
+					// back to game
+					
+					break;
+				case 6:
+					// sair
+					
+					break
+					
+			}
+			break;
+	}
+}
+
+void Menu::handleLeftRight()
+{
+	
+}
 
 void Menu::handleKeyPress (SDL_keysym *key, bool value)
 {
@@ -56,19 +96,16 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 			this->num_menu++;
 			break;
 		case SDLK_KP_ENTER:
+		case SDLK_RETURN:
 			this->keyEnterPressed = value;
-			if (num_menu==1)
-			{
-				Game *g;
-				g = new Game("data/maps/v1.map");
-				g->MainLoop();
-				delete g;
-			}
-			
-
+			this->handleMenuHit();
 			break;
+		
+		case SDLK_LEFT:
+		case SDLK_RIGHT:
+			this->handleLeftRight();
 			
-		break;
+			break;
 	}
 }
 

@@ -31,6 +31,7 @@ public:
 	bool keyUpPressed;
 	bool keyDownPressed;
 	int num_menu;
+	int menu_to_render;
 
 protected:
 	TTFont *font;
