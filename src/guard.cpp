@@ -297,11 +297,9 @@ void Guard::animate(const double dt, double dt_cur)
 		// estamos mortos ou vamos morrer
 		if(!this->a_morrer){
 			this->guard->unlinkWeapon();
-			this->guard->_lowerAnim.executar_anim = false;
-			this->guard->_upperAnim.executar_anim = false;
 			if(Mix_Playing(this->canal_som_levar_na_tromba)!=0)
 				Mix_HaltChannel(this->canal_som_levar_na_tromba);
-			switch(rand()%4+1){
+			switch(rand()%3+1){
 				case 1:
 					this->guard->setAnimation(kBothDeath1);
 					this->s->playSound(this->som_morrer[1],this->z, this->x,this->angulo);
@@ -316,7 +314,8 @@ void Guard::animate(const double dt, double dt_cur)
 					this->s->playSound(this->som_morrer[3],this->z, this->x,this->angulo);
 					break;
 			}
-			
+			this->guard->_lowerAnim.executar_anim = false;
+			this->guard->_upperAnim.executar_anim = false;
 			this->a_morrer=true;
 		}
 		this->guard->animate(dt);
