@@ -190,7 +190,8 @@ void Menu::desenharDefinicoes()
 			glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 		}
 		this->font->printText (0,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_definicoes[i-1].c_str());
-	}	
+	}
+	glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 void Menu::desenharMainMenu()
@@ -211,7 +212,8 @@ void Menu::desenharMainMenu()
 			glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 		}
 		this->font->printText (0,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_principal[i-1].c_str());
-	}	
+	}
+	glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 void Menu::mostrar_imagem_controlos()
