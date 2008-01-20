@@ -9,10 +9,11 @@
 
 #include "menu.h"
 
+TTFont *Menu::font;
+
 Menu::Menu()
 {
-	this->font = new TTFont ("data/Vera.ttf", 12, 1);
-
+	Menu::font = new TTFont ("data/Quake.ttf", 30, 1);
 }
 
 
