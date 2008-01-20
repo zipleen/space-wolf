@@ -30,8 +30,12 @@ public:
 	Rendering *render;
 	bool keyUpPressed;
 	bool keyDownPressed;
+	bool keyEnterPressed;
 	int num_menu;
 	int menu_to_render;
+	
+	// configs
+	bool config_fullscreen;
 
 protected:
 	TTFont *font;
@@ -39,6 +43,7 @@ protected:
 	int subir_descer[4];
 	Texture2D *controlos, *background;
 	std::vector<std::string> menu_principal;
+	std::vector<std::string> menu_definicoes;
 
 public:
 	Menu(); 
@@ -48,6 +53,12 @@ public:
 	void MainLoopMenu();
 	void end2D();
 	void start2D();
+	
+	void desenharMainMenu();
+	void desenharDefinicoes();
+	
+	void handleLeftRight(int v);
+	void handleMenuHit();
 };
 
 #endif

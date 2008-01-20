@@ -17,6 +17,11 @@ Menu::Menu()
 	this->tamanho_font = 30;
 	this->num_menu = 1;
 	this->menu_to_render = 1;
+	
+	// configs
+	this->config_fullscreen = false;
+	
+	
 	this->font = new TTFont ("data/generis.TTF", this->tamanho_font, 1);
 	this->render = Rendering::GetInstance();
 	
@@ -37,6 +42,9 @@ Menu::Menu()
 	this->menu_principal.push_back("Voltar ao jogo");
 	this->menu_principal.push_back("Sair");
 	
+	this->menu_definicoes.push_back("Resolução: ");
+	this->menu_definicoes.push_back("Fullscreen: ");
+	this->menu_definicoes.push_back("Voltar atras");
 }
 
 void Menu::handleMenuHit()
@@ -55,6 +63,7 @@ void Menu::handleMenuHit()
 				case 3:
 					// definicoes
 					this->menu_to_render = 3;
+					this->num_menu = 1;
 					break;
 				case 4:
 					// ver comandos
@@ -67,16 +76,50 @@ void Menu::handleMenuHit()
 				case 6:
 					// sair
 					
-					break
+					break;
+					
+			}
+			break;
+		
+		// menu 3
+		case 3:
+			// menu principal, aki temos codigo que controla o que vai acontecer nas varias opcoes do menu 1
+			switch(this->num_menu){
+				case 1: // resolucao mexer
+					
+					break;
+				case 2:
+					// fullscreen
+					
+					break;
+				case 3:
+					// back to main menu
+					this->menu_to_render = 1;
+					break;
 					
 			}
 			break;
 	}
 }
 
-void Menu::handleLeftRight()
+// tecla == 1 : esquerda | tecla == 2: direita
+void Menu::handleLeftRight(int tecla)
 {
-	
+	// se tivermos no menu 3
+	if(this->menu_to_render==3){
+		switch(this->num_menu){
+			case 1:
+				
+				break;
+			case 2:
+				if(this->config_fullscreen)
+					this->config_fullscreen=false;
+				else this->config_fullscreen = true;
+				break;
+				
+		}
+		
+	}
 }
 
 void Menu::handleKeyPress (SDL_keysym *key, bool value)
@@ -102,13 +145,59 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 			break;
 		
 		case SDLK_LEFT:
+			this->handleLeftRight(1);
+			
+			break;
 		case SDLK_RIGHT:
-			this->handleLeftRight();
+			this->handleLeftRight(2);
 			
 			break;
 	}
 }
 
+void Menu::desenharDefinicoes()
+{
+	// esta mexe com o vector menu_definicoes
+	// eh preciso meter codigo para cada linha por causa da resolucao e fullscreen
+	if (this->num_menu < 1)
+		this->num_menu = 3;
+	if (this->num_menu > 3)
+		this->num_menu = 1;
+	
+	for(int i = 1; i<=this->menu_definicoes.size(); i++)
+	{
+		if(i==this->num_menu)
+		{
+			glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
+		}
+		else
+		{
+			glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
+		}
+		this->font->printText (0,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_definicoes[i-1].c_str());
+	}	
+}
+
+void Menu::desenharMainMenu()
+{
+	if (this->num_menu < 1)
+		this->num_menu = 6;
+	if (this->num_menu > 6)
+		this->num_menu = 1;
+	
+	for(int i = 1; i<=this->menu_principal.size(); i++)
+	{
+		if(i==this->num_menu)
+		{
+			glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
+		}
+		else
+		{
+			glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
+		}
+		this->font->printText (0,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_principal[i-1].c_str());
+	}	
+}
 
 void Menu::MainLoopMenu()
 {
@@ -180,22 +269,21 @@ void Menu::MainLoopMenu()
 			
 			// desenhar lá em cima, no canto esquerdo, reparem q eh necessario RETIRAR o tamanho da fonte pq o opengl desenha de baixo para cima,
 			// ptt a fonte vai ser desenhada lá em cima MENOS o tamanho da fonte
-			if (this->num_menu < 1)
-				this->num_menu = 6;
-			if (this->num_menu > 6)
-				this->num_menu = 1;
-			
-			for(int i = 1; i<=this->menu_principal.size(); i++)
-			{
-				if(i==this->num_menu)
-				{
-					glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
-				}
-				else
-				{
-					glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
-				}
-				this->font->printText (0,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_principal[i-1].c_str());
+			switch(this->menu_to_render){
+				case 1:
+					this->desenharMainMenu();
+					break;
+				case 2:
+					// mapas
+					break;
+				case 3:
+					// definicoes
+					this->desenharDefinicoes();
+					break;
+				case 4:
+					// mostrar imagem
+					
+					break;
 			}
 
 			this->end2D();
