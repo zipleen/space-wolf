@@ -17,6 +17,7 @@
 #include <cmath>
 #include <SDL.h>
 #include <SDL_mixer.h>
+#include "fisica.h"
 
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795
@@ -37,7 +38,7 @@ public:
 	int audio_channels;
 	int audio_buffers;
 	
-	float player_x, player_z;
+	float player_x, player_z, player_ang;
 	
 	Sound(); 
 	virtual ~Sound(){};
@@ -61,7 +62,7 @@ public:
 	void shutdown();
 	Mix_Chunk* loadSound(std::string path);
 	int playSoundDirect(Mix_Chunk *s);
-	int playSound(Mix_Chunk *s, float obj_x, float obj_y);
+	int playSound(Mix_Chunk *s, float obj_x, float obj_y, float ang);
 };
 
 #endif

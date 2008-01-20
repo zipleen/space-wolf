@@ -17,6 +17,8 @@
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795
 #endif
+#define RAD(x)          (M_PI*(x)/180)
+#define GRAUS(x)        (180*(x)/M_PI)
 
 class Fisica
 {
@@ -32,6 +34,7 @@ public:
 	virtual ~Fisica(){};
 	static bool clip_mode;
 	
+	static float AngleBetween2Vect(float x1, float y1,float ang1, float x2, float y2, float ang2);
 	static float Angle(float x1, float y1, float x2, float y2);
 	static void setGuardas(std::vector<std::vector <bool> > map){Fisica::guardas = map;};
 	static void setMap(std::vector<std::vector <bool> > map, float cube_size){Fisica::mapa = map;Fisica::cube_size = cube_size;};

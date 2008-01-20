@@ -50,6 +50,7 @@ Guard::Guard()
 	this->canal_som_passos[2]=0;
 	this->canal_som_passos[3]=0;
 	this->canal_som_passos[4]=0;
+	this->canal_som_levar_na_tromba=0;
 }
 
 void Guard::loadModel()
@@ -153,7 +154,7 @@ void Guard::shootGun()
 		this->ultimo_disparo = this->dt_cur;
 		if(Mix_Playing(this->som_disparo_arma)!=0)
 			Mix_HaltChannel(this->som_disparo_arma);
-		this->som_disparo_arma = this->s->playSound(this->som_arma,this->z,this->x);
+		this->som_disparo_arma = this->s->playSound(this->som_arma,this->z,this->x, this->angulo);
 		this->guard->setAnimation (kTorsoAttack);
 	}
 }
@@ -165,7 +166,7 @@ void Guard::playSomPassos()
 	if(this->canal_som_passos[this->som_passo_corrente]==0 || Mix_Playing(this->canal_som_passos[this->som_passo_corrente])==0){
 		//std::cout << "som corrente "<< this->z << " " << this->x << ": " << this->som_passo_corrente << std::endl;
 		// ja nao toca
-		this->canal_som_passos[this->som_passo_corrente] = this->s->playSound(this->som_passos[this->som_passo_corrente], this->z, this->x);
+		this->canal_som_passos[this->som_passo_corrente] = this->s->playSound(this->som_passos[this->som_passo_corrente], this->z, this->x, this->angulo);
 		if(this->som_passo_corrente==4)
 			this->som_passo_corrente=1;
 		else this->som_passo_corrente++;
@@ -183,6 +184,10 @@ void Guard::takeHealth(int valor)
 		int orig_x = (int)(((this->z)/(Fisica::cube_size*2.0f))+0.5);
 		int orig_y = (int)(((this->x)/(Fisica::cube_size*2.0f))+0.5);
 		Fisica::guardas[orig_x][orig_y] = false;
+	}else{
+		if(this->canal_som_levar_na_tromba==0 || Mix_Playing(this->canal_som_levar_na_tromba)==0){
+			this->canal_som_levar_na_tromba=this->s->playSound(this->som_levar_na_boca, this->z, this->x,this->angulo);
+		}
 	}
 }
 
@@ -245,7 +250,7 @@ void Guard::animate(const double dt, double dt_cur)
 			if(this->vai_para_alerta){
 				this->vai_para_alerta=false;
 				this->alerta=true;
-				this->s->playSound(this->som_alerta, this->z, this->x);
+				this->s->playSound(this->som_alerta, this->z, this->x,this->angulo);
 				this->velocidade = this->velocidade_correr;
 			}else if(this->guardar_em_movimento){ // se nao tamos em alerta temos de ver se tamos em movimento, se tamos, temos de o mover
 				//std::cout << "vamos andar: " << this->z << " " << this->x << std::endl;
@@ -294,19 +299,21 @@ void Guard::animate(const double dt, double dt_cur)
 			this->guard->unlinkWeapon();
 			this->guard->_lowerAnim.executar_anim = false;
 			this->guard->_upperAnim.executar_anim = false;
+			if(Mix_Playing(this->canal_som_levar_na_tromba)!=0)
+				Mix_HaltChannel(this->canal_som_levar_na_tromba);
 			switch(rand()%4+1){
 				case 1:
 					this->guard->setAnimation(kBothDeath1);
-					this->s->playSound(this->som_morrer[1],this->z, this->x);
+					this->s->playSound(this->som_morrer[1],this->z, this->x,this->angulo);
 					break;
 				case 2:
 					this->guard->setAnimation(kBothDeath2);
-					this->s->playSound(this->som_morrer[2],this->z, this->x);
+					this->s->playSound(this->som_morrer[2],this->z, this->x,this->angulo);
 					break;
 				default:
 				case 3:
 					this->guard->setAnimation(kBothDeath3);
-					this->s->playSound(this->som_morrer[3],this->z, this->x);
+					this->s->playSound(this->som_morrer[3],this->z, this->x,this->angulo);
 					break;
 			}
 			

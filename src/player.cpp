@@ -74,6 +74,7 @@ void Player::setInitialPosition(int x, int y)
 	this->old_z = this->z;
 	this->s->player_z = this->z;
 	this->s->player_x = this->x;
+	this->s->player_ang = this->angulo;
 }
 
 void Player::SetCorrer()
@@ -303,6 +304,7 @@ void Player::calculateSpeed()
 {
 	this->s->player_z = this->z*-1;
 	this->s->player_x = this->x*-1;
+	this->s->player_ang = this->angulo;
 	
 	if((this->dt_cur-this->old_ultimo_andar)==0)
 		return;

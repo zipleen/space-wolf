@@ -47,6 +47,8 @@ protected:
 	Mix_Chunk *som_arma;
 	Mix_Chunk *som_alerta;
 	int som_disparo_arma;
+	Mix_Chunk *som_levar_na_boca;
+	int canal_som_levar_na_tromba;
 	
 	Md3Player *guard;
 	Md3Weapon *weapon;

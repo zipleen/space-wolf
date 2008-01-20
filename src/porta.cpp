@@ -68,7 +68,7 @@ void Porta::startOpenDoor()
 		this->porta_a_abrir=true;
 		this->porta_a_fechar = true;
 		this->last_dt=0;
-		this->canal_porta_abrir = this->s->playSound(this->som_porta_abrir, this->y*this->cube_size*2, this->x*this->cube_size*2);
+		this->canal_porta_abrir = this->s->playSound(this->som_porta_abrir, this->y*this->cube_size*2, this->x*this->cube_size*2,0);
 	}
 }
 
@@ -81,7 +81,7 @@ void Porta::closedoor()
 		this->open=false;
 		Fisica::updatePortas(this->y, this->x, false);
 		// codigo para actualizar a porta a "abrir" em opengl?! tempo?!
-		this->canal_porta_fechar = this->s->playSound(this->som_porta_fechar, this->y*this->cube_size*2, this->x*this->cube_size*2);
+		this->canal_porta_fechar = this->s->playSound(this->som_porta_fechar, this->y*this->cube_size*2, this->x*this->cube_size*2,0);
 	}
 }
 

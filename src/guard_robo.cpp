@@ -34,11 +34,15 @@ Guard_Robo::Guard_Robo(int z, int x, bool em_movimento, GLfloat angulo) : Guard(
 	this->som_morrer[2] = this->s->loadSound("data\\models\\sounds\\robot\\death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data\\models\\sounds\\robot\\death3.wav");
 	this->som_arma = this->s->loadSound("data\\models\\sounds\\minigun\\minigun_fire.wav");
+	this->som_alerta = this->s->loadSound("data\\models\\sounds\\robot\\alert.wav");
+	this->som_levar_na_boca = this->s->loadSound("data\\models\\sounds\\robot\\pain100_1.wav");
 #else
 	this->som_morrer[1] = this->s->loadSound("data/models/sounds/robot/death1.wav");
 	this->som_morrer[2] = this->s->loadSound("data/models/sounds/robot/death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data/models/sounds/robot/death3.wav");
 	this->som_arma = this->s->loadSound("data/models/sounds/minigun/minigun_fire.wav");
+	this->som_alerta = this->s->loadSound("data/models/sounds/robot/alert.wav");
+	this->som_levar_na_boca = this->s->loadSound("data/models/sounds/robot/pain100_1.wav");
 #endif	
 	this->codigo_arma_que_guarda_tem = 3;
 }

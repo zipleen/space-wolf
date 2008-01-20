@@ -15,6 +15,30 @@ std::vector<std::vector <bool> > Fisica::guardas;
 float Fisica::cube_size;
 bool Fisica::clip_mode;
 
+/* se tivermos dois pontos e 2 angulos (ou seja 1 ponto com um angulo pode ser um vector director), podemos achar os angulos entre eles */
+float Fisica::AngleBetween2Vect(float x1, float y1,float ang1, float x2, float y2, float ang2)
+{
+	// achar vector 1 e 2
+	float vx1 = x1*cos(RAD(ang1));
+	float vy1 = y1*sin(RAD(ang1));
+	float vx2 = x2*cos(RAD(ang2));
+	float vy2 = y2*sin(RAD(ang2));
+	
+	float cosine = (vx1 * vx2 + vy1 * vy1) / (sqrt( (vx1*vx1) + (vy1*vy1) ) * sqrt( (vx2*vx2) + (vy2*vy2) ));
+	// rounding errors might make dotproduct out of range for cosine
+	if (cosine > 1) cosine = 1;
+	else if (cosine < -1) cosine = -1;
+	
+	if ((vx1 * vy2 - vy1 * vx2) < 0)
+		return GRAUS(-acos(cosine));
+	else
+		return GRAUS(acos(cosine));
+}
+
+/*
+  tenho de dar credito a quem merece, apos 6 horas de andar as voltas com vectores e contas e altos filmes
+ encontrei a solucao aqui: http://www.allegro.cc/forums/thread/591460 , ultimo post
+ */
 float Fisica::Angle(float x1, float y1, float x2, float y2)
 {
 	double opp;

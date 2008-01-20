@@ -34,11 +34,14 @@ Guard_Boss1::Guard_Boss1(int z, int x, bool em_movimento, GLfloat angulo) : Guar
 	this->som_morrer[2] = this->s->loadSound("data\\models\\sounds\\boss\\death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data\\models\\sounds\\boss\\death3.wav");
 	this->som_arma = this->s->loadSound("data\\models\\sounds\\minigun\\minigun_fire.wav");
+	this->som_alerta = this->s->loadSound("data\\models\\sounds\\boss\\teste.wav");
+	this->som_levar_na_boca = this->s->loadSound("data\\models\\sounds\\boss\\pain75_1.wav");
 #else
 	this->som_morrer[1] = this->s->loadSound("data/models/sounds/boss/death1.wav");
 	this->som_morrer[2] = this->s->loadSound("data/models/sounds/boss/death2.wav");
 	this->som_morrer[3] = this->s->loadSound("data/models/sounds/boss/death3.wav");
 	this->som_arma = this->s->loadSound("data/models/sounds/minigun/minigun_fire.wav");
+	this->som_alerta = this->s->loadSound("data/models/sounds/boss/pain75_1.wav");
 #endif	
 	this->codigo_arma_que_guarda_tem = 4;
 }
