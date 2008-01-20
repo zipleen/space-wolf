@@ -20,11 +20,14 @@
 
 #include <SDL.h>
 #include "rendering.h"
+#include "font/Font.h"
 
 class Menu
 {
 protected:
 	Rendering *render;
+	static TTFont *font;
+	
 	
 public:
 	Menu(); 
