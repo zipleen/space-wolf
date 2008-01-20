@@ -27,12 +27,17 @@ class Menu
 protected:
 	Rendering *render;
 	static TTFont *font;
+
+	bool keyUpPressed;
+	bool keyDownPressed;
+
 	
 	
 public:
 	Menu(); 
 	virtual ~Menu(){};
 	
+	void handleKeyPress (SDL_keysym *key, bool value);
 	void MainLoopMenu();
 };
 
