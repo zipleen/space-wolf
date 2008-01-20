@@ -47,18 +47,6 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 			this->num_menu++;
 			break;
 			
-		case SDLK_1:
-			this->num_menu = 1;
-			break;
-		case SDLK_2:
-			this->num_menu = 2;
-			break;
-		case SDLK_3:
-			this->num_menu = 3;
-			break;
-		case SDLK_4:
-			this->num_menu = 4;
-			break;
 		break;
 	}
 }
@@ -122,44 +110,74 @@ void Menu::MainLoopMenu()
 			// desenhar lá em cima, no canto esquerdo, reparem q eh necessario RETIRAR o tamanho da fonte pq o opengl desenha de baixo para cima,
 			// ptt a fonte vai ser desenhada lá em cima MENOS o tamanho da fonte
 			if (this->num_menu < 1)
-				this->num_menu = 4;
-			if (this->num_menu > 4)
+				this->num_menu = 6;
+			if (this->num_menu > 6)
 				this->num_menu = 1;
 			if (this->num_menu==1)
 			{
 				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
-				this->font->printText (this->render->windowWidth/4,this->render->windowHeight/1.2,  "1 - Novo Jogo");
+				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
 				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
-				this->font->printText (this->render->windowWidth/6,this->render->windowHeight/1.7,  "2 - Seleccionar mapa");
-				this->font->printText (this->render->windowWidth/4.2,this->render->windowHeight/3,  "3 - Definicoes");
-				this->font->printText (this->render->windowWidth/3,this->render->windowHeight/9,  "4 - Sair");
+				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
+				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
+				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
+				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
+				this->font->printText (0,this->render->windowHeight/11,  "Sair");
 
 			}
 			if (this->num_menu==2)
 			{
-				this->font->printText (this->render->windowWidth/4,this->render->windowHeight/1.2,  "1 - Novo Jogo");
+				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
 				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
-				this->font->printText (this->render->windowWidth/6,this->render->windowHeight/1.7,  "2 - Seleccionar mapa");
+				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
 				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
-				this->font->printText (this->render->windowWidth/4.2,this->render->windowHeight/3,  "3 - Definicoes");
-				this->font->printText (this->render->windowWidth/3,this->render->windowHeight/9,  "4 - Sair");
+				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
+				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
+				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
+				this->font->printText (0,this->render->windowHeight/11,  "Sair");
 			}
 			if (this->num_menu==3)
 			{
-				this->font->printText (this->render->windowWidth/4,this->render->windowHeight/1.2,  "1 - Novo Jogo");
-				this->font->printText (this->render->windowWidth/6,this->render->windowHeight/1.7,  "2 - Seleccionar mapa");
+				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
+				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
 				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
-				this->font->printText (this->render->windowWidth/4.2,this->render->windowHeight/3,  "3 - Definicoes");
+				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
 				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
-				this->font->printText (this->render->windowWidth/3,this->render->windowHeight/9,  "4 - Sair");
+				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
+				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
+				this->font->printText (0,this->render->windowHeight/11,  "Sair");
 			}
 			if (this->num_menu==4)
 			{
-				this->font->printText (this->render->windowWidth/4,this->render->windowHeight/1.2,  "1 - Novo Jogo");
-				this->font->printText (this->render->windowWidth/6,this->render->windowHeight/1.7,  "2 - Seleccionar mapa");
-				this->font->printText (this->render->windowWidth/4.2,this->render->windowHeight/3,  "3 - Definicoes");
+				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
+				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
+				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
 				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
-				this->font->printText (this->render->windowWidth/3,this->render->windowHeight/9,  "4 - Sair");
+				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
+				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
+				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
+				this->font->printText (0,this->render->windowHeight/11,  "Sair");
+			}
+			if (this->num_menu==5)
+			{
+				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
+				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
+				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
+				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
+				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
+				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
+				glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
+				this->font->printText (0,this->render->windowHeight/11,  "Sair");
+			}
+			if (this->num_menu==6)
+			{
+				this->font->printText (0,this->render->windowHeight/1.5,  "Novo Jogo");
+				this->font->printText (0,this->render->windowHeight/1.8,  "Seleccionar mapa");
+				this->font->printText (0,this->render->windowHeight/2.3,  "Definicoes");
+				this->font->printText (0,this->render->windowHeight/3.2,  "Ver comandos");
+				this->font->printText (0,this->render->windowHeight/5.1,  "Voltar ao jogo");
+				glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
+				this->font->printText (0,this->render->windowHeight/11,  "Sair");
 			}
 			
 			this->end2D();
