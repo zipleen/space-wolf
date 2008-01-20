@@ -33,6 +33,10 @@ void Input::handleKeyPress (SDL_keysym *key, bool value)
 {
 	switch(key->sym)
 	{
+		case SDLK_LALT:
+		case SDLK_RALT:
+			this->keyRunPressed = value;
+			break;
 		case SDLK_LCTRL:
 		case SDLK_RCTRL:
 			this->keyFirePressed = value;
@@ -177,4 +181,7 @@ void Input::processKeyInput(Player *p, Map *m)
 			if(!p->shootGun())
 				this->keyFireHoldPressed=false;
 	}
+	if(this->keyRunPressed){
+		p->SetCorrer(true);
+	}else p->SetCorrer(false);
 }

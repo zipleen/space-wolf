@@ -77,8 +77,7 @@ public:
 	bool tenhoArma(int a);
 	
 	// accoes feitas pelo jogador
-	void SetAndar();
-	void SetCorrer();
+	void SetCorrer(bool v);
 	void setGun(int tipo);
 	bool shootGun();
 	

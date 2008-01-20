@@ -53,7 +53,7 @@ Player::Player()
 	this->canal_som_passos[3]=0;
 	this->canal_som_passos[4]=0;
 	this->resetPlayer();
-	this->SetAndar();
+	this->SetCorrer(false);
 }
 
 void Player::draw()
@@ -78,14 +78,11 @@ void Player::setInitialPosition(int x, int y)
 	this->s->player_ang = this->angulo;
 }
 
-void Player::SetCorrer()
+void Player::SetCorrer(bool v)
 {
-	this->velocidade = 1.7;
-}
-
-void Player::SetAndar()
-{
-	this->velocidade = 1.3;
+	if(v)
+		this->velocidade = 2.2;
+	else this->velocidade = 1.3;
 }
 
 void Player::resetPlayer()
