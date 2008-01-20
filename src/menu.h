@@ -23,16 +23,23 @@
 #include "rendering.h"
 #include "font/Font.h"
 #include "Md3/TextureManager.h"
+#include "game.h"
 
 class Menu
 {
 public:
 	Rendering *render;
+	Game *game;
+	
 	bool keyUpPressed;
 	bool keyDownPressed;
 	bool keyEnterPressed;
 	int num_menu;
 	int menu_to_render;
+	int numero_mapa;
+	
+	bool new_game;
+	bool game_is_running;
 	
 	// configs
 	bool config_fullscreen;
@@ -51,6 +58,7 @@ public:
 	virtual ~Menu(){};
 	
 	void handleKeyPress (SDL_keysym *key, bool value);
+	void GameLoop();
 	void MainLoopMenu();
 	void end2D();
 	void start2D();

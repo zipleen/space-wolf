@@ -17,7 +17,12 @@ Menu::Menu()
 	this->tamanho_font = 30;
 	this->num_menu = 1;
 	this->menu_to_render = 1;
+	this->numero_mapa = 1;
 	
+	this->game = NULL;
+	
+	this->game_is_running = false; // o jogo normalmente ta a correr
+	this->new_game = false; // se tiver new game entao o ciclo vai iniciar e vai pro novo jogo
 	
 	// configs
 	this->config_fullscreen = false;
@@ -62,7 +67,10 @@ void Menu::handleMenuHit()
 			// menu principal, aki temos codigo que controla o que vai acontecer nas varias opcoes do menu 1
 			switch(this->num_menu){
 				case 1: // novo jogo
-					
+					if(this->game!=NULL)
+						delete this->game;
+					this->new_game = true;
+					this->game_is_running = true; // vamos quebrar o ciclo
 					break;
 				case 2:
 					 // escolher mapa
@@ -80,7 +88,7 @@ void Menu::handleMenuHit()
 					break;
 				case 5:
 					// back to game
-					
+					this->game_is_running = true;
 					break;
 				case 6:
 					// sair
@@ -239,13 +247,72 @@ void Menu::mostrar_imagem_controlos()
 	glEnable(GL_LIGHTING);
 }
 
+void Menu::GameLoop()
+{
+
+	for(;;)
+	{
+		this->MainLoopMenu();
+		if(this->new_game){
+			// novo jogo, vamos cria-lo
+			// mostrar ecra de loading
+			
+			this->game = new Game("data/maps/mapa1.map");
+			switch(this->game->MainLoop()){
+				case 1:
+					// o mapa acabou, mapa seguinte por favor
+					this->numero_mapa++;
+					this->game_is_running = true;
+					break;
+				case 2:
+					// player morreu, vamos continuar no mm mapa
+					this->game_is_running = true;
+					this->new_game = true;
+					break;
+				case 3:
+					// pausa
+					this->game_is_running = false;
+					break;
+					
+			}
+			
+		}else{
+			// queremos entao continuar o jogo
+			if(this->game==NULL)
+				this->game_is_running = false;
+			else {
+				switch(this->game->MainLoop()){
+					case 1:
+						// o mapa acabou, mapa seguinte por favor
+						this->numero_mapa++;
+						this->game_is_running = true;
+						break;
+					case 2:
+						// player morreu, vamos continuar no mm mapa
+						this->game_is_running = true;
+						this->new_game = true;
+						break;
+					case 3:
+						// pausa
+						this->game_is_running = false;
+						break;
+						
+				}	
+			}
+		}
+	}
+	
+}
+
 void Menu::MainLoopMenu()
 {
 	bool isActive = true;
 	//double dt;
 	// Loop until the end
-	while (1)
+	for(;;)
 	{
+		if(this->game_is_running) return; // sair fora do mainmenu se for para correr o jogo
+		
 		SDL_Event event;
 
 		// Parse SDL event
@@ -263,8 +330,7 @@ void Menu::MainLoopMenu()
 					break;
 
 				case SDL_QUIT:
-				  //shutdownApp (0);
-				  exit(0);
+				  this->shutdown();
 				  break;
 
 				default:
