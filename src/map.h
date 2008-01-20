@@ -99,7 +99,7 @@ public:
 	
 	// accoes
 	void processTiros(Player *p);
-	void processAIguards();
+	void processAIguards(Player *p);
 	
 	// portas
 	void openDoor(Player *p);

@@ -34,11 +34,55 @@ Map::Map()
 }
 
 /* processar eventos */
-void Map::processAIguards()
+void Map::processAIguards(Player *p)
 {
 	for(int i=0;i<this->guardas.size();i++){
 		if(!this->guardas[i]->morto){
-			this->guardas[i]->nextMove();
+			/*if(!this->guardas[i]->alerta){
+				// se nao esta em alerta, vamos ver se ele pode ou nao ficar em alerta
+				// de modo visual (o modo sonoro eh no processTiros)
+				// para isso simplesmente vamos ver se os guardas podem "ver" o utilizador
+				// 1- vamos ver a posicao do guarda, se ele tiver numa posicao de poder ver vamos processa-lo
+				//	  - nos Z : entre 270 e 90 (270 && 360 || 0 && 90) -> Guarda>player
+				//	  - nos Z : entre 90 e 270 (90 && 270) -> Guarda < Player
+				//    - nos X : entre 0 e 180 (0 && 180) -> Guarda > Player
+				//    - nos X : entre 180 e 0 (180 && 0) -> Guarda < Player
+				if(this->guardas[i]->angulo > 90 && this->guardas[i]->angulo <= 270){
+					// segundo caso, Zguarda < Zplayer
+					if(this->guardas[i]->angulo > 0 && this->guardas[i]->angulo <=180){
+						// terceiro caso, Xguarda > Xplayer
+						if(this->guardas[i]->z < (p->z*-1) && this->guardas[i]->x > (p->x*-1)){
+						   // verificar se fisica deixa "ver" o meu player
+						   if(Fisica::canIgoThere(this->guardas[i]->z*-1,this->guardas[i]->x*-1, p->z, p->x))
+							   this->guardas[i]->vai_para_alerta = true;
+						}
+					}else{
+						// quarto caso, Xguarda < Xplayer
+						if(this->guardas[i]->z < (p->z*-1) && this->guardas[i]->x < (p->x*-1)){
+							if(Fisica::canIgoThere(this->guardas[i]->z*-1,this->guardas[i]->x*-1, p->z, p->x))
+								this->guardas[i]->vai_para_alerta = true;
+						}
+					}
+				}else{
+					// primeiro caso, Zguarda > Zplayer
+					if(this->guardas[i]->angulo > 0 && this->guardas[i]->angulo <=180){
+						// terceiro caso, Xguarda > Xplayer
+						if(this->guardas[i]->z > (p->z*-1) && this->guardas[i]->x > (p->x*-1)){
+							// verificar se fisica deixa "ver" o meu player
+							if(Fisica::canIgoThere(this->guardas[i]->z*-1,this->guardas[i]->x*-1, p->z, p->x))
+								this->guardas[i]->vai_para_alerta = true;
+						}
+					}else{
+						// quarto caso, Xguarda < Xplayer
+						if(this->guardas[i]->z > (p->z*-1) && this->guardas[i]->x < (p->x*-1)){
+							if(Fisica::canIgoThere(this->guardas[i]->z*-1,this->guardas[i]->x*-1, p->z, p->x))
+								this->guardas[i]->vai_para_alerta = true;
+						}
+					}
+					
+				}
+			}*/
+			this->guardas[i]->nextMove(p->z, p->x);
 		}
 	}
 }

@@ -115,9 +115,14 @@ void Guard::setWalk(bool v){
 	}
 }
 
-void Guard::nextMove()
+void Guard::nextMove(float p_z, float p_x)
 {
 	if(this->alerta){
+		// olhar para o jogador
+
+		this->angulo=Fisica::Angle(this->x*-1,this->z*-1 ,p_x ,p_z);
+		//std::cout << "eu: Z: " << this->z << " X:" << this->x << " p: Z:" << p_z << " X:" << p_x << " ang:" << this->angulo<<std::endl;
+		
 		//this->GoFront();
 		switch(rand()%4+1){
 			case 1:
@@ -130,8 +135,7 @@ void Guard::nextMove()
 				this->GoFront();
 				break;
 			case 4:
-				
-				//this->GoStraffLeft();
+				this->GoBack();
 				break;
 		}
 	   this->shootGun();
@@ -192,19 +196,6 @@ void Guard::takeHealth(GLfloat z, GLfloat x, int valor_arma)
 	}else this->takeHealth(100);
 }
 
-float Angle(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
-{
-	float cosine = (x1 * x2 + y1 * y2) / (sqrt(x1*x1 + y1*y1) * sqrt(x2*x2 + y2*y2));
-	// rounding errors might make dotproduct out of range for cosine
-	if (cosine > 1) cosine = 1;
-	else if (cosine < -1) cosine = -1;
-	
-	if ((x1 * y2 - y1 * x2) < 0)
-		return -acos(cosine);
-	else
-		return acos(cosine);
-}
-
 void Guard::normaliza(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat *nx, GLfloat *ny)
 {
 	float vx = x2-x1;
@@ -261,14 +252,13 @@ void Guard::animate(const double dt, double dt_cur)
 				this->GoFront();
 			}
 		}else{
-			// temos de pedir ao AI para saber o que fazer
+			// o AI ja vai fazer coisas la em cima
 			
 		}
 		
 		// se ja passou tempo suficiente para interpolarmos as animacoes...
 		if(this->dt_cur+0.01>this->ultimo_andar){
 			if(this->old_x!=this->x || this->old_z!=this->z){
-				std::cout << "ja passou tempo suficiente! oldx: " << this->old_x << " x:" << this->x << " oldZ: " << this->old_z << " z:" << this->z << std::endl;
 				// esta a andar
 				if(!this->em_movimento){
 					this->guard->setAnimation (kLegsWalk);
@@ -339,8 +329,10 @@ void Guard::IwannaGoTo(float z,float x)
 		this->go_to_x = x;
 		this->ultima_reaccao=this->dt_cur;
 		
-		// calcular novo angulo para onde ele quer ir
-		std::cout <<"angulo:" << GRAUS(Angle(this->go_to_z, this->go_to_x, this->old_go_to_z,this->old_go_to_x)) << std::endl;
+		// tu nao te podes virar, tu queres sempre que o angulo esteja virado para o player!!!
+		//float an = Fisica::Angle(this->go_to_x, this->go_to_z, this->old_go_to_x, this->old_go_to_z);
+		//if(an!=-1)
+		//	this->angulo=an;
 	}
 	
 }
@@ -378,6 +370,7 @@ float Guard::MoveTest()
 	   return 1;
 }
 
+/* na realidade ele nao vai fazer straff, ele vai andar pra frente e virar pra esquerda */
 void Guard::GoStraffLeft()
 {
 	GLfloat nx,nz;
@@ -385,8 +378,8 @@ void Guard::GoStraffLeft()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x*-1)+sin(RAD(-this->angulo+270))*this->velocidade/this->tempo_reaccao;
-	nz=(this->z)+cos(RAD(this->angulo+270))*this->velocidade/this->tempo_reaccao;
+	nx=(this->x*-1)+sin(RAD(-this->angulo+315))*this->velocidade/this->tempo_reaccao;
+	nz=(this->z)+cos(RAD(this->angulo+315))*this->velocidade/this->tempo_reaccao;
 	
 	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx, true) ){
 		this->IwannaGoTo(nz, nx*-1);
@@ -400,8 +393,8 @@ void Guard::GoStraffRight()
 	move = this->MoveTest();
 	if(move==0)
 		return;
-	nx=(this->x*-1)+sin(RAD(-this->angulo+90))*this->velocidade/this->tempo_reaccao;
-	nz=(this->z)+cos(RAD(this->angulo+90))*this->velocidade/this->tempo_reaccao;
+	nx=(this->x*-1)+sin(RAD(-this->angulo+45))*this->velocidade/this->tempo_reaccao;
+	nz=(this->z)+cos(RAD(this->angulo+45))*this->velocidade/this->tempo_reaccao;
 
 	if( Fisica::canIgoThere(this->z*-1, this->x*-1, nz*-1, nx, true) ){
 		this->IwannaGoTo(nz, nx*-1);

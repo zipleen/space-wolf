@@ -80,11 +80,11 @@ void Game::MainLoop()
 			// player anim-> actualizar tempo
 			this->player->updateAnimation(this->render->timer.current_time, this->map->getFloorcode(this->player->z*-1, this->player->x*-1));
 			
-			// temos de processar o AI dos guardas aqui -> aqui os guardas mexeram-se
-			this->map->processAIguards();
-			
 			// temos de processar os tiros, o mapa eh q tem a informacao, aqui podemos actualizar o floorcode dos guardas
 			this->map->processTiros(this->player);
+			
+			// temos de processar o AI dos guardas aqui -> aqui os guardas mexeram-se
+			this->map->processAIguards(this->player);
 			
 			// animacoes , dois tempos, o delta e o tempo corrente
 			this->map->updateAnimations(dt,this->render->timer.current_time);

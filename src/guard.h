@@ -110,7 +110,7 @@ public:
 	void IwannaGoTo(float z,float x);
 	
 	/* AI ?! */
-	void nextMove();
+	void nextMove(float z, float x);
 	void normaliza(float x1, float y1, float x2, float y2, float *nx, float *ny);
 	
 	void shootGun();
