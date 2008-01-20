@@ -511,42 +511,6 @@
 					RelativePath="..\input.h"
 					>
 				</File>
-				<Filter
-					Name="camera"
-					>
-					<File
-						RelativePath="..\camera\glCamera.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\camera\glCamera.h"
-						>
-					</File>
-					<File
-						RelativePath="..\camera\glPoint.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\camera\glPoint.h"
-						>
-					</File>
-					<File
-						RelativePath="..\camera\glQuaternion.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\camera\glQuaternion.h"
-						>
-					</File>
-					<File
-						RelativePath="..\camera\glVector.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\camera\glVector.h"
-						>
-					</File>
-				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
