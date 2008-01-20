@@ -216,7 +216,7 @@ void Porta::animate(const double dt,const double dt_cur)
 			this->last_dt = dt-0.01;
 		if(this->last_dt+0.01 >= dt){
 			// subir um bocadinho
-			this->altura+=0.30;
+			this->altura+=0.80;
 			// actualizar o ultimo dt
 			this->last_dt = dt;
 			

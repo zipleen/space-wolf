@@ -105,7 +105,7 @@ void Map::processAIguards(Player *p)
 				}*/
 				// a approach de cima eh mt bonita mas seleciona so UM QUADRANTE, eu quero sempre dois. vamos tentar outra vez diferente
 				//std::cout << "ang:" << Fisica::AngleBetweenVectandPoint(this->guardas[i]->z*-1, this->guardas[i]->x*-1,this->guardas[i]->angulo ,p->z ,p->x) << std::endl;
-				std::cout <<std::endl << "vejo-te:" << Fisica::canIgoThere(this->guardas[i]->z*-1, this->guardas[i]->x*-1,p->z ,p->x) << std::endl;
+				//std::cout <<std::endl << "vejo-te:" << Fisica::canIgoThere(this->guardas[i]->z*-1, this->guardas[i]->x*-1,p->z ,p->x) << std::endl;
 			}
 			this->guardas[i]->nextMove(p->z, p->x);
 		}
@@ -114,6 +114,8 @@ void Map::processAIguards(Player *p)
 
 void Map::processTiros(Player *p)
 {
+	std::set<int> fused;
+	set<int>::iterator it1,it2;
 	// vamos processar os floorcodes dos guardas todos
 	for(int i=0;i<this->guardas.size();i++){
 		if(!this->guardas[i]->morto){
@@ -123,6 +125,40 @@ void Map::processTiros(Player *p)
 		}
 	}
 	
+	// antes de vermos se acertamos nos guardas, temos de verificar se eles vao ficar em alerta
+	// para isso necessitamos de um set para saber quais floorcodes estao em questao
+	fused.insert(p->floorcode); // onde estamos...
+	// vamos ter de ir às portas todas, procurar se algum dos floorcodes faz match, se a porta tiver aberta
+	for(int i=0;i<this->portas.size();++i){
+		if(this->portas[i]->open){ // soh nos interessam portas abertas
+			it1=fused.find(this->portas[i]->floorcode1);
+			if(it1!=fused.end()) // encontrou 1
+			{
+				// encontrar o segundo, se encontrou este eh pq ja foi adicionada a porta e temos de avancar
+				it2=fused.find(this->portas[i]->floorcode2);
+				if(it2==fused.end()){
+					// NAO encontrou, adicionar ao set e comecar do 0 outra vez
+					fused.insert(this->portas[i]->floorcode2);
+					i=0;
+				}
+			}else{ // nao encontrou, vamos fazer a logica ao contrario
+				it2=fused.find(this->portas[i]->floorcode2);
+				if(it2!=fused.end()){
+					it1=fused.find(this->portas[i]->floorcode1);
+					if(it1==fused.end()){
+						fused.insert(this->portas[i]->floorcode1);
+						i=0;
+					}
+				}
+				
+			}
+		}
+	}
+	
+	//for(it1=fused.begin(); it1!=fused.end(); it1++)
+	//	std::cout << "bla: " << *it1 << " ";
+	//std::cout << std::endl;
+	
 	if(p->disparar){
 		// temos de processar o tiro do player, basicamente calcular o proximo quadrado ate encontrar qq coisa, 
 		//  uma parede, um guarda, ou o fim do mapa
@@ -130,43 +166,7 @@ void Map::processTiros(Player *p)
 		int cx, cy;
 		float a_seguir = this->cube_size;
 		bool acertou = false;
-		
-		// antes de vermos se acertamos nos guardas, temos de verificar se eles vao ficar em alerta
-		// para isso necessitamos de um set para saber quais floorcodes estao em questao
-		std::set<int> fused;
-		fused.insert(p->floorcode); // onde estamos...
-		set<int>::iterator it1,it2;
-		// vamos ter de ir às portas todas, procurar se algum dos floorcodes faz match, se a porta tiver aberta
-		for(int i=0;i<this->portas.size();++i){
-			if(this->portas[i]->open){ // soh nos interessam portas abertas
-				it1=fused.find(this->portas[i]->floorcode1);
-				if(it1!=fused.end()) // encontrou 1
-				{
-					// encontrar o segundo, se encontrou este eh pq ja foi adicionada a porta e temos de avancar
-					it2=fused.find(this->portas[i]->floorcode2);
-					if(it2==fused.end()){
-						// NAO encontrou, adicionar ao set e comecar do 0 outra vez
-						fused.insert(this->portas[i]->floorcode2);
-						i=0;
-					}
-				}else{ // nao encontrou, vamos fazer a logica ao contrario
-					it2=fused.find(this->portas[i]->floorcode2);
-					if(it2!=fused.end()){
-						it1=fused.find(this->portas[i]->floorcode1);
-						if(it1==fused.end()){
-							fused.insert(this->portas[i]->floorcode1);
-							i=0;
-						}
-					}
-					
-				}
-			}
-		}
-		
-		//for(it1=fused.begin(); it1!=fused.end(); it1++)
-		//	std::cout << "bla: " << *it1 << " ";
-		//std::cout << std::endl;
-		
+				
 		for(int i=0;i<this->guardas.size();i++){
 			if(!this->guardas[i]->morto && !this->guardas[i]->alerta){
 				// se o guarda nao ta morto e nao esta em alerta, vamos ver se vai ficar
@@ -263,6 +263,21 @@ void Map::processTiros(Player *p)
 			}
 			this->guardas[i]->disparar = false;
 		}
+	
+		// vamos adicionar o "detectar dos guardas acordarem", nao podem tar em alerta
+		// tem de estar no mesmo floorcode ou em floorcode q seja igual ao meu
+		if(!this->guardas[i]->morto && !this->guardas[i]->alerta){
+			// floorcode tem de estar no mm sitio
+			it1=fused.find(this->guardas[i]->floorcode);
+			if(it1!=fused.end()){
+				float vx = p->z-(this->guardas[i]->z*-1);
+				float vy = p->x-(this->guardas[i]->x*-1);
+				float dist = sqrt(vx*vx + vy*vy);
+				if(dist<=(Fisica::cube_size*12)){
+					this->guardas[i]->vai_para_alerta = true;
+				}
+			}
+		}
 	}
 }
 
@@ -328,7 +343,7 @@ void Map::processItems(Player *p)
 	}
 	
 	// verificar se o jogador "acabou" o mapa!
-	if(this->map[p_x][p_y]==4011)
+	if(this->fim_mapa_x == p_x && this->fim_mapa_y == p_y)
 		this->finished_map = true;
 }
 

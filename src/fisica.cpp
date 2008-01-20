@@ -113,14 +113,22 @@ bool Fisica::canIgoThere(float from_z, float from_x, float to_z,float to_x,bool 
 	float vy = to_x-from_x;
 	float dist = sqrt(vx*vx + vy*vy);
 	if(dist>=(Fisica::cube_size*2)){
+		/*// primeiro vamos "uma casa" para a frente
+		 ny=p->x+sin(-RAD(p->angulo))*a_seguir;
+		 nx=p->z+cos(RAD(p->angulo))*a_seguir;
+		 cx = (int)(((nx*-1)/(this->cube_size*2.0f))+0.5);
+		 cy = (int)(((ny*-1)/(this->cube_size*2.0f))+0.5);
+		 
+		 isto aki em cima era suposto DAR...
+		 */
 		
 		int ang = Fisica::Angle(from_x*-1, from_z*-1, to_x*-1, to_z*-1);
 		//std::cout << "FROM:("<<from_z << "," << from_x << ") TO("<< to_z << "," << to_x << ") ang: " << ang << " ";
-		std::cout << "ang: " << ang << " ";
+		//std::cout << "ang: " << ang << " ";
 		float newx = to_x + (sin(-RAD(ang))*Fisica::cube_size);
 		float newz = to_z + (cos(RAD(ang))*Fisica::cube_size);
 		if( Fisica::canIgoThereIn(from_z, from_x, to_z,to_x,guarda) )
-			return Fisica::canIgoThere(from_z, from_x, newz, newx, guarda);
+			return Fisica::canIgoThereIn(from_z, from_x, newz, newx, guarda); // tem de ser recursivo, chamar o canIgoThere(), mas isto ta mal ainda
 		else return false;
 	}else return Fisica::canIgoThereIn(from_z, from_x, to_z,to_x,guarda);
 }

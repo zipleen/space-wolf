@@ -22,7 +22,7 @@ Guard_Intermedio::Guard_Intermedio(int z, int x, bool em_movimento, GLfloat angu
 	
 	this->vida=100;
 	this->velocidade_disparo=0.55;
-	this->potencia_arma=5;
+	this->potencia_arma=3;
 	this->velocidade_correr=14;
 	this->tempo_reaccao = 1.1;
 	
