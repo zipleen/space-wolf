@@ -17,7 +17,16 @@ Menu::Menu()
 	this->num_menu = 1;
 	this->font = new TTFont ("data/Quake.ttf", this->tamanho_font, 1);
 	this->render = Rendering::GetInstance();
-
+	
+	// ler texturas
+	Texture2DManager *texMgr = Texture2DManager::getInstance ();
+#ifdef WIN32
+	this->controlos = texMgr->load ("data\\HUD\\controlos.jpg");
+	this->background = texMgr->load ("data\\HUD\\background.jpg");
+#else
+	this->controlos = texMgr->load ("data/HUD/controlos.jpg");
+	this->background = texMgr->load ("data/HUD/background.jpg");
+#endif
 }
 
 

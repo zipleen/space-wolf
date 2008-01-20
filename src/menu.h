@@ -21,6 +21,7 @@
 #include <SDL.h>
 #include "rendering.h"
 #include "font/Font.h"
+#include "Md3/TextureManager.h"
 
 class Menu
 {
@@ -34,6 +35,7 @@ protected:
 	TTFont *font;
 	int tamanho_font;
 	int subir_descer[4];
+	Texture2D *controlos, *background;
 
 public:
 	Menu(); 
