@@ -24,6 +24,7 @@
 #include "font/Font.h"
 #include "Md3/TextureManager.h"
 #include "game.h"
+#include "StrUtils.h"
 
 class Menu
 {
@@ -40,6 +41,9 @@ public:
 	
 	bool new_game;
 	bool game_is_running;
+	
+	bool mapa_custom;
+	std::string mapa_custom_nome;
 	
 	// configs
 	bool config_fullscreen;
@@ -64,6 +68,7 @@ public:
 	void start2D();
 	
 	void shutdown();
+	std::string getMapa();
 	
 	void desenharMainMenu();
 	void desenharDefinicoes();

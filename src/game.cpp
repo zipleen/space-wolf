@@ -9,7 +9,7 @@
 
 #include "game.h"
 
-Game::Game(char *map_name)
+Game::Game(const char *map_name)
 {
 	this->player = new Player();
 	this->render = Rendering::GetInstance();

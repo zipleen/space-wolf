@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
 	}*/
 	//descomentar as duas linhas seguintes para ir ao menu	
 	m = new Menu();
-	m->MainLoopMenu();
+	m->GameLoop();
 	
 	// Cleanup
 	SDL_Quit();

@@ -20,6 +20,7 @@ Menu::Menu()
 	this->numero_mapa = 1;
 	
 	this->game = NULL;
+	this->mapa_custom = false;
 	
 	this->game_is_running = false; // o jogo normalmente ta a correr
 	this->new_game = false; // se tiver new game entao o ciclo vai iniciar e vai pro novo jogo
@@ -70,11 +71,14 @@ void Menu::handleMenuHit()
 					if(this->game!=NULL)
 						delete this->game;
 					this->new_game = true;
+					this->mapa_custom = false;
+					this->numero_mapa = 1;
 					this->game_is_running = true; // vamos quebrar o ciclo
 					break;
 				case 2:
 					 // escolher mapa
-					
+					this->mapa_custom = true;
+					this->game_is_running = true;
 					break;
 				case 3:
 					// definicoes
@@ -248,6 +252,17 @@ void Menu::mostrar_imagem_controlos()
 	glEnable(GL_LIGHTING);
 }
 
+std::string Menu::getMapa()
+{
+	if(this->mapa_custom){
+		
+		this->game_is_running = false;
+	}else{
+		std::string n = Str(this->numero_mapa);
+		return "data/maps/mapa"+n+".map";
+	}
+}
+
 void Menu::GameLoop()
 {
 
@@ -258,16 +273,18 @@ void Menu::GameLoop()
 			// novo jogo, vamos cria-lo
 			// mostrar ecra de loading
 			this->new_game = false;
-			this->game = new Game("data/maps/mapa1.map");
+			this->game_is_running = true; // batotazita, se o mapa for custom este game is running fica false
+			this->game = new Game(this->getMapa().c_str());
 			switch(this->game->MainLoop()){
 				case 1:
 					// o mapa acabou, mapa seguinte por favor
 					this->numero_mapa++;
-					this->game_is_running = true;
+					if(this->numero_mapa>8)
+						this->numero_mapa = 1;
+					this->new_game = true;
 					break;
 				case 2:
 					// player morreu, vamos continuar no mm mapa
-					this->game_is_running = true;
 					this->new_game = true;
 					break;
 				case 3:

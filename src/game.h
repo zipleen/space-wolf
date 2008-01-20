@@ -33,7 +33,7 @@ protected:
 	Input *input;
 	
 public:
-	Game(char *map_name); 
+	Game(const char *map_name); 
 	virtual ~Game(){};
 	
 	/*
