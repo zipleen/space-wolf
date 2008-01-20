@@ -38,7 +38,19 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 			this->num_menu++;
 			break;
 			
+		case SDLK_1:
+			this->num_menu = 1;
 			break;
+		case SDLK_2:
+			this->num_menu = 2;
+			break;
+		case SDLK_3:
+			this->num_menu = 3;
+			break;
+		case SDLK_4:
+			this->num_menu = 4;
+			break;
+		break;
 	}
 }
 
@@ -83,7 +95,7 @@ void Menu::MainLoopMenu()
 
 			glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glLoadIdentity ();
-			
+			glEnable(GL_LIGHTING);
 			// aqui podia haver um QUAD qq 2D (como no hud) para meter quadrados e desenhos
 			// se calhar necessitam de activar o controle de DEPTH_TEST
 			
