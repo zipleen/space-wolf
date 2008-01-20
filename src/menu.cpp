@@ -93,13 +93,13 @@ void Menu::MainLoopMenu()
 			glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			glPushMatrix();
-			glTranslatef(400,300,0);
+			glTranslatef(this->render->windowWidth/2,this->render->windowHeight/2,0);
 			this->background->bind();
 			glBegin(GL_QUADS);
-				glTexCoord2f(0.0, 0.0); glVertex2f(-400,-300);	
-				glTexCoord2f(1.0, 0.0);	glVertex2f(400,-300);
-				glTexCoord2f(1.0, 1.0); glVertex2f(400,300);
-				glTexCoord2f(0.0, 1.0); glVertex2f(-400,300);	
+				glTexCoord2f(0.0, 0.0); glVertex2f(-this->render->windowWidth/2,-this->render->windowHeight/2);	
+				glTexCoord2f(1.0, 0.0);	glVertex2f(this->render->windowWidth/2,-this->render->windowHeight/2);
+				glTexCoord2f(1.0, 1.0); glVertex2f(this->render->windowWidth/2,this->render->windowHeight/2);
+				glTexCoord2f(0.0, 1.0); glVertex2f(-this->render->windowWidth/2,this->render->windowHeight/2);	
 			glEnd();
 			glPopMatrix();
 
