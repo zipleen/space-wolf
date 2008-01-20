@@ -36,7 +36,13 @@ public:
 	Game(char *map_name); 
 	virtual ~Game(){};
 	
-	void MainLoop();
+	/*
+	 se ele fizer exit desta funcao
+	 1 - acabou o jogo e passou de nivel
+	 2 - acabou o jogo e morreu
+	 3 - parou o jogo com o esq
+	 */
+	int MainLoop();
 };
 
 #endif

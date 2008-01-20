@@ -9,6 +9,25 @@
 
 #include "map.h"
 
+Map::~Map()
+{
+	for(int i=0; i<this->guardas.size(); i++){
+		delete this->guardas[i];
+	}
+	for(int i=0; i<this->items.size(); i++){
+		delete this->items[i];
+	}
+	for(int i=0; i<this->portas.size(); i++){
+		delete this->portas[i];
+	}
+	for(int i=0; i<this->objectos.size(); i++){
+		delete this->objectos[i];
+	}
+	for(int i=0; i<this->objectos.size(); i++){
+		delete this->objectos[i];
+	}
+}
+
 Map::Map()
 {
 	texMgr = Texture2DManager::getInstance ();

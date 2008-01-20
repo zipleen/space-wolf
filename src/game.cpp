@@ -22,7 +22,13 @@ Game::Game(char *map_name)
 	srand((unsigned)time(0));
 }
 
-void Game::MainLoop()
+/*
+ se ele fizer exit desta funcao
+ 1 - acabou o jogo e passou de nivel
+ 2 - acabou o jogo e morreu
+ 3 - parou o jogo com o esq
+ */
+int Game::MainLoop()
 {
 	bool isActive = true;
 	double dt;
@@ -79,8 +85,11 @@ void Game::MainLoop()
 					}
 					break;
 				case SDL_QUIT:
+					exit(0);
+					break;
+				case SDLK_ESCAPE:
 				  //shutdownApp (0);
-				  exit(0);
+					return 3;
 				  break;
 
 				default:
@@ -118,7 +127,12 @@ void Game::MainLoop()
 		
 		// verificar se acabamos o mapa!
 		if(this->map->finished_map)
-			break;
+			return 1;
+		if(this->player->morto){
+			// desenhar qq coisa a dizer que morri
+			
+			return 2;
+		}
 	}
 }
 

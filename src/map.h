@@ -94,7 +94,7 @@ protected:
 public:
 	
 	Map(); 
-	virtual ~Map(){};
+	virtual ~Map();
 	bool finished_map;
 	
 	// accoes

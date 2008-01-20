@@ -50,7 +50,7 @@ class Porta
 		int floorcode1, floorcode2;
 		int tipo_porta; // 0 - normal 1- chave amarela 2-chave vermelha
 		Porta(int x, int y, int direction,int tipo_porta,GLfloat cube_size); 
-		virtual ~Porta(){};
+		virtual ~Porta(){}; // tudo o que ta na memoria pode ficar na memoria pq vai ser usado outra vez
 		
 		void startOpenDoor();
 		void startCloseDoor();
