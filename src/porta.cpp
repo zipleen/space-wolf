@@ -228,7 +228,7 @@ void Porta::animate(const double dt,const double dt_cur)
 			}
 		}
 	}else if(this->porta_a_fechar){
-			if (this->tempo_comecou_contar+5<=dt_cur){
+			if (this->tempo_comecou_contar+10<=dt_cur){
 				this->closedoor();
 				this->altura-=0.45;
 				if(this->altura<=0){

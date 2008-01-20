@@ -20,7 +20,7 @@ Guard_Dificil::Guard_Dificil(int z, int x, bool em_movimento, GLfloat angulo) : 
 #endif
 	this->loadModel();
 	
-	this->vida=150;
+	this->vida=300;
 	this->velocidade_disparo=0.35;
 	this->potencia_arma=2;
 	this->velocidade_correr=9;

@@ -20,7 +20,7 @@ Guard_Medium::Guard_Medium(int z, int x, bool em_movimento, GLfloat angulo) : Gu
 #endif
 	this->loadModel();
 	
-	this->vida=50;
+	this->vida=100;
 	this->velocidade_disparo=0.75;
 	this->potencia_arma=3;
 	this->velocidade_correr=11;
