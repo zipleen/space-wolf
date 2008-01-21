@@ -273,7 +273,7 @@ void Map::processTiros(Player *p)
 				float vx = p->z-(this->guardas[i]->z*-1);
 				float vy = p->x-(this->guardas[i]->x*-1);
 				float dist = sqrt(vx*vx + vy*vy);
-				if(dist<=(Fisica::cube_size*12)){
+				if(dist<=(Fisica::cube_size*16)){
 					this->guardas[i]->vai_para_alerta = true;
 				}
 			}
