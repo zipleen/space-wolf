@@ -305,7 +305,8 @@ void Guard::animate(const double dt, double dt_cur)
 					this->em_disparo=false;
 			}else{
 				this->guard->setAnimation (kTorsoStand);
-				this->guard->_weapon->_weapon->unlink("tag_flash");
+				if(this->guard->_weapon)
+					this->guard->_weapon->_weapon->unlink("tag_flash");
 			}
 			//this->modificou_upper_movimento = false;
 		//}

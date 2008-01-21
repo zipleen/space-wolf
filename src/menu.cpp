@@ -96,8 +96,10 @@ void Menu::handleMenuHit()
 			// menu principal, aki temos codigo que controla o que vai acontecer nas varias opcoes do menu 1
 			switch(this->num_menu){
 				case 1: // novo jogo
-					if(this->game!=NULL)
+					if(this->game!=NULL){
 						delete this->game;
+						
+					}
 					this->new_game = true;
 					this->mapa_custom = false;
 					this->numero_mapa = 1;
@@ -470,7 +472,24 @@ void Menu::GameLoop()
 				this->displayImage(this->loading);
 			else this->mensagem_ja_mostrada = false;
 			
-			this->game = new Game(this->getMapa().c_str());
+			int armadura,balas,arma_em_uso;
+			bool arma2, arma3, arma4;
+			if(this->game!=NULL && this->numero_mapa!=1 && !this->mapa_custom){
+				armadura = this->game->player->armadura;
+				arma_em_uso = this->game->player->arma_em_uso;
+				arma2 = this->game->player->arma2;
+				arma3 = this->game->player->arma3;
+				arma4 = this->game->player->arma4;
+				balas = this->game->player->balas;
+				this->game = new Game(this->getMapa().c_str());
+				this->game->player->armadura = armadura;
+				this->game->player->arma2 = arma2;
+				this->game->player->arma3 = arma3;
+				this->game->player->arma4 = arma4;
+				this->game->player->balas = balas;
+				this->game->player->arma_em_uso = arma_em_uso;
+			}else
+				this->game = new Game(this->getMapa().c_str());
 			switch(this->game->MainLoop()){
 				case 1:
 					// o mapa acabou, mapa seguinte por favor

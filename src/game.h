@@ -26,7 +26,7 @@
 
 class Game
 {
-protected:
+public:
 	Map *map; // o nosso mapa actual
 	Player *player;
 	Rendering *render;
