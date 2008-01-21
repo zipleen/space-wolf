@@ -28,7 +28,7 @@ Rendering::Rendering()
 	this->windowWidth = 1024;
 	this->windowHeight = 768;
 	this->windowDepth = 24;
-	this->useFullScreen = true;
+	this->useFullScreen = false;
 	this->useTexturing = true;
 	this->useCulling = true;
 	this->useWireframe = false;
@@ -178,8 +178,10 @@ void Rendering::setSDLflags()
 	this->videoFlags  = SDL_OPENGL;             // Uses OpenGL
 	this->videoFlags |= SDL_GL_DOUBLEBUFFER;    // Uses double buffering
 	this->videoFlags |= SDL_HWPALETTE;
-	if(this->useFullScreen)
+	if(this->useFullScreen){
 		this->videoFlags |= SDL_FULLSCREEN;
+		std::cout << "fullscreen" ;
+	}
 	
 	//this->videoFlags |= SDL_RESIZABLE;          // App. window is resizable
 	

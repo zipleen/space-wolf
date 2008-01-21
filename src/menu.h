@@ -57,7 +57,9 @@ protected:
 	Texture2D *controlos, *background, *loading, *died, *congrats;
 	std::vector<std::string> menu_principal;
 	std::vector<std::string> menu_definicoes;
-
+	std::vector<std::string> mapas;
+	Texture2DManager *texMgr;
+	
 public:
 	Menu(); 
 	virtual ~Menu(){};
@@ -72,12 +74,15 @@ public:
 	std::string getMapa();
 	void displayImage(Texture2D *i);
 	
+	void desenharMapas();
 	void desenharMainMenu();
 	void desenharDefinicoes();
 	void mostrar_imagem_controlos();
 	
 	void handleLeftRight(int v);
 	void handleMenuHit();
+	
+	void init();
 };
 
 #endif

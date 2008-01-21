@@ -9,30 +9,14 @@
 
 #include "menu.h"
 
-Menu::Menu()
+void Menu::init()
 {
-	this->tamanho_font = 30;
-	this->num_menu = 1;
-	this->menu_to_render = 1;
-	this->numero_mapa = 1;
-	this->mensagem_ja_mostrada = false;
-	this->game = NULL;
-	this->mapa_custom = false;
-	
-	this->game_is_running = false; // o jogo normalmente ta a correr
-	this->new_game = false; // se tiver new game entao o ciclo vai iniciar e vai pro novo jogo
-	
-	// configs
-	this->config_fullscreen = true;
-	this->nome_res = "1024x768";
-	this->numero_res = 3;
-	
 	this->font = new TTFont ("data/generis.TTF", this->tamanho_font, 1);
 	this->font2 = new TTFont ("data/generis.TTF", 50, 1);
 	this->render = Rendering::GetInstance();
 	
 	// ler texturas
-	Texture2DManager *texMgr = Texture2DManager::getInstance ();
+	this->texMgr = Texture2DManager::getInstance ();
 #ifdef WIN32
 	this->controlos = texMgr->load ("data\\HUD\\controlos.jpg");
 	this->background = texMgr->load ("data\\HUD\\background.jpg");
@@ -47,6 +31,28 @@ Menu::Menu()
 	this->congrats =  texMgr->load ("data/HUD/congrats.jpg");
 #endif
 	
+}
+
+Menu::Menu()
+{
+	this->tamanho_font = 30;
+	this->num_menu = 1;
+	this->menu_to_render = 1;
+	this->numero_mapa = 1;
+	this->mensagem_ja_mostrada = false;
+	this->game = NULL;
+	this->mapa_custom = false;
+	
+	this->game_is_running = false; // o jogo normalmente ta a correr
+	this->new_game = false; // se tiver new game entao o ciclo vai iniciar e vai pro novo jogo
+	
+	// configs
+	this->config_fullscreen = false;
+	this->nome_res = "1024x768";
+	this->numero_res = 3;
+	
+	this->init();
+	
 	this->menu_principal.push_back("Novo Jogo");
 	this->menu_principal.push_back("Seleccionar mapa");
 	this->menu_principal.push_back("Definicoes");
@@ -57,12 +63,29 @@ Menu::Menu()
 	this->menu_definicoes.push_back("Resolucao: %s");
 	this->menu_definicoes.push_back("Fullscreen: %s");
 	this->menu_definicoes.push_back("Voltar atras e aplicar definicoes");
+	
+	this->mapas.push_back("Mapa 1");
+	this->mapas.push_back("Mapa 2");
+	this->mapas.push_back("Mapa 3");
+	this->mapas.push_back("Mapa 4");
+	this->mapas.push_back("Mapa 5");
+	this->mapas.push_back("Mapa 6");
+	this->mapas.push_back("Mapa 7 - Boss");
+	this->mapas.push_back("Mapa Alternativo 1");
+	this->mapas.push_back("Mapa Alternativo 2");
+	this->mapas.push_back("Mapa Alternativo 3");
+	this->mapas.push_back("Mapa Alternativo 4");
+	this->mapas.push_back("Mapa Alternativo 5");
+	this->mapas.push_back("Mapa Alternativo 6");
+	this->mapas.push_back("Mapa Alternativo 7");
+	
 }
 
 void Menu::shutdown()
 {
 	// n sei o q fazer nisto, tenho de verificar o q fazer
 	SDL_Quit();
+	exit(0);
 }
 
 void Menu::handleMenuHit()
@@ -138,10 +161,17 @@ void Menu::handleMenuHit()
 							this->render->windowWidth=1280;
 							this->render->windowHeight=1024;
 							break;	
+						case 5:
+							this->render->windowWidth=1280;
+							this->render->windowHeight=800;
+							break;
 					}
+					
 					this->render->useFullScreen=this->config_fullscreen;
-					this->render->resizeWindow(this->render->windowWidth,this->render->windowHeight);
-					this->render->initOpenGL();
+					//this->render->resizeWindow(this->render->windowWidth,this->render->windowHeight);
+					this->render->initVideo();
+					this->texMgr->kill();
+					this->init();
 					break;
 					
 			}
@@ -166,10 +196,10 @@ void Menu::handleLeftRight(int tecla)
 				if(tecla)
 					this->numero_res++;
 				else this->numero_res--;
-				if(this->numero_res==5)
+				if(this->numero_res==6)
 					this->numero_res=1;
 				if(this->numero_res==0)
-					this->numero_res=4;
+					this->numero_res=5;
 				switch(this->numero_res){
 					case 1:
 						this->nome_res="640x480";
@@ -183,12 +213,15 @@ void Menu::handleLeftRight(int tecla)
 					case 4:
 						this->nome_res="1280x1024";
 						break;	
+					case 5:
+						this->nome_res="1280x800";
+						break;	
 				}
 				break;
 			case 2:
-				if(this->config_fullscreen)
+				if(this->config_fullscreen){
 					this->config_fullscreen=false;
-				else this->config_fullscreen = true;
+				}else this->config_fullscreen = true;
 				break;
 		}
 	}
@@ -221,7 +254,34 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 			this->handleLeftRight(2);
 			
 			break;
+		default:
+			this->handleMenuHit();
+			break;
 	}
+}
+
+void Menu::desenharMapas()
+{
+	glColor4f (0.5f, 0.6f, 0.8f, 1.0f);
+	this->font2->printText (this->render->windowWidth/2-150, this->render->windowHeight-50, "Space Wolf");
+	if (this->num_menu < 1)
+		this->num_menu = 6;
+	if (this->num_menu > 6)
+		this->num_menu = 1;
+	
+	for(int i = 1; i<=this->menu_principal.size(); i++)
+	{
+		if(i==this->num_menu)
+		{
+			glColor4f (0.0f, 0.0f, 1.0f, 1.0f);
+		}
+		else
+		{
+			glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
+		}
+		this->font->printText (10,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_principal[i-1].c_str());
+	}
+	glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 void Menu::desenharDefinicoes()
