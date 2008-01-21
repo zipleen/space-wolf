@@ -181,7 +181,7 @@ public:
   const string &name () const { return _name; }
   Md3PlayerLOD lod () const { return _lod; }
 
-private:
+public:
   // Member variables
   Md3ModelPtr _weapon;
   Md3ModelPtr _barrel;

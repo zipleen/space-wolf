@@ -10,8 +10,20 @@
 #include "guard.h"
 #define VELOCIDADE_ANDAR_GUARDA 5
 
+Md3Model *Guard::flash;
+
 Guard::Guard()
 {
+	if(Guard::flash==NULL){
+#ifdef WIN32
+		Guard::flash = new Md3Model ("data\\models\\weapons2\\assault\\assault_flash.md3");
+#else
+		Guard::flash = new Md3Model ("data/models/weapons2/assault/assault_flash.md3");
+#endif
+		Guard::flash->loadShaders();
+		Guard::flash->setScale(0.1f);
+	}
+	this->muzzle_gun = false;
 	this->morto = false;
 	this->em_movimento = false;
 	this->em_disparo = false;
@@ -157,6 +169,7 @@ void Guard::shootGun()
 			Mix_HaltChannel(this->som_disparo_arma);
 		this->som_disparo_arma = this->s->playSound(this->som_arma,this->z,this->x, this->angulo);
 		this->guard->setAnimation (kTorsoAttack);
+		this->muzzle_gun = true;
 	}
 }
 
@@ -279,16 +292,23 @@ void Guard::animate(const double dt, double dt_cur)
 			}
 		}
 		
-		if(this->modificou_upper_movimento){
+		//if(this->modificou_upper_movimento){
 			if(this->em_disparo){
+				if(this->muzzle_gun){
+					this->guard->_weapon->_weapon->link("tag_flash",Guard::flash);
+					this->muzzle_gun = false;
+				}else{
+					this->guard->_weapon->_weapon->unlink("tag_flash");
+				}
 				//this->guard->setAnimation (kTorsoAttack);
 				if(this->ultimo_disparo+this->velocidade_disparo < this->dt_cur)
 					this->em_disparo=false;
 			}else{
 				this->guard->setAnimation (kTorsoStand);
+				this->guard->_weapon->_weapon->unlink("tag_flash");
 			}
-			this->modificou_upper_movimento = false;
-		}
+			//this->modificou_upper_movimento = false;
+		//}
 		this->guard->animate(dt);
 		
 		// som

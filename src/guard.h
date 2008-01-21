@@ -52,6 +52,9 @@ protected:
 	
 	Md3Player *guard;
 	Md3Weapon *weapon;
+	static Md3Model *flash;
+	bool muzzle_gun;
+	
 	std::string model_path;
 	std::string weaponpath;
 	int animacao_morrer;
