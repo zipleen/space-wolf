@@ -33,6 +33,9 @@ public:
 	Rendering *render;
 	Game *game;
 	
+	int numero_res;
+	std::string nome_res;
+	
 	int num_menu;
 	int menu_to_render;
 	int numero_mapa;

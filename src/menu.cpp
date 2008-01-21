@@ -24,7 +24,8 @@ Menu::Menu()
 	
 	// configs
 	this->config_fullscreen = false;
-	
+	this->nome_res = "800x600";
+	this->numero_res = 2;
 	
 	this->font = new TTFont ("data/generis.TTF", this->tamanho_font, 1);
 	this->font2 = new TTFont ("data/generis.TTF", 50, 1);
@@ -51,8 +52,8 @@ Menu::Menu()
 	this->menu_principal.push_back("Voltar ao jogo");
 	this->menu_principal.push_back("Sair");
 	
-	this->menu_definicoes.push_back("Resolucao: ");
-	this->menu_definicoes.push_back("Fullscreen: ");
+	this->menu_definicoes.push_back("Resolucao: %s");
+	this->menu_definicoes.push_back("Fullscreen: %s");
 	this->menu_definicoes.push_back("Voltar atras");
 }
 
@@ -117,6 +118,27 @@ void Menu::handleMenuHit()
 				case 3:
 					// back to main menu
 					this->menu_to_render = 1;
+					// aplicar novas definicoes
+					switch(this->numero_res){
+						case 1:
+							this->render->windowWidth=640;
+							this->render->windowHeight=480;
+							break;
+						case 2:
+							this->render->windowWidth=800;
+							this->render->windowHeight=600;
+							break;	
+						case 3:
+							this->render->windowWidth=1024;
+							this->render->windowHeight=768;
+							break;	
+						case 4:
+							this->render->windowWidth=1280;
+							this->render->windowHeight=1024;
+							break;	
+					}
+					this->render->initVideo();
+					this->render->initOpenGL();
 					break;
 					
 			}
@@ -138,11 +160,27 @@ void Menu::handleLeftRight(int tecla)
 	if(this->menu_to_render==3){
 		switch(this->num_menu){
 			case 1:
-				if (tecla == 1)
-				{
-					this->font2->printText (0, 0, "800 * 600");
+				if(tecla)
+					this->numero_res++;
+				else this->numero_res--;
+				if(this->numero_res==5)
+					this->numero_res=1;
+				if(this->numero_res==0)
+					this->numero_res=4;
+				switch(this->numero_res){
+					case 1:
+						this->nome_res="640x480";
+						break;
+					case 2:
+						this->nome_res="800x600";
+						break;
+					case 3:
+						this->nome_res="1024x768";
+						break;
+					case 4:
+						this->nome_res="1280x1024";
+						break;	
 				}
-				
 				break;
 			case 2:
 				if(this->config_fullscreen)
@@ -204,7 +242,13 @@ void Menu::desenharDefinicoes()
 		{
 			glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 		}
-		this->font->printText (10,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_definicoes[i-1].c_str());
+		if(i==1)
+			this->font->printText (10,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_definicoes[i-1].c_str() , this->nome_res.c_str());
+		if(i==2)
+			this->font->printText (10,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_definicoes[i-1].c_str() , this->config_fullscreen?" ON":" OFF");
+		else 
+			this->font->printText (10,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_definicoes[i-1].c_str());
+
 	}
 	glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 }
