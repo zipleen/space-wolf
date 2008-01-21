@@ -180,7 +180,6 @@ void Rendering::setSDLflags()
 	this->videoFlags |= SDL_HWPALETTE;
 	if(this->useFullScreen){
 		this->videoFlags |= SDL_FULLSCREEN;
-		std::cout << "fullscreen" ;
 	}
 	
 	//this->videoFlags |= SDL_RESIZABLE;          // App. window is resizable
