@@ -11,16 +11,11 @@
 
 Menu::Menu()
 {
-	this->keyUpPressed = false;
-	this->keyDownPressed = false;
-	this->keyLeftPressed = false;
-	this->keyRightPressed = false;
-	this->keyEnterPressed = false;
 	this->tamanho_font = 30;
 	this->num_menu = 1;
 	this->menu_to_render = 1;
 	this->numero_mapa = 1;
-	
+	this->mensagem_ja_mostrada = false;
 	this->game = NULL;
 	this->mapa_custom = false;
 	
@@ -40,9 +35,13 @@ Menu::Menu()
 #ifdef WIN32
 	this->controlos = texMgr->load ("data\\HUD\\controlos.jpg");
 	this->background = texMgr->load ("data\\HUD\\background.jpg");
+	this->loading = texMgr->load ("data\\HUD\\loading.jpg");
+	this->died = texMgr->load ("data\\HUD\\morreste.jpg");
 #else
 	this->controlos = texMgr->load ("data/HUD/controlos.jpg");
 	this->background = texMgr->load ("data/HUD/background.jpg");
+	this->loading = texMgr->load ("data/HUD/loading.jpg");
+	this->died = texMgr->load ("data/HUD/morreste.jpg");
 #endif
 	
 	this->menu_principal.push_back("Novo Jogo");
@@ -160,29 +159,24 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 	{
 		case SDLK_UP:
 			/* codigo para ir pra cima */
-			this->keyUpPressed = value;
 			this->num_menu--;
 			break;
 			
 			break;
 		case SDLK_DOWN:
 			/* codigo para ir pra baixo */
-			this->keyDownPressed = value;
 			this->num_menu++;
 			break;
 		case SDLK_KP_ENTER:
 		case SDLK_RETURN:
-			this->keyEnterPressed = value;
 			this->handleMenuHit();
 			break;
 		
 		case SDLK_LEFT:
-			this->keyLeftPressed = value;
 			this->handleLeftRight(1);
 			
 			break;
 		case SDLK_RIGHT:
-			this->keyRightPressed = value;
 			this->handleLeftRight(2);
 			
 			break;
@@ -267,6 +261,29 @@ std::string Menu::getMapa()
 		std::string n = Str(this->numero_mapa);
 		return "data/maps/mapa"+n+".map";
 	}
+	return "data/maps/mapa1.map";
+}
+void Menu::displayImage(Texture2D *i)
+{
+	// serve para mostrar uma imagem in between things
+	this->start2D();
+	
+	glDisable(GL_LIGHTING);
+	
+	glPushMatrix();
+	glTranslatef(this->render->windowWidth/2,this->render->windowHeight/2,0);
+	i->bind();
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0, 0.0); glVertex2f(-this->render->windowWidth/2,-this->render->windowHeight/2);	
+	glTexCoord2f(1.0, 0.0);	glVertex2f(this->render->windowWidth/2,-this->render->windowHeight/2);
+	glTexCoord2f(1.0, 1.0); glVertex2f(this->render->windowWidth/2,this->render->windowHeight/2);
+	glTexCoord2f(0.0, 1.0); glVertex2f(-this->render->windowWidth/2,this->render->windowHeight/2);	
+	glEnd();
+	glPopMatrix();
+	glEnable(GL_LIGHTING);
+
+	this->end2D();
+	SDL_GL_SwapBuffers ();
 }
 
 void Menu::GameLoop()
@@ -280,18 +297,29 @@ void Menu::GameLoop()
 			// mostrar ecra de loading
 			this->new_game = false;
 			this->game_is_running = true; // batotazita, se o mapa for custom este game is running fica false
+			
+			if(!this->mensagem_ja_mostrada)
+				this->displayImage(this->loading);
+			else this->mensagem_ja_mostrada = false;
+			
 			this->game = new Game(this->getMapa().c_str());
 			switch(this->game->MainLoop()){
 				case 1:
 					// o mapa acabou, mapa seguinte por favor
 					this->numero_mapa++;
-					if(this->numero_mapa>8)
+					if(this->numero_mapa>8){
 						this->numero_mapa = 1;
-					this->new_game = true;
+						this->new_game = false;
+						this->displayImage(this->congrats);
+						getchar(); // era isto q se usava para parar o input ?!?!?!?! lol
+					}else
+						this->new_game = true;
 					break;
 				case 2:
 					// player morreu, vamos continuar no mm mapa
 					this->new_game = true;
+					this->displayImage(this->died);
+					this->mensagem_ja_mostrada = true;
 					break;
 				case 3:
 					// pausa

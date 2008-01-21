@@ -33,15 +33,10 @@ public:
 	Rendering *render;
 	Game *game;
 	
-	bool keyUpPressed;
-	bool keyDownPressed;
-	bool keyLeftPressed;
-	bool keyRightPressed;
-	bool keyEnterPressed;
 	int num_menu;
 	int menu_to_render;
 	int numero_mapa;
-	
+	bool mensagem_ja_mostrada;
 	bool new_game;
 	bool game_is_running;
 	
@@ -56,7 +51,7 @@ protected:
 	TTFont *font2;
 	int tamanho_font;
 	int subir_descer[4];
-	Texture2D *controlos, *background, *loading;
+	Texture2D *controlos, *background, *loading, *died, *congrats;
 	std::vector<std::string> menu_principal;
 	std::vector<std::string> menu_definicoes;
 
@@ -72,6 +67,7 @@ public:
 	
 	void shutdown();
 	std::string getMapa();
+	void displayImage(Texture2D *i);
 	
 	void desenharMainMenu();
 	void desenharDefinicoes();
