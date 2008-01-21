@@ -95,7 +95,7 @@ void Player::setInitialPosition(int x, int y)
 void Player::SetCorrer(bool v)
 {
 	if(v)
-		this->velocidade = 2.2;
+		this->velocidade = 2.8;
 	else this->velocidade = 1.3;
 }
 

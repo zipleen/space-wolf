@@ -23,9 +23,9 @@ Menu::Menu()
 	this->new_game = false; // se tiver new game entao o ciclo vai iniciar e vai pro novo jogo
 	
 	// configs
-	this->config_fullscreen = false;
-	this->nome_res = "800x600";
-	this->numero_res = 2;
+	this->config_fullscreen = true;
+	this->nome_res = "1024x768";
+	this->numero_res = 3;
 	
 	this->font = new TTFont ("data/generis.TTF", this->tamanho_font, 1);
 	this->font2 = new TTFont ("data/generis.TTF", 50, 1);
@@ -38,11 +38,13 @@ Menu::Menu()
 	this->background = texMgr->load ("data\\HUD\\background.jpg");
 	this->loading = texMgr->load ("data\\HUD\\loading.jpg");
 	this->died = texMgr->load ("data\\HUD\\morreste.jpg");
+	this->congrats = texMgr->load ("data\\HUD\\congrats.jpg");
 #else
 	this->controlos = texMgr->load ("data/HUD/controlos.jpg");
 	this->background = texMgr->load ("data/HUD/background.jpg");
 	this->loading = texMgr->load ("data/HUD/loading.jpg");
 	this->died = texMgr->load ("data/HUD/morreste.jpg");
+	this->congrats =  texMgr->load ("data/HUD/congrats.jpg");
 #endif
 	
 	this->menu_principal.push_back("Novo Jogo");
@@ -54,13 +56,13 @@ Menu::Menu()
 	
 	this->menu_definicoes.push_back("Resolucao: %s");
 	this->menu_definicoes.push_back("Fullscreen: %s");
-	this->menu_definicoes.push_back("Voltar atras");
+	this->menu_definicoes.push_back("Voltar atras e aplicar definicoes");
 }
 
 void Menu::shutdown()
 {
 	// n sei o q fazer nisto, tenho de verificar o q fazer
-	exit(0);
+	SDL_Quit();
 }
 
 void Menu::handleMenuHit()
@@ -137,7 +139,8 @@ void Menu::handleMenuHit()
 							this->render->windowHeight=1024;
 							break;	
 					}
-					this->render->initVideo();
+					this->render->useFullScreen=this->config_fullscreen;
+					this->render->resizeWindow(this->render->windowWidth,this->render->windowHeight);
 					this->render->initOpenGL();
 					break;
 					
@@ -256,7 +259,7 @@ void Menu::desenharDefinicoes()
 void Menu::desenharMainMenu()
 {
 	glColor4f (0.5f, 0.6f, 0.8f, 1.0f);
-	this->font2->printText (this->render->windowWidth/2-150, this->render->windowHeight-50, "Funky Shit");
+	this->font2->printText (this->render->windowWidth/2-150, this->render->windowHeight-50, "Space Wolf");
 	if (this->num_menu < 1)
 		this->num_menu = 6;
 	if (this->num_menu > 6)

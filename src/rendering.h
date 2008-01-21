@@ -88,6 +88,7 @@ public:
 	bool useLigth;
 	bool drawFPS;
 	bool bCullFace;
+	bool useFullScreen;
 	
 	int windowWidth;
 	int windowHeight;
@@ -131,6 +132,7 @@ public:
 	bool resizeWindow(int w,int h);
 	void gameCycle (Map *m, Player *p);
 	void gameLogic ();
+	void setSDLflags();
 	
 	void changeMode();
 	

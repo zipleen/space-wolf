@@ -90,7 +90,7 @@ int Game::MainLoop()
 					}
 					break;
 				case SDL_QUIT:
-					exit(0);
+					SDL_Quit();
 					break;
 				
 

@@ -25,15 +25,16 @@ checkOpenGLErrors (const char *file, int line)
 
 Rendering::Rendering()
 {
-	this->windowWidth = 800;
-	this->windowHeight = 600;
+	this->windowWidth = 1024;
+	this->windowHeight = 768;
 	this->windowDepth = 24;
+	this->useFullScreen = true;
 	this->useTexturing = true;
 	this->useCulling = true;
 	this->useWireframe = false;
 	this->useSmooth = true;
 	this->useLigth = true;
-	this->windowTitle = "Wolf3d look-a-like";
+	this->windowTitle = "Space Wolf";
 	this->drawFPS = true;
 	this->bCullFace = true;
 
@@ -41,7 +42,6 @@ Rendering::Rendering()
 
 bool Rendering::initVideo()
 {
-  const SDL_VideoInfo *videoInfo;
 
 	// Initialize SDL - debugging de sdl no windows necessita deste parametro
 #ifdef WIN32 && DEBUG
@@ -57,34 +57,13 @@ bool Rendering::initVideo()
 
   atexit (SDL_Quit);
 
-  videoInfo = SDL_GetVideoInfo ();
-  if (!videoInfo)
-    {
-      std::cerr << "Video query failed: " << SDL_GetError () << std::endl;
-      return false;
-    }
-
-  // Initialize flags to pass to SDL_SetVideoMode
-  this->videoFlags  = SDL_OPENGL;             // Uses OpenGL
-  this->videoFlags |= SDL_GL_DOUBLEBUFFER;    // Uses double buffering
-  this->videoFlags |= SDL_HWPALETTE;
-  //this->videoFlags |= SDL_RESIZABLE;          // App. window is resizable
-
-  // Check if we can allocate memory in hardware for the window
-  if (videoInfo->hw_available)
-    this->videoFlags |= SDL_HWSURFACE;
-  else
-    this->videoFlags |= SDL_SWSURFACE;
-
-  // Check if hardware blit is possible
-  if (videoInfo->blit_hw)
-   this->videoFlags |= SDL_HWACCEL;
+	this->setSDLflags();
 
   // Set double buffering for OpenGL
   SDL_GL_SetAttribute (SDL_GL_DOUBLEBUFFER, 1);
 
   // Initialize video mode
-  this->surface = SDL_SetVideoMode (this->windowWidth, this->windowHeight, this->windowDepth, videoFlags);
+  this->surface = SDL_SetVideoMode (this->windowWidth, this->windowHeight, this->windowDepth, this->videoFlags);
   if (!this->surface)
     {
       std::cerr << "Video mode set failed: " << SDL_GetError () << std::endl;
@@ -184,6 +163,37 @@ bool Rendering::initOpenGL()
 	return true;
 }
 
+void Rendering::setSDLflags()
+{
+	const SDL_VideoInfo *videoInfo;
+	
+	videoInfo = SDL_GetVideoInfo ();
+	if (!videoInfo)
+    {
+		std::cerr << "Video query failed: " << SDL_GetError () << std::endl;
+		return;
+    }
+	
+	// Initialize flags to pass to SDL_SetVideoMode
+	this->videoFlags  = SDL_OPENGL;             // Uses OpenGL
+	this->videoFlags |= SDL_GL_DOUBLEBUFFER;    // Uses double buffering
+	this->videoFlags |= SDL_HWPALETTE;
+	if(this->useFullScreen)
+		this->videoFlags |= SDL_FULLSCREEN;
+	
+	//this->videoFlags |= SDL_RESIZABLE;          // App. window is resizable
+	
+	// Check if we can allocate memory in hardware for the window
+	if (videoInfo->hw_available)
+		this->videoFlags |= SDL_HWSURFACE;
+	else
+		this->videoFlags |= SDL_SWSURFACE;
+	
+	// Check if hardware blit is possible
+	if (videoInfo->blit_hw)
+		this->videoFlags |= SDL_HWACCEL;
+}
+
 bool Rendering::resizeWindow(int w,int h)
 {
 	this->surface = SDL_SetVideoMode (w, h, this->windowDepth, this->videoFlags);
@@ -267,13 +277,13 @@ void Rendering::setLight()
 	
 	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER,1);
 	
-	glEnable(GL_LIGHT1); 
+	/*glEnable(GL_LIGHT1); 
 	GLfloat light_pos1[4] =	{250, 4, 519, 1.0};
 	GLfloat direction[] = { 0.0, -4.0, 0.0 };
     glLightfv( GL_LIGHT1, GL_POSITION, light_pos1 );
     glLightfv( GL_LIGHT1, GL_SPOT_DIRECTION, direction);
     glLightf ( GL_LIGHT1, GL_SPOT_EXPONENT , 1);
-    glLightf ( GL_LIGHT1, GL_SPOT_CUTOFF, 180);
+    glLightf ( GL_LIGHT1, GL_SPOT_CUTOFF, 180);*/
 	
 }
 

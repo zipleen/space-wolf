@@ -13,11 +13,7 @@
 
 #include "main.h"
 
-
-Player *p;
-
 int main(int argc, char *argv[]){
-	Game *g;
 
 //descomentar a linha para ir ao menu
 	Menu *m;
@@ -27,19 +23,6 @@ int main(int argc, char *argv[]){
 	r = Rendering::GetInstance();
 	r->initVideo();
 	
-	/*for(;;){
-		if(argc>1)
-			g=new Game(argv[1]);
-		else
-			g = new Game("data/maps/mapa2.map");
-		
-		
-		
-		
-		g->MainLoop();
-		delete g;
-	}*/
-	//descomentar as duas linhas seguintes para ir ao menu	
 	m = new Menu();
 	m->GameLoop();
 	
