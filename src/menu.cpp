@@ -78,6 +78,7 @@ Menu::Menu()
 	this->mapas.push_back("Mapa Alternativo 5");
 	this->mapas.push_back("Mapa Alternativo 6");
 	this->mapas.push_back("Mapa Alternativo 7");
+	this->mapas.push_back("Voltar");
 	
 }
 
@@ -104,8 +105,8 @@ void Menu::handleMenuHit()
 					break;
 				case 2:
 					 // escolher mapa
-					this->mapa_custom = true;
-					this->game_is_running = true;
+					this->menu_to_render = 2;
+					this->num_menu = 1;
 					break;
 				case 3:
 					// definicoes
@@ -182,6 +183,64 @@ void Menu::handleMenuHit()
 			// se alguem carregou em qq tecla, voltar ao menu inicial
 			this->menu_to_render = 1;
 			
+			break;
+		
+		// mapa especifico
+		case 2:
+			this->mapa_custom = true;
+			this->game_is_running = true;
+			this->new_game = true;
+			switch(this->num_menu){
+				case 1:
+					this->mapa_custom_nome = "data/maps/mapa1.map";
+					break;
+				case 2:
+					this->mapa_custom_nome = "data/maps/mapa2.map";
+					break;
+				case 3:
+					this->mapa_custom_nome = "data/maps/mapa3.map";
+					break;
+				case 4:
+					this->mapa_custom_nome = "data/maps/mapa4.map";
+					break;
+				case 5:
+					this->mapa_custom_nome = "data/maps/mapa5.map";
+					break;
+				case 6:
+					this->mapa_custom_nome = "data/maps/mapa6.map";
+					break;
+				case 7:
+					this->mapa_custom_nome = "data/maps/mapa7.map";
+					break;
+				case 8:
+					this->mapa_custom_nome = "data/maps/mapa1alt.map";
+					break;
+				case 9:
+					this->mapa_custom_nome = "data/maps/mapa2alt.map";
+					break;
+				case 10:
+					this->mapa_custom_nome = "data/maps/mapa3alt.map";
+					break;
+				case 11:
+					this->mapa_custom_nome = "data/maps/mapa4alt.map";
+					break;
+				case 12:
+					this->mapa_custom_nome = "data/maps/mapa5alt.map";
+					break;
+				case 13:
+					this->mapa_custom_nome = "data/maps/mapa6alt.map";
+					break;
+				case 14:
+					this->mapa_custom_nome = "data/maps/mapa7alt.map";
+					break;
+				case 15:
+					this->mapa_custom = false;
+					this->game_is_running = false;
+					this->menu_to_render = 1;
+					this->new_game = false;
+					this->num_menu = 1;
+					break;
+			}
 			break;
 	}
 }
@@ -263,13 +322,13 @@ void Menu::handleKeyPress (SDL_keysym *key, bool value)
 void Menu::desenharMapas()
 {
 	glColor4f (0.5f, 0.6f, 0.8f, 1.0f);
-	this->font2->printText (this->render->windowWidth/2-150, this->render->windowHeight-50, "Space Wolf");
+	this->font2->printText (this->render->windowWidth/2-360, this->render->windowHeight-50, "Space Wolf: Escolha Mapa");
 	if (this->num_menu < 1)
-		this->num_menu = 6;
-	if (this->num_menu > 6)
+		this->num_menu = this->mapas.size();
+	if (this->num_menu > this->mapas.size())
 		this->num_menu = 1;
 	
-	for(int i = 1; i<=this->menu_principal.size(); i++)
+	for(int i = 1; i<=this->mapas.size(); i++)
 	{
 		if(i==this->num_menu)
 		{
@@ -279,7 +338,7 @@ void Menu::desenharMapas()
 		{
 			glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 		}
-		this->font->printText (10,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/4) , this->menu_principal[i-1].c_str());
+		this->font->printText (10,this->render->windowHeight - (this->tamanho_font + 7) * i - (this->render->windowHeight/8) , this->mapas[i-1].c_str());
 	}
 	glColor4f (1.0f, 1.0f, 1.0f, 1.0f);
 }
@@ -287,7 +346,8 @@ void Menu::desenharMapas()
 void Menu::desenharDefinicoes()
 {
 	
-	
+	glColor4f (0.5f, 0.6f, 0.8f, 1.0f);
+	this->font2->printText (this->render->windowWidth/2-150, this->render->windowHeight-50, "Definicoes");
 	// esta mexe com o vector menu_definicoes
 	// eh preciso meter codigo para cada linha por causa da resolucao e fullscreen
 	if (this->num_menu < 1)
@@ -364,6 +424,7 @@ std::string Menu::getMapa()
 	if(this->mapa_custom){
 		
 		this->game_is_running = false;
+		return this->mapa_custom_nome;
 	}else{
 		std::string n = Str(this->numero_mapa);
 		return "data/maps/mapa"+n+".map";
@@ -540,6 +601,7 @@ void Menu::MainLoopMenu()
 					break;
 				case 2:
 					// mapas
+					this->desenharMapas();
 					break;
 				case 3:
 					// definicoes
