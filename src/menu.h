@@ -20,6 +20,7 @@
 
 #include <SDL.h>
 #include <vector>
+#include "game.h"
 #include "rendering.h"
 #include "font/Font.h"
 #include "Md3/TextureManager.h"
@@ -34,6 +35,8 @@ public:
 	
 	bool keyUpPressed;
 	bool keyDownPressed;
+	bool keyLeftPressed;
+	bool keyRightPressed;
 	bool keyEnterPressed;
 	int num_menu;
 	int menu_to_render;
