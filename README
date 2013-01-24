@@ -1,0 +1,21 @@
+Space Wolf
+
+This project was made in 22 days if I remember correctly. It was my "OpenGL project" for the opengl class. 
+I was working at the time, so the 22 days were only from 19.00-02.00 and weekends. 
+
+The premise was to try and remake wolf3d, but "my way". Obvisouly I didn't know anything about SDL or OpenGL, so
+I learned along the way. It is very primitive and ugly, but it is written in C++ and it was built from the ground-up,
+base on nothing but the md3loader to load the models.
+
+It works on Mac OS X, Linux and Windows, althgouh the Mac project could be a little outdated.
+It needs the boost c++ libraries, so in OS X you need to install them with ports (same with linux, don't remember how it's on windows)
+
+---
+
+My brother helped me with the "game" part: choosing models, sounds, textures, making maps. I did a "map editor" in .net (in like 4 hours?) 
+so he could "draw" the maps more easely. 
+In the end, I really enjoyd making this, but I didn't do anything more with it because there was no point =)
+
+Still, it was an academic exercise, maybe someone will find it interesting =)
+
+Oh, and sorry about the comments in portuguese, this was converted from my personal svn server.
