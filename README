@@ -19,3 +19,21 @@ In the end, I really enjoyd making this, but I didn't do anything more with it b
 Still, it was an academic exercise, maybe someone will find it interesting =)
 
 Oh, and sorry about the comments in portuguese, this was converted from my personal svn server.
+
+
+Compile in Mac OS X
+-------------------
+
+I've upgraded the Mac OS X project to Xcode 4.5. I also removed all the libraries that were in the repo which was utterly wrong. You need to install them with brew though.
+
+Install brew from http://mxcl.github.com/homebrew/  and install glew boost sdl sdl_mixer sdl_ttf jpeg
+```
+brew install glew
+brew install boost
+brew install sdl
+brew install sdl_mixer
+brew install sdl_ttf
+brew install jpeg
+```
+
+Now you can open the project and build. 

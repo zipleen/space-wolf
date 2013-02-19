@@ -10,7 +10,7 @@
 #ifndef INPUT_H
 #define INPUT_G
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include "rendering.h"
 #include "console.h"
 

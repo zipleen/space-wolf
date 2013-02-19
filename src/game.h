@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include "map.h"
 #include "player.h"
 #include "rendering.h"

@@ -10,8 +10,8 @@
 #ifndef GUARD_H
 #define GUARD_H
 
-#include <SDL.h>
-#include <SDL_mixer.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
 #include <GL/glew.h>
 #ifdef __APPLE__
 #include <OpenGL/gl.h>

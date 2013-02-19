@@ -34,7 +34,7 @@
 #include <GL/glut.h>
 #endif
 
-#include <SDL_ttf.h>
+#include <SDL/SDL_ttf.h>
 #include <stdexcept>
 #include <string>
 #include <vector>

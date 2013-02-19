@@ -7,63 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		002F39FA09D0881F00EBEB88 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F39F909D0881F00EBEB88 /* SDL.framework */; };
-		002F3A0009D0884600EBEB88 /* SDL.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = 002F39F909D0881F00EBEB88 /* SDL.framework */; };
 		002F3A2E09D0888800EBEB88 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 002F3A2C09D0888800EBEB88 /* SDLMain.m */; };
 		002F3C0109D093BD00EBEB88 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F3C0009D093BD00EBEB88 /* OpenGL.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		AA08848E0D27F58F00D7793D /* soldado.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA08848D0D27F58F00D7793D /* soldado.cpp */; };
-		AA0886E80D28977E00D7793D /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0886E70D28977E00D7793D /* SDL_mixer.framework */; };
-		AA0A634B0D3FF9A0002E4124 /* SDL_mixer.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = AA0886E70D28977E00D7793D /* SDL_mixer.framework */; };
-		AA0A63520D3FF9A2002E4124 /* SDL_ttf.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = AAEE411E0D295D9600DE9F02 /* SDL_ttf.framework */; };
-		AA0A66930D4012A3002E4124 /* jcapimin.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66650D4012A3002E4124 /* jcapimin.o */; };
-		AA0A66940D4012A3002E4124 /* jcapistd.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66660D4012A3002E4124 /* jcapistd.o */; };
-		AA0A66950D4012A3002E4124 /* jccoefct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66670D4012A3002E4124 /* jccoefct.o */; };
-		AA0A66960D4012A3002E4124 /* jccolor.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66680D4012A3002E4124 /* jccolor.o */; };
-		AA0A66970D4012A3002E4124 /* jcdctmgr.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66690D4012A3002E4124 /* jcdctmgr.o */; };
-		AA0A66980D4012A3002E4124 /* jchuff.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666A0D4012A3002E4124 /* jchuff.o */; };
-		AA0A66990D4012A3002E4124 /* jcinit.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666B0D4012A3002E4124 /* jcinit.o */; };
-		AA0A669A0D4012A3002E4124 /* jcmainct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666C0D4012A3002E4124 /* jcmainct.o */; };
-		AA0A669B0D4012A3002E4124 /* jcmarker.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666D0D4012A3002E4124 /* jcmarker.o */; };
-		AA0A669C0D4012A3002E4124 /* jcmaster.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666E0D4012A3002E4124 /* jcmaster.o */; };
-		AA0A669D0D4012A3002E4124 /* jcomapi.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A666F0D4012A3002E4124 /* jcomapi.o */; };
-		AA0A669E0D4012A3002E4124 /* jcparam.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66700D4012A3002E4124 /* jcparam.o */; };
-		AA0A669F0D4012A3002E4124 /* jcphuff.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66710D4012A3002E4124 /* jcphuff.o */; };
-		AA0A66A00D4012A3002E4124 /* jcprepct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66720D4012A3002E4124 /* jcprepct.o */; };
-		AA0A66A10D4012A3002E4124 /* jcsample.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66730D4012A3002E4124 /* jcsample.o */; };
-		AA0A66A20D4012A3002E4124 /* jctrans.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66740D4012A3002E4124 /* jctrans.o */; };
-		AA0A66A30D4012A3002E4124 /* jdapimin.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66750D4012A3002E4124 /* jdapimin.o */; };
-		AA0A66A40D4012A3002E4124 /* jdapistd.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66760D4012A3002E4124 /* jdapistd.o */; };
-		AA0A66A50D4012A3002E4124 /* jdatadst.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66770D4012A3002E4124 /* jdatadst.o */; };
-		AA0A66A60D4012A3002E4124 /* jdatasrc.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66780D4012A3002E4124 /* jdatasrc.o */; };
-		AA0A66A70D4012A3002E4124 /* jdcoefct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66790D4012A3002E4124 /* jdcoefct.o */; };
-		AA0A66A80D4012A3002E4124 /* jdcolor.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667A0D4012A3002E4124 /* jdcolor.o */; };
-		AA0A66A90D4012A3002E4124 /* jddctmgr.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667B0D4012A3002E4124 /* jddctmgr.o */; };
-		AA0A66AA0D4012A3002E4124 /* jdhuff.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667C0D4012A3002E4124 /* jdhuff.o */; };
-		AA0A66AB0D4012A3002E4124 /* jdinput.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667D0D4012A3002E4124 /* jdinput.o */; };
-		AA0A66AC0D4012A3002E4124 /* jdmainct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667E0D4012A3002E4124 /* jdmainct.o */; };
-		AA0A66AD0D4012A3002E4124 /* jdmarker.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A667F0D4012A3002E4124 /* jdmarker.o */; };
-		AA0A66AE0D4012A3002E4124 /* jdmaster.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66800D4012A3002E4124 /* jdmaster.o */; };
-		AA0A66AF0D4012A3002E4124 /* jdmerge.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66810D4012A3002E4124 /* jdmerge.o */; };
-		AA0A66B00D4012A3002E4124 /* jdphuff.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66820D4012A3002E4124 /* jdphuff.o */; };
-		AA0A66B10D4012A3002E4124 /* jdpostct.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66830D4012A3002E4124 /* jdpostct.o */; };
-		AA0A66B20D4012A3002E4124 /* jdsample.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66840D4012A3002E4124 /* jdsample.o */; };
-		AA0A66B30D4012A3002E4124 /* jdtrans.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66850D4012A3002E4124 /* jdtrans.o */; };
-		AA0A66B40D4012A3002E4124 /* jerror.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66860D4012A3002E4124 /* jerror.o */; };
-		AA0A66B50D4012A3002E4124 /* jfdctflt.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66870D4012A3002E4124 /* jfdctflt.o */; };
-		AA0A66B60D4012A3002E4124 /* jfdctfst.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66880D4012A3002E4124 /* jfdctfst.o */; };
-		AA0A66B70D4012A3002E4124 /* jfdctint.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66890D4012A3002E4124 /* jfdctint.o */; };
-		AA0A66B80D4012A3002E4124 /* jidctflt.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668A0D4012A3002E4124 /* jidctflt.o */; };
-		AA0A66B90D4012A3002E4124 /* jidctfst.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668B0D4012A3002E4124 /* jidctfst.o */; };
-		AA0A66BA0D4012A3002E4124 /* jidctint.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668C0D4012A3002E4124 /* jidctint.o */; };
-		AA0A66BB0D4012A3002E4124 /* jidctred.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668D0D4012A3002E4124 /* jidctred.o */; };
-		AA0A66BC0D4012A3002E4124 /* jmemmgr.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668E0D4012A3002E4124 /* jmemmgr.o */; };
-		AA0A66BD0D4012A3002E4124 /* jmemnobs.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A668F0D4012A3002E4124 /* jmemnobs.o */; };
-		AA0A66BE0D4012A3002E4124 /* jquant1.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66900D4012A3002E4124 /* jquant1.o */; };
-		AA0A66BF0D4012A3002E4124 /* jquant2.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66910D4012A3002E4124 /* jquant2.o */; };
-		AA0A66C00D4012A3002E4124 /* jutils.o in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0A66920D4012A3002E4124 /* jutils.o */; };
 		AA3971590D2C5E1500855D68 /* StrUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA3971580D2C5E1500855D68 /* StrUtils.cpp */; };
+		AA63E24716D42CE1003287C6 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA63E24216D42CE1003287C6 /* libjpeg.a */; };
+		AA63E24816D42CE1003287C6 /* libSDL_ttf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA63E24316D42CE1003287C6 /* libSDL_ttf.a */; };
+		AA63E24916D42CE1003287C6 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA63E24416D42CE1003287C6 /* libfreetype.a */; };
+		AA63E24A16D42CE1003287C6 /* libSDL_mixer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA63E24516D42CE1003287C6 /* libSDL_mixer.a */; };
+		AA63E24B16D42CE1003287C6 /* libSDL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA63E24616D42CE1003287C6 /* libSDL.a */; };
+		AA63E24D16D42EAB003287C6 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA63E24C16D42EAB003287C6 /* libGLEW.a */; };
 		AA7F76C50D3124670088B254 /* porta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7F76C40D3124670088B254 /* porta.cpp */; };
 		AA8C5BAE0D43828A006EC666 /* menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA8C5BAD0D43828A006EC666 /* menu.cpp */; };
 		AA968A2E0D367DF000B6E06D /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA968A2C0D367DF000B6E06D /* Font.cpp */; };
@@ -79,7 +34,6 @@
 		AAAE24EC0D3C0D320013FB8E /* guarda_dificil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAE24EB0D3C0D320013FB8E /* guarda_dificil.cpp */; };
 		AAAE24EF0D3C0D490013FB8E /* boss1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAE24EE0D3C0D490013FB8E /* boss1.cpp */; };
 		AAAE24F20D3C10F40013FB8E /* guard_robo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAE24F10D3C10F40013FB8E /* guard_robo.cpp */; };
-		AAB2E5410D2AD3E400B65B5E /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2E5400D2AD3E400B65B5E /* libGLEW.a */; };
 		AABE74580D26CC2D00A3AA8B /* Mathlib.inl in Resources */ = {isa = PBXBuildFile; fileRef = AABE744C0D26CC2D00A3AA8B /* Mathlib.inl */; };
 		AABE74590D26CC2D00A3AA8B /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE744F0D26CC2D00A3AA8B /* Texture.cpp */; };
 		AABE745A0D26CC2D00A3AA8B /* Md3Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE74510D26CC2D00A3AA8B /* Md3Model.cpp */; };
@@ -99,7 +53,6 @@
 		AABE748F0D26CC5B00A3AA8B /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABE74830D26CC5B00A3AA8B /* game.cpp */; };
 		AAE286200D37B0590016D7C2 /* items_vida.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE2861F0D37B0590016D7C2 /* items_vida.cpp */; };
 		AAEE40520D29371200DE9F02 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAEE40500D29371200DE9F02 /* input.cpp */; };
-		AAEE411F0D295D9600DE9F02 /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEE411E0D295D9600DE9F02 /* SDL_ttf.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -109,9 +62,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AA0A63520D3FF9A2002E4124 /* SDL_ttf.framework in Copy Frameworks into .app bundle */,
-				AA0A634B0D3FF9A0002E4124 /* SDL_mixer.framework in Copy Frameworks into .app bundle */,
-				002F3A0009D0884600EBEB88 /* SDL.framework in Copy Frameworks into .app bundle */,
 			);
 			name = "Copy Frameworks into .app bundle";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,7 +69,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		002F39F909D0881F00EBEB88 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
 		002F3A2B09D0888800EBEB88 /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = SOURCE_ROOT; };
 		002F3A2C09D0888800EBEB88 /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = SOURCE_ROOT; };
 		002F3C0009D093BD00EBEB88 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
@@ -127,60 +76,19 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32CA4F630368D1EE00C91783 /* «PROJECTNAME»_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "«PROJECTNAME»_Prefix.pch"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* «PROJECTNAME»_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "«PROJECTNAME»_Prefix.pch"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA08848C0D27F58F00D7793D /* soldado.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = soldado.h; path = ../soldado.h; sourceTree = SOURCE_ROOT; };
 		AA08848D0D27F58F00D7793D /* soldado.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = soldado.cpp; path = ../soldado.cpp; sourceTree = SOURCE_ROOT; };
-		AA0886E70D28977E00D7793D /* SDL_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_mixer.framework; path = /Library/Frameworks/SDL_mixer.framework; sourceTree = "<absolute>"; };
-		AA0A66650D4012A3002E4124 /* jcapimin.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcapimin.o; path = jpg/jcapimin.o; sourceTree = "<group>"; };
-		AA0A66660D4012A3002E4124 /* jcapistd.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcapistd.o; path = jpg/jcapistd.o; sourceTree = "<group>"; };
-		AA0A66670D4012A3002E4124 /* jccoefct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jccoefct.o; path = jpg/jccoefct.o; sourceTree = "<group>"; };
-		AA0A66680D4012A3002E4124 /* jccolor.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jccolor.o; path = jpg/jccolor.o; sourceTree = "<group>"; };
-		AA0A66690D4012A3002E4124 /* jcdctmgr.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcdctmgr.o; path = jpg/jcdctmgr.o; sourceTree = "<group>"; };
-		AA0A666A0D4012A3002E4124 /* jchuff.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jchuff.o; path = jpg/jchuff.o; sourceTree = "<group>"; };
-		AA0A666B0D4012A3002E4124 /* jcinit.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcinit.o; path = jpg/jcinit.o; sourceTree = "<group>"; };
-		AA0A666C0D4012A3002E4124 /* jcmainct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcmainct.o; path = jpg/jcmainct.o; sourceTree = "<group>"; };
-		AA0A666D0D4012A3002E4124 /* jcmarker.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcmarker.o; path = jpg/jcmarker.o; sourceTree = "<group>"; };
-		AA0A666E0D4012A3002E4124 /* jcmaster.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcmaster.o; path = jpg/jcmaster.o; sourceTree = "<group>"; };
-		AA0A666F0D4012A3002E4124 /* jcomapi.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcomapi.o; path = jpg/jcomapi.o; sourceTree = "<group>"; };
-		AA0A66700D4012A3002E4124 /* jcparam.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcparam.o; path = jpg/jcparam.o; sourceTree = "<group>"; };
-		AA0A66710D4012A3002E4124 /* jcphuff.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcphuff.o; path = jpg/jcphuff.o; sourceTree = "<group>"; };
-		AA0A66720D4012A3002E4124 /* jcprepct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcprepct.o; path = jpg/jcprepct.o; sourceTree = "<group>"; };
-		AA0A66730D4012A3002E4124 /* jcsample.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jcsample.o; path = jpg/jcsample.o; sourceTree = "<group>"; };
-		AA0A66740D4012A3002E4124 /* jctrans.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jctrans.o; path = jpg/jctrans.o; sourceTree = "<group>"; };
-		AA0A66750D4012A3002E4124 /* jdapimin.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdapimin.o; path = jpg/jdapimin.o; sourceTree = "<group>"; };
-		AA0A66760D4012A3002E4124 /* jdapistd.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdapistd.o; path = jpg/jdapistd.o; sourceTree = "<group>"; };
-		AA0A66770D4012A3002E4124 /* jdatadst.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdatadst.o; path = jpg/jdatadst.o; sourceTree = "<group>"; };
-		AA0A66780D4012A3002E4124 /* jdatasrc.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdatasrc.o; path = jpg/jdatasrc.o; sourceTree = "<group>"; };
-		AA0A66790D4012A3002E4124 /* jdcoefct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdcoefct.o; path = jpg/jdcoefct.o; sourceTree = "<group>"; };
-		AA0A667A0D4012A3002E4124 /* jdcolor.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdcolor.o; path = jpg/jdcolor.o; sourceTree = "<group>"; };
-		AA0A667B0D4012A3002E4124 /* jddctmgr.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jddctmgr.o; path = jpg/jddctmgr.o; sourceTree = "<group>"; };
-		AA0A667C0D4012A3002E4124 /* jdhuff.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdhuff.o; path = jpg/jdhuff.o; sourceTree = "<group>"; };
-		AA0A667D0D4012A3002E4124 /* jdinput.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdinput.o; path = jpg/jdinput.o; sourceTree = "<group>"; };
-		AA0A667E0D4012A3002E4124 /* jdmainct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdmainct.o; path = jpg/jdmainct.o; sourceTree = "<group>"; };
-		AA0A667F0D4012A3002E4124 /* jdmarker.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdmarker.o; path = jpg/jdmarker.o; sourceTree = "<group>"; };
-		AA0A66800D4012A3002E4124 /* jdmaster.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdmaster.o; path = jpg/jdmaster.o; sourceTree = "<group>"; };
-		AA0A66810D4012A3002E4124 /* jdmerge.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdmerge.o; path = jpg/jdmerge.o; sourceTree = "<group>"; };
-		AA0A66820D4012A3002E4124 /* jdphuff.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdphuff.o; path = jpg/jdphuff.o; sourceTree = "<group>"; };
-		AA0A66830D4012A3002E4124 /* jdpostct.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdpostct.o; path = jpg/jdpostct.o; sourceTree = "<group>"; };
-		AA0A66840D4012A3002E4124 /* jdsample.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdsample.o; path = jpg/jdsample.o; sourceTree = "<group>"; };
-		AA0A66850D4012A3002E4124 /* jdtrans.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jdtrans.o; path = jpg/jdtrans.o; sourceTree = "<group>"; };
-		AA0A66860D4012A3002E4124 /* jerror.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jerror.o; path = jpg/jerror.o; sourceTree = "<group>"; };
-		AA0A66870D4012A3002E4124 /* jfdctflt.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jfdctflt.o; path = jpg/jfdctflt.o; sourceTree = "<group>"; };
-		AA0A66880D4012A3002E4124 /* jfdctfst.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jfdctfst.o; path = jpg/jfdctfst.o; sourceTree = "<group>"; };
-		AA0A66890D4012A3002E4124 /* jfdctint.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jfdctint.o; path = jpg/jfdctint.o; sourceTree = "<group>"; };
-		AA0A668A0D4012A3002E4124 /* jidctflt.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jidctflt.o; path = jpg/jidctflt.o; sourceTree = "<group>"; };
-		AA0A668B0D4012A3002E4124 /* jidctfst.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jidctfst.o; path = jpg/jidctfst.o; sourceTree = "<group>"; };
-		AA0A668C0D4012A3002E4124 /* jidctint.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jidctint.o; path = jpg/jidctint.o; sourceTree = "<group>"; };
-		AA0A668D0D4012A3002E4124 /* jidctred.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jidctred.o; path = jpg/jidctred.o; sourceTree = "<group>"; };
-		AA0A668E0D4012A3002E4124 /* jmemmgr.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jmemmgr.o; path = jpg/jmemmgr.o; sourceTree = "<group>"; };
-		AA0A668F0D4012A3002E4124 /* jmemnobs.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jmemnobs.o; path = jpg/jmemnobs.o; sourceTree = "<group>"; };
-		AA0A66900D4012A3002E4124 /* jquant1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jquant1.o; path = jpg/jquant1.o; sourceTree = "<group>"; };
-		AA0A66910D4012A3002E4124 /* jquant2.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jquant2.o; path = jpg/jquant2.o; sourceTree = "<group>"; };
-		AA0A66920D4012A3002E4124 /* jutils.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = jutils.o; path = jpg/jutils.o; sourceTree = "<group>"; };
 		AA3971570D2C5E1500855D68 /* StrUtils.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; name = StrUtils.h; path = ../StrUtils.h; sourceTree = SOURCE_ROOT; };
 		AA3971580D2C5E1500855D68 /* StrUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.cpp.cpp; name = StrUtils.cpp; path = ../StrUtils.cpp; sourceTree = SOURCE_ROOT; };
+		AA63E24216D42CE1003287C6 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = ../../../../../../usr/local/Cellar/jpeg/8d/lib/libjpeg.a; sourceTree = "<group>"; };
+		AA63E24316D42CE1003287C6 /* libSDL_ttf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL_ttf.a; path = ../../../../../../usr/local/Cellar/sdl_ttf/2.0.11/lib/libSDL_ttf.a; sourceTree = "<group>"; };
+		AA63E24416D42CE1003287C6 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../../../../../usr/local/Cellar/freetype/2.4.10/lib/libfreetype.a; sourceTree = "<group>"; };
+		AA63E24516D42CE1003287C6 /* libSDL_mixer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL_mixer.a; path = ../../../../../../usr/local/Cellar/sdl_mixer/1.2.12/lib/libSDL_mixer.a; sourceTree = "<group>"; };
+		AA63E24616D42CE1003287C6 /* libSDL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL.a; path = ../../../../../../usr/local/Cellar/sdl/1.2.15/lib/libSDL.a; sourceTree = "<group>"; };
+		AA63E24C16D42EAB003287C6 /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = ../../../../../../usr/local/Cellar/glew/1.9.0/lib/libGLEW.a; sourceTree = "<group>"; };
 		AA7F76C30D3124670088B254 /* porta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = porta.h; path = ../porta.h; sourceTree = SOURCE_ROOT; };
 		AA7F76C40D3124670088B254 /* porta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = porta.cpp; path = ../porta.cpp; sourceTree = SOURCE_ROOT; };
 		AA8C5BAC0D43828A006EC666 /* menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = menu.h; path = ../menu.h; sourceTree = SOURCE_ROOT; };
@@ -211,7 +119,6 @@
 		AAAE24EE0D3C0D490013FB8E /* boss1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = boss1.cpp; path = ../boss1.cpp; sourceTree = SOURCE_ROOT; };
 		AAAE24F00D3C10F40013FB8E /* guard_robo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = guard_robo.h; path = ../guard_robo.h; sourceTree = SOURCE_ROOT; };
 		AAAE24F10D3C10F40013FB8E /* guard_robo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = guard_robo.cpp; path = ../guard_robo.cpp; sourceTree = SOURCE_ROOT; };
-		AAB2E5400D2AD3E400B65B5E /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = lib/libGLEW.a; sourceTree = "<group>"; };
 		AABE744B0D26CC2D00A3AA8B /* Md3Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Md3Model.h; path = ../md3/Md3Model.h; sourceTree = SOURCE_ROOT; };
 		AABE744C0D26CC2D00A3AA8B /* Mathlib.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Mathlib.inl; path = ../md3/Mathlib.inl; sourceTree = SOURCE_ROOT; };
 		AABE744D0D26CC2D00A3AA8B /* Md3Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Md3Player.h; path = ../md3/Md3Player.h; sourceTree = SOURCE_ROOT; };
@@ -251,7 +158,6 @@
 		AAE2861F0D37B0590016D7C2 /* items_vida.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = items_vida.cpp; path = ../items_vida.cpp; sourceTree = SOURCE_ROOT; };
 		AAEE40500D29371200DE9F02 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = input.cpp; path = ../input.cpp; sourceTree = SOURCE_ROOT; };
 		AAEE40510D29371200DE9F02 /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = input.h; path = ../input.h; sourceTree = SOURCE_ROOT; };
-		AAEE411E0D295D9600DE9F02 /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = /Library/Frameworks/SDL_ttf.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,58 +165,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002F39FA09D0881F00EBEB88 /* SDL.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				002F3C0109D093BD00EBEB88 /* OpenGL.framework in Frameworks */,
-				AA0886E80D28977E00D7793D /* SDL_mixer.framework in Frameworks */,
-				AAEE411F0D295D9600DE9F02 /* SDL_ttf.framework in Frameworks */,
-				AAB2E5410D2AD3E400B65B5E /* libGLEW.a in Frameworks */,
-				AA0A66930D4012A3002E4124 /* jcapimin.o in Frameworks */,
-				AA0A66940D4012A3002E4124 /* jcapistd.o in Frameworks */,
-				AA0A66950D4012A3002E4124 /* jccoefct.o in Frameworks */,
-				AA0A66960D4012A3002E4124 /* jccolor.o in Frameworks */,
-				AA0A66970D4012A3002E4124 /* jcdctmgr.o in Frameworks */,
-				AA0A66980D4012A3002E4124 /* jchuff.o in Frameworks */,
-				AA0A66990D4012A3002E4124 /* jcinit.o in Frameworks */,
-				AA0A669A0D4012A3002E4124 /* jcmainct.o in Frameworks */,
-				AA0A669B0D4012A3002E4124 /* jcmarker.o in Frameworks */,
-				AA0A669C0D4012A3002E4124 /* jcmaster.o in Frameworks */,
-				AA0A669D0D4012A3002E4124 /* jcomapi.o in Frameworks */,
-				AA0A669E0D4012A3002E4124 /* jcparam.o in Frameworks */,
-				AA0A669F0D4012A3002E4124 /* jcphuff.o in Frameworks */,
-				AA0A66A00D4012A3002E4124 /* jcprepct.o in Frameworks */,
-				AA0A66A10D4012A3002E4124 /* jcsample.o in Frameworks */,
-				AA0A66A20D4012A3002E4124 /* jctrans.o in Frameworks */,
-				AA0A66A30D4012A3002E4124 /* jdapimin.o in Frameworks */,
-				AA0A66A40D4012A3002E4124 /* jdapistd.o in Frameworks */,
-				AA0A66A50D4012A3002E4124 /* jdatadst.o in Frameworks */,
-				AA0A66A60D4012A3002E4124 /* jdatasrc.o in Frameworks */,
-				AA0A66A70D4012A3002E4124 /* jdcoefct.o in Frameworks */,
-				AA0A66A80D4012A3002E4124 /* jdcolor.o in Frameworks */,
-				AA0A66A90D4012A3002E4124 /* jddctmgr.o in Frameworks */,
-				AA0A66AA0D4012A3002E4124 /* jdhuff.o in Frameworks */,
-				AA0A66AB0D4012A3002E4124 /* jdinput.o in Frameworks */,
-				AA0A66AC0D4012A3002E4124 /* jdmainct.o in Frameworks */,
-				AA0A66AD0D4012A3002E4124 /* jdmarker.o in Frameworks */,
-				AA0A66AE0D4012A3002E4124 /* jdmaster.o in Frameworks */,
-				AA0A66AF0D4012A3002E4124 /* jdmerge.o in Frameworks */,
-				AA0A66B00D4012A3002E4124 /* jdphuff.o in Frameworks */,
-				AA0A66B10D4012A3002E4124 /* jdpostct.o in Frameworks */,
-				AA0A66B20D4012A3002E4124 /* jdsample.o in Frameworks */,
-				AA0A66B30D4012A3002E4124 /* jdtrans.o in Frameworks */,
-				AA0A66B40D4012A3002E4124 /* jerror.o in Frameworks */,
-				AA0A66B50D4012A3002E4124 /* jfdctflt.o in Frameworks */,
-				AA0A66B60D4012A3002E4124 /* jfdctfst.o in Frameworks */,
-				AA0A66B70D4012A3002E4124 /* jfdctint.o in Frameworks */,
-				AA0A66B80D4012A3002E4124 /* jidctflt.o in Frameworks */,
-				AA0A66B90D4012A3002E4124 /* jidctfst.o in Frameworks */,
-				AA0A66BA0D4012A3002E4124 /* jidctint.o in Frameworks */,
-				AA0A66BB0D4012A3002E4124 /* jidctred.o in Frameworks */,
-				AA0A66BC0D4012A3002E4124 /* jmemmgr.o in Frameworks */,
-				AA0A66BD0D4012A3002E4124 /* jmemnobs.o in Frameworks */,
-				AA0A66BE0D4012A3002E4124 /* jquant1.o in Frameworks */,
-				AA0A66BF0D4012A3002E4124 /* jquant2.o in Frameworks */,
-				AA0A66C00D4012A3002E4124 /* jutils.o in Frameworks */,
+				AA63E24716D42CE1003287C6 /* libjpeg.a in Frameworks */,
+				AA63E24816D42CE1003287C6 /* libSDL_ttf.a in Frameworks */,
+				AA63E24916D42CE1003287C6 /* libfreetype.a in Frameworks */,
+				AA63E24A16D42CE1003287C6 /* libSDL_mixer.a in Frameworks */,
+				AA63E24B16D42CE1003287C6 /* libSDL.a in Frameworks */,
+				AA63E24D16D42EAB003287C6 /* libGLEW.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,9 +191,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AAEE411E0D295D9600DE9F02 /* SDL_ttf.framework */,
-				AA0886E70D28977E00D7793D /* SDL_mixer.framework */,
-				002F39F909D0881F00EBEB88 /* SDL.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				002F3C0009D093BD00EBEB88 /* OpenGL.framework */,
 			);
@@ -370,7 +229,6 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				AA0A65560D401049002E4124 /* New Group */,
 				32CA4F630368D1EE00C91783 /* «PROJECTNAME»_Prefix.pch */,
 			);
 			name = "Other Sources";
@@ -393,66 +251,6 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AA0A65560D401049002E4124 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
-			sourceTree = "<group>";
-		};
-		AA0A66070D40123F002E4124 /* libjpeg */ = {
-			isa = PBXGroup;
-			children = (
-				AA0A66650D4012A3002E4124 /* jcapimin.o */,
-				AA0A66660D4012A3002E4124 /* jcapistd.o */,
-				AA0A66670D4012A3002E4124 /* jccoefct.o */,
-				AA0A66680D4012A3002E4124 /* jccolor.o */,
-				AA0A66690D4012A3002E4124 /* jcdctmgr.o */,
-				AA0A666A0D4012A3002E4124 /* jchuff.o */,
-				AA0A666B0D4012A3002E4124 /* jcinit.o */,
-				AA0A666C0D4012A3002E4124 /* jcmainct.o */,
-				AA0A666D0D4012A3002E4124 /* jcmarker.o */,
-				AA0A666E0D4012A3002E4124 /* jcmaster.o */,
-				AA0A666F0D4012A3002E4124 /* jcomapi.o */,
-				AA0A66700D4012A3002E4124 /* jcparam.o */,
-				AA0A66710D4012A3002E4124 /* jcphuff.o */,
-				AA0A66720D4012A3002E4124 /* jcprepct.o */,
-				AA0A66730D4012A3002E4124 /* jcsample.o */,
-				AA0A66740D4012A3002E4124 /* jctrans.o */,
-				AA0A66750D4012A3002E4124 /* jdapimin.o */,
-				AA0A66760D4012A3002E4124 /* jdapistd.o */,
-				AA0A66770D4012A3002E4124 /* jdatadst.o */,
-				AA0A66780D4012A3002E4124 /* jdatasrc.o */,
-				AA0A66790D4012A3002E4124 /* jdcoefct.o */,
-				AA0A667A0D4012A3002E4124 /* jdcolor.o */,
-				AA0A667B0D4012A3002E4124 /* jddctmgr.o */,
-				AA0A667C0D4012A3002E4124 /* jdhuff.o */,
-				AA0A667D0D4012A3002E4124 /* jdinput.o */,
-				AA0A667E0D4012A3002E4124 /* jdmainct.o */,
-				AA0A667F0D4012A3002E4124 /* jdmarker.o */,
-				AA0A66800D4012A3002E4124 /* jdmaster.o */,
-				AA0A66810D4012A3002E4124 /* jdmerge.o */,
-				AA0A66820D4012A3002E4124 /* jdphuff.o */,
-				AA0A66830D4012A3002E4124 /* jdpostct.o */,
-				AA0A66840D4012A3002E4124 /* jdsample.o */,
-				AA0A66850D4012A3002E4124 /* jdtrans.o */,
-				AA0A66860D4012A3002E4124 /* jerror.o */,
-				AA0A66870D4012A3002E4124 /* jfdctflt.o */,
-				AA0A66880D4012A3002E4124 /* jfdctfst.o */,
-				AA0A66890D4012A3002E4124 /* jfdctint.o */,
-				AA0A668A0D4012A3002E4124 /* jidctflt.o */,
-				AA0A668B0D4012A3002E4124 /* jidctfst.o */,
-				AA0A668C0D4012A3002E4124 /* jidctint.o */,
-				AA0A668D0D4012A3002E4124 /* jidctred.o */,
-				AA0A668E0D4012A3002E4124 /* jmemmgr.o */,
-				AA0A668F0D4012A3002E4124 /* jmemnobs.o */,
-				AA0A66900D4012A3002E4124 /* jquant1.o */,
-				AA0A66910D4012A3002E4124 /* jquant2.o */,
-				AA0A66920D4012A3002E4124 /* jutils.o */,
-			);
-			name = libjpeg;
 			sourceTree = "<group>";
 		};
 		AA3971530D2C5DEF00855D68 /* includes */ = {
@@ -608,8 +406,12 @@
 		AABE74960D26CC7E00A3AA8B /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				AA0A66070D40123F002E4124 /* libjpeg */,
-				AAB2E5400D2AD3E400B65B5E /* libGLEW.a */,
+				AA63E24C16D42EAB003287C6 /* libGLEW.a */,
+				AA63E24216D42CE1003287C6 /* libjpeg.a */,
+				AA63E24316D42CE1003287C6 /* libSDL_ttf.a */,
+				AA63E24416D42CE1003287C6 /* libfreetype.a */,
+				AA63E24516D42CE1003287C6 /* libSDL_mixer.a */,
+				AA63E24616D42CE1003287C6 /* libSDL.a */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -662,7 +464,11 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "proj" */;
 			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* «PROJECTNAMEASXML» */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -745,7 +551,9 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -754,15 +562,19 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/opt/local/lib,
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					/usr/local/lib,
+					/usr/local/Cellar/jpeg/8d/lib,
+					/usr/local/Cellar/sdl_ttf/2.0.11/lib,
+					/usr/local/Cellar/freetype/2.4.10/lib,
+					/usr/local/Cellar/sdl_mixer/1.2.12/lib,
+					/usr/local/Cellar/sdl/1.2.15/lib,
+					/usr/local/Cellar/glew/1.9.0/lib,
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/lib\"";
 				PRODUCT_NAME = game;
+				SDKROOT = "";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -771,25 +583,27 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				FRAMEWORK_SEARCH_PATHS = "$(FRAMEWORK_SEARCH_PATHS)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/opt/local/lib,
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					/usr/local/lib,
+					/usr/local/Cellar/jpeg/8d/lib,
+					/usr/local/Cellar/sdl_ttf/2.0.11/lib,
+					/usr/local/Cellar/freetype/2.4.10/lib,
+					/usr/local/Cellar/sdl_mixer/1.2.12/lib,
+					/usr/local/Cellar/sdl/1.2.15/lib,
+					/usr/local/Cellar/glew/1.9.0/lib,
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/lib\"";
 				PRODUCT_NAME = game;
+				SDKROOT = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -807,13 +621,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_2)",
-					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
-					/Library/Frameworks/SDL.framework/Headers,
 					"$(HEADER_SEARCH_PATHS)",
-					/Library/Frameworks/SDL_mixer.framework/Headers,
-					/Library/Frameworks/SDL_ttf.framework/Headers,
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1)",
+					/usr/local/include,
 				);
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = "\"$(PROJECT_DIR)/../include\"";
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_2 = "\"$(PROJECT_DIR)/include\"";
@@ -838,13 +647,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/include",
-					"$(PROJECT_DIR)/../include",
-					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
-					/Library/Frameworks/SDL.framework/Headers,
 					"$(HEADER_SEARCH_PATHS)",
-					/Library/Frameworks/SDL_mixer.framework/Headers,
-					/Library/Frameworks/SDL_ttf.framework/Headers,
+					/usr/local/include,
 				);
 				HEADER_SEARCH_PATHS_QUOTED_FOR_PROJECT_1 = "\"$(PROJECT_DIR)/../include\"";
 				OTHER_CFLAGS = "-I/opt/local/include";

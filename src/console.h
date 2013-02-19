@@ -33,7 +33,7 @@ public:
 	
 	static void addLine(char *s);
 	static void addLine(std::string s);
-	static void Console::printf(char *fmt, ...);
+	static void printf(char *fmt, ...);
 	//friend std::istream& operator>>( std::istream& is, const Console& c );
 };
 

@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include <vector>
 #include "game.h"
 #include "rendering.h"

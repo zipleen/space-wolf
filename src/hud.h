@@ -19,7 +19,7 @@
 #include <GL/glu.h>
 #endif
 
-#include <SDL_ttf.h>
+#include <SDL/SDL_ttf.h>
 
 #include "player.h"
 #include "StrUtils.h"

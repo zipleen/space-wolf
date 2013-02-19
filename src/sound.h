@@ -15,8 +15,8 @@
 #include <vector>
 #include <map>
 #include <cmath>
-#include <SDL.h>
-#include <SDL_mixer.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
 #include "fisica.h"
 
 #ifndef M_PI

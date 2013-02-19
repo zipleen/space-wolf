@@ -16,8 +16,8 @@
 #define RAD(x)          (M_PI*(x)/180)
 #define GRAUS(x)        (180*(x)/M_PI)
 
-#include <SDL.h>
-#include <SDL_ttf.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
 
 #include <GL/glew.h>
 #ifdef __APPLE__
