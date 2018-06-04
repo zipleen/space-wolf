@@ -1005,9 +1005,9 @@ bool Map::loadMap(std::string file, Player *player)
 	ifs >> this->tex_chao;
 	
 	// portas para a fisica, vamos por tudo a 0, as portas tem de falar ah fisica para actualizar o seu estado
-	std::vector<std::vector <bool> > to_fisica_portas(this->tamanho_mapa,this->tamanho_mapa);
-	std::vector<std::vector <bool> > to_fisica_objectos(this->tamanho_mapa,this->tamanho_mapa);
-	std::vector<std::vector <bool> > fisica_guardas(this->tamanho_mapa,this->tamanho_mapa);
+	std::vector<std::vector <bool> > to_fisica_portas(this->tamanho_mapa, std::vector<bool>(this->tamanho_mapa));
+	std::vector<std::vector <bool> > to_fisica_objectos(this->tamanho_mapa, std::vector<bool>(this->tamanho_mapa));
+	std::vector<std::vector <bool> > fisica_guardas(this->tamanho_mapa, std::vector<bool>(this->tamanho_mapa));
 	for(int i=0; i<to_fisica_portas.size(); i++)
 		for(int e=0; e<to_fisica_portas.size(); e++){
 			to_fisica_portas[i][e] = true;
@@ -1382,7 +1382,7 @@ bool Map::loadMap(std::string file, Player *player)
 	// necessitamos de fornecer ah fisica as posicoes onde nos nao podemos avancar ate..
 	// para isso vamos criar um vector de vector de booleanos que dizem que podemos ir ou nao podemos ir
 	// percorremos o mapa. objectos agora sao calculados num vector ah parte e adicionados aqui ao vector que vai pra fisica
-	std::vector<std::vector <bool> > to_fisica(this->tamanho_mapa,this->tamanho_mapa);
+	std::vector<std::vector <bool> > to_fisica(this->tamanho_mapa, std::vector<bool>(this->tamanho_mapa));
 	for(int i=0; i<this->map.size(); i++)
 	{
 		//to_fisica[i] = new std::vector<std::vector<bool> >(this->tamanho_mapa);

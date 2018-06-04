@@ -20,6 +20,7 @@
 #endif
 
 #include <SDL/SDL_ttf.h>
+#include <boost/shared_ptr.hpp>
 
 #include "player.h"
 #include "StrUtils.h"
@@ -29,10 +30,11 @@
 #include "shared_render_objects.h" 
 #include "md3/TextureManager.h"
 
+
 class Hud
 {
 protected:
-	typedef shared_ptr<Md3Model> Md3ModelPtr;
+    typedef boost::shared_ptr<Md3Model> Md3ModelPtr;
 	static Hud::Md3ModelPtr arma1,arma2,arma3,arma4 ;
 	static Md3Model *arma1_f, *arma2_f, *arma3_f, *arma4_f, *arma4_1;
 	static float yaw,yaw_walk;

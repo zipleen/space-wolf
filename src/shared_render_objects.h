@@ -29,7 +29,7 @@
 class Shared_render_objects
 {
 	public:
-		typedef shared_ptr<Md3Model> Md3ModelPtr;
+		typedef boost::shared_ptr<Md3Model> Md3ModelPtr;
 		typedef map<int, Md3ModelPtr> modelos_objectos;
 		
 	protected: 

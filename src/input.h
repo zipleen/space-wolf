@@ -8,7 +8,7 @@
  */
 
 #ifndef INPUT_H
-#define INPUT_G
+#define INPUT_H
 
 #include <SDL/SDL.h>
 #include "rendering.h"

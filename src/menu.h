@@ -23,7 +23,7 @@
 #include "game.h"
 #include "rendering.h"
 #include "font/Font.h"
-#include "Md3/TextureManager.h"
+#include "md3/TextureManager.h"
 #include "game.h"
 #include "StrUtils.h"
 
